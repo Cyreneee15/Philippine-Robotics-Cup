@@ -137,10 +137,6 @@
     @keyframes fadeIn {
       from { opacity:0; } to { opacity:1; }
     }
-    @keyframes dataStream {
-      from { transform: translateY(0); }
-      to   { transform: translateY(-50%); }
-    }
     @keyframes videoGlowPulse {
       0%,100% { box-shadow: 0 0 30px rgba(139,126,255,0.30), 0 0 80px rgba(119,51,255,0.12); }
       50%      { box-shadow: 0 0 55px rgba(139,126,255,0.55), 0 0 120px rgba(119,51,255,0.22); }
@@ -278,10 +274,7 @@
     }
 
     /* LEFT */
-    .hero-left {
-      display: flex; flex-direction: column;
-      align-items: flex-start;
-    }
+    .hero-left { display: flex; flex-direction: column; align-items: flex-start; }
     .hero-sys-label {
       display: inline-flex; align-items: center; gap: 10px;
       font-family: var(--font-hud); font-size: 0.60rem; font-weight: 600;
@@ -290,7 +283,6 @@
       animation: fadeIn 1s ease 0.1s both;
     }
     .sys-blink { width: 6px; height: 6px; background: var(--prc-ice); border-radius: 50%; box-shadow: var(--glow-cyan); animation: neonPulse 1.2s ease-in-out infinite; }
-
     .hero-title {
       font-family: var(--font-hud);
       text-align: left; line-height: 1;
@@ -298,21 +290,16 @@
       animation: fadeInUp 1s ease 0.2s both;
     }
     .ht-philippine {
-      display: block;
-      font-size: clamp(0.72rem, 1.6vw, 1.05rem);
-      font-weight: 700; letter-spacing: 0.30em;
-      text-transform: uppercase;
+      display: block; font-size: clamp(0.72rem, 1.6vw, 1.05rem);
+      font-weight: 700; letter-spacing: 0.30em; text-transform: uppercase;
       color: var(--creo-volt);
       text-shadow: 0 0 18px rgba(255,233,48,0.85), 0 0 55px rgba(255,233,48,0.28);
-      animation: flicker 8s ease infinite;
-      margin-bottom: 4px;
+      animation: flicker 8s ease infinite; margin-bottom: 4px;
     }
     .ht-robotics {
-      display: block;
-      font-size: clamp(2.6rem, 6.2vw, 5.2rem);
+      display: block; font-size: clamp(2.6rem, 6.2vw, 5.2rem);
       font-weight: 900; letter-spacing: -0.01em;
-      text-transform: uppercase; line-height: 0.88;
-      color: #fff;
+      text-transform: uppercase; line-height: 0.88; color: #fff;
       text-shadow: 0 0 40px rgba(139,126,255,0.45), 0 0 80px rgba(139,126,255,0.15), 0 4px 0 rgba(0,0,0,0.90);
       position: relative;
     }
@@ -323,42 +310,29 @@
     .ht-robotics::before { color: var(--prc-ice);    animation: glitch1 7s ease-in-out infinite; mix-blend-mode: screen; }
     .ht-robotics::after  { color: var(--creo-purple); animation: glitch2 7s ease-in-out infinite 0.5s; mix-blend-mode: screen; }
     .ht-cup {
-      display: block;
-      font-size: clamp(2.6rem, 6.2vw, 5.2rem);
-      font-weight: 900; letter-spacing: 0.14em;
-      text-transform: uppercase; line-height: 0.88;
+      display: block; font-size: clamp(2.6rem, 6.2vw, 5.2rem);
+      font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; line-height: 0.88;
       background: linear-gradient(90deg, var(--prc-violet) 0%, var(--creo-sky) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 0 18px rgba(139,126,255,0.55));
+      background-clip: text; filter: drop-shadow(0 0 18px rgba(139,126,255,0.55));
     }
-    .ht-divider {
-      display: flex; align-items: center; gap: 12px;
-      margin: 10px 0 8px;
-    }
+    .ht-divider { display: flex; align-items: center; gap: 12px; margin: 10px 0 8px; }
     .ht-divider-line { flex: 1; max-width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--prc-ice)); }
     .ht-divider-line.right { background: linear-gradient(90deg, var(--prc-ice), transparent); }
     .ht-divider-diamond { width: 8px; height: 8px; background: var(--prc-ice); transform: rotate(45deg); box-shadow: var(--glow-cyan); }
     .ht-year {
-      display: block;
-      font-size: clamp(1.5rem, 4vw, 3.2rem);
-      font-weight: 900; letter-spacing: 0.20em;
-      color: var(--creo-volt);
+      display: block; font-size: clamp(1.5rem, 4vw, 3.2rem);
+      font-weight: 900; letter-spacing: 0.20em; color: var(--creo-volt);
       text-shadow: 0 0 28px rgba(255,233,48,0.80), 0 0 80px rgba(255,233,48,0.25);
-      line-height: 1;
-      animation: flicker 12s ease-in-out infinite 2s;
+      line-height: 1; animation: flicker 12s ease-in-out infinite 2s;
     }
-
     .hero-tagline {
       font-family: var(--font-body); font-size: clamp(0.84rem, 1.4vw, 0.96rem);
       color: var(--text-mid); max-width: 460px;
       margin: 0 0 26px; line-height: 1.78;
       animation: fadeInUp 1s ease 0.35s both;
     }
-    .hero-actions {
-      display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 34px;
-      animation: fadeInUp 1s ease 0.48s both;
-    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 34px; animation: fadeInUp 1s ease 0.48s both; }
 
     /* COUNTDOWN */
     .hero-countdown { animation: fadeInUp 1s ease 0.60s both; width: 100%; }
@@ -367,33 +341,19 @@
       color: var(--text-soft); margin-bottom: 10px; text-transform: uppercase;
       display: flex; align-items: center; gap: 10px;
     }
-    .countdown-label::after {
-      content: ''; flex: 1; height: 1px;
-      background: linear-gradient(90deg, rgba(139,126,255,0.48), transparent);
-    }
+    .countdown-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(139,126,255,0.48), transparent); }
     .countdown-grid { display: flex; gap: 8px; flex-wrap: wrap; }
     .countdown-item {
-      background: rgba(139,126,255,0.05);
-      border: 1px solid rgba(139,126,255,0.22);
+      background: rgba(139,126,255,0.05); border: 1px solid rgba(139,126,255,0.22);
       padding: 11px 15px; min-width: 68px; text-align: center;
       position: relative; overflow: hidden;
       clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
       transition: border-color 0.3s, background 0.3s;
     }
     .countdown-item:hover { border-color: var(--prc-violet); background: rgba(139,126,255,0.10); box-shadow: 0 0 20px rgba(139,126,255,0.22); }
-    .countdown-item::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--prc-violet), transparent);
-    }
-    .countdown-num {
-      font-family: var(--font-hud); font-size: 1.75rem; font-weight: 700;
-      line-height: 1; color: var(--prc-ice); display: block;
-      text-shadow: 0 0 20px rgba(139,126,255,0.7);
-    }
-    .countdown-unit {
-      font-family: var(--font-hud); font-size: 0.46rem; text-transform: uppercase;
-      letter-spacing: 0.14em; color: var(--text-soft); margin-top: 4px; display: block;
-    }
+    .countdown-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--prc-violet), transparent); }
+    .countdown-num { font-family: var(--font-hud); font-size: 1.75rem; font-weight: 700; line-height: 1; color: var(--prc-ice); display: block; text-shadow: 0 0 20px rgba(139,126,255,0.7); }
+    .countdown-unit { font-family: var(--font-hud); font-size: 0.46rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-soft); margin-top: 4px; display: block; }
     .hero-event-date {
       display: inline-flex; align-items: center; gap: 9px;
       margin-top: 13px; font-family: var(--font-hud); font-size: 0.57rem;
@@ -405,26 +365,17 @@
     .hero-event-date i { color: var(--creo-amber); }
 
     /* RIGHT — VIDEO */
-    .hero-right {
-      position: relative;
-      animation: fadeInUp 1s ease 0.30s both;
-    }
+    .hero-right { position: relative; animation: fadeInUp 1s ease 0.30s both; }
 
-    /* Neon glow frame */
     .hero-video-frame {
-      position: relative;
-      padding: 2px;
+      position: relative; padding: 2px;
       background: linear-gradient(135deg, rgba(139,126,255,0.85), rgba(68,217,255,0.55), rgba(119,51,255,0.75));
       animation: videoGlowPulse 3s ease-in-out infinite;
       clip-path: polygon(14px 0%, 100% 0%, calc(100% - 14px) 100%, 0% 100%);
     }
-    /* outer corner TL + BR */
-    .hero-video-frame::before,
-    .hero-video-frame::after {
-      content: '';
-      position: absolute; width: 22px; height: 22px;
-      border-color: var(--prc-ice); border-style: solid;
-      z-index: 5; pointer-events: none;
+    .hero-video-frame::before, .hero-video-frame::after {
+      content: ''; position: absolute; width: 22px; height: 22px;
+      border-color: var(--prc-ice); border-style: solid; z-index: 5; pointer-events: none;
       animation: cornerBlink 2.5s ease-in-out infinite;
     }
     .hero-video-frame::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
@@ -434,31 +385,21 @@
       position: relative; overflow: hidden; background: #000;
       clip-path: polygon(13px 0%, 100% 0%, calc(100% - 13px) 100%, 0% 100%);
     }
-    /* inner corner TR + BL */
-    .hero-video-inner-wrap::before,
-    .hero-video-inner-wrap::after {
-      content: '';
-      position: absolute; width: 20px; height: 20px;
-      border-color: var(--creo-amber); border-style: solid;
-      z-index: 5; pointer-events: none;
+    .hero-video-inner-wrap::before, .hero-video-inner-wrap::after {
+      content: ''; position: absolute; width: 20px; height: 20px;
+      border-color: var(--creo-amber); border-style: solid; z-index: 5; pointer-events: none;
       animation: cornerBlink 2.5s ease-in-out infinite 1.25s;
     }
     .hero-video-inner-wrap::before { top: 9px; right: 9px; border-width: 2px 2px 0 0; }
     .hero-video-inner-wrap::after  { bottom: 9px; left: 9px; border-width: 0 0 2px 2px; }
 
-    /* The video */
     .hero-video-el {
-      width: 100%; display: block;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      filter: brightness(0.92) saturate(1.10) contrast(1.04);
-      transition: filter 0.4s;
+      width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover;
+      filter: brightness(0.92) saturate(1.10) contrast(1.04); transition: filter 0.4s;
     }
-    .hero-video-frame:hover .hero-video-el {
-      filter: brightness(1.0) saturate(1.2) contrast(1.06);
-    }
+    .hero-video-frame:hover .hero-video-el { filter: brightness(1.0) saturate(1.2) contrast(1.06); }
 
-    /* HUD overlay on top of video */
+    /* HUD overlay — pointer-events: none so the mute button below it still works */
     .hero-video-hud {
       position: absolute; inset: 0; z-index: 4; pointer-events: none;
       background:
@@ -477,11 +418,9 @@
       box-shadow: 0 0 8px rgba(255,68,68,0.80);
       animation: neonPulse 1s ease-in-out infinite;
     }
-    .video-hud-bottom {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 10px 17px;
-      background: linear-gradient(to top, rgba(3,2,13,0.88), transparent);
-      display: flex; align-items: center; justify-content: space-between;
+    .video-hud-title-row {
+      position: absolute; bottom: 10px; left: 17px;
+      display: flex; flex-direction: column; gap: 1px;
     }
     .video-hud-title {
       font-family: var(--font-hud); font-size: 0.56rem; font-weight: 700;
@@ -494,26 +433,40 @@
       text-shadow: 0 0 8px rgba(255,233,48,0.60);
     }
 
-    /* Replay badge (shown after 3 loops) */
-    .video-replay-badge {
-      position: absolute; inset: 0; z-index: 6;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
-      background: rgba(3,2,13,0.72);
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.45s;
+    /* ── MUTE TOGGLE ──
+       Lives outside .hero-video-hud so pointer-events work.
+       z-index: 6 puts it above the HUD gradient. */
+    .video-mute-btn {
+      position: absolute;
+      bottom: 12px;
+      right: 14px;
+      z-index: 6;
+      width: 34px; height: 34px;
+      background: rgba(3,2,13,0.68);
+      border: 1px solid rgba(139,126,255,0.50) !important;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer !important;
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+      padding: 0;
+      flex-shrink: 0;
     }
-    .video-replay-badge.show { opacity: 1; pointer-events: auto; }
-    .replay-btn {
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      font-family: var(--font-hud); font-size: 0.62rem; color: var(--prc-ice);
-      letter-spacing: 0.14em; cursor: pointer;
-      border: 1px solid rgba(139,126,255,0.55); padding: 14px 30px;
-      background: rgba(139,126,255,0.08);
-      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-      transition: all 0.25s;
+    .video-mute-btn:hover {
+      background: rgba(139,126,255,0.25);
+      border-color: var(--prc-violet) !important;
+      box-shadow: 0 0 16px rgba(139,126,255,0.50);
     }
-    .replay-btn:hover { background: rgba(139,126,255,0.20); box-shadow: 0 0 22px rgba(139,126,255,0.38); }
-    .replay-btn i { font-size: 1.8rem; color: var(--prc-violet); }
+    /* SVG icons inside the button */
+    .video-mute-btn svg {
+      width: 16px; height: 16px;
+      fill: none;
+      stroke: var(--prc-ice);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      display: block;
+      pointer-events: none;
+      flex-shrink: 0;
+    }
 
     .hero-scroll {
       position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
@@ -565,82 +518,36 @@
     /* ===== STATS STRIP ===== */
     .stats-strip {
       border-top: 1px solid var(--border-neon); border-bottom: 1px solid var(--border-neon);
-      padding: 48px 0; position: relative; overflow: hidden;
-      background: rgba(139,126,255,0.02);
+      padding: 48px 0; position: relative; overflow: hidden; background: rgba(139,126,255,0.02);
     }
-    .stats-strip::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(90deg, transparent 0%, rgba(139,126,255,0.04) 50%, transparent 100%);
-    }
-    .stats-inner {
-      max-width: 1340px; margin: 0 auto; padding: 0 36px;
-      display: grid; grid-template-columns: repeat(4,1fr);
-    }
+    .stats-strip::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, transparent 0%, rgba(139,126,255,0.04) 50%, transparent 100%); }
+    .stats-inner { max-width: 1340px; margin: 0 auto; padding: 0 36px; display: grid; grid-template-columns: repeat(4,1fr); }
     .stat-item { text-align: center; padding: 14px 20px; border-right: 1px solid var(--border-neon); }
     .stat-item:last-child { border-right: none; }
-    .stat-num {
-      font-family: var(--font-hud); font-size: 2.4rem; font-weight: 800;
-      color: var(--prc-violet); display: block; line-height: 1;
-      text-shadow: 0 0 20px rgba(139,126,255,0.70);
-    }
+    .stat-num { font-family: var(--font-hud); font-size: 2.4rem; font-weight: 800; color: var(--prc-violet); display: block; line-height: 1; text-shadow: 0 0 20px rgba(139,126,255,0.70); }
     .stat-label { font-family: var(--font-hud); font-size: 0.58rem; color: var(--text-soft); margin-top: 7px; text-transform: uppercase; letter-spacing: 0.10em; }
     .stat-icon { color: rgba(139,126,255,0.60); font-size: 1.1rem; margin-bottom: 8px; }
 
     /* ===== SECTION BASE ===== */
     section { padding: var(--section-pad); }
     .section-inner { max-width: 1340px; margin: 0 auto; padding: 0 36px; }
-    .section-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--font-hud); color: var(--prc-ice); font-size: 0.60rem;
-      font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; margin-bottom: 16px;
-    }
+    .section-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-hud); color: var(--prc-ice); font-size: 0.60rem; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; margin-bottom: 16px; }
     .section-eyebrow::before { content: '//'; color: rgba(139,126,255,0.40); font-size: 0.70rem; }
-    .section-title {
-      font-family: var(--font-hud);
-      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
-      font-weight: 800; letter-spacing: -0.01em;
-      line-height: 1.08; margin-bottom: 14px; color: #fff;
-      text-shadow: 0 0 40px rgba(139,126,255,0.14);
-    }
+    .section-title { font-family: var(--font-hud); font-size: clamp(1.8rem, 3.8vw, 2.8rem); font-weight: 800; letter-spacing: -0.01em; line-height: 1.08; margin-bottom: 14px; color: #fff; text-shadow: 0 0 40px rgba(139,126,255,0.14); }
     .section-title .accent { color: var(--prc-violet); text-shadow: 0 0 18px rgba(139,126,255,0.65); }
     .section-desc { font-size: 1rem; color: var(--text-mid); max-width: 500px; line-height: 1.78; }
 
     /* ===== ABOUT ===== */
     #about .section-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .about-feature-list { display: flex; flex-direction: column; gap: 12px; margin-top: 36px; }
-    .about-feature {
-      display: flex; align-items: flex-start; gap: 16px;
-      padding: 16px 20px;
-      background: rgba(139,126,255,0.04); border: 1px solid rgba(139,126,255,0.12);
-      border-left: 2px solid var(--prc-violet); transition: all 0.3s;
-    }
-    .about-feature:hover {
-      background: rgba(139,126,255,0.09); border-color: rgba(139,126,255,0.30);
-      border-left-color: var(--creo-volt); box-shadow: 0 0 22px rgba(139,126,255,0.12); transform: translateX(4px);
-    }
-    .about-feature-icon {
-      width: 40px; height: 40px; flex-shrink: 0;
-      background: rgba(139,126,255,0.10); border: 1px solid rgba(139,126,255,0.24);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--prc-violet); font-size: 1rem;
-    }
+    .about-feature { display: flex; align-items: flex-start; gap: 16px; padding: 16px 20px; background: rgba(139,126,255,0.04); border: 1px solid rgba(139,126,255,0.12); border-left: 2px solid var(--prc-violet); transition: all 0.3s; }
+    .about-feature:hover { background: rgba(139,126,255,0.09); border-color: rgba(139,126,255,0.30); border-left-color: var(--creo-volt); box-shadow: 0 0 22px rgba(139,126,255,0.12); transform: translateX(4px); }
+    .about-feature-icon { width: 40px; height: 40px; flex-shrink: 0; background: rgba(139,126,255,0.10); border: 1px solid rgba(139,126,255,0.24); display: flex; align-items: center; justify-content: center; color: var(--prc-violet); font-size: 1rem; }
     .about-feature-text h4 { font-family: var(--font-hud); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; color: var(--text-high); margin-bottom: 4px; }
     .about-feature-text p { font-size: 0.875rem; color: var(--text-mid); line-height: 1.60; }
-    .about-card {
-      background: rgba(139,126,255,0.04); border: 1px solid var(--border-neon);
-      position: relative; overflow: hidden;
-      box-shadow: 0 0 40px rgba(139,126,255,0.08), inset 0 0 40px rgba(139,126,255,0.02);
-    }
-    .about-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--prc-violet), transparent);
-    }
-    .about-card-header {
-      background: rgba(139,126,255,0.07);
-      padding: 26px 30px; display: flex; align-items: center; gap: 16px;
-      border-bottom: 1px solid var(--border-neon);
-    }
+    .about-card { background: rgba(139,126,255,0.04); border: 1px solid var(--border-neon); position: relative; overflow: hidden; box-shadow: 0 0 40px rgba(139,126,255,0.08), inset 0 0 40px rgba(139,126,255,0.02); }
+    .about-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--prc-violet), transparent); }
+    .about-card-header { background: rgba(139,126,255,0.07); padding: 26px 30px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--border-neon); }
     .about-card-header img { height: 44px; width: auto; }
     .about-card-header-text h3 { font-family: var(--font-hud); font-size: 0.80rem; font-weight: 700; letter-spacing: 0.06em; color: var(--prc-violet); text-shadow: 0 0 10px rgba(139,126,255,0.55); }
     .about-card-header-text p { font-size: 0.80rem; color: var(--text-soft); margin-top: 3px; }
@@ -649,36 +556,17 @@
     .partner-strip { padding-top: 18px; border-top: 1px solid rgba(139,126,255,0.14); }
     .partner-strip-label { font-family: var(--font-hud); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-soft); margin-bottom: 12px; }
     .partner-logos { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-    .partner-badge {
-      background: rgba(139,126,255,0.08); border: 1px solid rgba(139,126,255,0.24);
-      padding: 4px 12px; font-family: var(--font-hud); font-size: 0.60rem;
-      font-weight: 700; color: var(--prc-violet); letter-spacing: 0.08em;
-    }
+    .partner-badge { background: rgba(139,126,255,0.08); border: 1px solid rgba(139,126,255,0.24); padding: 4px 12px; font-family: var(--font-hud); font-size: 0.60rem; font-weight: 700; color: var(--prc-violet); letter-spacing: 0.08em; }
     .partner-logos img { height: 20px; width: auto; }
     .about-visual { position: relative; }
-    .floating-badge {
-      position: absolute; bottom: -16px; right: -16px;
-      background: transparent; border: 1px solid var(--creo-volt);
-      color: var(--creo-volt); padding: 16px 24px;
-      font-family: var(--font-hud); font-weight: 700; font-size: 0.72rem;
-      text-shadow: 0 0 10px rgba(255,233,48,0.6);
-      box-shadow: 0 0 30px rgba(255,233,48,0.25), inset 0 0 20px rgba(255,233,48,0.06);
-      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%); letter-spacing: 0.06em;
-    }
+    .floating-badge { position: absolute; bottom: -16px; right: -16px; background: transparent; border: 1px solid var(--creo-volt); color: var(--creo-volt); padding: 16px 24px; font-family: var(--font-hud); font-weight: 700; font-size: 0.72rem; text-shadow: 0 0 10px rgba(255,233,48,0.6); box-shadow: 0 0 30px rgba(255,233,48,0.25), inset 0 0 20px rgba(255,233,48,0.06); clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%); letter-spacing: 0.06em; }
     .floating-badge span { display: block; font-size: 1.2rem; font-weight: 900; margin-bottom: 2px; }
 
     /* ===== CATEGORIES ===== */
     #categories { background: rgba(0,0,8,0.5); }
-    .categories-header {
-      display: flex; align-items: flex-end; justify-content: space-between;
-      margin-bottom: 52px; flex-wrap: wrap; gap: 24px;
-    }
+    .categories-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 52px; flex-wrap: wrap; gap: 24px; }
     .categories-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-    .cat-card {
-      background: rgba(0,0,8,0.6); border: 1px solid rgba(255,255,255,0.07);
-      overflow: hidden; position: relative; display: flex; flex-direction: column;
-      transition: all 0.35s cubic-bezier(0.23,1,0.32,1); cursor: none;
-    }
+    .cat-card { background: rgba(0,0,8,0.6); border: 1px solid rgba(255,255,255,0.07); overflow: hidden; position: relative; display: flex; flex-direction: column; transition: all 0.35s cubic-bezier(0.23,1,0.32,1); cursor: none; }
     .cat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0; transition: opacity 0.35s; }
     .cat-card.prc::before   { background: linear-gradient(90deg, transparent, var(--prc-violet), transparent); }
     .cat-card.makex::before { background: linear-gradient(90deg, transparent, var(--creo-sky), transparent); }
@@ -695,16 +583,10 @@
     .cat-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.50s; filter: brightness(0.5) saturate(0.6); }
     .cat-card:hover .cat-img-wrap img { transform: scale(1.07); filter: brightness(0.6) saturate(0.8); }
     .cat-img-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 30%, var(--bg-void) 100%); }
-    .cat-img-badge {
-      position: absolute; bottom: 12px; left: 12px;
-      font-family: var(--font-hud); font-size: 0.58rem; font-weight: 700;
-      letter-spacing: 0.10em; text-transform: uppercase;
-      padding: 4px 12px; background: rgba(3,3,8,0.80);
-      border: 1px solid; clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
-    }
-    .cat-card.prc   .cat-img-badge { color: var(--prc-violet);   border-color: rgba(139,126,255,0.40); }
-    .cat-card.makex .cat-img-badge { color: var(--creo-sky);     border-color: rgba(68,217,255,0.40); }
-    .cat-card.drone .cat-img-badge { color: var(--creo-amber);   border-color: rgba(255,160,48,0.40); }
+    .cat-img-badge { position: absolute; bottom: 12px; left: 12px; font-family: var(--font-hud); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; padding: 4px 12px; background: rgba(3,3,8,0.80); border: 1px solid; clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%); }
+    .cat-card.prc   .cat-img-badge { color: var(--prc-violet);  border-color: rgba(139,126,255,0.40); }
+    .cat-card.makex .cat-img-badge { color: var(--creo-sky);    border-color: rgba(68,217,255,0.40); }
+    .cat-card.drone .cat-img-badge { color: var(--creo-amber);  border-color: rgba(255,160,48,0.40); }
     .cat-body { padding: 22px 26px 26px; display: flex; flex-direction: column; flex: 1; }
     .cat-logo-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
     .cat-logo { height: 30px; width: auto; }
@@ -718,16 +600,10 @@
     .cat-card.prc   .cat-tag { color: var(--prc-violet);  border-color: rgba(139,126,255,0.20); background: rgba(139,126,255,0.04); }
     .cat-card.makex .cat-tag { color: var(--creo-sky);    border-color: rgba(68,217,255,0.20);  background: rgba(68,217,255,0.04); }
     .cat-card.drone .cat-tag { color: var(--creo-amber);  border-color: rgba(255,160,48,0.20);  background: rgba(255,160,48,0.04); }
-    .cat-link {
-      display: inline-flex; align-items: center; gap: 7px; margin-top: auto;
-      font-family: var(--font-hud); font-size: 0.62rem; font-weight: 700;
-      letter-spacing: 0.10em; text-transform: uppercase;
-      padding: 9px 18px; border: 1px solid; align-self: flex-start;
-      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); transition: all 0.25s;
-    }
-    .cat-card.prc   .cat-link { color: var(--prc-violet);   border-color: rgba(139,126,255,0.34); }
-    .cat-card.makex .cat-link { color: var(--creo-sky);     border-color: rgba(68,217,255,0.34); }
-    .cat-card.drone .cat-link { color: var(--creo-amber);   border-color: rgba(255,160,48,0.34); }
+    .cat-link { display: inline-flex; align-items: center; gap: 7px; margin-top: auto; font-family: var(--font-hud); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; padding: 9px 18px; border: 1px solid; align-self: flex-start; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); transition: all 0.25s; }
+    .cat-card.prc   .cat-link { color: var(--prc-violet);  border-color: rgba(139,126,255,0.34); }
+    .cat-card.makex .cat-link { color: var(--creo-sky);    border-color: rgba(68,217,255,0.34); }
+    .cat-card.drone .cat-link { color: var(--creo-amber);  border-color: rgba(255,160,48,0.34); }
     .cat-card.prc:hover   .cat-link { background: rgba(139,126,255,0.10); box-shadow: 0 0 14px rgba(139,126,255,0.24); }
     .cat-card.makex:hover .cat-link { background: rgba(68,217,255,0.10);  box-shadow: 0 0 14px rgba(68,217,255,0.24); }
     .cat-card.drone:hover .cat-link { background: rgba(255,160,48,0.10);  box-shadow: 0 0 14px rgba(255,160,48,0.24); }
@@ -738,16 +614,8 @@
     .video-header { text-align: center; margin-bottom: 50px; }
     .video-header .section-eyebrow { display: inline-flex; }
     .video-header .section-desc { margin: 0 auto; }
-    .video-outer-wrap {
-      position: relative; max-width: 980px; margin: 0 auto;
-      padding: 1px; background: linear-gradient(135deg, var(--prc-ice), var(--creo-purple), var(--creo-amber));
-      box-shadow: 0 0 60px rgba(139,126,255,0.20), 0 0 120px rgba(204,85,255,0.10);
-    }
-    .video-outer-wrap::before {
-      content: ''; position: absolute; inset: -2px;
-      background: linear-gradient(135deg, var(--prc-violet), var(--creo-sky), var(--creo-amber));
-      filter: blur(18px); opacity: 0.35; z-index: -1;
-    }
+    .video-outer-wrap { position: relative; max-width: 980px; margin: 0 auto; padding: 1px; background: linear-gradient(135deg, var(--prc-ice), var(--creo-purple), var(--creo-amber)); box-shadow: 0 0 60px rgba(139,126,255,0.20), 0 0 120px rgba(204,85,255,0.10); }
+    .video-outer-wrap::before { content: ''; position: absolute; inset: -2px; background: linear-gradient(135deg, var(--prc-violet), var(--creo-sky), var(--creo-amber)); filter: blur(18px); opacity: 0.35; z-index: -1; }
     .video-inner-wrap { overflow: hidden; background: #000; }
     .video-ratio { position: relative; padding-bottom: 56.25%; }
     .video-ratio iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
@@ -756,35 +624,19 @@
     #highlights { background: rgba(0,0,8,0.5); }
     .highlights-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
     .highlights-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: auto auto; gap: 12px; }
-    .highlight-item {
-      position: relative; background: rgba(0,0,8,0.8);
-      border: 1px solid rgba(139,126,255,0.12); overflow: hidden; cursor: none;
-      transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s;
-    }
+    .highlight-item { position: relative; background: rgba(0,0,8,0.8); border: 1px solid rgba(139,126,255,0.12); overflow: hidden; cursor: none; transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s; }
     .highlight-item:nth-child(1) { grid-row: 1/3; }
     .highlight-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.45s; filter: brightness(0.55) saturate(0.5); }
     .highlight-item:nth-child(1) .highlight-img { min-height: 410px; }
     .highlight-item:nth-child(n+2) .highlight-img { height: 196px; }
     .highlight-item:hover { border-color: rgba(139,126,255,0.48); box-shadow: 0 0 28px rgba(139,126,255,0.18); transform: scale(1.015); }
     .highlight-item:hover .highlight-img { transform: scale(1.06); filter: brightness(0.70) saturate(0.8); }
-    .highlight-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(3,3,8,0.95) 0%, rgba(3,3,8,0.30) 50%, transparent 100%);
-      opacity: 0; transition: opacity 0.35s; display: flex; align-items: flex-end; padding: 18px;
-    }
+    .highlight-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(3,3,8,0.95) 0%, rgba(3,3,8,0.30) 50%, transparent 100%); opacity: 0; transition: opacity 0.35s; display: flex; align-items: flex-end; padding: 18px; }
     .highlight-item:hover .highlight-overlay { opacity: 1; }
-    .highlight-caption {
-      font-family: var(--font-hud); font-size: 0.65rem; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--prc-violet); text-shadow: 0 0 10px rgba(139,126,255,0.70);
-      transform: translateY(6px); transition: transform 0.3s;
-    }
+    .highlight-caption { font-family: var(--font-hud); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--prc-violet); text-shadow: 0 0 10px rgba(139,126,255,0.70); transform: translateY(6px); transition: transform 0.3s; }
     .highlight-item:hover .highlight-caption { transform: translateY(0); }
     .highlight-num { position: absolute; top: 10px; right: 10px; z-index: 2; font-family: var(--font-hud); font-size: 0.58rem; font-weight: 700; color: var(--text-soft); letter-spacing: 0.05em; }
-    .highlight-item::before, .highlight-item::after {
-      content: ''; position: absolute; width: 16px; height: 16px; z-index: 3;
-      border-color: var(--prc-ice); border-style: solid; opacity: 0; transition: opacity 0.3s;
-    }
+    .highlight-item::before, .highlight-item::after { content: ''; position: absolute; width: 16px; height: 16px; z-index: 3; border-color: var(--prc-ice); border-style: solid; opacity: 0; transition: opacity 0.3s; }
     .highlight-item::before { top: 8px; left: 8px; border-width: 1.5px 0 0 1.5px; }
     .highlight-item::after  { bottom: 8px; right: 8px; border-width: 0 1.5px 1.5px 0; }
     .highlight-item:hover::before, .highlight-item:hover::after { opacity: 1; }
@@ -792,20 +644,13 @@
     /* ===== ORGANIZERS ===== */
     #organizers { padding: 90px 0; }
     .organizers-inner { max-width: 1340px; margin: 0 auto; padding: 0 36px; }
-    .organizers-card {
-      background: rgba(139,126,255,0.025); border: 1px solid var(--border-neon);
-      padding: 60px 52px; text-align: center; position: relative; overflow: hidden;
-      box-shadow: 0 0 60px rgba(139,126,255,0.07), inset 0 0 60px rgba(139,126,255,0.02);
-    }
+    .organizers-card { background: rgba(139,126,255,0.025); border: 1px solid var(--border-neon); padding: 60px 52px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 0 60px rgba(139,126,255,0.07), inset 0 0 60px rgba(139,126,255,0.02); }
     .organizers-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--prc-violet), transparent); }
     .organizers-card::after  { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(139,126,255,0.42), transparent); }
     .organizers-heading { font-family: var(--font-hud); font-size: 1rem; font-weight: 700; color: var(--prc-violet); letter-spacing: 0.08em; text-shadow: 0 0 18px rgba(139,126,255,0.60); margin-bottom: 8px; }
     .organizers-sub { font-size: 0.900rem; color: var(--text-mid); margin-bottom: 46px; }
     .organizers-row { display: flex; align-items: stretch; justify-content: center; flex-wrap: wrap; }
-    .org-item {
-      display: flex; flex-direction: column; align-items: center; gap: 14px;
-      padding: 22px 44px; border-right: 1px solid var(--border-neon); transition: all 0.25s; cursor: none;
-    }
+    .org-item { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 22px 44px; border-right: 1px solid var(--border-neon); transition: all 0.25s; cursor: none; }
     .org-item:last-child { border-right: none; }
     .org-item:hover { background: rgba(139,126,255,0.06); box-shadow: 0 0 20px rgba(139,126,255,0.10); }
     .org-logo-img { height: 60px; width: auto; object-fit: contain; transition: transform 0.25s, filter 0.25s; }
@@ -815,12 +660,7 @@
 
     /* ===== CTA ===== */
     #cta { padding: var(--section-pad); }
-    .cta-card {
-      max-width: 960px; margin: 0 auto; background: rgba(139,126,255,0.04);
-      border: 1px solid var(--prc-violet); padding: 88px 64px; text-align: center;
-      position: relative; overflow: hidden;
-      box-shadow: 0 0 80px rgba(139,126,255,0.18), inset 0 0 80px rgba(139,126,255,0.03);
-    }
+    .cta-card { max-width: 960px; margin: 0 auto; background: rgba(139,126,255,0.04); border: 1px solid var(--prc-violet); padding: 88px 64px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 0 80px rgba(139,126,255,0.18), inset 0 0 80px rgba(139,126,255,0.03); }
     .cta-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--prc-ice), transparent); box-shadow: 0 0 20px rgba(139,126,255,0.8); }
     .cta-card::after  { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--creo-purple), transparent); box-shadow: 0 0 20px rgba(204,85,255,0.8); }
     .cta-corner { position: absolute; width: 24px; height: 24px; border-color: var(--prc-violet); border-style: solid; }
@@ -828,21 +668,8 @@
     .cta-corner.tr { top: 12px; right: 12px; border-width: 1.5px 1.5px 0 0; }
     .cta-corner.bl { bottom: 12px; left: 12px; border-width: 0 0 1.5px 1.5px; }
     .cta-corner.br { bottom: 12px; right: 12px; border-width: 0 1.5px 1.5px 0; }
-    .cta-bg-grid {
-      position: absolute; inset: 0; pointer-events: none;
-      background-image: linear-gradient(rgba(139,126,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(139,126,255,0.05) 1px, transparent 1px);
-      background-size: 40px 40px;
-      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 0%, transparent 100%);
-    }
-    .cta-tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      border: 1px solid rgba(255,233,48,0.38); padding: 6px 18px;
-      font-family: var(--font-hud); font-size: 0.60rem; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--creo-volt); margin-bottom: 22px; position: relative; z-index: 1;
-      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
-      text-shadow: 0 0 10px rgba(255,233,48,0.60); background: rgba(255,233,48,0.05);
-    }
+    .cta-bg-grid { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(139,126,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(139,126,255,0.05) 1px, transparent 1px); background-size: 40px 40px; mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 0%, transparent 100%); }
+    .cta-tag { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,233,48,0.38); padding: 6px 18px; font-family: var(--font-hud); font-size: 0.60rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--creo-volt); margin-bottom: 22px; position: relative; z-index: 1; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); text-shadow: 0 0 10px rgba(255,233,48,0.60); background: rgba(255,233,48,0.05); }
     .cta-title { font-family: var(--font-hud); font-size: clamp(1.8rem, 3.8vw, 2.8rem); font-weight: 800; letter-spacing: -0.01em; line-height: 1.08; margin-bottom: 16px; position: relative; z-index: 1; color: #fff; }
     .cta-title .accent { color: var(--prc-violet); text-shadow: 0 0 18px rgba(139,126,255,0.70); }
     .cta-desc { font-size: 1rem; color: var(--text-mid); max-width: 460px; margin: 0 auto 38px; line-height: 1.78; position: relative; z-index: 1; }
@@ -860,12 +687,7 @@
     .footer-contact-item a { color: var(--text-mid); transition: color 0.2s; }
     .footer-contact-item a:hover { color: var(--prc-violet); text-shadow: 0 0 8px rgba(139,126,255,0.60); }
     .social-links { display: flex; gap: 8px; }
-    .social-link {
-      width: 40px; height: 40px; background: rgba(139,126,255,0.04);
-      border: 1px solid rgba(139,126,255,0.18);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; color: rgba(139,126,255,0.50); transition: all 0.25s;
-    }
+    .social-link { width: 40px; height: 40px; background: rgba(139,126,255,0.04); border: 1px solid rgba(139,126,255,0.18); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: rgba(139,126,255,0.50); transition: all 0.25s; }
     .social-link:hover { background: rgba(139,126,255,0.12); color: var(--prc-violet); box-shadow: 0 0 14px rgba(139,126,255,0.35); border-color: var(--prc-violet); }
     .footer-col h4 { font-family: var(--font-hud); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; margin-bottom: 20px; color: var(--prc-ice); text-shadow: 0 0 10px rgba(196,238,255,0.45); }
     .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
@@ -941,9 +763,89 @@
       .countdown-item { min-width:60px; padding:10px 10px; }
       .countdown-num { font-size:1.45rem; }
       .hero-actions { flex-direction:column; align-items:stretch; }
-      .hero-actions .btn-neon-primary,
-      .hero-actions .btn-neon-secondary { justify-content:center; clip-path:none; }
+      .hero-actions .btn-neon-primary, .hero-actions .btn-neon-secondary { justify-content:center; clip-path:none; }
       .btn-neon-primary,.btn-neon-secondary { clip-path:none !important; }
+    }
+    /* ===== CONTACT BANNER ===== */
+    #contact-banner { padding: 0 0 110px; }
+    .contact-banner-card {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      border: 1px solid var(--border-neon); position: relative; overflow: hidden;
+      background: rgba(139,126,255,0.03);
+      box-shadow: 0 0 60px rgba(139,126,255,0.08), inset 0 0 60px rgba(139,126,255,0.02);
+    }
+    .contact-banner-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--creo-sky), var(--prc-violet), transparent);
+    }
+    .contact-banner-bg-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(139,126,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(139,126,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+    }
+    .contact-banner-left {
+      padding: 56px 52px; border-right: 1px solid var(--border-neon);
+      position: relative; z-index: 1;
+    }
+    .contact-banner-title {
+      font-family: var(--font-hud); font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+      font-weight: 800; letter-spacing: -0.01em; line-height: 1.1;
+      margin-bottom: 14px; color: #fff;
+    }
+    .contact-banner-title .accent { color: var(--creo-sky); text-shadow: 0 0 18px rgba(68,217,255,0.65); }
+    .contact-banner-desc { font-size: 0.92rem; color: var(--text-mid); line-height: 1.78; margin-bottom: 36px; max-width: 400px; }
+    .contact-banner-items { display: flex; flex-direction: column; gap: 18px; }
+    .contact-banner-item { display: flex; align-items: center; gap: 16px; }
+    .contact-banner-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: rgba(68,217,255,0.08); border: 1px solid rgba(68,217,255,0.24);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--creo-sky); font-size: 1rem;
+    }
+    .contact-banner-item-label { font-family: var(--font-hud); font-size: 0.52rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 3px; }
+    .contact-banner-item-val { font-size: 0.88rem; color: var(--text-mid); transition: color 0.2s; text-decoration: none; }
+    .contact-banner-item-val:hover { color: var(--creo-sky); text-shadow: 0 0 8px rgba(68,217,255,0.50); }
+
+    .contact-banner-right {
+      padding: 56px 52px; position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-banner-cta-box {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 16px;
+      max-width: 380px; width: 100%;
+    }
+    .contact-banner-cta-icon {
+      width: 56px; height: 56px;
+      background: rgba(68,217,255,0.08); border: 1px solid rgba(68,217,255,0.30);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--creo-sky);
+    }
+    .contact-banner-cta-icon svg { width: 28px; height: 28px; color: var(--creo-sky); }
+    .contact-banner-cta-title {
+      font-family: var(--font-hud); font-size: 1.1rem; font-weight: 700;
+      letter-spacing: 0.04em; color: var(--text-high);
+      text-shadow: 0 0 14px rgba(68,217,255,0.30);
+    }
+    .contact-banner-cta-desc { font-size: 0.88rem; color: var(--text-mid); line-height: 1.72; }
+    .contact-banner-response-note {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--font-hud); font-size: 0.54rem; letter-spacing: 0.10em;
+      text-transform: uppercase; color: var(--text-soft);
+      margin-top: 4px;
+    }
+    .contact-banner-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #44FF88; flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(68,255,136,0.70);
+      animation: neonPulse 1.8s ease-in-out infinite;
+    }
+    @media (max-width: 900px) {
+      .contact-banner-card { grid-template-columns: 1fr; }
+      .contact-banner-left { border-right: none; border-bottom: 1px solid var(--border-neon); padding: 40px 32px; }
+      .contact-banner-right { padding: 40px 32px; }
+    }
+    @media (max-width: 520px) {
+      .contact-banner-left, .contact-banner-right { padding: 28px 20px; }
     }
 
     ::-webkit-scrollbar { width: 4px; }
@@ -953,11 +855,8 @@
 </head>
 <body>
 
-  <!-- Custom Cursor -->
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-ring" id="cursorRing"></div>
-
-  <!-- Hex Grid Background -->
   <div class="hex-grid" aria-hidden="true"></div>
 
   <div class="page-wrapper">
@@ -967,18 +866,15 @@
       <div class="nav-inner">
         <a href="#" class="nav-logo" aria-label="PRC Home">
           <img src="assets/PRC White Logo.png" alt="Philippine Robotics Cup Logo" />
-          <div class="nav-brand">
-            Philippine Robotics Cup
-            <span>By Creotec Philippines</span>
-          </div>
+          <div class="nav-brand">Philippine Robotics Cup<span>By Creotec Philippines</span></div>
         </a>
         <ul class="nav-links" role="list">
-          <li><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#categories">Categories</a></li>
-          <li><a href="#">Rankings</a></li>
+          <li><a href="#" class="active">Home</a></li>
+          <li><a href="categories.html">Categories</a></li>
+          <li><a href="rankings.html">Rankings</a></li>
           <li><a href="#highlights">Gallery</a></li>
           <li><a href="#">Shop</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
           <li><a href="#" class="nav-cta">Register Now</a></li>
         </ul>
         <button class="nav-hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -989,15 +885,15 @@
 
     <nav class="nav-mobile" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
       <a href="#"><i class="fi fi-rr-home"></i>Home</a>
-      <a href="#about"><i class="fi fi-rr-info"></i>About</a>
-      <a href="#categories"><i class="fi fi-rr-trophy"></i>Categories</a>
-      <a href="#"><i class="fi fi-rr-list-check"></i>Rankings</a>
+      <a href="categories.html"><i class="fi fi-rr-trophy"></i>Categories</a>
+      <a href="rankings.html"><i class="fi fi-rr-list-check"></i>Rankings</a>
       <a href="#highlights"><i class="fi fi-rr-picture"></i>Gallery</a>
       <a href="#"><i class="fi fi-rr-shopping-cart"></i>Shop</a>
+      <a href="contact.html"><i class="fi fi-rr-envelope"></i>Contact Us</a>
       <a href="#" class="nav-cta"><i class="fi fi-rr-pen-field"></i>Register Now</a>
     </nav>
 
-    <!-- HERO — TWO-COLUMN -->
+    <!-- HERO -->
     <section id="hero" aria-label="Hero">
       <div class="hero-bg"></div>
       <div class="hero-overlay"></div>
@@ -1005,9 +901,12 @@
 
       <div class="hero-content">
 
-        <!-- LEFT: Title + CTA + Countdown -->
+        <!-- LEFT -->
         <div class="hero-left">
-
+          <div class="hero-sys-label">
+            <div class="sys-blink"></div>
+            SYS://PRC_2026 &mdash; COMPETITION_ACTIVE
+          </div>
           <h1 class="hero-title">
             <span class="ht-philippine">Philippine</span>
             <span class="ht-robotics" data-text="Robotics">Robotics</span>
@@ -1019,16 +918,11 @@
             </div>
             <span class="ht-year">2026</span>
           </h1>
-
-          <p class="hero-tagline">
-            Where young innovators build, code, and compete — shaping the next generation of Filipino STEM leaders on the world stage.
-          </p>
-
+          <p class="hero-tagline">Where young innovators build, code, and compete — shaping the next generation of Filipino STEM leaders on the world stage.</p>
           <div class="hero-actions">
             <a href="#" class="btn-neon-primary"><i class="fi fi-rr-pen-field"></i> Register Your Team</a>
             <a href="#video" class="btn-neon-secondary"><i class="fi fi-rr-play-alt"></i> Watch Highlights</a>
           </div>
-
           <div class="hero-countdown" aria-label="Countdown to PRC 2026">
             <div class="countdown-label">Competition begins in</div>
             <div class="countdown-grid">
@@ -1044,40 +938,63 @@
           </div>
         </div>
 
-        <!-- RIGHT: PRC 2025 Highlights Video -->
+        <!-- RIGHT: Video -->
         <div class="hero-right">
           <div class="hero-video-frame">
             <div class="hero-video-inner-wrap">
+
+              <!-- autoplay + loop + muted (required for autoplay) -->
               <video
                 id="heroVideo"
                 class="hero-video-el"
                 src="assets/hero-video.mp4"
                 autoplay
                 muted
+                loop
                 playsinline
                 preload="auto"
-                aria-label="Philippine Robotics Cup 2025 competition highlights video"
+                aria-label="Philippine Robotics Cup 2025 highlights"
               ></video>
 
-              <!-- HUD overlay -->
+              <!-- HUD overlay (pointer-events:none — clicks pass through to mute btn) -->
               <div class="hero-video-hud" aria-hidden="true">
                 <div class="video-hud-label">
                   <span class="rec-dot"></span>
                   PRC 2025 &nbsp;//&nbsp; COMPETITION HIGHLIGHTS
                 </div>
-                <div class="video-hud-bottom">
+                <div class="video-hud-title-row">
                   <span class="video-hud-title">Philippine Robotics Cup</span>
                   <span class="video-hud-year">&#9654; 2025 SEASON</span>
                 </div>
               </div>
 
-              <!-- Replay badge — shown after 3 loops -->
-              <div class="video-replay-badge" id="replayBadge" aria-live="polite">
-                <div class="replay-btn" id="replayBtn" role="button" tabindex="0" aria-label="Replay highlights video">
-                  <i class="fi fi-rr-rotate-right"></i>
-                  REPLAY
-                </div>
-              </div>
+              <!--
+                Mute toggle button.
+                - Placed OUTSIDE .hero-video-hud so it receives click events.
+                - Uses inline SVG icons (no icon-font dependency = always renders).
+                - #svgMuted shown when muted, #svgSound shown when unmuted.
+              -->
+              <button
+                class="video-mute-btn"
+                id="muteBtn"
+                type="button"
+                aria-label="Unmute video"
+                title="Toggle sound"
+              >
+                <!-- Speaker-with-X (muted state) -->
+                <svg id="svgMuted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                  <line x1="23" y1="9" x2="17" y2="15"/>
+                  <line x1="17" y1="9" x2="23" y2="15"/>
+                </svg>
+                <!-- Speaker-with-waves (sound on) — hidden initially -->
+                <svg id="svgSound" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                </svg>
+              </button>
+
             </div>
           </div>
         </div>
@@ -1090,26 +1007,10 @@
     <!-- STATS -->
     <div class="stats-strip">
       <div class="stats-inner">
-        <div class="stat-item reveal">
-          <div class="stat-icon"><i class="fi fi-rr-layers"></i></div>
-          <span class="stat-num" data-target="3">0</span>
-          <span class="stat-label">Competition Tracks</span>
-        </div>
-        <div class="stat-item reveal reveal-delay-1">
-          <div class="stat-icon"><i class="fi fi-rr-trophy"></i></div>
-          <span class="stat-num" data-target="11">0</span>
-          <span class="stat-label">Event Categories</span>
-        </div>
-        <div class="stat-item reveal reveal-delay-2">
-          <div class="stat-icon"><i class="fi fi-rr-calendar-check"></i></div>
-          <span class="stat-num">2025</span>
-          <span class="stat-label">Active Since</span>
-        </div>
-        <div class="stat-item reveal reveal-delay-3">
-          <div class="stat-icon"><i class="fi fi-rr-globe"></i></div>
-          <span class="stat-num">1st</span>
-          <span class="stat-label">Int&rsquo;l Qualifier (MakeX)</span>
-        </div>
+        <div class="stat-item reveal"><div class="stat-icon"><i class="fi fi-rr-layers"></i></div><span class="stat-num" data-target="3">0</span><span class="stat-label">Competition Tracks</span></div>
+        <div class="stat-item reveal reveal-delay-1"><div class="stat-icon"><i class="fi fi-rr-trophy"></i></div><span class="stat-num" data-target="11">0</span><span class="stat-label">Event Categories</span></div>
+        <div class="stat-item reveal reveal-delay-2"><div class="stat-icon"><i class="fi fi-rr-calendar-check"></i></div><span class="stat-num">2025</span><span class="stat-label">Active Since</span></div>
+        <div class="stat-item reveal reveal-delay-3"><div class="stat-icon"><i class="fi fi-rr-globe"></i></div><span class="stat-num">1st</span><span class="stat-label">Int&rsquo;l Qualifier (MakeX)</span></div>
       </div>
     </div>
 
@@ -1121,37 +1022,17 @@
           <h2 class="section-title reveal" id="about-title">Empowering<br/><span class="accent">Filipino Innovators</span></h2>
           <p class="section-desc reveal">The Philippine Robotics Cup (PRC) is a premier national, outcome-based robotics competition organized by Creotec Philippines Inc., supported by DepEd, DOST, and DICT.</p>
           <div class="about-feature-list">
-            <div class="about-feature reveal">
-              <div class="about-feature-icon"><i class="fi fi-rr-brain"></i></div>
-              <div class="about-feature-text"><h4>STEM-Centered Learning</h4><p>Develops hands-on skills in AI, IoT, coding, and robotics engineering for real-world application.</p></div>
-            </div>
-            <div class="about-feature reveal reveal-delay-1">
-              <div class="about-feature-icon"><i class="fi fi-rr-globe"></i></div>
-              <div class="about-feature-text"><h4>International Gateway</h4><p>MakeX category winners earn the chance to represent the Philippines at the MakeX World Championships in China.</p></div>
-            </div>
-            <div class="about-feature reveal reveal-delay-2">
-              <div class="about-feature-icon"><i class="fi fi-rr-users"></i></div>
-              <div class="about-feature-text"><h4>Open to All Schools</h4><p>Welcoming students from both public and private schools nationwide — no school too big or too small.</p></div>
-            </div>
+            <div class="about-feature reveal"><div class="about-feature-icon"><i class="fi fi-rr-brain"></i></div><div class="about-feature-text"><h4>STEM-Centered Learning</h4><p>Develops hands-on skills in AI, IoT, coding, and robotics engineering for real-world application.</p></div></div>
+            <div class="about-feature reveal reveal-delay-1"><div class="about-feature-icon"><i class="fi fi-rr-globe"></i></div><div class="about-feature-text"><h4>International Gateway</h4><p>MakeX category winners earn the chance to represent the Philippines at the MakeX World Championships in China.</p></div></div>
+            <div class="about-feature reveal reveal-delay-2"><div class="about-feature-icon"><i class="fi fi-rr-users"></i></div><div class="about-feature-text"><h4>Open to All Schools</h4><p>Welcoming students from both public and private schools nationwide — no school too big or too small.</p></div></div>
           </div>
         </div>
         <div class="about-visual reveal">
           <div class="about-card">
-            <div class="about-card-header">
-              <img src="assets/PRC White Logo.png" alt="PRC Logo" />
-              <div class="about-card-header-text"><h3>Philippine Robotics Cup</h3><p>Organized by Creotec Philippines Inc.</p></div>
-            </div>
+            <div class="about-card-header"><img src="assets/PRC White Logo.png" alt="PRC Logo" /><div class="about-card-header-text"><h3>Philippine Robotics Cup</h3><p>Organized by Creotec Philippines Inc.</p></div></div>
             <div class="about-card-body">
               <p>A qualifying venue for international events, the PRC features diverse categories spanning robotics, automation, drone sports, and creative engineering — designed to challenge and inspire the next generation of Filipino tech leaders.</p>
-              <div class="partner-strip">
-                <div class="partner-strip-label">Supported by</div>
-                <div class="partner-logos">
-                  <span class="partner-badge">DepEd</span>
-                  <span class="partner-badge">DOST</span>
-                  <span class="partner-badge">DICT</span>
-                  <img src="assets/CreoLogo.png" alt="Creotec Philippines" style="height:20px;" />
-                </div>
-              </div>
+              <div class="partner-strip"><div class="partner-strip-label">Supported by</div><div class="partner-logos"><span class="partner-badge">DepEd</span><span class="partner-badge">DOST</span><span class="partner-badge">DICT</span><img src="assets/CreoLogo.png" alt="Creotec Philippines" style="height:20px;" /></div></div>
             </div>
           </div>
           <div class="floating-badge"><span>PRC 2026</span>OCT // LAS PI&Ntilde;AS</div>
@@ -1172,58 +1053,22 @@
         </div>
         <div class="categories-grid">
           <div class="cat-card prc reveal">
-            <div class="cat-img-wrap">
-              <img src="assets/highlights/highlight-roboventure.jpg" alt="RoboVenture competition" loading="lazy" />
-              <div class="cat-img-overlay"></div>
-              <span class="cat-img-badge">8 Sub-categories</span>
-            </div>
-            <div class="cat-body">
-              <div class="cat-logo-row"><img src="assets/Roboventure Logo.png" alt="RoboVenture" class="cat-logo" /></div>
-              <h3 class="cat-title">RoboVenture</h3>
-              <p class="cat-desc">The flagship multi-category track featuring eight unique events — from robot navigation to creative innovation challenges.</p>
-              <div class="cat-subcats">
-                <span class="cat-tag">Aspiring Makers</span><span class="cat-tag">Robot Soccer</span>
-                <span class="cat-tag">Emerging Innovators</span><span class="cat-tag">Navigation - Auto</span>
-                <span class="cat-tag">Line Tracing</span><span class="cat-tag">Sumobot</span>
-              </div>
-              <a href="#" class="cat-link">Explore <i class="fi fi-rr-arrow-right"></i></a>
-            </div>
+            <div class="cat-img-wrap"><img src="assets/highlights/highlight-roboventure.jpg" alt="RoboVenture" loading="lazy" /><div class="cat-img-overlay"></div><span class="cat-img-badge">8 Sub-categories</span></div>
+            <div class="cat-body"><div class="cat-logo-row"><img src="assets/Roboventure Logo.png" alt="RoboVenture" class="cat-logo" /></div><h3 class="cat-title">RoboVenture</h3><p class="cat-desc">The flagship multi-category track featuring eight unique events — from robot navigation to creative innovation challenges.</p><div class="cat-subcats"><span class="cat-tag">Aspiring Makers</span><span class="cat-tag">Robot Soccer</span><span class="cat-tag">Emerging Innovators</span><span class="cat-tag">Navigation - Auto</span><span class="cat-tag">Line Tracing</span><span class="cat-tag">Sumobot</span></div><a href="#" class="cat-link">Explore <i class="fi fi-rr-arrow-right"></i></a></div>
           </div>
           <div class="cat-card makex reveal reveal-delay-1">
-            <div class="cat-img-wrap">
-              <img src="assets/highlights/highlight-makex.jpg" alt="MakeX competition" loading="lazy" />
-              <div class="cat-img-overlay"></div>
-              <span class="cat-img-badge">2 Sub-categories</span>
-            </div>
-            <div class="cat-body">
-              <div class="cat-logo-row"><img src="assets/Makex logo.png" alt="MakeX" class="cat-logo" /></div>
-              <h3 class="cat-title">MakeX</h3>
-              <p class="cat-desc">An internationally recognized competition. Winners represent the Philippines at the MakeX World Championships in China.</p>
-              <div class="cat-subcats">
-                <span class="cat-tag">MakeX Starter</span><span class="cat-tag">MakeX Explorer</span>
-              </div>
-              <a href="#" class="cat-link">Explore <i class="fi fi-rr-arrow-right"></i></a>
-            </div>
+            <div class="cat-img-wrap"><img src="assets/highlights/highlight-makex.jpg" alt="MakeX" loading="lazy" /><div class="cat-img-overlay"></div><span class="cat-img-badge">2 Sub-categories</span></div>
+            <div class="cat-body"><div class="cat-logo-row"><img src="assets/Makex logo.png" alt="MakeX" class="cat-logo" /></div><h3 class="cat-title">MakeX</h3><p class="cat-desc">An internationally recognized competition. Winners represent the Philippines at the MakeX World Championships in China.</p><div class="cat-subcats"><span class="cat-tag">MakeX Starter</span><span class="cat-tag">MakeX Explorer</span></div><a href="#" class="cat-link">Explore <i class="fi fi-rr-arrow-right"></i></a></div>
           </div>
           <div class="cat-card drone reveal reveal-delay-2">
-            <div class="cat-img-wrap">
-              <img src="assets/highlights/highlight-drone.jpg" alt="Drone Soccer" loading="lazy" />
-              <div class="cat-img-overlay"></div>
-              <span class="cat-img-badge">1 Category</span>
-            </div>
-            <div class="cat-body">
-              <div class="cat-logo-row"><img src="assets/Drone Soccer Logo.png" alt="Drone Soccer" class="cat-logo" /></div>
-              <h3 class="cat-title">Drone Soccer</h3>
-              <p class="cat-desc">A thrilling aerial sport combining drone piloting skills with team strategy in a high-energy futuristic competition.</p>
-              <div class="cat-subcats"><span class="cat-tag">Drone Soccer</span></div>
-              <a href="#" class="cat-link">Explore <i class="fi fi-rr-arrow-right"></i></a>
-            </div>
+            <div class="cat-img-wrap"><img src="assets/highlights/highlight-drone.jpg" alt="Drone Soccer" loading="lazy" /><div class="cat-img-overlay"></div><span class="cat-img-badge">1 Category</span></div>
+            <div class="cat-body"><div class="cat-logo-row"><img src="assets/Drone Soccer Logo.png" alt="Drone Soccer" class="cat-logo" /></div><h3 class="cat-title">Drone Soccer</h3><p class="cat-desc">A thrilling aerial sport combining drone piloting skills with team strategy in a high-energy futuristic competition.</p><div class="cat-subcats"><span class="cat-tag">Drone Soccer</span></div><a href="#" class="cat-link">Explore <i class="fi fi-rr-arrow-right"></i></a></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- VIDEO -->
+    <!-- VIDEO SECTION -->
     <section id="video" aria-labelledby="video-title">
       <div class="video-inner">
         <div class="video-header reveal">
@@ -1245,10 +1090,7 @@
     <section id="highlights" aria-labelledby="highlights-title">
       <div class="section-inner">
         <div class="highlights-header">
-          <div>
-            <div class="section-eyebrow reveal-left">Photo Gallery</div>
-            <h2 class="section-title reveal" id="highlights-title">Competition<br/><span class="accent">Highlights</span></h2>
-          </div>
+          <div><div class="section-eyebrow reveal-left">Photo Gallery</div><h2 class="section-title reveal" id="highlights-title">Competition<br/><span class="accent">Highlights</span></h2></div>
           <a href="#" class="btn-neon-primary reveal"><i class="fi fi-rr-images"></i> Full Gallery</a>
         </div>
         <div class="highlights-grid">
@@ -1268,10 +1110,10 @@
           <div class="organizers-heading">// Organized &amp; Supported By</div>
           <p class="organizers-sub">The Philippine Robotics Cup is proudly backed by these organizations and government agencies.</p>
           <div class="organizers-row">
-            <div class="org-item creo"><img src="assets/CreoLogo.png" alt="Creotec Philippines" class="org-logo-img" /><div class="org-name">Creotec Philippines Inc.<br/><span class="org-role">Primary Organizer</span></div></div>
-            <div class="org-item gov"><img src="assets/DepED-Logo.png" alt="Department of Education" class="org-logo-img" /><div class="org-name">Dept. of Education<br/><span class="org-role">DepEd</span></div></div>
-            <div class="org-item gov"><img src="assets/DOST-Logo.png" alt="Department of Science and Technology" class="org-logo-img" /><div class="org-name">Dept. of Science &amp; Technology<br/><span class="org-role">DOST</span></div></div>
-            <div class="org-item gov"><img src="assets/DICT-Logo.png" alt="Dept. of ICT" class="org-logo-img" /><div class="org-name">Dept. of ICT<br/><span class="org-role">DICT</span></div></div>
+            <div class="org-item"><img src="assets/CreoLogo.png" alt="Creotec Philippines" class="org-logo-img" /><div class="org-name">Creotec Philippines Inc.<br/><span class="org-role">Primary Organizer</span></div></div>
+            <div class="org-item"><img src="assets/DepED-Logo.png" alt="Department of Education" class="org-logo-img" /><div class="org-name">Dept. of Education<br/><span class="org-role">DepEd</span></div></div>
+            <div class="org-item"><img src="assets/DOST-Logo.png" alt="Department of Science and Technology" class="org-logo-img" /><div class="org-name">Dept. of Science &amp; Technology<br/><span class="org-role">DOST</span></div></div>
+            <div class="org-item"><img src="assets/DICT-Logo.png" alt="Dept. of ICT" class="org-logo-img" /><div class="org-name">Dept. of ICT<br/><span class="org-role">DICT</span></div></div>
           </div>
         </div>
       </div>
@@ -1282,16 +1124,72 @@
       <div class="section-inner">
         <div class="cta-card reveal">
           <div class="cta-bg-grid"></div>
-          <div class="cta-corner tl"></div>
-          <div class="cta-corner tr"></div>
-          <div class="cta-corner bl"></div>
-          <div class="cta-corner br"></div>
+          <div class="cta-corner tl"></div><div class="cta-corner tr"></div>
+          <div class="cta-corner bl"></div><div class="cta-corner br"></div>
           <div class="cta-tag"><i class="fi fi-rr-calendar"></i> Registration Open // PRC 2026</div>
           <h2 class="cta-title">Ready to Compete<br/>on the <span class="accent">National Stage?</span></h2>
           <p class="cta-desc">Join thousands of Filipino students in the country's most exciting robotics competition. Register your team today.</p>
           <div class="cta-actions">
             <a href="#" class="btn-neon-primary"><i class="fi fi-rr-pen-field"></i> Register Your Team</a>
             <a href="#" class="btn-neon-secondary"><i class="fi fi-rr-shopping-cart"></i> Order Materials</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT BANNER -->
+    <section id="contact-banner" aria-label="Contact us">
+      <div class="section-inner">
+        <div class="contact-banner-card reveal">
+          <div class="contact-banner-bg-grid"></div>
+          <!-- Left: text -->
+          <div class="contact-banner-left">
+            <div class="section-eyebrow" style="margin-bottom:12px;">Get In Touch</div>
+            <h2 class="contact-banner-title">Have Questions?<br/>We're <span class="accent">Here to Help.</span></h2>
+            <p class="contact-banner-desc">Whether you're a student, teacher, or school coordinator — our team is ready to answer your questions about registration, categories, rules, and more.</p>
+            <div class="contact-banner-items">
+              <div class="contact-banner-item">
+                <div class="contact-banner-icon"><i class="fi fi-rr-envelope"></i></div>
+                <div>
+                  <div class="contact-banner-item-label">Email Us</div>
+                  <a href="mailto:philippineroboticscup@gmail.com" class="contact-banner-item-val">philippineroboticscup@gmail.com</a>
+                </div>
+              </div>
+              <div class="contact-banner-item">
+                <div class="contact-banner-icon"><i class="fi fi-rr-phone-call"></i></div>
+                <div>
+                  <div class="contact-banner-item-label">Call / Viber</div>
+                  <a href="tel:+639177713961" class="contact-banner-item-val">+63 917 771 3961</a>
+                </div>
+              </div>
+              <div class="contact-banner-item">
+                <div class="contact-banner-icon"><i class="fi fi-brands-facebook"></i></div>
+                <div>
+                  <div class="contact-banner-item-label">Facebook</div>
+                  <a href="https://www.facebook.com/profile.php?id=61579706372017" target="_blank" rel="noopener" class="contact-banner-item-val">Philippine Robotics Cup</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Right: CTA to contact page -->
+          <div class="contact-banner-right">
+            <div class="contact-banner-cta-box">
+              <div class="contact-banner-cta-icon">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="4" y="10" width="40" height="28" rx="3" stroke="currentColor" stroke-width="2"/>
+                  <path d="M4 14l20 13 20-13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <h3 class="contact-banner-cta-title">Send Us a Message</h3>
+              <p class="contact-banner-cta-desc">Fill out our contact form and we'll get back to you as soon as possible — usually within one business day.</p>
+              <a href="contact.html" class="btn-neon-primary" style="clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);align-self:flex-start;">
+                <i class="fi fi-rr-paper-plane"></i> Go to Contact Page
+              </a>
+              <div class="contact-banner-response-note">
+                <span class="contact-banner-dot"></span>
+                Typical response time: within 24 hours
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1307,11 +1205,9 @@
             <div class="footer-contact-list">
               <div class="footer-contact-item"><i class="fi fi-brands-facebook"></i><a href="https://www.facebook.com/profile.php?id=61579706372017" target="_blank" rel="noopener">Philippine Robotics Cup</a></div>
               <div class="footer-contact-item"><i class="fi fi-rr-phone-call"></i><a href="tel:+639177713961">+63 917 771 3961</a></div>
-              <div class="footer-contact-item"><i class="fi fi-rr-envelope"></i><a href="mailto:philippineroboticscup@gmail.com">philippineroboticscup@gmail.com</a></div>
+              <div class="footer-contact-item"><i class="fi fi-rr-envelope"></i><a href="/cdn-cgi/l/email-protection#04746c6d686d74746d6a61766b666b706d6777677174446369656d682a676b69"><span class="__cf_email__" data-cfemail="9eeef6f7f2f7eeeef7f0fbecf1fcf1eaf7fdedfdebeedef9f3fff7f2b0fdf1f3">[email&#160;protected]</span></a></div>
             </div>
-            <div class="social-links">
-              <a href="https://www.facebook.com/profile.php?id=61579706372017" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><i class="fi fi-brands-facebook"></i></a>
-            </div>
+            <div class="social-links"><a href="https://www.facebook.com/profile.php?id=61579706372017" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><i class="fi fi-brands-facebook"></i></a></div>
           </div>
           <nav class="footer-col" aria-label="Competition"><h4>Competition</h4><ul><li><a href="#categories"><i class="fi fi-rr-angle-right"></i>Categories</a></li><li><a href="#"><i class="fi fi-rr-angle-right"></i>Rules &amp; Guidelines</a></li><li><a href="#"><i class="fi fi-rr-angle-right"></i>Schedule</a></li><li><a href="#"><i class="fi fi-rr-angle-right"></i>Past Events</a></li></ul></nav>
           <nav class="footer-col" aria-label="Participate"><h4>Participate</h4><ul><li><a href="#"><i class="fi fi-rr-angle-right"></i>Register Now</a></li><li><a href="#"><i class="fi fi-rr-angle-right"></i>Order Materials</a></li><li><a href="#"><i class="fi fi-rr-angle-right"></i>FAQ</a></li><li><a href="#"><i class="fi fi-rr-angle-right"></i>Contact Us</a></li></ul></nav>
@@ -1326,7 +1222,7 @@
 
   </div><!-- /page-wrapper -->
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── CUSTOM CURSOR ──
     var dot = document.getElementById('cursorDot');
     var ring = document.getElementById('cursorRing');
@@ -1340,84 +1236,69 @@
       ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
       requestAnimationFrame(animRing);
     })();
-    document.querySelectorAll('a, button, .cat-card, .highlight-item, .org-item, .about-feature, .hero-video-frame, .replay-btn').forEach(function(el) {
-      el.addEventListener('mouseenter', function() {
-        ring.classList.add('hovered');
-        dot.style.background = 'var(--creo-amber)';
-        dot.style.boxShadow = 'var(--glow-orange)';
-      });
-      el.addEventListener('mouseleave', function() {
-        ring.classList.remove('hovered');
-        dot.style.background = 'var(--prc-violet)';
-        dot.style.boxShadow = 'var(--glow-primary)';
-      });
+    document.querySelectorAll('a, button, .cat-card, .highlight-item, .org-item, .about-feature, .hero-video-frame').forEach(function(el) {
+      el.addEventListener('mouseenter', function() { ring.classList.add('hovered'); dot.style.background = 'var(--creo-amber)'; dot.style.boxShadow = 'var(--glow-orange)'; });
+      el.addEventListener('mouseleave', function() { ring.classList.remove('hovered'); dot.style.background = 'var(--prc-violet)'; dot.style.boxShadow = 'var(--glow-primary)'; });
     });
 
-    // ── NAV SCROLL ──
+    // ── NAV ──
     var nav = document.getElementById('main-nav');
     function syncNav() { nav.classList.toggle('scrolled', window.scrollY > 40); }
     window.addEventListener('scroll', syncNav, { passive: true }); syncNav();
 
     // ── HAMBURGER ──
-    var btn = document.getElementById('hamburger');
-    var menu = document.getElementById('mobile-menu');
+    var hamburgerBtn = document.getElementById('hamburger');
+    var mobileMenu   = document.getElementById('mobile-menu');
     function toggleMenu(open) {
-      menu.classList.toggle('open', open); btn.classList.toggle('open', open);
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+      mobileMenu.classList.toggle('open', open);
+      hamburgerBtn.classList.toggle('open', open);
+      hamburgerBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
       document.body.style.overflow = open ? 'hidden' : '';
     }
-    btn.addEventListener('click', function(e) { e.stopPropagation(); toggleMenu(!menu.classList.contains('open')); });
-    menu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', function() { toggleMenu(false); }); });
+    hamburgerBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleMenu(!mobileMenu.classList.contains('open')); });
+    mobileMenu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', function() { toggleMenu(false); }); });
     document.addEventListener('click', function(e) {
-      if (menu.classList.contains('open') && !btn.contains(e.target) && !menu.contains(e.target)) toggleMenu(false);
+      if (mobileMenu.classList.contains('open') && !hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target)) toggleMenu(false);
     });
 
-    // ── HERO VIDEO — autoplay, 3 loops, then show replay badge ──
+    // ── HERO VIDEO: infinite loop + mute toggle ──
     (function() {
-      var vid = document.getElementById('heroVideo');
-      var badge = document.getElementById('replayBadge');
-      var replayBtn = document.getElementById('replayBtn');
-      var MAX_LOOPS = 3;
-      var loopCount = 0;
+      var vid       = document.getElementById('heroVideo');
+      var muteBtn   = document.getElementById('muteBtn');
+      var svgMuted  = document.getElementById('svgMuted');   // speaker-X icon
+      var svgSound  = document.getElementById('svgSound');   // speaker-waves icon
 
-      if (!vid) return;
+      if (!vid || !muteBtn) return;
 
-      // Ensure muted for autoplay policy compliance
+      // Must start muted — browsers block autoplay with sound
       vid.muted = true;
+      vid.play().catch(function() {});
 
-      // Attempt autoplay immediately
-      var p = vid.play();
-      if (p !== undefined) {
-        p.catch(function() {
-          // Autoplay was blocked — silently wait; video will still play on first user interaction
-        });
-      }
-
-      // Each time the video ends, check loop count
-      vid.addEventListener('ended', function() {
-        loopCount++;
-        if (loopCount < MAX_LOOPS) {
-          vid.currentTime = 0;
-          vid.play().catch(function(){});
+      // Keep icons in sync with the actual muted state
+      function syncIcon() {
+        if (vid.muted) {
+          svgMuted.style.display = 'block';
+          svgSound.style.display = 'none';
+          muteBtn.setAttribute('aria-label', 'Unmute video');
         } else {
-          // Finished all 3 loops — show replay UI
-          badge.classList.add('show');
+          svgMuted.style.display = 'none';
+          svgSound.style.display = 'block';
+          muteBtn.setAttribute('aria-label', 'Mute video');
         }
-      });
-
-      // Replay button: reset counter, restart video, hide badge
-      function doReplay() {
-        loopCount = 0;
-        badge.classList.remove('show');
-        vid.currentTime = 0;
-        vid.play().catch(function(){});
       }
 
-      replayBtn.addEventListener('click', doReplay);
-      replayBtn.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); doReplay(); }
+      muteBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        vid.muted = !vid.muted;
+        syncIcon();
       });
+
+      muteBtn.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); vid.muted = !vid.muted; syncIcon(); }
+      });
+
+      syncIcon(); // set correct icon on load
     })();
 
     // ── COUNTDOWN ──
@@ -1425,7 +1306,7 @@
     function tick() {
       var diff = TARGET - Date.now(); if (diff < 0) diff = 0;
       var d = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000);
-      var m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
+      var m = Math.floor((diff%3600000)/60000),  s = Math.floor((diff%60000)/1000);
       document.getElementById('cd-days').textContent    = String(d).padStart(3,'0');
       document.getElementById('cd-hours').textContent   = String(h).padStart(2,'0');
       document.getElementById('cd-minutes').textContent = String(m).padStart(2,'0');
@@ -1436,13 +1317,11 @@
     // ── SCROLL REVEAL ──
     var revEls = document.querySelectorAll('.reveal, .reveal-left');
     var ro = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
-      });
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
     }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
     revEls.forEach(function(el) { ro.observe(el); });
 
-    // ── STAT COUNTER ANIMATION ──
+    // ── STAT COUNTER ──
     var counters = document.querySelectorAll('.stat-num[data-target]');
     var co = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
@@ -1453,8 +1332,7 @@
         (function loop() {
           var p = Math.min((Date.now()-t0)/dur, 1);
           e.target.textContent = Math.floor((1-Math.pow(1-p,3))*target) + '+';
-          if (p < 1) requestAnimationFrame(loop);
-          else e.target.textContent = target + '+';
+          if (p < 1) requestAnimationFrame(loop); else e.target.textContent = target + '+';
         })();
       });
     }, { threshold: 0.5 });
