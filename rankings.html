@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#8B7EFF" />
+  <meta name="description" content="Philippine Robotics Cup 2025 — Official Rankings and Results from the National Finals." />
+  <title>Rankings - Philippine Robotics Cup 2026</title>
+
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="shortcut icon" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css'>
+
+  <style>
+    :root {
+      --prc-violet:   #8B7EFF;
+      --prc-ice:      #C4EEFF;
+      --creo-purple:  #7733FF;
+      --creo-amber:   #FFA030;
+      --creo-volt:    #FFE930;
+      --creo-sky:     #44D9FF;
+      --neon-primary: var(--prc-violet);
+      --bg-void:      #03020D;
+      --border-neon:  rgba(139,126,255,0.22);
+      --glow-primary: 0 0 18px rgba(139,126,255,0.60), 0 0 55px rgba(139,126,255,0.20);
+      --glow-orange:  0 0 18px rgba(255,160,48,0.55),  0 0 55px rgba(255,160,48,0.18);
+      --glow-sky:     0 0 18px rgba(68,217,255,0.55),  0 0 55px rgba(68,217,255,0.18);
+      --glow-cyan:    0 0 18px rgba(196,238,255,0.55), 0 0 55px rgba(196,238,255,0.18);
+      --text-high:    #F2EEFF;
+      --text-mid:     #C8C0F0;
+      --text-soft:    #9A90CC;
+      --text-dim:     #7068A8;
+      --nav-height:   72px;
+      --font-hud:     'Orbitron', monospace;
+      --font-body:    'Exo 2', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-high);
+      overflow-x: hidden;
+      line-height: 1.6;
+      cursor: none;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { font-family: inherit; cursor: none; border: none; background: none; }
+
+    /* ===== CURSOR ===== */
+    .cursor-dot { position: fixed; width: 8px; height: 8px; border-radius: 50%; background: var(--neon-primary); pointer-events: none; z-index: 99999; transform: translate(-50%,-50%); box-shadow: var(--glow-primary); transition: transform 0.1s, background 0.2s; }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(139,126,255,0.65); pointer-events: none; z-index: 99998; transform: translate(-50%,-50%); transition: width 0.25s, height 0.25s, border-color 0.25s, transform 0.08s; }
+    .cursor-ring.hovered { width: 56px; height: 56px; border-color: var(--creo-amber); border-width: 1.5px; }
+
+    /* ===== SCANLINES ===== */
+    body::after { content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none; background: repeating-linear-gradient(to bottom, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px); }
+
+    /* ===== HEX GRID ===== */
+    .hex-grid { position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: linear-gradient(rgba(139,126,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(139,126,255,0.04) 1px, transparent 1px); background-size: 50px 50px; }
+    .hex-grid::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(119,51,255,0.14) 0%, transparent 70%), radial-gradient(ellipse 60% 50% at 100% 100%, rgba(204,85,255,0.07) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 0% 80%, rgba(139,126,255,0.09) 0%, transparent 60%); }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes neonPulse  { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
+    @keyframes fadeInUp   { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn     { from { opacity:0; } to { opacity:1; } }
+    @keyframes scanDown   { from { transform:translateY(-100%); } to { transform:translateY(100vh); } }
+    @keyframes flicker    { 0%,100%{opacity:1;} 92%{opacity:1;} 93%{opacity:0.4;} 94%{opacity:1;} 96%{opacity:0.7;} 97%{opacity:1;} }
+
+    .page-wrapper { position: relative; z-index: 1; }
+
+    /* ===== NAV ===== */
+    #main-nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); z-index: 1000; background: rgba(3,2,13,0.94); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-neon); box-shadow: 0 0 30px rgba(139,126,255,0.10); }
+    .nav-inner { max-width: 1340px; margin: 0 auto; height: 100%; padding: 0 36px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .nav-logo img { height: 38px; width: auto; transition: filter 0.3s; }
+    .nav-logo:hover img { filter: drop-shadow(0 0 14px rgba(139,126,255,0.75)); }
+    .nav-brand { font-family: var(--font-hud); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.06em; line-height: 1.3; color: var(--prc-violet); text-shadow: 0 0 12px rgba(139,126,255,0.65); }
+    .nav-brand span { color: var(--text-soft); display: block; font-size: 0.58rem; font-weight: 400; letter-spacing: 0.10em; text-transform: uppercase; margin-top: 1px; }
+    .nav-links { display: flex; align-items: center; gap: 2px; }
+    .nav-links a { font-family: var(--font-hud); font-size: 0.65rem; font-weight: 600; color: var(--text-mid); padding: 8px 14px; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 4px; transition: all 0.2s; white-space: nowrap; }
+    .nav-links a:hover { color: var(--prc-violet); text-shadow: 0 0 12px rgba(139,126,255,0.85); }
+    .nav-links a.active { color: var(--prc-violet); text-shadow: 0 0 12px rgba(139,126,255,0.85); position: relative; }
+    .nav-links a.active::after { content: ''; position: absolute; bottom: 4px; left: 14px; right: 14px; height: 1px; background: var(--prc-violet); box-shadow: 0 0 6px rgba(139,126,255,0.80); }
+    .nav-cta { background: transparent !important; border: 1px solid var(--prc-violet) !important; color: var(--prc-violet) !important; padding: 8px 20px !important; border-radius: 3px !important; box-shadow: 0 0 15px rgba(139,126,255,0.28), inset 0 0 15px rgba(139,126,255,0.06) !important; transition: all 0.25s !important; margin-left: 8px; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); }
+    .nav-cta:hover { background: rgba(139,126,255,0.12) !important; box-shadow: 0 0 30px rgba(139,126,255,0.52), inset 0 0 20px rgba(139,126,255,0.10) !important; color: #fff !important; }
+    .nav-hamburger { display: none; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 44px; height: 44px; padding: 0; cursor: none; background: rgba(139,126,255,0.06); border: 1px solid var(--border-neon); border-radius: 4px; flex-shrink: 0; z-index: 1002; -webkit-tap-highlight-color: transparent; touch-action: manipulation; transition: all 0.2s; }
+    .nav-hamburger:hover { background: rgba(139,126,255,0.14); box-shadow: 0 0 14px rgba(139,126,255,0.28); }
+    .nav-hamburger span { width: 20px; height: 1.5px; background: var(--prc-violet); border-radius: 2px; transition: transform 0.28s, opacity 0.28s; display: block; pointer-events: none; }
+    .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+    .nav-mobile { display: none; position: fixed; top: var(--nav-height); left: 0; right: 0; background: rgba(3,2,13,0.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-neon); padding: 12px 18px 24px; z-index: 1000; flex-direction: column; gap: 2px; box-shadow: 0 20px 60px rgba(139,126,255,0.09); }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { font-family: var(--font-hud); font-size: 0.70rem; font-weight: 600; color: var(--text-mid); padding: 13px 14px; border-radius: 3px; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s; display: flex; align-items: center; gap: 12px; }
+    .nav-mobile a i { font-size: 1rem; color: var(--prc-violet); }
+    .nav-mobile a:hover, .nav-mobile a.active { color: var(--prc-violet); background: rgba(139,126,255,0.07); text-shadow: 0 0 10px rgba(139,126,255,0.55); }
+    .nav-mobile .nav-cta { border: 1px solid var(--prc-violet) !important; color: var(--prc-violet) !important; margin-top: 10px; justify-content: center; border-radius: 3px !important; clip-path: none !important; }
+
+    /* ===== PAGE HERO ===== */
+    .page-hero { position: relative; padding: calc(var(--nav-height) + 72px) 0 72px; overflow: hidden; text-align: center; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 50% 0%, rgba(139,126,255,0.10) 0%, transparent 70%), linear-gradient(to bottom, rgba(3,2,13,0) 60%, var(--bg-void) 100%); }
+    .page-hero-scan { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .page-hero-scan::after { content: ''; position: absolute; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--prc-violet), var(--prc-ice), transparent); animation: scanDown 8s linear infinite; box-shadow: 0 0 14px rgba(139,126,255,0.55); }
+    .page-hero-inner { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; padding: 0 36px; }
+    .page-hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-hud); font-size: 0.60rem; font-weight: 600; letter-spacing: 0.20em; text-transform: uppercase; color: var(--prc-ice); margin-bottom: 18px; animation: fadeIn 0.8s ease both; }
+    .page-hero-eyebrow::before { content: '//'; color: rgba(139,126,255,0.40); font-size: 0.70rem; }
+    .page-hero-blink { width: 6px; height: 6px; background: var(--prc-violet); border-radius: 50%; box-shadow: var(--glow-primary); animation: neonPulse 1.2s ease-in-out infinite; }
+    .page-hero-title { font-family: var(--font-hud); font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 900; letter-spacing: -0.01em; line-height: 1.0; color: #fff; margin-bottom: 18px; text-shadow: 0 0 40px rgba(139,126,255,0.20); animation: fadeInUp 0.8s ease 0.1s both; }
+    .page-hero-title .accent { color: var(--prc-violet); text-shadow: 0 0 22px rgba(139,126,255,0.65); }
+    .page-hero-desc { font-size: 1rem; color: var(--text-mid); line-height: 1.78; max-width: 520px; margin: 0 auto; animation: fadeInUp 0.8s ease 0.2s both; }
+    .page-hero-divider { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 36px; animation: fadeIn 0.8s ease 0.3s both; }
+    .page-hero-divider-line { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, rgba(139,126,255,0.40)); }
+    .page-hero-divider-line.right { background: linear-gradient(90deg, rgba(139,126,255,0.40), transparent); }
+    .page-hero-divider-diamond { width: 8px; height: 8px; background: var(--prc-violet); transform: rotate(45deg); box-shadow: var(--glow-primary); }
+
+    /* ===== MAIN CONTENT ===== */
+    .rankings-main { max-width: 1340px; margin: 0 auto; padding: 60px 36px 100px; }
+
+    /* Meta badges row */
+    .rankings-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 44px; animation: fadeInUp 0.8s ease 0.3s both; }
+    .rankings-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-hud); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; padding: 7px 16px; border: 1px solid; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); }
+    .rankings-badge.violet { color: var(--prc-violet); border-color: rgba(139,126,255,0.40); background: rgba(139,126,255,0.06); }
+    .rankings-badge.volt   { color: var(--creo-volt);  border-color: rgba(255,233,48,0.35);  background: rgba(255,233,48,0.05); text-shadow: 0 0 10px rgba(255,233,48,0.50); }
+
+    /* ===== FILTER BAR ===== */
+    .rankings-filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 36px; }
+    .filter-btn { font-family: var(--font-hud); font-size: 0.60rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; padding: 8px 18px; border: 1px solid rgba(139,126,255,0.28); color: var(--text-soft); background: transparent; clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%); transition: all 0.2s; cursor: pointer; }
+    .filter-btn:hover { border-color: var(--prc-violet); color: var(--prc-violet); background: rgba(139,126,255,0.10); box-shadow: 0 0 14px rgba(139,126,255,0.25); }
+    .filter-btn.active-rv    { border-color: var(--prc-violet); color: var(--prc-violet); background: rgba(139,126,255,0.10); box-shadow: 0 0 14px rgba(139,126,255,0.22); }
+    .filter-btn.active-mx    { border-color: var(--creo-sky);   color: var(--creo-sky);   background: rgba(68,217,255,0.10);  box-shadow: 0 0 14px rgba(68,217,255,0.22); }
+    .filter-btn.active-drone { border-color: var(--creo-amber); color: var(--creo-amber); background: rgba(255,160,48,0.10);  box-shadow: 0 0 14px rgba(255,160,48,0.22); }
+
+    /* ===== RANKINGS TABLE ===== */
+    .rank-cat-group { display: none; }
+    .rank-cat-group.visible { display: block; }
+
+    .rankings-table-wrap { position: relative; overflow: hidden; border: 1px solid var(--border-neon); margin-bottom: 32px; }
+    .rankings-table-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--prc-violet), transparent); }
+
+    .rankings-section-label { padding: 10px 20px 8px; font-family: var(--font-hud); font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; background: rgba(0,0,0,0.30); border-bottom: 1px solid rgba(139,126,255,0.12); display: flex; align-items: center; gap: 10px; }
+    .rankings-section-label .label-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+    .rankings-header-row { display: grid; grid-template-columns: 56px 1fr 200px 100px 100px 80px; padding: 12px 20px; background: rgba(139,126,255,0.08); border-bottom: 1px solid var(--border-neon); font-family: var(--font-hud); font-size: 0.52rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-soft); }
+
+    .rankings-row { display: grid; grid-template-columns: 56px 1fr 200px 100px 100px 80px; padding: 14px 20px; border-bottom: 1px solid rgba(139,126,255,0.08); align-items: center; transition: background 0.2s; }
+    .rankings-row:last-child { border-bottom: none; }
+    .rankings-row:hover { background: rgba(139,126,255,0.06); }
+
+    /* Top 3 */
+    .rankings-row.rank-1 { background: rgba(255,233,48,0.04); }
+    .rankings-row.rank-2 { background: rgba(196,238,255,0.03); }
+    .rankings-row.rank-3 { background: rgba(255,160,48,0.03); }
+    .rankings-row.rank-1:hover { background: rgba(255,233,48,0.08); }
+    .rankings-row.rank-2:hover { background: rgba(196,238,255,0.06); }
+    .rankings-row.rank-3:hover { background: rgba(255,160,48,0.06); }
+
+    .rank-num { font-family: var(--font-hud); font-size: 1.1rem; font-weight: 900; line-height: 1; text-align: center; }
+    .rank-1 .rank-num { color: var(--creo-volt);  text-shadow: 0 0 14px rgba(255,233,48,0.70); }
+    .rank-2 .rank-num { color: var(--prc-ice);    text-shadow: 0 0 14px rgba(196,238,255,0.70); }
+    .rank-3 .rank-num { color: var(--creo-amber); text-shadow: 0 0 14px rgba(255,160,48,0.70); }
+    .rank-num.other   { color: var(--text-dim); font-size: 0.88rem; }
+    .rank-medal { font-size: 1.1rem; display: block; text-align: center; line-height: 1; }
+
+    .rank-school { display: flex; flex-direction: column; gap: 3px; }
+    .rank-school-name { font-family: var(--font-hud); font-size: 0.72rem; font-weight: 700; color: var(--text-high); letter-spacing: 0.04em; }
+    .rank-team-name   { font-family: var(--font-hud); font-size: 0.56rem; color: var(--text-soft); letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .rank-category-badge { display: inline-flex; align-items: center; font-family: var(--font-hud); font-size: 0.54rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border: 1px solid; clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%); }
+    .badge-rv    { color: var(--prc-violet); border-color: rgba(139,126,255,0.30); background: rgba(139,126,255,0.06); }
+    .badge-mx    { color: var(--creo-sky);   border-color: rgba(68,217,255,0.30);  background: rgba(68,217,255,0.06); }
+    .badge-drone { color: var(--creo-amber); border-color: rgba(255,160,48,0.30);  background: rgba(255,160,48,0.06); }
+
+    .rank-score      { font-family: var(--font-hud); font-size: 0.88rem; font-weight: 800; color: var(--text-high); text-align: center; }
+    .rank-school-loc { font-family: var(--font-hud); font-size: 0.54rem; color: var(--text-dim); letter-spacing: 0.06em; text-align: center; }
+    .rank-status     { font-family: var(--font-hud); font-size: 0.52rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; }
+    .rank-status.qualified { color: var(--creo-volt); text-shadow: 0 0 8px rgba(255,233,48,0.55); }
+    .rank-status.finalist  { color: var(--prc-violet); }
+    .rank-status.competing { color: var(--text-soft); }
+
+    /* Placeholder card */
+    .coming-soon-card { border: 1px solid var(--border-neon); padding: 52px 36px; text-align: center; background: rgba(139,126,255,0.02); margin-bottom: 32px; }
+    .coming-soon-card .cs-eyebrow { font-family: var(--font-hud); font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 16px; }
+    .coming-soon-card .cs-title   { font-family: var(--font-hud); font-size: 1.1rem; font-weight: 700; color: var(--text-soft); margin-bottom: 10px; }
+    .coming-soon-card p           { font-size: 0.875rem; color: var(--text-dim); max-width: 420px; margin: 0 auto; line-height: 1.70; }
+
+    /* CTA */
+    .rankings-cta-wrap { margin-top: 60px; }
+    .rankings-cta { max-width: 960px; margin: 0 auto; background: rgba(139,126,255,0.04); border: 1px solid var(--prc-violet); padding: 80px 64px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 0 80px rgba(139,126,255,0.18), inset 0 0 80px rgba(139,126,255,0.03); }
+    .rankings-cta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--prc-ice), transparent); box-shadow: 0 0 20px rgba(139,126,255,0.8); }
+    .rankings-cta::after  { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--creo-purple), transparent); box-shadow: 0 0 20px rgba(204,85,255,0.8); }
+    .cta-corner { position: absolute; width: 24px; height: 24px; border-color: var(--prc-violet); border-style: solid; }
+    .cta-corner.tl { top: 12px; left: 12px; border-width: 1.5px 0 0 1.5px; }
+    .cta-corner.tr { top: 12px; right: 12px; border-width: 1.5px 1.5px 0 0; }
+    .cta-corner.bl { bottom: 12px; left: 12px; border-width: 0 0 1.5px 1.5px; }
+    .cta-corner.br { bottom: 12px; right: 12px; border-width: 0 1.5px 1.5px 0; }
+    .cta-bg-grid { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(139,126,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(139,126,255,0.05) 1px, transparent 1px); background-size: 40px 40px; mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 0%, transparent 100%); }
+    .cta-tag { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,233,48,0.38); padding: 6px 18px; font-family: var(--font-hud); font-size: 0.60rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--creo-volt); margin-bottom: 22px; position: relative; z-index: 1; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); text-shadow: 0 0 10px rgba(255,233,48,0.60); background: rgba(255,233,48,0.05); }
+    .cta-title { font-family: var(--font-hud); font-size: clamp(1.8rem, 3.8vw, 2.8rem); font-weight: 800; letter-spacing: -0.01em; line-height: 1.08; margin-bottom: 16px; position: relative; z-index: 1; color: #fff; }
+    .cta-title .accent { color: var(--prc-violet); text-shadow: 0 0 18px rgba(139,126,255,0.70); }
+    .cta-desc { font-size: 1rem; color: var(--text-mid); max-width: 460px; margin: 0 auto 38px; line-height: 1.78; position: relative; z-index: 1; }
+    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+    .btn-neon-primary { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--prc-violet); padding: 12px 28px; font-family: var(--font-hud); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--prc-violet); clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%); box-shadow: 0 0 18px rgba(139,126,255,0.32), inset 0 0 18px rgba(139,126,255,0.07); transition: all 0.25s; position: relative; overflow: hidden; }
+    .btn-neon-primary::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(139,126,255,0.18), transparent); transform: translateX(-100%); transition: transform 0.5s; }
+    .btn-neon-primary:hover { background: rgba(139,126,255,0.12); box-shadow: 0 0 38px rgba(139,126,255,0.60), inset 0 0 28px rgba(139,126,255,0.12); color: #fff; transform: translateY(-2px); }
+    .btn-neon-primary:hover::before { transform: translateX(100%); }
+    .btn-neon-secondary { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--creo-sky); padding: 12px 28px; font-family: var(--font-hud); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--creo-sky); clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%); box-shadow: 0 0 18px rgba(68,217,255,0.28), inset 0 0 18px rgba(68,217,255,0.06); transition: all 0.25s; }
+    .btn-neon-secondary:hover { background: rgba(68,217,255,0.10); box-shadow: 0 0 38px rgba(68,217,255,0.55), inset 0 0 28px rgba(68,217,255,0.10); color: #fff; transform: translateY(-2px); }
+
+    /* ===== FOOTER ===== */
+    footer { background: rgba(0,0,6,0.95); border-top: 1px solid var(--border-neon); padding: 70px 0 32px; }
+    .footer-inner { max-width: 1340px; margin: 0 auto; padding: 0 36px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 52px; margin-bottom: 52px; }
+    .footer-brand img { height: 36px; width: auto; margin-bottom: 16px; }
+    .footer-brand p { font-size: 0.875rem; color: var(--text-mid); line-height: 1.80; margin-bottom: 22px; }
+    .footer-contact-list { display: flex; flex-direction: column; gap: 11px; margin-bottom: 24px; }
+    .footer-contact-item { display: flex; align-items: center; gap: 11px; font-size: 0.875rem; color: var(--text-mid); }
+    .footer-contact-item i { color: var(--prc-violet); font-size: 0.95rem; flex-shrink: 0; }
+    .footer-contact-item a { color: var(--text-mid); transition: color 0.2s; }
+    .footer-contact-item a:hover { color: var(--prc-violet); text-shadow: 0 0 8px rgba(139,126,255,0.60); }
+    .social-links { display: flex; gap: 8px; }
+    .social-link { width: 40px; height: 40px; background: rgba(139,126,255,0.04); border: 1px solid rgba(139,126,255,0.18); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: rgba(139,126,255,0.50); transition: all 0.25s; }
+    .social-link:hover { background: rgba(139,126,255,0.12); color: var(--prc-violet); box-shadow: 0 0 14px rgba(139,126,255,0.35); border-color: var(--prc-violet); }
+    .footer-col h4 { font-family: var(--font-hud); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; margin-bottom: 20px; color: var(--prc-ice); text-shadow: 0 0 10px rgba(196,238,255,0.45); }
+    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { font-size: 0.875rem; color: var(--text-mid); transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+    .footer-col ul li a i { font-size: 0.65rem; color: rgba(139,126,255,0.38); transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--prc-violet); padding-left: 4px; text-shadow: 0 0 8px rgba(139,126,255,0.50); }
+    .footer-col ul li a:hover i { color: var(--prc-violet); }
+    .footer-bottom { padding-top: 24px; border-top: 1px solid rgba(139,126,255,0.12); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+    .footer-bottom p { font-family: var(--font-hud); font-size: 0.58rem; color: var(--text-soft); letter-spacing: 0.06em; }
+    .footer-bottom-links { display: flex; gap: 22px; }
+    .footer-bottom-links a { font-family: var(--font-hud); font-size: 0.58rem; color: var(--text-soft); transition: color 0.2s; letter-spacing: 0.06em; }
+    .footer-bottom-links a:hover { color: var(--prc-violet); }
+
+    /* ===== REVEAL ===== */
+    .reveal { opacity:0; transform:translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.10s; }
+    .reveal-delay-2 { transition-delay: 0.20s; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .rankings-cta { padding: 64px 36px; }
+    }
+    @media (max-width: 768px) {
+      :root { --nav-height: 62px; }
+      body { cursor: auto; } button { cursor: pointer; }
+      .cursor-dot, .cursor-ring { display: none; }
+      .nav-links { display: none; } .nav-hamburger { display: flex; }
+      .rankings-header-row { grid-template-columns: 44px 1fr 90px; }
+      .rankings-row        { grid-template-columns: 44px 1fr 90px; }
+      .col-cat, .col-loc, .col-status { display: none; }
+      .rank-school-name { font-size: 0.65rem; }
+      .rankings-cta { padding: 48px 24px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .cta-actions { flex-direction: column; align-items: stretch; }
+      .cta-actions .btn-neon-primary, .cta-actions .btn-neon-secondary { justify-content: center; clip-path: none; }
+    }
+    @media (max-width: 520px) {
+      :root { --nav-height: 58px; }
+      .nav-inner { padding: 0 14px; }
+      .rankings-main, .footer-inner { padding-left: 16px; padding-right: 16px; }
+      .page-hero-inner { padding: 0 16px; }
+      .nav-brand span { display: none; }
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg-void); }
+    ::-webkit-scrollbar-thumb { background: var(--prc-violet); box-shadow: 0 0 8px rgba(139,126,255,0.70); border-radius: 2px; }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="hex-grid" aria-hidden="true"></div>
+
+  <div class="page-wrapper">
+
+    <!-- NAV -->
+    <nav id="main-nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo" aria-label="PRC Home">
+          <img src="assets/PRC White Logo.png" alt="Philippine Robotics Cup Logo" />
+          <div class="nav-brand">Philippine Robotics Cup<span>By Creotec Philippines</span></div>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="categories.html">Categories</a></li>
+          <li><a href="rankings.html" class="active">Rankings</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#" class="nav-cta">Register Now</a></li>
+        </ul>
+        <button class="nav-hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <nav class="nav-mobile" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
+      <a href="index.html"><i class="fi fi-rr-home"></i>Home</a>
+      <a href="categories.html"><i class="fi fi-rr-trophy"></i>Categories</a>
+      <a href="rankings.html" class="active"><i class="fi fi-rr-list-check"></i>Rankings</a>
+      <a href="#"><i class="fi fi-rr-picture"></i>Gallery</a>
+      <a href="#"><i class="fi fi-rr-shopping-cart"></i>Shop</a>
+      <a href="contact.html"><i class="fi fi-rr-envelope"></i>Contact Us</a>
+      <a href="#" class="nav-cta"><i class="fi fi-rr-pen-field"></i>Register Now</a>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <header class="page-hero">
+      <div class="page-hero-scan"></div>
+      <div class="page-hero-inner">
+        <div class="page-hero-eyebrow">
+          <div class="page-hero-blink"></div>
+          PRC 2025 &mdash; National Finals Results
+        </div>
+        <h1 class="page-hero-title">Rankings &amp; <span class="accent">Results</span></h1>
+        <p class="page-hero-desc">Official standings from the Philippine Robotics Cup 2025 National Finals — ranked by category with top schools highlighted.</p>
+        <div class="page-hero-divider" aria-hidden="true">
+          <div class="page-hero-divider-line"></div>
+          <div class="page-hero-divider-diamond"></div>
+          <div class="page-hero-divider-line right"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="rankings-main">
+
+      <!-- Meta badges -->
+      <div class="rankings-meta">
+        <span class="rankings-badge violet"><i class="fi fi-rr-trophy"></i> PRC 2025 — National Finals</span>
+        <span class="rankings-badge volt"><i class="fi fi-rr-calendar"></i> October 2025</span>
+        <span class="rankings-badge violet"><i class="fi fi-rr-map-marker"></i> Vista Mall Las Pi&ntilde;as</span>
+      </div>
+
+      <!-- FILTER BAR -->
+      <div class="rankings-filter-bar">
+        <button class="filter-btn active-rv" id="filter-all"   onclick="filterRankings('all')">All Categories</button>
+        <button class="filter-btn"           id="filter-ei"    onclick="filterRankings('ei')">Emerging Innovators</button>
+        <button class="filter-btn"           id="filter-as"    onclick="filterRankings('as')">Aspiring Makers</button>
+        <button class="filter-btn"           id="filter-rs"    onclick="filterRankings('rs')">Robot Soccer</button>
+        <button class="filter-btn"           id="filter-lt"    onclick="filterRankings('lt')">Line Tracing</button>
+        <button class="filter-btn"           id="filter-sb"    onclick="filterRankings('sb')">Sumobot</button>
+        <button class="filter-btn"           id="filter-nav"   onclick="filterRankings('nav')">Navigation</button>
+        <button class="filter-btn"           id="filter-mx"    onclick="filterRankings('mx')">MakeX</button>
+        <button class="filter-btn"           id="filter-drone" onclick="filterRankings('drone')">Drone Soccer</button>
+      </div>
+
+      <!-- ── EMERGING INNOVATORS ── -->
+      <div class="rank-cat-group visible" id="rg-ei">
+        <div class="rankings-table-wrap reveal" style="border-color:rgba(139,126,255,0.28);">
+          <div class="rankings-section-label" style="color:var(--prc-violet);">
+            <span class="label-dot" style="background:var(--prc-violet);box-shadow:0 0 6px rgba(139,126,255,0.70);"></span>
+            RoboVenture — Emerging Innovators
+          </div>
+          <div class="rankings-header-row">
+            <div>Rank</div>
+            <div>School / Team</div>
+            <div class="col-cat">Category</div>
+            <div class="col-loc" style="text-align:center">Score</div>
+            <div class="col-loc" style="text-align:center">Region</div>
+            <div class="col-status" style="text-align:center">Status</div>
+          </div>
+          <div class="rankings-row rank-1">
+            <div class="rank-num">1<span class="rank-medal">🥇</span></div>
+            <div class="rank-school"><span class="rank-school-name">AUP – Academy</span><span class="rank-team-name">AUPA RoboLights</span></div>
+            <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
+            <div class="rank-score col-loc">—</div>
+            <div class="rank-school-loc col-loc">NCR</div>
+            <div class="rank-status qualified col-status">Champion</div>
+          </div>
+          <div class="rankings-row rank-2">
+            <div class="rank-num">2<span class="rank-medal">🥈</span></div>
+            <div class="rank-school"><span class="rank-school-name">Bethel Academy</span><span class="rank-team-name">The Mechatronics</span></div>
+            <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
+            <div class="rank-score col-loc">—</div>
+            <div class="rank-school-loc col-loc">—</div>
+            <div class="rank-status finalist col-status">2nd Place</div>
+          </div>
+          <div class="rankings-row rank-3">
+            <div class="rank-num">3<span class="rank-medal">🥉</span></div>
+            <div class="rank-school"><span class="rank-school-name">Capas National High School</span><span class="rank-team-name">CNHS Tarlac</span></div>
+            <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
+            <div class="rank-score col-loc">—</div>
+            <div class="rank-school-loc col-loc">Region III</div>
+            <div class="rank-status finalist col-status">3rd Place</div>
+          </div>
+          <div class="rankings-row">
+            <div class="rank-num"><span class="rank-num other">4</span></div>
+            <div class="rank-school"><span class="rank-school-name">Halapitan National High School</span><span class="rank-team-name">San Fernando Team 1 | 2 | 3</span></div>
+            <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
+            <div class="rank-score col-loc">—</div>
+            <div class="rank-school-loc col-loc">Region III</div>
+            <div class="rank-status competing col-status">Finalist</div>
+          </div>
+          <div class="rankings-row">
+            <div class="rank-num"><span class="rank-num other">5</span></div>
+            <div class="rank-school"><span class="rank-school-name">Libona National High School</span><span class="rank-team-name">Libona High</span></div>
+            <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
+            <div class="rank-score col-loc">—</div>
+            <div class="rank-school-loc col-loc">Region X</div>
+            <div class="rank-status competing col-status">Finalist</div>
+          </div>
+          <div class="rankings-row">
+            <div class="rank-num"><span class="rank-num other">6</span></div>
+            <div class="rank-school"><span class="rank-school-name">Malacampa National High School</span><span class="rank-team-name">Codesters | Steminators</span></div>
+            <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
+            <div class="rank-score col-loc">—</div>
+            <div class="rank-school-loc col-loc">Region III</div>
+            <div class="rank-status competing col-status">Finalist</div>
+          </div>
+          <div class="rankings-row">
+            <div class="rank-num"><span class="rank-num other">7</span></div>
+            <div class="rank-school"><span class="rank-school-name">San Jose Community High School</span><span class="rank-team-name">SJCHS Robo Titans</span></div>
+            <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
+            <div class="rank-score col-loc">—</div>
+            <div class="rank-school-loc col-loc">—</div>
+            <div class="rank-status competing col-status">Finalist</div>
+          </div>
+          <div class="rankings-row">
+            <div class="rank-num"><span class="rank-num other">8</span></div>
+            <div class="rank-school"><span class="rank-school-name">Tuguegarao City Science High School</span><span class="rank-team-name">TugSayVenture</span></div>
+            <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
+            <div class="rank-score col-loc">—</div>
+            <div class="rank-school-loc col-loc">Region II</div>
+            <div class="rank-status competing col-status">Finalist</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── OTHER CATEGORIES PLACEHOLDER ── -->
+      <div class="rank-cat-group visible" id="rg-other">
+        <div class="coming-soon-card reveal">
+          <div class="cs-eyebrow">// More Categories</div>
+          <div class="cs-title">Rankings Coming Soon</div>
+          <p>Full results for Aspiring Makers, Robot Soccer, Line Tracing, Sumobot, Navigation, MakeX, and Drone Soccer will be posted after the official tabulation.</p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="rankings-cta-wrap reveal">
+        <div class="rankings-cta">
+          <div class="cta-bg-grid"></div>
+          <div class="cta-corner tl"></div><div class="cta-corner tr"></div>
+          <div class="cta-corner bl"></div><div class="cta-corner br"></div>
+          <div class="cta-tag"><i class="fi fi-rr-calendar"></i> Registration Open // PRC 2026</div>
+          <h2 class="cta-title">Compete at<br/><span class="accent">PRC 2026</span></h2>
+          <p class="cta-desc">Think your team has what it takes to top the rankings? Register now for the Philippine Robotics Cup 2026.</p>
+          <div class="cta-actions">
+            <a href="#" class="btn-neon-primary"><i class="fi fi-rr-pen-field"></i> Register Your Team</a>
+            <a href="categories.html" class="btn-neon-secondary"><i class="fi fi-rr-layers"></i> View Categories</a>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer role="contentinfo">
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <img src="assets/PRC White Logo.png" alt="Philippine Robotics Cup" />
+            <p>The Philippine Robotics Cup is a premier national robotics competition promoting STEM education and preparing Filipino students for the future of technology.</p>
+            <div class="footer-contact-list">
+              <div class="footer-contact-item"><i class="fi fi-brands-facebook"></i><a href="https://www.facebook.com/profile.php?id=61579706372017" target="_blank" rel="noopener">Philippine Robotics Cup</a></div>
+              <div class="footer-contact-item"><i class="fi fi-rr-phone-call"></i><a href="tel:+639177713961">+63 917 771 3961</a></div>
+              <div class="footer-contact-item"><i class="fi fi-rr-envelope"></i><a href="mailto:philippineroboticscup@gmail.com">philippineroboticscup@gmail.com</a></div>
+            </div>
+            <div class="social-links">
+              <a href="https://www.facebook.com/profile.php?id=61579706372017" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><i class="fi fi-brands-facebook"></i></a>
+            </div>
+          </div>
+          <nav class="footer-col" aria-label="Competition"><h4>Competition</h4><ul><li><a href="categories.html"><i class="fi fi-rr-angle-right"></i>Categories</a></li><li><a href="#"><i class="fi fi-rr-angle-right"></i>Rules &amp; Guidelines</a></li><li><a href="#"><i class="fi fi-rr-angle-right"></i>Schedule</a></li><li><a href="#"><i class="fi fi-rr-angle-right"></i>Past Events</a></li></ul></nav>
+          <nav class="footer-col" aria-label="Participate"><h4>Participate</h4><ul><li><a href="#"><i class="fi fi-rr-angle-right"></i>Register Now</a></li><li><a href="#"><i class="fi fi-rr-angle-right"></i>Order Materials</a></li><li><a href="contact.html"><i class="fi fi-rr-angle-right"></i>Contact Us</a></li><li><a href="contact.html"><i class="fi fi-rr-angle-right"></i>FAQ</a></li></ul></nav>
+          <nav class="footer-col" aria-label="Resources"><h4>Resources</h4><ul><li><a href="#"><i class="fi fi-rr-angle-right"></i>News &amp; Updates</a></li><li><a href="index.html#highlights"><i class="fi fi-rr-angle-right"></i>Gallery</a></li><li><a href="index.html#video"><i class="fi fi-rr-angle-right"></i>Videos</a></li><li><a href="#"><i class="fi fi-rr-angle-right"></i>Creotec Philippines</a></li></ul></nav>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Philippine Robotics Cup // Creotec Philippines Inc. All rights reserved.</p>
+          <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /page-wrapper -->
+
+  <script>
+    // ── CUSTOM CURSOR ──
+    var dot  = document.getElementById('cursorDot');
+    var ring = document.getElementById('cursorRing');
+    var mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', function(e) {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    });
+    (function animRing() {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    })();
+    document.querySelectorAll('a, button, .rankings-row, .filter-btn').forEach(function(el) {
+      el.addEventListener('mouseenter', function() { ring.classList.add('hovered'); dot.style.background = 'var(--creo-amber)'; dot.style.boxShadow = 'var(--glow-orange)'; });
+      el.addEventListener('mouseleave', function() { ring.classList.remove('hovered'); dot.style.background = 'var(--prc-violet)'; dot.style.boxShadow = 'var(--glow-primary)'; });
+    });
+
+    // ── HAMBURGER ──
+    var hamburgerBtn = document.getElementById('hamburger');
+    var mobileMenu   = document.getElementById('mobile-menu');
+    function toggleMenu(open) {
+      mobileMenu.classList.toggle('open', open);
+      hamburgerBtn.classList.toggle('open', open);
+      hamburgerBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    hamburgerBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleMenu(!mobileMenu.classList.contains('open')); });
+    mobileMenu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', function() { toggleMenu(false); }); });
+    document.addEventListener('click', function(e) {
+      if (mobileMenu.classList.contains('open') && !hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target)) toggleMenu(false);
+    });
+
+    // ── RANKINGS FILTER ──
+    function filterRankings(cat) {
+      document.querySelectorAll('.filter-btn').forEach(function(b) {
+        b.classList.remove('active-rv', 'active-mx', 'active-drone');
+      });
+      var btn = document.getElementById('filter-' + cat);
+      if (btn) {
+        if (cat === 'mx') btn.classList.add('active-mx');
+        else if (cat === 'drone') btn.classList.add('active-drone');
+        else btn.classList.add('active-rv');
+      }
+      var groups = {
+        'all':   ['rg-ei', 'rg-other'],
+        'ei':    ['rg-ei'],
+        'as':    ['rg-other'],
+        'rs':    ['rg-other'],
+        'lt':    ['rg-other'],
+        'sb':    ['rg-other'],
+        'nav':   ['rg-other'],
+        'mx':    ['rg-other'],
+        'drone': ['rg-other'],
+      };
+      document.querySelectorAll('.rank-cat-group').forEach(function(g) {
+        g.classList.remove('visible');
+      });
+      var show = groups[cat] || ['rg-ei', 'rg-other'];
+      show.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.add('visible');
+      });
+    }
+
+    // ── SCROLL REVEAL ──
+    var revEls = document.querySelectorAll('.reveal');
+    var ro = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+    revEls.forEach(function(el) { ro.observe(el); });
+  </script>
+
+</body>
+</html>
