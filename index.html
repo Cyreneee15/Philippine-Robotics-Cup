@@ -851,6 +851,305 @@
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg-void); }
     ::-webkit-scrollbar-thumb { background: var(--prc-violet); box-shadow: 0 0 8px rgba(139,126,255,0.70); border-radius: 2px; }
+
+    /* ── ABOUT v2 ─────────────────────────────────────────────── */
+  #about { padding: 110px 0; }
+ 
+  .about-wrap {
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 0 36px;
+  }
+ 
+  /* ── INTRO HEADER ── */
+  .about-intro {
+    max-width: 760px;
+    margin: 0 auto 80px;
+    text-align: center;
+  }
+  .about-intro .section-eyebrow {
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .about-intro-title {
+    font-family: var(--font-hud);
+    font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-bottom: 18px;
+    text-shadow: 0 0 40px rgba(139,126,255,0.14);
+  }
+  .about-intro-title .accent { color: var(--prc-violet); text-shadow: 0 0 18px rgba(139,126,255,0.65); }
+  .about-intro-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 auto 22px;
+    max-width: 320px;
+  }
+  .about-intro-divider-line {
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(139,126,255,0.45));
+  }
+  .about-intro-divider-line.r {
+    background: linear-gradient(90deg, rgba(139,126,255,0.45), transparent);
+  }
+  .about-intro-divider-diamond {
+    width: 7px; height: 7px;
+    background: var(--prc-violet);
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(139,126,255,0.70);
+    flex-shrink: 0;
+  }
+  .about-intro-text {
+    font-size: 1.02rem;
+    color: var(--text-mid);
+    line-height: 1.80;
+  }
+ 
+  /* ── BLOCKS ── */
+  .about-blocks { display: flex; flex-direction: column; gap: 0; }
+ 
+  .about-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 420px;
+    border: 1px solid rgba(139,126,255,0.13);
+    border-bottom: none;
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .about-block:first-child { border-radius: 2px 2px 0 0; }
+  .about-block:last-child  { border-bottom: 1px solid rgba(139,126,255,0.13); border-radius: 0 0 2px 2px; }
+  .about-block:hover { border-color: rgba(139,126,255,0.28); }
+ 
+  /* reverse layout for block 2 */
+  .about-block.reverse .about-block-text  { order: -1; }
+  .about-block.reverse .about-block-carousel { order: 1; border-left: 1px solid rgba(139,126,255,0.13); border-right: none; }
+  .about-block:not(.reverse) .about-block-carousel { border-right: 1px solid rgba(139,126,255,0.13); }
+ 
+  /* ── CAROUSEL SIDE ── */
+  .about-block-carousel {
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    min-height: 420px;
+  }
+ 
+  .carousel-track {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    transition: transform 0.65s cubic-bezier(0.77,0,0.175,1);
+  }
+  .carousel-slide {
+    width: calc(100% / 3);
+    height: 100%;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .carousel-slide img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.55) saturate(0.65);
+    transition: filter 0.5s;
+  }
+  .about-block-carousel:hover .carousel-slide img { filter: brightness(0.68) saturate(0.82); }
+ 
+  /* gradient fade on the text side */
+  .about-block:not(.reverse) .about-block-carousel::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, transparent 60%, var(--bg-void) 100%),
+                linear-gradient(to bottom, rgba(3,2,13,0.18) 0%, transparent 30%, rgba(3,2,13,0.40) 100%);
+    pointer-events: none;
+  }
+  .about-block.reverse .about-block-carousel::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to left, transparent 60%, var(--bg-void) 100%),
+                linear-gradient(to bottom, rgba(3,2,13,0.18) 0%, transparent 30%, rgba(3,2,13,0.40) 100%);
+    pointer-events: none;
+  }
+ 
+  /* carousel controls */
+  .carousel-controls {
+    position: absolute;
+    bottom: 18px;
+    left: 0; right: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .carousel-btn {
+    width: 32px; height: 32px;
+    background: rgba(3,2,13,0.70);
+    border: 1px solid rgba(139,126,255,0.40) !important;
+    color: var(--prc-ice);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer !important;
+    flex-shrink: 0;
+  }
+  .carousel-btn:hover {
+    background: rgba(139,126,255,0.28);
+    border-color: var(--prc-violet) !important;
+    box-shadow: 0 0 14px rgba(139,126,255,0.45);
+  }
+  .carousel-dots {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .carousel-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(196,238,255,0.28);
+    transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+    cursor: pointer !important;
+    border: none !important;
+    flex-shrink: 0;
+  }
+  .carousel-dot.active {
+    background: var(--prc-ice);
+    transform: scale(1.4);
+    box-shadow: 0 0 8px rgba(196,238,255,0.75);
+  }
+ 
+  /* block number badge on image */
+  .carousel-block-num {
+    position: absolute;
+    top: 16px; left: 16px;
+    z-index: 5;
+    font-family: var(--font-hud);
+    font-size: 0.52rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--prc-ice);
+    background: rgba(3,2,13,0.65);
+    border: 1px solid rgba(196,238,255,0.22);
+    padding: 5px 12px;
+    clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+  }
+  .about-block.reverse .carousel-block-num { left: auto; right: 16px; }
+ 
+  /* ── TEXT SIDE ── */
+  .about-block-text {
+    padding: 52px 52px 52px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(139,126,255,0.018);
+    position: relative;
+  }
+  .about-block.reverse .about-block-text { padding: 52px 56px 52px 52px; }
+ 
+  /* thin top accent line */
+  .about-block-text::before {
+    content: '';
+    position: absolute; top: 0; left: 56px; right: 52px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--prc-violet), transparent);
+    opacity: 0.35;
+  }
+  .about-block.reverse .about-block-text::before {
+    left: 52px; right: 56px;
+    background: linear-gradient(90deg, transparent, var(--prc-violet));
+  }
+ 
+  .about-block-label {
+    font-family: var(--font-hud);
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--prc-violet);
+    text-shadow: 0 0 10px rgba(139,126,255,0.50);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .about-block-label::before {
+    content: '';
+    width: 22px; height: 1px;
+    background: var(--prc-violet);
+    box-shadow: 0 0 6px rgba(139,126,255,0.60);
+    flex-shrink: 0;
+  }
+ 
+  .about-block-title {
+    font-family: var(--font-hud);
+    font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.01em;
+    line-height: 1.12;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(139,126,255,0.10);
+  }
+  .about-block-title .hl {
+    color: var(--prc-violet);
+    text-shadow: 0 0 14px rgba(139,126,255,0.55);
+  }
+ 
+  .about-block-body {
+    font-size: 0.955rem;
+    color: var(--text-mid);
+    line-height: 1.82;
+    margin-bottom: 28px;
+  }
+ 
+  /* tag chips */
+  .about-block-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: auto;
+  }
+  .about-block-tag {
+    font-family: var(--font-hud);
+    font-size: 0.53rem;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border: 1px solid rgba(139,126,255,0.22);
+    background: rgba(139,126,255,0.05);
+    color: var(--text-soft);
+    clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .about-block:hover .about-block-tag {
+    border-color: rgba(139,126,255,0.35);
+    color: var(--text-mid);
+  }
+ 
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .about-block {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    .about-block-carousel { min-height: 300px; order: -1 !important; }
+    .about-block-text { order: 1 !important; padding: 36px 28px; }
+    .about-block-text::before { left: 28px; right: 28px; background: linear-gradient(90deg, var(--prc-violet), transparent); }
+    .about-block:not(.reverse) .about-block-carousel { border-right: none; border-bottom: 1px solid rgba(139,126,255,0.13); }
+    .about-block.reverse .about-block-carousel { border-left: none; border-bottom: 1px solid rgba(139,126,255,0.13); }
+  }
+  @media (max-width: 520px) {
+    .about-wrap { padding: 0 16px; }
+    .about-block-text { padding: 28px 20px; }
+    #about { padding: 70px 0; }
+  }
   </style>
 </head>
 <body>
@@ -1016,29 +1315,177 @@
 
     <!-- ABOUT -->
     <section id="about" aria-labelledby="about-title">
-      <div class="section-inner">
-        <div>
-          <div class="section-eyebrow reveal-left">About the Event</div>
-          <h2 class="section-title reveal" id="about-title">Empowering<br/><span class="accent">Filipino Innovators</span></h2>
-          <p class="section-desc reveal">The Philippine Robotics Cup (PRC) is a premier national, outcome-based robotics competition organized by Creotec Philippines Inc., supported by DepEd, DOST, and DICT.</p>
-          <div class="about-feature-list">
-            <div class="about-feature reveal"><div class="about-feature-icon"><i class="fi fi-rr-brain"></i></div><div class="about-feature-text"><h4>STEM-Centered Learning</h4><p>Develops hands-on skills in AI, IoT, coding, and robotics engineering for real-world application.</p></div></div>
-            <div class="about-feature reveal reveal-delay-1"><div class="about-feature-icon"><i class="fi fi-rr-globe"></i></div><div class="about-feature-text"><h4>International Gateway</h4><p>MakeX category winners earn the chance to represent the Philippines at the MakeX World Championships in China.</p></div></div>
-            <div class="about-feature reveal reveal-delay-2"><div class="about-feature-icon"><i class="fi fi-rr-users"></i></div><div class="about-feature-text"><h4>Open to All Schools</h4><p>Welcoming students from both public and private schools nationwide — no school too big or too small.</p></div></div>
+      <div class="about-wrap">
+    
+        <!-- ── INTRO ── -->
+        <div class="about-intro reveal">
+          <div class="section-eyebrow">About the Event</div>
+          <h2 class="about-intro-title" id="about-title">
+            The <span class="accent">Philippine Robotics Cup</span>
+          </h2>
+          <div class="about-intro-divider">
+            <div class="about-intro-divider-line"></div>
+            <div class="about-intro-divider-diamond"></div>
+            <div class="about-intro-divider-line r"></div>
           </div>
+          <p class="about-intro-text">
+            A premier national robotics competition where Filipino students design, build, and
+            compete with robots — developing real STEM skills and earning their place on the
+            international stage. Organized by Creotec Philippines and supported by DepEd,
+            DOST, and DICT.
+          </p>
         </div>
-        <div class="about-visual reveal">
-          <div class="about-card">
-            <div class="about-card-header"><img src="assets/PRC White Logo.png" alt="PRC Logo" /><div class="about-card-header-text"><h3>Philippine Robotics Cup</h3><p>Organized by Creotec Philippines Inc.</p></div></div>
-            <div class="about-card-body">
-              <p>A qualifying venue for international events, the PRC features diverse categories spanning robotics, automation, drone sports, and creative engineering — designed to challenge and inspire the next generation of Filipino tech leaders.</p>
-              <div class="partner-strip"><div class="partner-strip-label">Supported by</div><div class="partner-logos"><span class="partner-badge">DepEd</span><span class="partner-badge">DOST</span><span class="partner-badge">DICT</span><img src="assets/CreoLogo.png" alt="Creotec Philippines" style="height:20px;" /></div></div>
+    
+        <!-- ── BLOCKS ── -->
+        <div class="about-blocks">
+    
+          <!-- BLOCK 1: Image Left, Text Right -->
+          <div class="about-block reveal"
+              data-carousel-id="c1"
+              data-images='["assets/highlights/highlight-1.jpg","assets/highlights/highlight-2.jpg","assets/highlights/highlight-roboventure.jpg"]'>
+    
+            <div class="about-block-carousel">
+              <div class="carousel-block-num">PRC 2026 // 01</div>
+              <div class="carousel-track" id="c1-track">
+                <div class="carousel-slide"><img src="assets/highlights/highlight-1.jpg" alt="Competition floor" /></div>
+                <div class="carousel-slide"><img src="assets/highlights/highlight-2.jpg" alt="Robot assembly" /></div>
+                <div class="carousel-slide"><img src="assets/highlights/highlight-roboventure.jpg" alt="RoboVenture challenge" /></div>
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-btn" data-carousel="c1" data-dir="-1" aria-label="Previous image">
+                  <i class="fi fi-rr-angle-left"></i>
+                </button>
+                <div class="carousel-dots" id="c1-dots">
+                  <button class="carousel-dot active" data-carousel="c1" data-index="0" aria-label="Image 1"></button>
+                  <button class="carousel-dot"        data-carousel="c1" data-index="1" aria-label="Image 2"></button>
+                  <button class="carousel-dot"        data-carousel="c1" data-index="2" aria-label="Image 3"></button>
+                </div>
+                <button class="carousel-btn" data-carousel="c1" data-dir="1" aria-label="Next image">
+                  <i class="fi fi-rr-angle-right"></i>
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="floating-badge"><span>PRC 2026</span>OCT // LAS PI&Ntilde;AS</div>
-        </div>
+    
+            <div class="about-block-text">
+              <div class="about-block-label">What It Is</div>
+              <h3 class="about-block-title">What is the<br/><span class="hl">Philippine Robotics Cup?</span></h3>
+              <p class="about-block-body">
+                The Philippine Robotics Cup (PRC) is an outcome-based national competition
+                that brings together students from across the Philippines to test their skills
+                in robotics, automation, and creative engineering. It is more than a contest —
+                it is a platform for discovery, collaboration, and growth in STEM education.
+                Teams face real challenges that mirror the demands of tomorrow's technology
+                landscape, preparing them for careers in engineering, programming, and design.
+              </p>
+              <div class="about-block-tags">
+                <span class="about-block-tag">Robotics</span>
+                <span class="about-block-tag">Automation</span>
+                <span class="about-block-tag">STEM Education</span>
+                <span class="about-block-tag">National Competition</span>
+              </div>
+            </div>
+    
+          </div><!-- /block 1 -->
+    
+          <!-- BLOCK 2: Text Left, Image Right -->
+          <div class="about-block reverse reveal reveal-delay-1"
+              data-carousel-id="c2">
+    
+            <div class="about-block-text">
+              <div class="about-block-label">Our Purpose</div>
+              <h3 class="about-block-title">Our Mission<br/><span class="hl">and Vision</span></h3>
+              <p class="about-block-body">
+                We believe every Filipino student deserves the chance to explore technology
+                hands-on. The PRC exists to spark curiosity, reward perseverance, and nurture
+                the next generation of innovators — no matter where they come from. Our vision
+                is a Philippines where young minds lead the world in science and engineering,
+                one robot at a time. Through teamwork and creative problem-solving, students
+                learn that the future is something they can build with their own hands.
+              </p>
+              <div class="about-block-tags">
+                <span class="about-block-tag">Innovation</span>
+                <span class="about-block-tag">Teamwork</span>
+                <span class="about-block-tag">Public & Private Schools</span>
+                <span class="about-block-tag">Future-Ready</span>
+              </div>
+            </div>
+    
+            <div class="about-block-carousel">
+              <div class="carousel-block-num">PRC 2026 // 02</div>
+              <div class="carousel-track" id="c2-track">
+                <div class="carousel-slide"><img src="assets/highlights/highlight-3.jpg" alt="Drone soccer" /></div>
+                <div class="carousel-slide"><img src="assets/highlights/highlight-4.jpg" alt="Awarding ceremony" /></div>
+                <div class="carousel-slide"><img src="assets/highlights/highlight-makex.jpg" alt="MakeX competition" /></div>
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-btn" data-carousel="c2" data-dir="-1" aria-label="Previous image">
+                  <i class="fi fi-rr-angle-left"></i>
+                </button>
+                <div class="carousel-dots" id="c2-dots">
+                  <button class="carousel-dot active" data-carousel="c2" data-index="0" aria-label="Image 1"></button>
+                  <button class="carousel-dot"        data-carousel="c2" data-index="1" aria-label="Image 2"></button>
+                  <button class="carousel-dot"        data-carousel="c2" data-index="2" aria-label="Image 3"></button>
+                </div>
+                <button class="carousel-btn" data-carousel="c2" data-dir="1" aria-label="Next image">
+                  <i class="fi fi-rr-angle-right"></i>
+                </button>
+              </div>
+            </div>
+    
+          </div><!-- /block 2 -->
+    
+          <!-- BLOCK 3: Image Left, Text Right -->
+          <div class="about-block reveal reveal-delay-2"
+              data-carousel-id="c3">
+    
+            <div class="about-block-carousel">
+              <div class="carousel-block-num">PRC 2026 // 03</div>
+              <div class="carousel-track" id="c3-track">
+                <div class="carousel-slide"><img src="assets/highlights/highlight-5.jpg" alt="MakeX build phase" /></div>
+                <div class="carousel-slide"><img src="assets/highlights/highlight-drone.jpg" alt="Drone event" /></div>
+                <div class="carousel-slide"><img src="assets/highlights/highlight-1.jpg" alt="Finals competition" /></div>
+              </div>
+              <div class="carousel-controls">
+                <button class="carousel-btn" data-carousel="c3" data-dir="-1" aria-label="Previous image">
+                  <i class="fi fi-rr-angle-left"></i>
+                </button>
+                <div class="carousel-dots" id="c3-dots">
+                  <button class="carousel-dot active" data-carousel="c3" data-index="0" aria-label="Image 1"></button>
+                  <button class="carousel-dot"        data-carousel="c3" data-index="1" aria-label="Image 2"></button>
+                  <button class="carousel-dot"        data-carousel="c3" data-index="2" aria-label="Image 3"></button>
+                </div>
+                <button class="carousel-btn" data-carousel="c3" data-dir="1" aria-label="Next image">
+                  <i class="fi fi-rr-angle-right"></i>
+                </button>
+              </div>
+            </div>
+    
+            <div class="about-block-text">
+              <div class="about-block-label">The Experience</div>
+              <h3 class="about-block-title">What Participants<br/><span class="hl">Experience</span></h3>
+              <p class="about-block-body">
+                Participants don't just compete — they grow. From designing and programming
+                their first robot to navigating high-pressure competition rounds, students
+                develop real-world engineering thinking, resilience under pressure, and
+                the confidence to present their ideas. Each category offers a unique challenge:
+                robot navigation, drone sports, international MakeX rounds, and creative
+                build events that push every team to its limit — and beyond.
+              </p>
+              <div class="about-block-tags">
+                <span class="about-block-tag">Robot Design</span>
+                <span class="about-block-tag">Programming</span>
+                <span class="about-block-tag">Drone Sports</span>
+                <span class="about-block-tag">International Qualifier</span>
+              </div>
+            </div>
+    
+          </div><!-- /block 3 -->
+    
+        </div><!-- /about-blocks -->
+    
       </div>
     </section>
+
 
     <!-- CATEGORIES -->
     <section id="categories" aria-labelledby="categories-title">
@@ -1337,6 +1784,68 @@
       });
     }, { threshold: 0.5 });
     counters.forEach(function(el) { co.observe(el); });
+
+    (function() {
+      var carousels = {};
+    
+      function initCarousel(id) {
+        var track = document.getElementById(id + '-track');
+        var dotsEl = document.getElementById(id + '-dots');
+        if (!track || !dotsEl) return;
+    
+        var state = { current: 0, total: 3, timer: null, paused: false };
+        carousels[id] = state;
+    
+        function goTo(idx) {
+          if (idx < 0) idx = state.total - 1;
+          if (idx >= state.total) idx = 0;
+          state.current = idx;
+          track.style.transform = 'translateX(-' + (idx * (100 / 3)) + '%)';
+          dotsEl.querySelectorAll('.carousel-dot').forEach(function(d, i) {
+            d.classList.toggle('active', i === idx);
+          });
+        }
+    
+        function startAuto() {
+          clearInterval(state.timer);
+          state.timer = setInterval(function() {
+            if (!state.paused) goTo(state.current + 1);
+          }, 5000);
+        }
+    
+        // pause on hover
+        var wrap = track.closest('.about-block-carousel');
+        if (wrap) {
+          wrap.addEventListener('mouseenter', function() { state.paused = true; });
+          wrap.addEventListener('mouseleave', function() { state.paused = false; });
+        }
+    
+        // arrow buttons
+        document.querySelectorAll('[data-carousel="' + id + '"][data-dir]').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            goTo(state.current + parseInt(btn.getAttribute('data-dir')));
+            clearInterval(state.timer);
+            startAuto();
+          });
+        });
+    
+        // dot buttons
+        dotsEl.querySelectorAll('.carousel-dot').forEach(function(dot) {
+          dot.addEventListener('click', function() {
+            goTo(parseInt(dot.getAttribute('data-index')));
+            clearInterval(state.timer);
+            startAuto();
+          });
+        });
+    
+        startAuto();
+      }
+    
+      // stagger init so autoplay timers don't fire at the same time
+      setTimeout(function() { initCarousel('c1'); }, 0);
+      setTimeout(function() { initCarousel('c2'); }, 1700);
+      setTimeout(function() { initCarousel('c3'); }, 3400);
+    })();
   </script>
 
 </body>
