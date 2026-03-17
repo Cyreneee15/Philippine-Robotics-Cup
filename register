@@ -943,6 +943,230 @@
       .step-line { width:36px; }
     }
 
+
+    /* ===== PAYMENT PAGE ===== */
+    :root { --gcash-blue: #007CFF; }
+
+    .pay-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .pay-summary-card,
+    .pay-gcash-card {
+      background: rgba(139,126,255,0.025);
+      border: 1px solid var(--border-neon);
+      position: relative; overflow: hidden;
+    }
+    .pay-gcash-card { border-color: rgba(0,124,255,0.22); }
+    .pay-summary-card::before { content:""; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--prc-violet),transparent); }
+    .pay-gcash-card::before   { content:""; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--gcash-blue),transparent); }
+
+    .pay-card-hdr {
+      padding: 16px 22px 14px;
+      border-bottom: 1px solid rgba(139,126,255,0.12);
+      background: rgba(139,126,255,0.05);
+      font-family: var(--font-hud); font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.10em; text-transform: uppercase;
+      color: var(--prc-violet);
+      display: flex; align-items: center; gap: 9px;
+    }
+    .pay-gcash-card .pay-card-hdr { background: rgba(0,124,255,0.05); border-color: rgba(0,124,255,0.12); }
+
+    .pay-card-body { padding: 20px 22px; }
+
+    /* Order rows */
+    .reg-order-row { display:flex; justify-content:space-between; align-items:baseline; padding:7px 0; border-bottom:1px solid rgba(139,126,255,0.07); }
+    .reg-order-row:last-child { border-bottom:none; }
+    .reg-order-key { font-family:var(--font-hud); font-size:0.50rem; color:var(--text-soft); letter-spacing:0.10em; text-transform:uppercase; }
+    .reg-order-val { font-family:var(--font-hud); font-size:0.60rem; color:var(--text-high); font-weight:700; text-align:right; max-width:180px; }
+    .reg-order-row.total .reg-order-key { color:var(--prc-violet); }
+    .reg-order-row.total .reg-order-val { color:var(--prc-violet); font-size:0.85rem; text-shadow:0 0 10px rgba(139,126,255,0.50); }
+
+    /* Ref box */
+    .pay-ref-box {
+      margin: 16px 22px 20px;
+      padding: 14px 18px;
+      background: rgba(255,233,48,0.04);
+      border: 1px solid rgba(255,233,48,0.22);
+      text-align: center;
+    }
+    .pay-ref-label { font-family:var(--font-hud); font-size:0.48rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--creo-volt); margin-bottom:6px; }
+    .pay-ref-val { font-family:var(--font-hud); font-size:1.20rem; font-weight:900; color:var(--creo-volt); text-shadow:0 0 14px rgba(255,233,48,0.60); letter-spacing:0.10em; margin-bottom:5px; }
+    .pay-ref-note { font-size:0.72rem; color:var(--text-dim); }
+
+    /* Steps */
+    .pay-step {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 14px 0; border-bottom: 1px solid rgba(0,124,255,0.08);
+    }
+    .pay-step:last-child { border-bottom: none; }
+    .pay-step-num {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(0,124,255,0.12); border: 1px solid rgba(0,124,255,0.30);
+      color: var(--gcash-blue); font-family: var(--font-hud); font-size: 0.60rem; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pay-step-title { font-family:var(--font-hud); font-size:0.62rem; font-weight:700; color:var(--text-high); letter-spacing:0.06em; margin-bottom:5px; }
+    .pay-step-desc { font-size:0.845rem; color:var(--text-mid); line-height:1.68; }
+
+    /* QR + number */
+    .pay-qr-wrap { display:flex; gap:16px; align-items:flex-start; margin-top:14px; flex-wrap:wrap; }
+    .pay-qr-box { text-align:center; }
+    .pay-qr-inner {
+      width: 120px; height: 120px;
+      background: #fff; border: 3px solid rgba(0,124,255,0.30);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 6px;
+    }
+    .pay-qr-placeholder { display:flex; flex-direction:column; align-items:center; }
+    .pay-qr-label { font-family:var(--font-hud); font-size:0.46rem; color:var(--text-dim); letter-spacing:0.08em; }
+    .pay-gcash-num-wrap { display:flex; flex-direction:column; gap:4px; }
+    .pay-gcash-num-label { font-family:var(--font-hud); font-size:0.46rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-dim); }
+    .pay-gcash-num { font-family:var(--font-hud); font-size:1.05rem; font-weight:900; color:var(--gcash-blue); letter-spacing:0.06em; text-shadow:0 0 12px rgba(0,124,255,0.40); }
+    .pay-gcash-name { font-size:0.78rem; color:var(--text-soft); margin-bottom:8px; }
+    .pay-copy-btn {
+      display:inline-flex; align-items:center; gap:7px;
+      font-family:var(--font-hud); font-size:0.50rem; font-weight:700; letter-spacing:0.10em; text-transform:uppercase;
+      padding:6px 14px; border:1px solid rgba(0,124,255,0.30); color:var(--gcash-blue);
+      background:rgba(0,124,255,0.06); cursor:pointer; transition:all 0.2s;
+      clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%);
+    }
+    .pay-copy-btn:hover { background:rgba(0,124,255,0.14); box-shadow:0 0 10px rgba(0,124,255,0.25); }
+
+    /* Amount pill */
+    .pay-amount-pill {
+      display:inline-flex; align-items:center;
+      margin-top:10px; padding:8px 20px;
+      font-family:var(--font-hud); font-size:1.10rem; font-weight:900;
+      color:var(--prc-violet); text-shadow:0 0 14px rgba(139,126,255,0.55);
+      border:1px solid rgba(139,126,255,0.30); background:rgba(139,126,255,0.07);
+    }
+
+    /* Contact rows */
+    .pay-contact-row { display:flex; align-items:center; gap:9px; margin-top:9px; font-size:0.845rem; }
+
+    /* Note box */
+    .pay-note-box {
+      display:flex; gap:10px; align-items:flex-start;
+      margin-top:12px; padding:12px 14px;
+      background:rgba(255,160,48,0.05); border:1px solid rgba(255,160,48,0.22);
+      font-size:0.830rem; color:var(--text-mid); line-height:1.65;
+    }
+
+    .pay-card-footer {
+      padding: 16px 22px 20px;
+      border-top: 1px solid rgba(0,124,255,0.10);
+      background: rgba(0,0,0,0.15);
+      display: flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+    }
+
+    /* Step 4 in steps indicator */
+    #step4 { display: flex; }
+
+    @media (max-width:900px) {
+      .pay-layout { grid-template-columns:1fr; }
+    }
+
+
+    /* ── PROOF UPLOAD ── */
+    .pay-upload-wrap {
+      margin-top: 12px;
+      border: 1.5px dashed rgba(139,126,255,0.30);
+      background: rgba(139,126,255,0.03);
+      cursor: pointer; transition: all 0.22s;
+      min-height: 100px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .pay-upload-wrap:hover {
+      border-color: var(--prc-violet);
+      background: rgba(139,126,255,0.07);
+      box-shadow: 0 0 18px rgba(139,126,255,0.14);
+    }
+    .pay-upload-idle {
+      text-align: center; padding: 22px 20px;
+    }
+    .pay-upload-label {
+      font-family: var(--font-hud); font-size: 0.60rem; font-weight: 700;
+      letter-spacing: 0.10em; text-transform: uppercase;
+      color: var(--prc-violet); margin-bottom: 4px;
+    }
+    .pay-upload-sub {
+      font-size: 0.75rem; color: var(--text-dim);
+    }
+    .pay-upload-preview {
+      width: 100%; padding: 14px 16px;
+    }
+    .pay-upload-preview img {
+      width: 100%; max-height: 180px; object-fit: contain;
+      border: 1px solid rgba(139,126,255,0.18);
+      margin-bottom: 10px; background: rgba(0,0,0,0.30);
+    }
+    .pay-upload-file-info {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .pay-upload-file-name {
+      font-family: var(--font-hud); font-size: 0.58rem; font-weight: 700;
+      color: var(--text-high); letter-spacing: 0.04em;
+    }
+    .pay-upload-file-size {
+      font-size: 0.68rem; color: var(--text-dim);
+    }
+    .pay-upload-remove {
+      margin-left: auto; background: rgba(255,68,68,0.08);
+      border: 1px solid rgba(255,68,68,0.25); color: #FF6B6B;
+      width: 26px; height: 26px; display: flex; align-items: center;
+      justify-content: center; cursor: pointer; font-size: 0.65rem;
+      flex-shrink: 0; transition: all 0.2s;
+    }
+    .pay-upload-remove:hover { background: rgba(255,68,68,0.18); }
+    .pay-upload-wrap.has-file { border-style: solid; border-color: rgba(255,233,48,0.35); }
+
+
+    /* ── PAYMENT TABS ── */
+    .pay-tabs {
+      display: flex; border-bottom: 1px solid rgba(139,126,255,0.14);
+      background: rgba(0,0,0,0.15);
+    }
+    .pay-tab {
+      flex: 1; padding: 13px 16px;
+      font-family: var(--font-hud); font-size: 0.60rem; font-weight: 700;
+      letter-spacing: 0.10em; text-transform: uppercase;
+      color: var(--text-soft); background: transparent; border: none;
+      cursor: pointer; transition: all 0.22s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+    }
+    .pay-tab:hover { color: var(--prc-violet); background: rgba(139,126,255,0.05); }
+    .pay-tab.active { color: var(--prc-violet); border-bottom-color: var(--prc-violet); background: rgba(139,126,255,0.06); }
+    .pay-tab:nth-child(2).active { color: var(--creo-amber); border-bottom-color: var(--creo-amber); background: rgba(255,160,48,0.05); }
+    .pay-tab:nth-child(2):hover  { color: var(--creo-amber); background: rgba(255,160,48,0.04); }
+
+    .pay-panel { display: block; }
+
+    /* Bank details */
+    .bank-details-box {
+      margin-top: 12px; padding: 16px 18px;
+      background: rgba(255,160,48,0.04);
+      border: 1px solid rgba(255,160,48,0.20);
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .bank-row {
+      display: flex; align-items: baseline; justify-content: space-between;
+      padding: 7px 0; border-bottom: 1px solid rgba(255,160,48,0.08);
+    }
+    .bank-row:last-of-type { border-bottom: none; }
+    .bank-key { font-family: var(--font-hud); font-size: 0.48rem; color: var(--text-dim); letter-spacing: 0.10em; text-transform: uppercase; }
+    .bank-val { font-family: var(--font-hud); font-size: 0.62rem; color: var(--text-high); font-weight: 700; text-align: right; }
+    .bank-acct { color: var(--creo-amber); text-shadow: 0 0 10px rgba(255,160,48,0.45); font-size: 0.85rem; letter-spacing: 0.08em; }
+
+    .pay-upload-wrap.bank-upload { border-color: rgba(255,160,48,0.28); }
+    .pay-upload-wrap.bank-upload:hover { border-color: var(--creo-amber); box-shadow: 0 0 18px rgba(255,160,48,0.12); }
+    .pay-upload-wrap.bank-upload.has-file { border-color: rgba(255,233,48,0.35); }
+
   </style>
 </head>
 <body>
@@ -1004,7 +1228,12 @@
       <div class="step-line" id="line2"></div>
       <div class="step" id="step3">
         <div class="step-num">3</div>
-        <div class="step-label">Confirmation</div>
+        <div class="step-label">Payment</div>
+      </div>
+      <div class="step-line" id="line3"></div>
+      <div class="step" id="step4">
+        <div class="step-num">4</div>
+        <div class="step-label">Done</div>
       </div>
     </div>
 
@@ -1234,31 +1463,257 @@
 
 
     <!-- ══════════════════════════════════════════
-         SCENE 3 — CONFIRMATION
+         SCENE 3 — PAYMENT (GCash)
     ══════════════════════════════════════════ -->
     <div class="reg-scene" id="scene-confirm">
+
+      <div class="pay-layout">
+
+        <!-- LEFT: Order Summary -->
+        <div class="pay-summary-card">
+          <div class="pay-card-hdr">
+            <i class="fi fi-rr-receipt"></i> Order Summary
+          </div>
+          <div class="pay-card-body">
+            <div class="reg-order-row"><span class="reg-order-key">Team</span><span class="reg-order-val" id="pay-order-team">—</span></div>
+            <div class="reg-order-row"><span class="reg-order-key">School</span><span class="reg-order-val" id="pay-order-school">—</span></div>
+            <div class="reg-order-row"><span class="reg-order-key">Category</span><span class="reg-order-val" id="pay-order-cat">—</span></div>
+            <div class="reg-order-row"><span class="reg-order-key">Package</span><span class="reg-order-val" id="pay-order-pkg">—</span></div>
+            <div class="reg-order-row total"><span class="reg-order-key">Total Due</span><span class="reg-order-val" id="pay-order-price">—</span></div>
+          </div>
+          <div class="pay-ref-box">
+            <div class="pay-ref-label">Reference No.</div>
+            <div class="pay-ref-val" id="pay-ref-num">—</div>
+            <div class="pay-ref-note">Keep this number for your records</div>
+          </div>
+        </div>
+
+        <!-- RIGHT: GCash Payment -->
+        <div class="pay-gcash-card">
+          <!-- Payment Method Tabs -->
+          <div class="pay-tabs">
+            <button class="pay-tab active" id="tab-gcash" onclick="switchPayTab('gcash')">
+              <i class="fi fi-rr-smartphone"></i> GCash
+            </button>
+            <button class="pay-tab" id="tab-bank" onclick="switchPayTab('bank')">
+              <i class="fi fi-rr-bank"></i> Bank Transfer
+            </button>
+          </div>
+
+          <!-- GCash Panel -->
+          <div id="panel-gcash" class="pay-panel">
+          <div class="pay-card-body">
+
+            <!-- Step 1 -->
+            <div class="pay-step">
+              <div class="pay-step-num">1</div>
+              <div class="pay-step-content">
+                <div class="pay-step-title">Open GCash App</div>
+                <div class="pay-step-desc">On your phone, open the GCash app and tap <strong>Send Money</strong> or <strong>Pay QR</strong>.</div>
+              </div>
+            </div>
+
+            <!-- Step 2 — QR Code -->
+            <div class="pay-step">
+              <div class="pay-step-num">2</div>
+              <div class="pay-step-content">
+                <div class="pay-step-title">Scan QR or Enter Number</div>
+                <div class="pay-step-desc">Scan the QR code below or send to the GCash number manually.</div>
+                <div class="pay-qr-wrap">
+                  <div class="pay-qr-box">
+                    <div class="pay-qr-inner">
+                      <!-- QR placeholder grid -->
+                      <div class="pay-qr-placeholder">
+                        <i class="fi fi-rr-qr-scan" style="font-size:3rem;color:rgba(0,100,255,0.25);"></i>
+                        <div style="font-family:var(--font-hud);font-size:0.46rem;color:rgba(0,100,255,0.40);letter-spacing:0.10em;margin-top:8px;">QR CODE</div>
+                      </div>
+                    </div>
+                    <div class="pay-qr-label">Philippine Robotics Cup</div>
+                  </div>
+                  <div class="pay-gcash-num-wrap">
+                    <div class="pay-gcash-num-label">GCash Number</div>
+                    <div class="pay-gcash-num">+63 917 771 3961</div>
+                    <div class="pay-gcash-name">Creotec Philippines Inc.</div>
+                    <button class="pay-copy-btn" onclick="copyGcash()">
+                      <i class="fi fi-rr-copy" id="copy-icon"></i>
+                      <span id="copy-label">Copy Number</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="pay-step">
+              <div class="pay-step-num">3</div>
+              <div class="pay-step-content">
+                <div class="pay-step-title">Enter Exact Amount</div>
+                <div class="pay-step-desc">Send the <strong>exact amount</strong> shown in your order summary. Add your <strong>Reference No.</strong> in the message/notes field.</div>
+                <div class="pay-amount-pill" id="pay-amount-display">—</div>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="pay-step">
+              <div class="pay-step-num">4</div>
+              <div class="pay-step-content">
+                <div class="pay-step-title">Upload Proof of Payment</div>
+                <div class="pay-step-desc">Take a screenshot of your GCash receipt and attach it below.</div>
+
+                <!-- File upload -->
+                <div class="pay-upload-wrap" id="pay-upload-wrap" onclick="document.getElementById('proof-file').click()">
+                  <input type="file" id="proof-file" accept="image/jpeg,image/png,image/jpg,.pdf"
+                    style="display:none" onchange="handleProofUpload(event)" />
+                  <div class="pay-upload-idle" id="upload-idle">
+                    <i class="fi fi-rr-cloud-upload" style="font-size:1.8rem;color:rgba(139,126,255,0.35);display:block;margin-bottom:8px;"></i>
+                    <div class="pay-upload-label">Click to attach receipt</div>
+                    <div class="pay-upload-sub">JPG, PNG or PDF &mdash; max 5MB</div>
+                  </div>
+                  <div class="pay-upload-preview" id="upload-preview" style="display:none;">
+                    <img id="proof-thumb" src="" alt="Receipt preview" />
+                    <div class="pay-upload-file-info">
+                      <i class="fi fi-rr-check-circle" style="color:var(--creo-volt);font-size:1rem;"></i>
+                      <div>
+                        <div class="pay-upload-file-name" id="proof-filename">—</div>
+                        <div class="pay-upload-file-size" id="proof-filesize">—</div>
+                      </div>
+                      <button class="pay-upload-remove" onclick="removeProof(event)">
+                        <i class="fi fi-rr-cross"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pay-note-box" style="margin-top:12px;">
+                  <i class="fi fi-rr-info" style="color:var(--creo-amber);flex-shrink:0;margin-top:2px;"></i>
+                  Your Reference No. and Team Name will be included automatically. Slot confirmed within 24 hours.
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /pay-card-body -->
+
+          </div><!-- /panel-gcash -->
+
+          <!-- Bank Transfer Panel -->
+          <div id="panel-bank" class="pay-panel" style="display:none;">
+          <div class="pay-card-body">
+
+            <div class="pay-step">
+              <div class="pay-step-num" style="background:rgba(255,160,48,0.12);border-color:rgba(255,160,48,0.35);color:var(--creo-amber);">1</div>
+              <div class="pay-step-content">
+                <div class="pay-step-title">Bank Transfer Details</div>
+                <div class="pay-step-desc">Transfer the exact amount to the following account:</div>
+                <div class="bank-details-box">
+                  <div class="bank-row">
+                    <span class="bank-key">Bank</span>
+                    <span class="bank-val">BDO Unibank</span>
+                  </div>
+                  <div class="bank-row">
+                    <span class="bank-key">Account Name</span>
+                    <span class="bank-val">Creotec Philippines Inc.</span>
+                  </div>
+                  <div class="bank-row">
+                    <span class="bank-key">Account Number</span>
+                    <span class="bank-val bank-acct" id="bank-acct-num">000-123-4567-8</span>
+                  </div>
+
+                  <button class="pay-copy-btn" style="margin-top:10px;" onclick="copyBank()">
+                    <i class="fi fi-rr-copy" id="bank-copy-icon"></i>
+                    <span id="bank-copy-label">Copy Account Number</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="pay-step">
+              <div class="pay-step-num" style="background:rgba(255,160,48,0.12);border-color:rgba(255,160,48,0.35);color:var(--creo-amber);">2</div>
+              <div class="pay-step-content">
+                <div class="pay-step-title">Enter Exact Amount</div>
+                <div class="pay-step-desc">Transfer the exact amount shown below. Use your <strong>Reference No.</strong> as the transaction reference/notes.</div>
+                <div class="pay-amount-pill" id="pay-amount-display-bank">—</div>
+              </div>
+            </div>
+
+            <div class="pay-step">
+              <div class="pay-step-num" style="background:rgba(255,160,48,0.12);border-color:rgba(255,160,48,0.35);color:var(--creo-amber);">3</div>
+              <div class="pay-step-content">
+                <div class="pay-step-title">Upload Bank Receipt</div>
+                <div class="pay-step-desc">Attach a screenshot or photo of your bank transfer confirmation below.</div>
+
+                <div class="pay-upload-wrap" id="pay-upload-wrap-bank" onclick="document.getElementById('proof-file-bank').click()">
+                  <input type="file" id="proof-file-bank" accept="image/jpeg,image/png,image/jpg,.pdf"
+                    style="display:none" onchange="handleProofUploadBank(event)" />
+                  <div class="pay-upload-idle" id="upload-idle-bank">
+                    <i class="fi fi-rr-cloud-upload" style="font-size:1.8rem;color:rgba(255,160,48,0.35);display:block;margin-bottom:8px;"></i>
+                    <div class="pay-upload-label" style="color:var(--creo-amber);">Click to attach receipt</div>
+                    <div class="pay-upload-sub">JPG, PNG or PDF &mdash; max 5MB</div>
+                  </div>
+                  <div class="pay-upload-preview" id="upload-preview-bank" style="display:none;">
+                    <img id="proof-thumb-bank" src="" alt="Receipt preview" />
+                    <div class="pay-upload-file-info">
+                      <i class="fi fi-rr-check-circle" style="color:var(--creo-volt);font-size:1rem;"></i>
+                      <div>
+                        <div class="pay-upload-file-name" id="proof-filename-bank">—</div>
+                        <div class="pay-upload-file-size" id="proof-filesize-bank">—</div>
+                      </div>
+                      <button class="pay-upload-remove" onclick="removeProofBank(event)">
+                        <i class="fi fi-rr-cross"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="pay-note-box" style="margin-top:12px;border-color:rgba(255,160,48,0.22);background:rgba(255,160,48,0.04);">
+                  <i class="fi fi-rr-info" style="color:var(--creo-amber);flex-shrink:0;margin-top:2px;"></i>
+                  Your Reference No. and Team Name are included automatically. Slot confirmed within 24 hours after payment verification.
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /pay-card-body bank -->
+          </div><!-- /panel-bank -->
+
+          <div class="pay-card-footer">
+            <button class="btn-back" onclick="goToScene('scene-form', 2)">
+              <i class="fi fi-rr-arrow-left"></i> Back
+            </button>
+            <button class="btn-submit" onclick="confirmPayment()">
+              I've Sent Payment <i class="fi fi-rr-check"></i>
+            </button>
+          </div>
+        </div>
+
+      </div><!-- /pay-layout -->
+
+    </div><!-- /scene-confirm -->
+
+
+    <!-- ══════════════════════════════════════════
+         SCENE 4 — DONE / RECEIPT
+    ══════════════════════════════════════════ -->
+    <div class="reg-scene" id="scene-done">
       <div class="reg-confirm-card">
         <div class="cta-corner tl"></div><div class="cta-corner tr"></div>
         <div class="cta-corner bl"></div><div class="cta-corner br"></div>
         <span class="reg-confirm-icon">&#127881;</span>
-        <div class="reg-confirm-title">Registration Submitted!</div>
+        <div class="reg-confirm-title">Payment Submitted!</div>
         <div class="reg-confirm-sub">
-          Your registration has been received. Please complete payment to confirm your slot.
-          A confirmation email will be sent to <strong id="confirm-email">your email</strong>.
+          Thank you! We'll verify your payment and confirm your registration within <strong>24 hours</strong>.<br/>
+          A confirmation will be sent to <strong id="done-email">your email</strong>.
         </div>
         <div class="reg-order-summary">
-          <div class="reg-order-row"><span class="reg-order-key">Team</span><span class="reg-order-val" id="confirm-team">—</span></div>
-          <div class="reg-order-row"><span class="reg-order-key">School</span><span class="reg-order-val" id="confirm-school">—</span></div>
-          <div class="reg-order-row"><span class="reg-order-key">Category</span><span class="reg-order-val" id="confirm-cat">—</span></div>
-          <div class="reg-order-row"><span class="reg-order-key">Package</span><span class="reg-order-val" id="confirm-pkg">—</span></div>
-          <div class="reg-order-row total"><span class="reg-order-key">Total Due</span><span class="reg-order-val" id="confirm-price">—</span></div>
+          <div class="reg-order-row"><span class="reg-order-key">Team</span><span class="reg-order-val" id="done-team">—</span></div>
+          <div class="reg-order-row"><span class="reg-order-key">Package</span><span class="reg-order-val" id="done-pkg">—</span></div>
+          <div class="reg-order-row"><span class="reg-order-key">Amount Paid</span><span class="reg-order-val" id="done-price">—</span></div>
+          <div class="reg-order-row total"><span class="reg-order-key">Reference No.</span><span class="reg-order-val" id="done-ref">—</span></div>
         </div>
         <div class="reg-confirm-btns">
           <button class="btn-neon-primary" onclick="window.location.href='index.html'"><i class="fi fi-rr-home"></i> Back to Home</button>
-          <button class="btn-neon-secondary" onclick="window.print()"><i class="fi fi-rr-print"></i> Print Summary</button>
+          <button class="btn-neon-secondary" onclick="window.print()"><i class="fi fi-rr-print"></i> Print Receipt</button>
         </div>
       </div>
-    </div><!-- /scene-confirm -->
+    </div><!-- /scene-done -->
 
   </div><!-- /reg-wrap -->
 
@@ -1341,48 +1796,49 @@
 
     // ── PACKAGE DATA ──
     var pkgs = {
-      1: { name:'Package 1 \u2014 Starter',    price:'\u20B12,500',
-           desc:'Perfect for first-time participants and beginner-level school teams. Includes everything needed to compete in one category at the national level.',
-           features:['1 competition category entry','Basic robot kit and materials','Certificate of Participation for all members','Up to 3 team members','Event day access passes','Access to practice area before competition'] },
-      2: { name:'Package 2 \u2014 Competitor',  price:'\u20B14,500',
-           desc:'The most popular choice for experienced teams. Compete in two categories, get an advanced kit, and enjoy full team support including lunch vouchers and trophy recognition.',
+      1: { name:'Package 1 — Starter',   price:'₱2,500',
+           desc:'Perfect for first-time participants and beginner-level school teams.',
+           features:['1 competition category entry','Basic robot kit and materials','Certificate of Participation','Up to 3 team members','Event day access passes','Access to practice area'] },
+      2: { name:'Package 2 — Competitor', price:'₱4,500',
+           desc:'The most popular choice for experienced teams. Compete in two categories with full support.',
            features:['2 competition category entries','Advanced robot kit and parts','Certificate of Participation','Trophy for top 3 finishers','Up to 5 team members','Lunch voucher for entire team','Event day access passes','Priority registration support'] },
-      3: { name:'Package 3 \u2014 Champion',    price:'\u20B17,000',
-           desc:'The ultimate package for elite teams. Compete across all categories with priority seeding, a professional kit, full catering, merchandise, and MakeX international qualifier access.',
-           features:['Entry to all competition categories','Professional robot kit and premium parts','Priority judging lane and seeding','Up to 8 team members','Full catering for team (all meals)','Exclusive PRC 2026 merchandise pack','MakeX World Championships qualifier access','Dedicated coach liaison support','Certificates and trophies for all placements'] }
+      3: { name:'Package 3 — Champion',   price:'₱7,000',
+           desc:'The ultimate package for elite teams competing across all categories.',
+           features:['Entry to all competition categories','Professional robot kit and premium parts','Priority judging lane and seeding','Up to 8 team members','Full catering for team','Exclusive PRC 2026 merchandise pack','MakeX qualifier access','Dedicated coach liaison support'] }
     };
 
-    var selectedPkg = 0;
+    var selectedPkg  = 0;
     var termsChecked = false;
     var currentModal = 1;
+    var currentRef   = '';
 
     // ── SCENE FLOW ──
     function goToScene(sceneId, stepNum) {
       document.querySelectorAll('.reg-scene').forEach(function(s){ s.classList.remove('active'); });
       document.getElementById(sceneId).classList.add('active');
       setStep(stepNum);
-      var labels = {1:'Registration Packages', 2:'Registration Form', 3:'Confirmation'};
+      var labels = {1:'Registration Packages', 2:'Registration Form', 3:'Payment', 4:'Complete'};
       document.getElementById('breadcrumb-label').textContent = labels[stepNum] || 'Register';
       window.scrollTo({top:0, behavior:'smooth'});
     }
 
     function setStep(n) {
-      for (var i=1; i<=3; i++) {
-        var s=document.getElementById('step'+i);
+      for (var i=1; i<=4; i++) {
+        var s = document.getElementById('step'+i);
+        if (!s) continue;
         s.classList.remove('active','done');
         if (i < n) s.classList.add('done');
         if (i === n) s.classList.add('active');
-        if (i <= 2) {
-          var l=document.getElementById('line'+i);
+        if (i <= 3) {
+          var l = document.getElementById('line'+i);
           if (l) l.classList.toggle('done', i < n);
         }
       }
-      // Refresh step number icons
-      document.querySelectorAll('.step').forEach(function(s,idx){
+      document.querySelectorAll('.step').forEach(function(s, idx) {
         var num = s.querySelector('.step-num');
-        if (s.classList.contains('done'))        { num.innerHTML = '<i class="fi fi-rr-check"></i>'; }
-        else if (!s.classList.contains('active')){ num.textContent = (idx+1)+''; }
-        else                                      { num.textContent = (idx+1)+''; }
+        if (!num) return;
+        if (s.classList.contains('done'))         { num.innerHTML = '<i class="fi fi-rr-check"></i>'; }
+        else                                       { num.textContent = (idx+1)+''; }
       });
     }
 
@@ -1432,17 +1888,146 @@
       var cat    = document.getElementById('f-category').value;
       if (!name||!email||!phone||!school||!team||!cat) { alert('Please fill in all required fields.'); return; }
       if (!termsChecked) { alert('Please agree to the Terms & Conditions to proceed.'); return; }
-      document.getElementById('confirm-email').textContent  = email;
-      document.getElementById('confirm-team').textContent   = team;
-      document.getElementById('confirm-school').textContent = school;
-      document.getElementById('confirm-cat').textContent    = cat;
-      document.getElementById('confirm-pkg').textContent    = pkgs[selectedPkg].name;
-      document.getElementById('confirm-price').textContent  = pkgs[selectedPkg].price;
+
+      // Generate reference number
+      currentRef = 'PRC-' + Date.now().toString().slice(-6);
+
+      // Populate payment scene
+      document.getElementById('pay-ref-num').textContent        = currentRef;
+      document.getElementById('pay-amount-display').textContent      = pkgs[selectedPkg].price;
+      document.getElementById('pay-amount-display-bank').textContent = pkgs[selectedPkg].price;
+
+      // Populate summary in payment scene
+      var paySum = document.getElementById('pay-order-team');
+      if (paySum) paySum.textContent = team;
+      var paySchool = document.getElementById('pay-order-school');
+      if (paySchool) paySchool.textContent = school;
+      var payCat = document.getElementById('pay-order-cat');
+      if (payCat) payCat.textContent = cat;
+      var payPkg = document.getElementById('pay-order-pkg');
+      if (payPkg) payPkg.textContent = pkgs[selectedPkg].name;
+      var payPrice = document.getElementById('pay-order-price');
+      if (payPrice) payPrice.textContent = pkgs[selectedPkg].price;
+
+      // Populate done scene
+      document.getElementById('done-email').textContent = email;
+      document.getElementById('done-team').textContent  = team;
+      document.getElementById('done-pkg').textContent   = pkgs[selectedPkg].name;
+      document.getElementById('done-price').textContent = pkgs[selectedPkg].price;
+      document.getElementById('done-ref').textContent   = currentRef;
+
       goToScene('scene-confirm', 3);
     }
 
-    // Escape key closes modal
+    // ── COPY GCASH ──
+    function copyGcash() {
+      navigator.clipboard.writeText('+639177713961').then(function(){
+        document.getElementById('copy-label').textContent = 'Copied!';
+        document.getElementById('copy-icon').className    = 'fi fi-rr-check';
+        setTimeout(function(){
+          document.getElementById('copy-label').textContent = 'Copy Number';
+          document.getElementById('copy-icon').className    = 'fi fi-rr-copy';
+        }, 2000);
+      }).catch(function(){
+        alert('GCash number: +63 917 771 3961');
+      });
+    }
+
+
+    // ── PROOF OF PAYMENT UPLOAD ──
+    function handleProofUpload(e) {
+      var file = e.target.files[0];
+      if (!file) return;
+      if (file.size > 5 * 1024 * 1024) { alert('File too large. Maximum size is 5MB.'); return; }
+
+      var wrap = document.getElementById('pay-upload-wrap');
+      var idle = document.getElementById('upload-idle');
+      var preview = document.getElementById('upload-preview');
+      var thumb = document.getElementById('proof-thumb');
+      var fname = document.getElementById('proof-filename');
+      var fsize = document.getElementById('proof-filesize');
+
+      fname.textContent = file.name;
+      fsize.textContent = (file.size / 1024).toFixed(1) + ' KB';
+      wrap.classList.add('has-file');
+      idle.style.display = 'none';
+      preview.style.display = 'block';
+
+      if (file.type.startsWith('image/')) {
+        var reader = new FileReader();
+        reader.onload = function(ev) { thumb.src = ev.target.result; thumb.style.display = 'block'; };
+        reader.readAsDataURL(file);
+      } else {
+        thumb.style.display = 'none';
+      }
+    }
+
+    function removeProof(e) {
+      e.stopPropagation();
+      document.getElementById('proof-file').value = '';
+      document.getElementById('pay-upload-wrap').classList.remove('has-file');
+      document.getElementById('upload-idle').style.display = 'block';
+      document.getElementById('upload-preview').style.display = 'none';
+      document.getElementById('proof-thumb').src = '';
+    }
+
+    function confirmPayment() {
+      var isGcash = document.getElementById('panel-gcash').style.display !== 'none';
+      var fileGcash = document.getElementById('proof-file').files[0];
+      var fileBank  = document.getElementById('proof-file-bank').files[0];
+      if (isGcash && !fileGcash) { alert('Please attach your GCash receipt before proceeding.'); return; }
+      if (!isGcash && !fileBank)  { alert('Please attach your bank transfer receipt before proceeding.'); return; }
+      goToScene('scene-done', 4);
+    }
+
+
+    // ── PAYMENT TAB SWITCH ──
+    function switchPayTab(tab) {
+      document.getElementById('panel-gcash').style.display = tab === 'gcash' ? 'block' : 'none';
+      document.getElementById('panel-bank').style.display  = tab === 'bank'  ? 'block' : 'none';
+      document.getElementById('tab-gcash').classList.toggle('active', tab === 'gcash');
+      document.getElementById('tab-bank').classList.toggle('active',  tab === 'bank');
+    }
+
+    // ── COPY BANK ACCOUNT ──
+    function copyBank() {
+      navigator.clipboard.writeText('000-123-4567-8').then(function(){
+        document.getElementById('bank-copy-label').textContent = 'Copied!';
+        document.getElementById('bank-copy-icon').className    = 'fi fi-rr-check';
+        setTimeout(function(){
+          document.getElementById('bank-copy-label').textContent = 'Copy Account Number';
+          document.getElementById('bank-copy-icon').className    = 'fi fi-rr-copy';
+        }, 2000);
+      }).catch(function(){ alert('Account No: 000-123-4567-8'); });
+    }
+
+    // ── BANK PROOF UPLOAD ──
+    function handleProofUploadBank(e) {
+      var file = e.target.files[0]; if (!file) return;
+      if (file.size > 5*1024*1024) { alert('File too large. Max 5MB.'); return; }
+      var wrap = document.getElementById('pay-upload-wrap-bank');
+      wrap.classList.add('has-file');
+      document.getElementById('upload-idle-bank').style.display   = 'none';
+      document.getElementById('upload-preview-bank').style.display = 'block';
+      document.getElementById('proof-filename-bank').textContent  = file.name;
+      document.getElementById('proof-filesize-bank').textContent  = (file.size/1024).toFixed(1)+' KB';
+      if (file.type.startsWith('image/')) {
+        var r = new FileReader();
+        r.onload = function(ev){ var t=document.getElementById('proof-thumb-bank'); t.src=ev.target.result; t.style.display='block'; };
+        r.readAsDataURL(file);
+      } else { document.getElementById('proof-thumb-bank').style.display='none'; }
+    }
+    function removeProofBank(e) {
+      e.stopPropagation();
+      document.getElementById('proof-file-bank').value = '';
+      document.getElementById('pay-upload-wrap-bank').classList.remove('has-file');
+      document.getElementById('upload-idle-bank').style.display   = 'block';
+      document.getElementById('upload-preview-bank').style.display = 'none';
+      document.getElementById('proof-thumb-bank').src = '';
+    }
+
     document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+
   </script>
 </body>
 </html>
