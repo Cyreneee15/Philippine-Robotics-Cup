@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#8B7EFF" />
-  <meta name="description" content="Philippine Robotics Cup 2025 — Official Rankings and Results from the National Finals." />
-  <title>Rankings - Philippine Robotics Cup 2026</title>
+  <meta name="description" content="Philippine Robotics Cup — Official Rankings and Results." />
+  <title>Rankings - Philippine Robotics Cup</title>
 
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="shortcut icon" href="assets/favicon.png" />
@@ -29,8 +29,8 @@
       --border-neon:  rgba(139,126,255,0.22);
       --glow-primary: 0 0 18px rgba(139,126,255,0.60), 0 0 55px rgba(139,126,255,0.20);
       --glow-orange:  0 0 18px rgba(255,160,48,0.55),  0 0 55px rgba(255,160,48,0.18);
+      --glow-volt:    0 0 18px rgba(255,233,48,0.60),  0 0 55px rgba(255,233,48,0.20);
       --glow-sky:     0 0 18px rgba(68,217,255,0.55),  0 0 55px rgba(68,217,255,0.18);
-      --glow-cyan:    0 0 18px rgba(196,238,255,0.55), 0 0 55px rgba(196,238,255,0.18);
       --text-high:    #F2EEFF;
       --text-mid:     #C8C0F0;
       --text-soft:    #9A90CC;
@@ -38,45 +38,45 @@
       --nav-height:   72px;
       --font-hud:     'Orbitron', monospace;
       --font-body:    'Exo 2', sans-serif;
+      --sidebar-w:    300px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      background: var(--bg-void);
-      color: var(--text-high);
-      overflow-x: hidden;
-      line-height: 1.6;
-      cursor: none;
-    }
+    body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-high); overflow-x: hidden; line-height: 1.6; cursor: none; }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
     button { font-family: inherit; cursor: none; border: none; background: none; }
 
-    /* ===== CURSOR ===== */
-    .cursor-dot { position: fixed; width: 8px; height: 8px; border-radius: 50%; background: var(--neon-primary); pointer-events: none; z-index: 99999; transform: translate(-50%,-50%); box-shadow: var(--glow-primary); transition: transform 0.1s, background 0.2s; }
-    .cursor-ring { position: fixed; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(139,126,255,0.65); pointer-events: none; z-index: 99998; transform: translate(-50%,-50%); transition: width 0.25s, height 0.25s, border-color 0.25s, transform 0.08s; }
+    /* CURSOR */
+    .cursor-dot  { position: fixed; width: 8px; height: 8px; border-radius: 50%; background: var(--neon-primary); pointer-events: none; z-index: 99999; transform: translate(-50%,-50%); box-shadow: var(--glow-primary); transition: transform 0.1s, background 0.2s; }
+    .cursor-ring { position: fixed; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(139,126,255,0.65); pointer-events: none; z-index: 99998; transform: translate(-50%,-50%); transition: width 0.25s, height 0.25s, border-color 0.25s; }
     .cursor-ring.hovered { width: 56px; height: 56px; border-color: var(--creo-amber); border-width: 1.5px; }
 
-    /* ===== SCANLINES ===== */
+    /* SCANLINES */
     body::after { content: ''; position: fixed; inset: 0; z-index: 9998; pointer-events: none; background: repeating-linear-gradient(to bottom, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px); }
 
-    /* ===== HEX GRID ===== */
+    /* HEX GRID */
     .hex-grid { position: fixed; inset: 0; z-index: 0; pointer-events: none; background-image: linear-gradient(rgba(139,126,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(139,126,255,0.04) 1px, transparent 1px); background-size: 50px 50px; }
     .hex-grid::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(119,51,255,0.14) 0%, transparent 70%), radial-gradient(ellipse 60% 50% at 100% 100%, rgba(204,85,255,0.07) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 0% 80%, rgba(139,126,255,0.09) 0%, transparent 60%); }
 
-    /* ===== ANIMATIONS ===== */
-    @keyframes neonPulse  { 0%,100% { opacity:1; } 50% { opacity:0.7; } }
-    @keyframes fadeInUp   { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-    @keyframes fadeIn     { from { opacity:0; } to { opacity:1; } }
-    @keyframes scanDown   { from { transform:translateY(-100%); } to { transform:translateY(100vh); } }
-    @keyframes flicker    { 0%,100%{opacity:1;} 92%{opacity:1;} 93%{opacity:0.4;} 94%{opacity:1;} 96%{opacity:0.7;} 97%{opacity:1;} }
+    /* ANIMATIONS */
+    @keyframes neonPulse   { 0%,100%{opacity:1;} 50%{opacity:0.6;} }
+    @keyframes fadeInUp    { from{opacity:0;transform:translateY(24px);} to{opacity:1;transform:translateY(0);} }
+    @keyframes fadeIn      { from{opacity:0;} to{opacity:1;} }
+    @keyframes scanDown    { from{transform:translateY(-100%);} to{transform:translateY(100vh);} }
+    @keyframes panelSlide  { from{opacity:0;transform:translateY(14px);} to{opacity:1;transform:translateY(0);} }
+    @keyframes borderPulse { 0%,100%{box-shadow:0 0 20px rgba(255,233,48,0.28),inset 0 0 20px rgba(255,233,48,0.04);} 50%{box-shadow:0 0 45px rgba(255,233,48,0.52),inset 0 0 35px rgba(255,233,48,0.08);} }
+    @keyframes borderPulse2{ 0%,100%{box-shadow:0 0 20px rgba(196,238,255,0.20),inset 0 0 20px rgba(196,238,255,0.04);} 50%{box-shadow:0 0 45px rgba(196,238,255,0.40),inset 0 0 35px rgba(196,238,255,0.08);} }
+    @keyframes borderPulse3{ 0%,100%{box-shadow:0 0 20px rgba(255,160,48,0.20),inset 0 0 20px rgba(255,160,48,0.04);} 50%{box-shadow:0 0 45px rgba(255,160,48,0.40),inset 0 0 35px rgba(255,160,48,0.08);} }
+    @keyframes crownFloat  { 0%,100%{transform:translateX(-50%) translateY(0) rotate(-3deg);} 50%{transform:translateX(-50%) translateY(-6px) rotate(3deg);} }
+    @keyframes scanLine    { 0%{top:0%;opacity:.7;} 100%{top:100%;opacity:0;} }
+    @keyframes logoGlow    { 0%,100%{filter:drop-shadow(0 0 6px rgba(255,233,48,0.50));} 50%{filter:drop-shadow(0 0 14px rgba(255,233,48,0.90));} }
 
     .page-wrapper { position: relative; z-index: 1; }
 
-    /* ===== NAV ===== */
+    /* NAV */
     #main-nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); z-index: 1000; background: rgba(3,2,13,0.94); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-neon); box-shadow: 0 0 30px rgba(139,126,255,0.10); }
     .nav-inner { max-width: 1340px; margin: 0 auto; height: 100%; padding: 0 36px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .nav-logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
@@ -85,9 +85,9 @@
     .nav-brand { font-family: var(--font-hud); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.06em; line-height: 1.3; color: var(--prc-violet); text-shadow: 0 0 12px rgba(139,126,255,0.65); }
     .nav-brand span { color: var(--text-soft); display: block; font-size: 0.58rem; font-weight: 400; letter-spacing: 0.10em; text-transform: uppercase; margin-top: 1px; }
     .nav-links { display: flex; align-items: center; gap: 2px; }
-    .nav-links a { font-family: var(--font-hud); font-size: 0.65rem; font-weight: 600; color: var(--text-mid); padding: 8px 14px; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 4px; transition: all 0.2s; white-space: nowrap; }
+    .nav-links a { font-family: var(--font-hud); font-size: 0.65rem; font-weight: 600; color: var(--text-mid); padding: 8px 14px; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 4px; transition: all 0.2s; white-space: nowrap; position: relative; }
     .nav-links a:hover { color: var(--prc-violet); text-shadow: 0 0 12px rgba(139,126,255,0.85); }
-    .nav-links a.active { color: var(--prc-violet); text-shadow: 0 0 12px rgba(139,126,255,0.85); position: relative; }
+    .nav-links a.active { color: var(--prc-violet); text-shadow: 0 0 12px rgba(139,126,255,0.85); }
     .nav-links a.active::after { content: ''; position: absolute; bottom: 4px; left: 14px; right: 14px; height: 1px; background: var(--prc-violet); box-shadow: 0 0 6px rgba(139,126,255,0.80); }
     .nav-cta { background: transparent !important; border: 1px solid var(--prc-violet) !important; color: var(--prc-violet) !important; padding: 8px 20px !important; border-radius: 3px !important; box-shadow: 0 0 15px rgba(139,126,255,0.28), inset 0 0 15px rgba(139,126,255,0.06) !important; transition: all 0.25s !important; margin-left: 8px; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); }
     .nav-cta:hover { background: rgba(139,126,255,0.12) !important; box-shadow: 0 0 30px rgba(139,126,255,0.52), inset 0 0 20px rgba(139,126,255,0.10) !important; color: #fff !important; }
@@ -104,7 +104,7 @@
     .nav-mobile a:hover, .nav-mobile a.active { color: var(--prc-violet); background: rgba(139,126,255,0.07); text-shadow: 0 0 10px rgba(139,126,255,0.55); }
     .nav-mobile .nav-cta { border: 1px solid var(--prc-violet) !important; color: var(--prc-violet) !important; margin-top: 10px; justify-content: center; border-radius: 3px !important; clip-path: none !important; }
 
-    /* ===== PAGE HERO ===== */
+    /* PAGE HERO */
     .page-hero { position: relative; padding: calc(var(--nav-height) + 72px) 0 72px; overflow: hidden; text-align: center; }
     .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 50% 0%, rgba(139,126,255,0.10) 0%, transparent 70%), linear-gradient(to bottom, rgba(3,2,13,0) 60%, var(--bg-void) 100%); }
     .page-hero-scan { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
@@ -121,100 +121,319 @@
     .page-hero-divider-line.right { background: linear-gradient(90deg, rgba(139,126,255,0.40), transparent); }
     .page-hero-divider-diamond { width: 8px; height: 8px; background: var(--prc-violet); transform: rotate(45deg); box-shadow: var(--glow-primary); }
 
-    /* ===== MAIN CONTENT ===== */
-    .rankings-main { max-width: 1340px; margin: 0 auto; padding: 60px 36px 100px; }
+    /* MAIN SHELL */
+    .rankings-shell { max-width: 1340px; margin: 0 auto; padding: 40px 36px 100px; display: grid; grid-template-columns: var(--sidebar-w) 1fr; gap: 28px; align-items: start; }
 
-    /* Meta badges row */
-    .rankings-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 44px; animation: fadeInUp 0.8s ease 0.3s both; }
-    .rankings-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-hud); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; padding: 7px 16px; border: 1px solid; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); }
-    .rankings-badge.violet { color: var(--prc-violet); border-color: rgba(139,126,255,0.40); background: rgba(139,126,255,0.06); }
-    .rankings-badge.volt   { color: var(--creo-volt);  border-color: rgba(255,233,48,0.35);  background: rgba(255,233,48,0.05); text-shadow: 0 0 10px rgba(255,233,48,0.50); }
+    /* ========== EVENT SWITCHER — full-width bar below hero ========== */
+    .event-switcher-bar {
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(139,126,255,0.18);
+      border-bottom: 1px solid rgba(139,126,255,0.18);
+      background: rgba(139,126,255,0.04);
+      backdrop-filter: blur(12px);
+    }
+    .event-switcher-bar::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--prc-violet), var(--prc-ice), transparent);
+      box-shadow: 0 0 24px rgba(139,126,255,0.45);
+    }
+    .event-switcher-bar::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(139,126,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(139,126,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse 80% 100% at 50% 50%, black 0%, transparent 100%);
+    }
+    .event-switcher-inner {
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 36px 36px 40px;
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 48px;
+      align-items: center;
+    }
 
-    /* ===== FILTER BAR ===== */
-    .rankings-filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 36px; }
-    .filter-btn { font-family: var(--font-hud); font-size: 0.60rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; padding: 8px 18px; border: 1px solid rgba(139,126,255,0.28); color: var(--text-soft); background: transparent; clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%); transition: all 0.2s; cursor: pointer; }
-    .filter-btn:hover { border-color: var(--prc-violet); color: var(--prc-violet); background: rgba(139,126,255,0.10); box-shadow: 0 0 14px rgba(139,126,255,0.25); }
-    .filter-btn.active-rv    { border-color: var(--prc-violet); color: var(--prc-violet); background: rgba(139,126,255,0.10); box-shadow: 0 0 14px rgba(139,126,255,0.22); }
-    .filter-btn.active-mx    { border-color: var(--creo-sky);   color: var(--creo-sky);   background: rgba(68,217,255,0.10);  box-shadow: 0 0 14px rgba(68,217,255,0.22); }
-    .filter-btn.active-drone { border-color: var(--creo-amber); color: var(--creo-amber); background: rgba(255,160,48,0.10);  box-shadow: 0 0 14px rgba(255,160,48,0.22); }
+    /* Left: label + year buttons */
+    /* .event-switcher-left {} */
+    .event-switcher-label {
+      font-family: var(--font-hud);
+      font-size: 0.60rem;
+      font-weight: 700;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .event-switcher-label::before { content: '//'; color: rgba(139,126,255,0.40); }
 
-    /* ===== RANKINGS TABLE ===== */
-    .rank-cat-group { display: none; }
-    .rank-cat-group.visible { display: block; }
+    .event-year-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .event-year-btn {
+      font-family: var(--font-hud);
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      padding: 10px 28px;
+      border: 1px solid rgba(139,126,255,0.22);
+      color: var(--text-dim);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.22s;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      line-height: 1.1;
+    }
+    .event-year-btn:hover {
+      border-color: var(--prc-violet);
+      color: var(--text-high);
+      background: rgba(139,126,255,0.08);
+      text-shadow: 0 0 20px rgba(139,126,255,0.40);
+    }
+    .event-year-btn.active {
+      border-color: var(--prc-violet);
+      color: var(--prc-violet);
+      background: rgba(139,126,255,0.10);
+      box-shadow: 0 0 22px rgba(139,126,255,0.28), inset 0 0 22px rgba(139,126,255,0.06);
+      text-shadow: 0 0 24px rgba(139,126,255,0.70);
+    }
 
-    .rankings-table-wrap { position: relative; overflow: hidden; border: 1px solid var(--border-neon); margin-bottom: 32px; }
+    /* Right: event detail card */
+    .event-info-block {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .event-info-name {
+      font-family: var(--font-hud);
+      font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+    .event-info-name .accent { color: var(--prc-violet); text-shadow: 0 0 18px rgba(139,126,255,0.60); }
+    .event-info-meta { display: flex; flex-direction: column; gap: 6px; }
+    .event-info-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-hud);
+      font-size: 0.72rem;
+      color: var(--text-mid);
+      letter-spacing: 0.06em;
+    }
+    .event-info-row i { font-size: 0.85rem; color: var(--prc-violet); flex-shrink: 0; }
+
+    /* SIDEBAR */
+    .rankings-sidebar { position: sticky; top: calc(var(--nav-height) + 20px); display: flex; flex-direction: column; gap: 6px; }
+
+    .sidebar-section { margin-bottom: 4px; }
+    .sidebar-cat-btn { width: 100%; display: flex; align-items: center; gap: 14px; padding: 15px 16px; background: rgba(139,126,255,0.04); border: 1px solid rgba(139,126,255,0.18); color: var(--text-mid); cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden; text-align: left; }
+    .sidebar-cat-btn::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(139,126,255,0.40), transparent); opacity: 0; transition: opacity 0.25s; }
+    .sidebar-cat-btn:hover { border-color: rgba(139,126,255,0.38); background: rgba(139,126,255,0.08); }
+    .sidebar-cat-btn:hover::before { opacity: 1; }
+    .sidebar-cat-btn.active { border-color: var(--prc-violet); background: rgba(139,126,255,0.10); box-shadow: 0 0 22px rgba(139,126,255,0.14), inset 0 0 22px rgba(139,126,255,0.05); }
+    .sidebar-cat-btn.active::before { opacity: 1; background: linear-gradient(90deg, transparent, var(--prc-violet), transparent); }
+    .sidebar-cat-btn.active-mx { border-color: var(--creo-sky); background: rgba(68,217,255,0.08); box-shadow: 0 0 22px rgba(68,217,255,0.12); }
+    .sidebar-cat-btn.active-mx::before { opacity: 1; background: linear-gradient(90deg, transparent, var(--creo-sky), transparent); }
+    .sidebar-cat-btn.active-drone { border-color: var(--creo-amber); background: rgba(255,160,48,0.08); box-shadow: 0 0 22px rgba(255,160,48,0.12); }
+    .sidebar-cat-btn.active-drone::before { opacity: 1; background: linear-gradient(90deg, transparent, var(--creo-amber), transparent); }
+
+    .sidebar-cat-logo { flex-shrink: 0; width: 72px; height: 32px; display: flex; align-items: center; justify-content: center; }
+    .sidebar-cat-logo img { max-width: 72px; max-height: 30px; width: auto; height: auto; object-fit: contain; filter: saturate(0.5) brightness(0.70); transition: filter 0.25s; }
+    .sidebar-cat-btn:hover .sidebar-cat-logo img, .sidebar-cat-btn.active .sidebar-cat-logo img { filter: saturate(1) brightness(1.1) drop-shadow(0 0 6px rgba(139,126,255,0.45)); }
+    .sidebar-cat-btn.active-mx .sidebar-cat-logo img { filter: saturate(1) brightness(1.1) drop-shadow(0 0 6px rgba(68,217,255,0.55)); }
+    .sidebar-cat-btn.active-drone .sidebar-cat-logo img { filter: saturate(1) brightness(1.1) drop-shadow(0 0 6px rgba(255,160,48,0.55)); }
+
+    .sidebar-cat-text { flex: 1; min-width: 0; }
+    .sidebar-cat-name { display: block; font-family: var(--font-hud); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-high); line-height: 1.2; margin-bottom: 2px; }
+    .sidebar-cat-count { display: block; font-family: var(--font-body); font-size: 0.76rem; color: var(--text-dim); font-weight: 400; }
+    .sidebar-cat-chevron { font-size: 0.70rem; color: var(--text-dim); transition: transform 0.25s, color 0.25s; flex-shrink: 0; }
+    .sidebar-cat-btn.active .sidebar-cat-chevron { transform: rotate(90deg); color: var(--prc-violet); }
+    .sidebar-cat-btn.active-mx .sidebar-cat-chevron { transform: rotate(90deg); color: var(--creo-sky); }
+    .sidebar-cat-btn.active-drone .sidebar-cat-chevron { transform: rotate(90deg); color: var(--creo-amber); }
+
+    .sidebar-subs { overflow: hidden; max-height: 0; transition: max-height 0.38s cubic-bezier(0.23,1,0.32,1); display: flex; flex-direction: column; gap: 3px; margin-top: 3px; }
+    .sidebar-subs.open { max-height: 600px; }
+    .sidebar-sub-btn { width: 100%; display: flex; align-items: center; gap: 10px; padding: 11px 16px 11px 18px; font-family: var(--font-body); font-size: 0.88rem; font-weight: 500; letter-spacing: 0.01em; background: rgba(139,126,255,0.02); border: 1px solid rgba(139,126,255,0.10); border-left: 3px solid transparent; color: var(--text-soft); cursor: pointer; transition: all 0.20s; text-align: left; }
+    .sidebar-sub-btn:hover { color: var(--text-high); border-color: rgba(139,126,255,0.20); border-left-color: rgba(139,126,255,0.45); background: rgba(139,126,255,0.06); }
+    .sidebar-sub-btn.active { color: var(--text-high); font-weight: 600; border-color: rgba(139,126,255,0.25); border-left: 3px solid var(--prc-violet); background: rgba(139,126,255,0.08); }
+    .sidebar-sub-btn.active-mx { color: var(--text-high); font-weight: 600; border-color: rgba(68,217,255,0.22); border-left: 3px solid var(--creo-sky); background: rgba(68,217,255,0.06); }
+    .sidebar-sub-btn.active-drone { color: var(--text-high); font-weight: 600; border-color: rgba(255,160,48,0.22); border-left: 3px solid var(--creo-amber); background: rgba(255,160,48,0.06); }
+    .sub-num { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-hud); font-size: 0.48rem; font-weight: 700; background: rgba(139,126,255,0.08); border: 1px solid rgba(139,126,255,0.20); color: var(--text-dim); transition: all 0.20s; }
+    .sidebar-sub-btn:hover .sub-num { background: rgba(139,126,255,0.14); color: var(--prc-violet); border-color: rgba(139,126,255,0.38); }
+    .sidebar-sub-btn.active .sub-num { background: rgba(139,126,255,0.18); color: var(--prc-violet); border-color: var(--prc-violet); box-shadow: 0 0 8px rgba(139,126,255,0.40); }
+    .sidebar-sub-btn.active-mx .sub-num { background: rgba(68,217,255,0.12); color: var(--creo-sky); border-color: var(--creo-sky); }
+    .sidebar-sub-btn.active-drone .sub-num { background: rgba(255,160,48,0.12); color: var(--creo-amber); border-color: var(--creo-amber); }
+
+    .sidebar-cta { margin-top: 16px; display: block; text-align: center; padding: 12px 20px; font-family: var(--font-hud); font-size: 0.60rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--prc-violet); border: 1px solid var(--prc-violet); background: rgba(139,126,255,0.05); box-shadow: 0 0 14px rgba(139,126,255,0.18); transition: all 0.25s; clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%); }
+    .sidebar-cta:hover { background: rgba(139,126,255,0.12); box-shadow: 0 0 28px rgba(139,126,255,0.40); color: #fff; }
+
+    /* RIGHT PANEL */
+    .rankings-panel { min-height: 600px; }
+    .rank-panel { display: none; animation: panelSlide 0.30s ease both; }
+    .rank-panel.active { display: block; }
+
+    /* Panel header strip */
+    .panel-header-strip { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px; margin-bottom: 24px; border: 1px solid var(--border-neon); background: rgba(139,126,255,0.04); position: relative; overflow: hidden; }
+    .panel-header-strip::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--prc-violet), transparent); }
+    .panel-header-strip.strip-mx::before { background: linear-gradient(90deg, transparent, var(--creo-sky), transparent); }
+    .panel-header-strip.strip-drone::before { background: linear-gradient(90deg, transparent, var(--creo-amber), transparent); }
+    .panel-header-left { display: flex; align-items: center; gap: 10px; }
+    .panel-header-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; animation: neonPulse 1.8s ease-in-out infinite; }
+    .panel-header-dot.rv    { background: var(--prc-violet); box-shadow: 0 0 8px rgba(139,126,255,0.70); }
+    .panel-header-dot.mx    { background: var(--creo-sky);   box-shadow: 0 0 8px rgba(68,217,255,0.70); }
+    .panel-header-dot.drone { background: var(--creo-amber); box-shadow: 0 0 8px rgba(255,160,48,0.70); }
+    .panel-header-title { font-family: var(--font-hud); font-size: 0.60rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-mid); }
+    .panel-header-tag { font-family: var(--font-hud); font-size: 0.52rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; padding: 4px 12px; border: 1px solid; }
+    .panel-header-tag.rv    { color: var(--prc-violet); border-color: rgba(139,126,255,0.30); background: rgba(139,126,255,0.06); }
+    .panel-header-tag.mx    { color: var(--creo-sky);   border-color: rgba(68,217,255,0.28);  background: rgba(68,217,255,0.05); }
+    .panel-header-tag.drone { color: var(--creo-amber); border-color: rgba(255,160,48,0.28);  background: rgba(255,160,48,0.05); }
+
+    /* PODIUM */
+    .podium-section { margin-bottom: 36px; }
+    .podium-label { font-family: var(--font-hud); font-size: 0.54rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); text-align: center; margin-bottom: 26px; }
+    .podium-label span { color: var(--creo-volt); text-shadow: 0 0 10px rgba(255,233,48,0.50); }
+
+    .podium-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0 14px; align-items: end; }
+    .pod-2 { grid-column: 1; } .pod-1 { grid-column: 2; } .pod-3 { grid-column: 3; }
+
+    .podium-card { position: relative; border: 1px solid; overflow: hidden; transition: transform 0.3s; display: flex; flex-direction: column; }
+    .podium-card:hover { transform: translateY(-4px); }
+    .pod-1 .podium-card { border-color: rgba(255,233,48,0.38); background: linear-gradient(160deg, rgba(255,233,48,0.05) 0%, rgba(3,2,13,0.95) 60%); animation: borderPulse 3s ease-in-out infinite; }
+    .pod-2 .podium-card { border-color: rgba(196,238,255,0.28); background: linear-gradient(160deg, rgba(196,238,255,0.04) 0%, rgba(3,2,13,0.95) 60%); animation: borderPulse2 3.5s ease-in-out infinite; }
+    .pod-3 .podium-card { border-color: rgba(255,160,48,0.28); background: linear-gradient(160deg, rgba(255,160,48,0.04) 0%, rgba(3,2,13,0.95) 60%); animation: borderPulse3 4s ease-in-out infinite; }
+    .podium-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+    .pod-1 .podium-card::before { background: linear-gradient(90deg, transparent, var(--creo-volt),  transparent); box-shadow: 0 0 12px rgba(255,233,48,0.70); }
+    .pod-2 .podium-card::before { background: linear-gradient(90deg, transparent, var(--prc-ice),    transparent); box-shadow: 0 0 12px rgba(196,238,255,0.50); }
+    .pod-3 .podium-card::before { background: linear-gradient(90deg, transparent, var(--creo-amber), transparent); box-shadow: 0 0 12px rgba(255,160,48,0.50); }
+    .podium-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.04) 50%, transparent 60%); transform: translateX(-100%); transition: transform 0.6s; z-index: 3; pointer-events: none; }
+    .podium-card:hover::after { transform: translateX(100%); }
+
+    .podium-card-scan { position: absolute; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent); animation: scanLine 4s linear infinite; pointer-events: none; z-index: 5; }
+
+    .podium-rank-badge { position: absolute; top: 12px; right: 12px; z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 1px; }
+    .podium-rank-label { font-family: var(--font-hud); font-size: 0.44rem; font-weight: 900; letter-spacing: 0.06em; line-height: 1; }
+    .pod-1 .podium-rank-label { color: var(--creo-volt); text-shadow: 0 0 8px rgba(255,233,48,0.80); }
+    .pod-2 .podium-rank-label { color: var(--prc-ice);   text-shadow: 0 0 8px rgba(196,238,255,0.80); }
+    .pod-3 .podium-rank-label { color: var(--creo-amber);text-shadow: 0 0 8px rgba(255,160,48,0.80); }
+    .podium-rank-icon { font-size: 1.15rem; line-height: 1; }
+
+    .crown-float { position: absolute; top: -8px; left: 50%; transform: translateX(-50%); font-size: 1.35rem; z-index: 10; animation: crownFloat 3s ease-in-out infinite; filter: drop-shadow(0 0 8px rgba(255,233,48,0.80)); }
+
+    .podium-photo-wrap { position: relative; width: 100%; overflow: hidden; }
+    .pod-1 .podium-photo-wrap { height: 195px; }
+    .pod-2 .podium-photo-wrap, .pod-3 .podium-photo-wrap { height: 155px; }
+    .podium-photo { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform 0.5s ease; filter: brightness(0.85) saturate(1.1); }
+    .podium-card:hover .podium-photo { transform: scale(1.04); filter: brightness(0.95) saturate(1.2); }
+    .podium-photo-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 65%; background: linear-gradient(to top, rgba(3,2,13,1) 0%, rgba(3,2,13,0.6) 50%, transparent 100%); }
+
+    .podium-school-logo { position: absolute; bottom: 12px; left: 12px; z-index: 6; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.18); background: rgba(3,2,13,0.80); object-fit: contain; padding: 3px; backdrop-filter: blur(6px); }
+    .pod-1 .podium-school-logo { width: 44px; height: 44px; border-color: rgba(255,233,48,0.42); box-shadow: 0 0 12px rgba(255,233,48,0.28); animation: logoGlow 3s ease-in-out infinite; }
+
+    .podium-info { padding: 14px 14px 16px; display: flex; flex-direction: column; gap: 6px; position: relative; z-index: 2; }
+    .podium-status-tag { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-hud); font-size: 0.46rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 3px 9px; border: 1px solid; clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%); width: fit-content; margin-bottom: 2px; }
+    .pod-1 .podium-status-tag { color: var(--creo-volt); border-color: rgba(255,233,48,0.38); background: rgba(255,233,48,0.07); text-shadow: 0 0 8px rgba(255,233,48,0.60); }
+    .pod-2 .podium-status-tag { color: var(--prc-ice);   border-color: rgba(196,238,255,0.28); background: rgba(196,238,255,0.05); }
+    .pod-3 .podium-status-tag { color: var(--creo-amber);border-color: rgba(255,160,48,0.28);  background: rgba(255,160,48,0.05); }
+    .podium-school-name { font-family: var(--font-hud); font-weight: 800; letter-spacing: 0.02em; color: #fff; line-height: 1.2; }
+    .pod-1 .podium-school-name { font-size: 0.85rem; }
+    .pod-2 .podium-school-name, .pod-3 .podium-school-name { font-size: 0.70rem; }
+    .podium-team-name { font-family: var(--font-hud); font-size: 0.48rem; letter-spacing: 0.10em; text-transform: uppercase; color: var(--text-soft); }
+    .podium-meta-row { display: flex; align-items: center; gap: 10px; margin-top: 4px; padding-top: 10px; border-top: 1px solid rgba(139,126,255,0.12); flex-wrap: wrap; }
+    .podium-meta-item { display: flex; align-items: center; gap: 4px; font-family: var(--font-hud); font-size: 0.46rem; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; }
+    .podium-meta-item i { font-size: 0.58rem; }
+    .podium-step-base { height: 6px; border-left: 1px solid; border-right: 1px solid; border-bottom: 1px solid; }
+    .pod-1 .podium-step-base { background: linear-gradient(180deg, rgba(255,233,48,0.12) 0%, rgba(255,233,48,0.03) 100%); border-color: rgba(255,233,48,0.22); }
+    .pod-2 .podium-step-base { background: linear-gradient(180deg, rgba(196,238,255,0.08) 0%, rgba(196,238,255,0.02) 100%); border-color: rgba(196,238,255,0.18); }
+    .pod-3 .podium-step-base { background: linear-gradient(180deg, rgba(255,160,48,0.08) 0%, rgba(255,160,48,0.02) 100%); border-color: rgba(255,160,48,0.18); }
+
+    /* STANDINGS TABLE */
+    .standings-section { margin-top: 32px; }
+    .standings-section-label { display: flex; align-items: center; gap: 10px; padding: 10px 20px 9px; font-family: var(--font-hud); font-size: 0.54rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; background: rgba(0,0,0,0.30); border-bottom: 1px solid rgba(139,126,255,0.12); }
+    .standings-section-label .label-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+    .rankings-table-wrap { position: relative; overflow: hidden; border: 1px solid var(--border-neon); }
     .rankings-table-wrap::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--prc-violet), transparent); }
 
-    .rankings-section-label { padding: 10px 20px 8px; font-family: var(--font-hud); font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; background: rgba(0,0,0,0.30); border-bottom: 1px solid rgba(139,126,255,0.12); display: flex; align-items: center; gap: 10px; }
-    .rankings-section-label .label-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-
-    .rankings-header-row { display: grid; grid-template-columns: 56px 1fr 200px 100px 100px 80px; padding: 12px 20px; background: rgba(139,126,255,0.08); border-bottom: 1px solid var(--border-neon); font-family: var(--font-hud); font-size: 0.52rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-soft); }
-
-    .rankings-row { display: grid; grid-template-columns: 56px 1fr 200px 100px 100px 80px; padding: 14px 20px; border-bottom: 1px solid rgba(139,126,255,0.08); align-items: center; transition: background 0.2s; }
+    .rankings-header-row { display: grid; grid-template-columns: 50px 50px 1fr 158px 80px 80px 76px; padding: 11px 20px; background: rgba(139,126,255,0.08); border-bottom: 1px solid var(--border-neon); font-family: var(--font-hud); font-size: 0.50rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-soft); align-items: center; }
+    .rankings-row { display: grid; grid-template-columns: 50px 50px 1fr 158px 80px 80px 76px; padding: 13px 20px; border-bottom: 1px solid rgba(139,126,255,0.08); align-items: center; transition: background 0.2s; position: relative; }
     .rankings-row:last-child { border-bottom: none; }
     .rankings-row:hover { background: rgba(139,126,255,0.06); }
+    .rankings-row.rank-1::before, .rankings-row.rank-2::before, .rankings-row.rank-3::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; }
+    .rankings-row.rank-1::before { background: var(--creo-volt); box-shadow: 0 0 8px rgba(255,233,48,0.60); }
+    .rankings-row.rank-2::before { background: var(--prc-ice);   box-shadow: 0 0 8px rgba(196,238,255,0.50); }
+    .rankings-row.rank-3::before { background: var(--creo-amber);box-shadow: 0 0 8px rgba(255,160,48,0.50); }
+    .rankings-row.rank-1 { background: rgba(255,233,48,0.03); }
+    .rankings-row.rank-2 { background: rgba(196,238,255,0.02); }
+    .rankings-row.rank-3 { background: rgba(255,160,48,0.02); }
+    .rankings-row.rank-1:hover { background: rgba(255,233,48,0.06); }
+    .rankings-row.rank-2:hover { background: rgba(196,238,255,0.05); }
+    .rankings-row.rank-3:hover { background: rgba(255,160,48,0.05); }
 
-    /* Top 3 */
-    .rankings-row.rank-1 { background: rgba(255,233,48,0.04); }
-    .rankings-row.rank-2 { background: rgba(196,238,255,0.03); }
-    .rankings-row.rank-3 { background: rgba(255,160,48,0.03); }
-    .rankings-row.rank-1:hover { background: rgba(255,233,48,0.08); }
-    .rankings-row.rank-2:hover { background: rgba(196,238,255,0.06); }
-    .rankings-row.rank-3:hover { background: rgba(255,160,48,0.06); }
+    .rank-num { font-family: var(--font-hud); font-size: 0.95rem; font-weight: 900; line-height: 1; text-align: center; }
+    .rank-1 .rank-num { color: var(--creo-volt);  text-shadow: 0 0 12px rgba(255,233,48,0.70); }
+    .rank-2 .rank-num { color: var(--prc-ice);    text-shadow: 0 0 12px rgba(196,238,255,0.70); }
+    .rank-3 .rank-num { color: var(--creo-amber); text-shadow: 0 0 12px rgba(255,160,48,0.70); }
+    .rank-num.other { color: var(--text-dim); font-size: 0.80rem; }
+    .rank-medal { font-size: 0.95rem; display: block; text-align: center; line-height: 1.2; }
 
-    .rank-num { font-family: var(--font-hud); font-size: 1.1rem; font-weight: 900; line-height: 1; text-align: center; }
-    .rank-1 .rank-num { color: var(--creo-volt);  text-shadow: 0 0 14px rgba(255,233,48,0.70); }
-    .rank-2 .rank-num { color: var(--prc-ice);    text-shadow: 0 0 14px rgba(196,238,255,0.70); }
-    .rank-3 .rank-num { color: var(--creo-amber); text-shadow: 0 0 14px rgba(255,160,48,0.70); }
-    .rank-num.other   { color: var(--text-dim); font-size: 0.88rem; }
-    .rank-medal { font-size: 1.1rem; display: block; text-align: center; line-height: 1; }
+    .row-logo-cell { display: flex; align-items: center; justify-content: center; }
+    .row-logo { width: 34px; height: 34px; border-radius: 50%; object-fit: contain; border: 1px solid rgba(139,126,255,0.20); background: rgba(139,126,255,0.06); padding: 3px; }
+    .row-logo-placeholder { width: 34px; height: 34px; border-radius: 50%; border: 1px dashed rgba(139,126,255,0.20); background: rgba(139,126,255,0.04); display: flex; align-items: center; justify-content: center; font-family: var(--font-hud); font-size: 0.44rem; color: var(--text-dim); font-weight: 700; text-align: center; line-height: 1.1; }
+    .rank-1 .row-logo { border-color: rgba(255,233,48,0.32); box-shadow: 0 0 8px rgba(255,233,48,0.18); }
+    .rank-2 .row-logo { border-color: rgba(196,238,255,0.25); }
+    .rank-3 .row-logo { border-color: rgba(255,160,48,0.25); }
 
-    .rank-school { display: flex; flex-direction: column; gap: 3px; }
-    .rank-school-name { font-family: var(--font-hud); font-size: 0.72rem; font-weight: 700; color: var(--text-high); letter-spacing: 0.04em; }
-    .rank-team-name   { font-family: var(--font-hud); font-size: 0.56rem; color: var(--text-soft); letter-spacing: 0.08em; text-transform: uppercase; }
+    .rank-school { display: flex; flex-direction: column; gap: 2px; }
+    .rank-school-name { font-family: var(--font-hud); font-size: 0.64rem; font-weight: 700; color: var(--text-high); letter-spacing: 0.03em; }
+    .rank-team-name   { font-family: var(--font-hud); font-size: 0.50rem; color: var(--text-soft); letter-spacing: 0.08em; text-transform: uppercase; }
 
-    .rank-category-badge { display: inline-flex; align-items: center; font-family: var(--font-hud); font-size: 0.54rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border: 1px solid; clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%); }
+    .rank-category-badge { display: inline-flex; align-items: center; font-family: var(--font-hud); font-size: 0.50rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border: 1px solid; clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%); }
     .badge-rv    { color: var(--prc-violet); border-color: rgba(139,126,255,0.30); background: rgba(139,126,255,0.06); }
     .badge-mx    { color: var(--creo-sky);   border-color: rgba(68,217,255,0.30);  background: rgba(68,217,255,0.06); }
     .badge-drone { color: var(--creo-amber); border-color: rgba(255,160,48,0.30);  background: rgba(255,160,48,0.06); }
 
-    .rank-score      { font-family: var(--font-hud); font-size: 0.88rem; font-weight: 800; color: var(--text-high); text-align: center; }
-    .rank-school-loc { font-family: var(--font-hud); font-size: 0.54rem; color: var(--text-dim); letter-spacing: 0.06em; text-align: center; }
-    .rank-status     { font-family: var(--font-hud); font-size: 0.52rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; }
+    .rank-score      { font-family: var(--font-hud); font-size: 0.82rem; font-weight: 800; color: var(--text-high); text-align: center; }
+    .rank-school-loc { font-family: var(--font-hud); font-size: 0.50rem; color: var(--text-dim); letter-spacing: 0.06em; text-align: center; }
+    .rank-status     { font-family: var(--font-hud); font-size: 0.48rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; }
     .rank-status.qualified { color: var(--creo-volt); text-shadow: 0 0 8px rgba(255,233,48,0.55); }
     .rank-status.finalist  { color: var(--prc-violet); }
     .rank-status.competing { color: var(--text-soft); }
 
-    /* Placeholder card */
-    .coming-soon-card { border: 1px solid var(--border-neon); padding: 52px 36px; text-align: center; background: rgba(139,126,255,0.02); margin-bottom: 32px; }
-    .coming-soon-card .cs-eyebrow { font-family: var(--font-hud); font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 16px; }
-    .coming-soon-card .cs-title   { font-family: var(--font-hud); font-size: 1.1rem; font-weight: 700; color: var(--text-soft); margin-bottom: 10px; }
-    .coming-soon-card p           { font-size: 0.875rem; color: var(--text-dim); max-width: 420px; margin: 0 auto; line-height: 1.70; }
-
-    /* CTA */
-    .rankings-cta-wrap { margin-top: 60px; }
-    .rankings-cta { max-width: 960px; margin: 0 auto; background: rgba(139,126,255,0.04); border: 1px solid var(--prc-violet); padding: 80px 64px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 0 80px rgba(139,126,255,0.18), inset 0 0 80px rgba(139,126,255,0.03); }
-    .rankings-cta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--prc-ice), transparent); box-shadow: 0 0 20px rgba(139,126,255,0.8); }
-    .rankings-cta::after  { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--creo-purple), transparent); box-shadow: 0 0 20px rgba(204,85,255,0.8); }
-    .cta-corner { position: absolute; width: 24px; height: 24px; border-color: var(--prc-violet); border-style: solid; }
-    .cta-corner.tl { top: 12px; left: 12px; border-width: 1.5px 0 0 1.5px; }
-    .cta-corner.tr { top: 12px; right: 12px; border-width: 1.5px 1.5px 0 0; }
-    .cta-corner.bl { bottom: 12px; left: 12px; border-width: 0 0 1.5px 1.5px; }
-    .cta-corner.br { bottom: 12px; right: 12px; border-width: 0 1.5px 1.5px 0; }
+    /* Panel CTA */
+    .panel-cta { margin-top: 40px; border: 1px solid var(--prc-violet); background: rgba(139,126,255,0.04); padding: 48px 40px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 0 60px rgba(139,126,255,0.14), inset 0 0 60px rgba(139,126,255,0.03); }
+    .panel-cta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--prc-ice), transparent); box-shadow: 0 0 18px rgba(139,126,255,0.70); }
+    .panel-cta::after  { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--creo-purple), transparent); box-shadow: 0 0 18px rgba(204,85,255,0.70); }
+    .cta-corner { position: absolute; width: 20px; height: 20px; border-color: var(--prc-violet); border-style: solid; }
+    .cta-corner.tl { top: 10px; left: 10px;   border-width: 1.5px 0 0 1.5px; }
+    .cta-corner.tr { top: 10px; right: 10px;  border-width: 1.5px 1.5px 0 0; }
+    .cta-corner.bl { bottom: 10px; left: 10px; border-width: 0 0 1.5px 1.5px; }
+    .cta-corner.br { bottom: 10px; right: 10px;border-width: 0 1.5px 1.5px 0; }
     .cta-bg-grid { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(139,126,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(139,126,255,0.05) 1px, transparent 1px); background-size: 40px 40px; mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 0%, transparent 100%); }
-    .cta-tag { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,233,48,0.38); padding: 6px 18px; font-family: var(--font-hud); font-size: 0.60rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--creo-volt); margin-bottom: 22px; position: relative; z-index: 1; clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%); text-shadow: 0 0 10px rgba(255,233,48,0.60); background: rgba(255,233,48,0.05); }
-    .cta-title { font-family: var(--font-hud); font-size: clamp(1.8rem, 3.8vw, 2.8rem); font-weight: 800; letter-spacing: -0.01em; line-height: 1.08; margin-bottom: 16px; position: relative; z-index: 1; color: #fff; }
-    .cta-title .accent { color: var(--prc-violet); text-shadow: 0 0 18px rgba(139,126,255,0.70); }
-    .cta-desc { font-size: 1rem; color: var(--text-mid); max-width: 460px; margin: 0 auto 38px; line-height: 1.78; position: relative; z-index: 1; }
-    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
-    .btn-neon-primary { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--prc-violet); padding: 12px 28px; font-family: var(--font-hud); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--prc-violet); clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%); box-shadow: 0 0 18px rgba(139,126,255,0.32), inset 0 0 18px rgba(139,126,255,0.07); transition: all 0.25s; position: relative; overflow: hidden; }
+    .cta-tag { display: inline-flex; align-items: center; gap: 7px; border: 1px solid rgba(255,233,48,0.35); padding: 5px 16px; font-family: var(--font-hud); font-size: 0.56rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--creo-volt); margin-bottom: 16px; position: relative; z-index: 1; clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%); text-shadow: 0 0 8px rgba(255,233,48,0.55); background: rgba(255,233,48,0.05); }
+    .cta-title { font-family: var(--font-hud); font-size: clamp(1.4rem, 2.8vw, 2.1rem); font-weight: 800; letter-spacing: -0.01em; line-height: 1.08; margin-bottom: 12px; position: relative; z-index: 1; color: #fff; }
+    .cta-title .accent { color: var(--prc-violet); text-shadow: 0 0 16px rgba(139,126,255,0.65); }
+    .cta-desc { font-size: 0.925rem; color: var(--text-mid); max-width: 400px; margin: 0 auto 26px; line-height: 1.78; position: relative; z-index: 1; }
+    .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+    .btn-neon-primary { display: inline-flex; align-items: center; gap: 9px; background: transparent; color: var(--prc-violet); padding: 11px 24px; font-family: var(--font-hud); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--prc-violet); clip-path: polygon(9px 0%, 100% 0%, calc(100% - 9px) 100%, 0% 100%); box-shadow: 0 0 16px rgba(139,126,255,0.30); transition: all 0.25s; position: relative; overflow: hidden; }
     .btn-neon-primary::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(139,126,255,0.18), transparent); transform: translateX(-100%); transition: transform 0.5s; }
-    .btn-neon-primary:hover { background: rgba(139,126,255,0.12); box-shadow: 0 0 38px rgba(139,126,255,0.60), inset 0 0 28px rgba(139,126,255,0.12); color: #fff; transform: translateY(-2px); }
+    .btn-neon-primary:hover { background: rgba(139,126,255,0.12); box-shadow: 0 0 34px rgba(139,126,255,0.55); color: #fff; transform: translateY(-2px); }
     .btn-neon-primary:hover::before { transform: translateX(100%); }
-    .btn-neon-secondary { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--creo-sky); padding: 12px 28px; font-family: var(--font-hud); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--creo-sky); clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%); box-shadow: 0 0 18px rgba(68,217,255,0.28), inset 0 0 18px rgba(68,217,255,0.06); transition: all 0.25s; }
-    .btn-neon-secondary:hover { background: rgba(68,217,255,0.10); box-shadow: 0 0 38px rgba(68,217,255,0.55), inset 0 0 28px rgba(68,217,255,0.10); color: #fff; transform: translateY(-2px); }
+    .btn-neon-secondary { display: inline-flex; align-items: center; gap: 9px; background: transparent; color: var(--creo-sky); padding: 11px 24px; font-family: var(--font-hud); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--creo-sky); clip-path: polygon(9px 0%, 100% 0%, calc(100% - 9px) 100%, 0% 100%); box-shadow: 0 0 16px rgba(68,217,255,0.25); transition: all 0.25s; }
+    .btn-neon-secondary:hover { background: rgba(68,217,255,0.10); box-shadow: 0 0 34px rgba(68,217,255,0.50); color: #fff; transform: translateY(-2px); }
 
-    /* ===== FOOTER ===== */
+    /* FOOTER */
     footer { background: rgba(0,0,6,0.95); border-top: 1px solid var(--border-neon); padding: 70px 0 32px; }
     .footer-inner { max-width: 1340px; margin: 0 auto; padding: 0 36px; }
     .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 52px; margin-bottom: 52px; }
@@ -240,47 +459,67 @@
     .footer-bottom-links a { font-family: var(--font-hud); font-size: 0.58rem; color: var(--text-soft); transition: color 0.2s; letter-spacing: 0.06em; }
     .footer-bottom-links a:hover { color: var(--prc-violet); }
 
-    /* ===== REVEAL ===== */
-    .reveal { opacity:0; transform:translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    /* REVEAL */
+    .reveal { opacity:0; transform:translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
     .reveal.visible { opacity:1; transform:translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.10s; }
-    .reveal-delay-2 { transition-delay: 0.20s; }
 
-    /* ===== RESPONSIVE ===== */
+    /* RESPONSIVE */
+    @media (max-width: 1200px) { :root { --sidebar-w: 270px; } }
     @media (max-width: 1024px) {
+      :root { --sidebar-w: 240px; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
-      .rankings-cta { padding: 64px 36px; }
+      .event-switcher-inner { gap: 32px; }
+      .event-year-btn { font-size: 1.3rem; padding: 8px 22px; }
+    }
+    @media (max-width: 900px) {
+      .rankings-shell { grid-template-columns: 1fr; }
+      .rankings-sidebar { position: static; }
+      .sidebar-subs { max-height: none !important; }
+      .event-switcher-inner { grid-template-columns: 1fr; gap: 24px; }
     }
     @media (max-width: 768px) {
       :root { --nav-height: 62px; }
       body { cursor: auto; } button { cursor: pointer; }
       .cursor-dot, .cursor-ring { display: none; }
       .nav-links { display: none; } .nav-hamburger { display: flex; }
-      .rankings-header-row { grid-template-columns: 44px 1fr 90px; }
-      .rankings-row        { grid-template-columns: 44px 1fr 90px; }
+      .event-switcher-inner { padding: 28px 20px 32px; }
+      .event-year-btn { font-size: 1.15rem; padding: 8px 18px; }
+      .event-info-name { font-size: 1.1rem; }
+      .event-info-row { font-size: 0.62rem; }
+      .podium-grid { grid-template-columns: 1fr; grid-template-rows: auto auto auto; gap: 14px 0; }
+      .pod-1 { grid-column: 1; grid-row: 1; } .pod-2 { grid-column: 1; grid-row: 2; } .pod-3 { grid-column: 1; grid-row: 3; }
+      .pod-1 .podium-photo-wrap, .pod-2 .podium-photo-wrap, .pod-3 .podium-photo-wrap { height: 185px; }
+      .rankings-header-row, .rankings-row { grid-template-columns: 42px 42px 1fr; }
       .col-cat, .col-loc, .col-status { display: none; }
-      .rank-school-name { font-size: 0.65rem; }
-      .rankings-cta { padding: 48px 24px; }
+      .rank-school-name { font-size: 0.60rem; }
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
       .footer-bottom { flex-direction: column; text-align: center; }
       .cta-actions { flex-direction: column; align-items: stretch; }
       .cta-actions .btn-neon-primary, .cta-actions .btn-neon-secondary { justify-content: center; clip-path: none; }
+      .rankings-shell { padding: 32px 16px 80px; }
     }
     @media (max-width: 520px) {
       :root { --nav-height: 58px; }
       .nav-inner { padding: 0 14px; }
-      .rankings-main, .footer-inner { padding-left: 16px; padding-right: 16px; }
+      .footer-inner { padding-left: 16px; padding-right: 16px; }
+      .page-hero-inner { padding: 0 16px; }
+      .nav-brand span { display: none; }
+      .event-year-btn { font-size: 1rem; padding: 7px 14px; }
+      .event-switcher-inner { padding: 24px 16px 28px; }
+    }
+    @media (max-width: 520px) {
+      :root { --nav-height: 58px; }
+      .nav-inner { padding: 0 14px; }
+      .footer-inner { padding-left: 16px; padding-right: 16px; }
       .page-hero-inner { padding: 0 16px; }
       .nav-brand span { display: none; }
     }
-
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg-void); }
     ::-webkit-scrollbar-thumb { background: var(--prc-violet); box-shadow: 0 0 8px rgba(139,126,255,0.70); border-radius: 2px; }
   </style>
 </head>
 <body>
-
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-ring" id="cursorRing"></div>
   <div class="hex-grid" aria-hidden="true"></div>
@@ -308,7 +547,6 @@
         </button>
       </div>
     </nav>
-
     <nav class="nav-mobile" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
       <a href="index.html"><i class="fi fi-rr-home"></i>Home</a>
       <a href="categories.html"><i class="fi fi-rr-trophy"></i>Categories</a>
@@ -323,12 +561,9 @@
     <header class="page-hero">
       <div class="page-hero-scan"></div>
       <div class="page-hero-inner">
-        <div class="page-hero-eyebrow">
-          <div class="page-hero-blink"></div>
-          PRC 2025 &mdash; National Finals Results
-        </div>
+        <div class="page-hero-eyebrow"><div class="page-hero-blink"></div>Official Competition Results</div>
         <h1 class="page-hero-title">Rankings &amp; <span class="accent">Results</span></h1>
-        <p class="page-hero-desc">Official standings from the Philippine Robotics Cup 2025 National Finals — ranked by category with top schools highlighted.</p>
+        <p class="page-hero-desc">Official standings from Philippine Robotics Cup National Finals — select a competition year and category from the sidebar to view results.</p>
         <div class="page-hero-divider" aria-hidden="true">
           <div class="page-hero-divider-line"></div>
           <div class="page-hero-divider-diamond"></div>
@@ -337,136 +572,445 @@
       </div>
     </header>
 
+    <!-- EVENT SWITCHER BAR — full width, between hero and content -->
+    <div class="event-switcher-bar">
+      <div class="event-switcher-inner">
+
+        <!-- Year buttons -->
+        <div class="event-switcher-left">
+          <div class="event-switcher-label">Select Competition Year</div>
+          <div class="event-year-row">
+            <button class="event-year-btn active" onclick="switchEvent('2025')">2025</button>
+            <button class="event-year-btn" onclick="switchEvent('2024')">2024</button>
+            <button class="event-year-btn" onclick="switchEvent('2023')">2023</button>
+          </div>
+        </div>
+
+        <!-- Event details -->
+        <div class="event-info-block" id="event-info">
+          <div class="event-info-name">Philippine Robotics Cup <span class="accent">2025</span></div>
+          <div class="event-info-meta">
+            <div class="event-info-row"><i class="fi fi-rr-trophy"></i><span id="ev-edition">National Finals</span></div>
+            <div class="event-info-row"><i class="fi fi-rr-calendar"></i><span id="ev-date">October 18–19, 2025</span></div>
+            <div class="event-info-row"><i class="fi fi-rr-map-marker"></i><span id="ev-venue">Vista Mall Las Piñas, Metro Manila</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <!-- MAIN -->
-    <main class="rankings-main">
+    <main>
+      <div class="rankings-shell">
 
-      <!-- Meta badges -->
-      <div class="rankings-meta">
-        <span class="rankings-badge violet"><i class="fi fi-rr-trophy"></i> PRC 2025 — National Finals</span>
-        <span class="rankings-badge volt"><i class="fi fi-rr-calendar"></i> October 2025</span>
-        <span class="rankings-badge violet"><i class="fi fi-rr-map-marker"></i> Vista Mall Las Pi&ntilde;as</span>
-      </div>
+        <!-- ═══════ SIDEBAR ═══════ -->
+        <aside class="rankings-sidebar reveal" aria-label="Rankings navigation">
 
-      <!-- FILTER BAR -->
-      <div class="rankings-filter-bar">
-        <button class="filter-btn active-rv" id="filter-all"   onclick="filterRankings('all')">All Categories</button>
-        <button class="filter-btn"           id="filter-ei"    onclick="filterRankings('ei')">Emerging Innovators</button>
-        <button class="filter-btn"           id="filter-as"    onclick="filterRankings('as')">Aspiring Makers</button>
-        <button class="filter-btn"           id="filter-rs"    onclick="filterRankings('rs')">Robot Soccer</button>
-        <button class="filter-btn"           id="filter-lt"    onclick="filterRankings('lt')">Line Tracing</button>
-        <button class="filter-btn"           id="filter-sb"    onclick="filterRankings('sb')">Sumobot</button>
-        <button class="filter-btn"           id="filter-nav"   onclick="filterRankings('nav')">Navigation</button>
-        <button class="filter-btn"           id="filter-mx"    onclick="filterRankings('mx')">MakeX</button>
-        <button class="filter-btn"           id="filter-drone" onclick="filterRankings('drone')">Drone Soccer</button>
-      </div>
+          <!-- ROBOVENTURE -->
+          <div class="sidebar-section">
+            <button class="sidebar-cat-btn active" id="btn-rv" onclick="selectCat('rv')" aria-expanded="true">
+              <span class="sidebar-cat-logo"><img src="assets/Roboventure Logo.png" alt="RoboVenture" /></span>
+              <span class="sidebar-cat-text"><span class="sidebar-cat-name">RoboVenture</span><span class="sidebar-cat-count">8 categories</span></span>
+              <i class="fi fi-rr-angle-right sidebar-cat-chevron"></i>
+            </button>
+            <div class="sidebar-subs open" id="subs-rv">
+              <button class="sidebar-sub-btn active" id="sub-rv-ei"   onclick="selectSub('rv','ei')"><span class="sub-num">01</span>Emerging Innovators</button>
+              <button class="sidebar-sub-btn"        id="sub-rv-am"   onclick="selectSub('rv','am')"><span class="sub-num">02</span>Aspiring Makers</button>
+              <button class="sidebar-sub-btn"        id="sub-rv-rs"   onclick="selectSub('rv','rs')"><span class="sub-num">03</span>Robot Soccer</button>
+              <button class="sidebar-sub-btn"        id="sub-rv-lt"   onclick="selectSub('rv','lt')"><span class="sub-num">04</span>Line Tracing</button>
+              <button class="sidebar-sub-btn"        id="sub-rv-sb"   onclick="selectSub('rv','sb')"><span class="sub-num">05</span>Sumobot</button>
+              <button class="sidebar-sub-btn"        id="sub-rv-nava" onclick="selectSub('rv','nava')"><span class="sub-num">06</span>Navigation — Auto</button>
+              <button class="sidebar-sub-btn"        id="sub-rv-navm" onclick="selectSub('rv','navm')"><span class="sub-num">07</span>Navigation — Manual</button>
+              <button class="sidebar-sub-btn"        id="sub-rv-ib"   onclick="selectSub('rv','ib')"><span class="sub-num">08</span>Innovation Builders</button>
+            </div>
+          </div>
+          <!-- MAKEX -->
+          <div class="sidebar-section">
+            <button class="sidebar-cat-btn" id="btn-mx" onclick="selectCat('mx')" aria-expanded="false">
+              <span class="sidebar-cat-logo"><img src="assets/Makex logo.png" alt="MakeX" /></span>
+              <span class="sidebar-cat-text"><span class="sidebar-cat-name">MakeX</span><span class="sidebar-cat-count">2 categories</span></span>
+              <i class="fi fi-rr-angle-right sidebar-cat-chevron"></i>
+            </button>
+            <div class="sidebar-subs" id="subs-mx">
+              <button class="sidebar-sub-btn" id="sub-mx-st" onclick="selectSub('mx','st')"><span class="sub-num">01</span>MakeX Starter</button>
+              <button class="sidebar-sub-btn" id="sub-mx-ex" onclick="selectSub('mx','ex')"><span class="sub-num">02</span>MakeX Explorer</button>
+            </div>
+          </div>
+          <!-- DRONE SOCCER -->
+          <div class="sidebar-section">
+            <button class="sidebar-cat-btn" id="btn-drone" onclick="selectCat('drone')" aria-expanded="false">
+              <span class="sidebar-cat-logo"><img src="assets/Drone Soccer Logo.png" alt="Drone Soccer" /></span>
+              <span class="sidebar-cat-text"><span class="sidebar-cat-name">Drone Soccer</span><span class="sidebar-cat-count">1 category</span></span>
+              <i class="fi fi-rr-angle-right sidebar-cat-chevron"></i>
+            </button>
+            <div class="sidebar-subs" id="subs-drone">
+              <button class="sidebar-sub-btn" id="sub-drone-ds" onclick="selectSub('drone','ds')"><span class="sub-num">01</span>Drone Soccer</button>
+            </div>
+          </div>
 
-      <!-- ── EMERGING INNOVATORS ── -->
-      <div class="rank-cat-group visible" id="rg-ei">
-        <div class="rankings-table-wrap reveal" style="border-color:rgba(139,126,255,0.28);">
-          <div class="rankings-section-label" style="color:var(--prc-violet);">
-            <span class="label-dot" style="background:var(--prc-violet);box-shadow:0 0 6px rgba(139,126,255,0.70);"></span>
-            RoboVenture — Emerging Innovators
-          </div>
-          <div class="rankings-header-row">
-            <div>Rank</div>
-            <div>School / Team</div>
-            <div class="col-cat">Category</div>
-            <div class="col-loc" style="text-align:center">Score</div>
-            <div class="col-loc" style="text-align:center">Region</div>
-            <div class="col-status" style="text-align:center">Status</div>
-          </div>
-          <div class="rankings-row rank-1">
-            <div class="rank-num">1<span class="rank-medal">🥇</span></div>
-            <div class="rank-school"><span class="rank-school-name">AUP – Academy</span><span class="rank-team-name">AUPA RoboLights</span></div>
-            <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
-            <div class="rank-score col-loc">—</div>
-            <div class="rank-school-loc col-loc">NCR</div>
-            <div class="rank-status qualified col-status">Champion</div>
-          </div>
-          <div class="rankings-row rank-2">
-            <div class="rank-num">2<span class="rank-medal">🥈</span></div>
-            <div class="rank-school"><span class="rank-school-name">Bethel Academy</span><span class="rank-team-name">The Mechatronics</span></div>
-            <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
-            <div class="rank-score col-loc">—</div>
-            <div class="rank-school-loc col-loc">—</div>
-            <div class="rank-status finalist col-status">2nd Place</div>
-          </div>
-          <div class="rankings-row rank-3">
-            <div class="rank-num">3<span class="rank-medal">🥉</span></div>
-            <div class="rank-school"><span class="rank-school-name">Capas National High School</span><span class="rank-team-name">CNHS Tarlac</span></div>
-            <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
-            <div class="rank-score col-loc">—</div>
-            <div class="rank-school-loc col-loc">Region III</div>
-            <div class="rank-status finalist col-status">3rd Place</div>
-          </div>
-          <div class="rankings-row">
-            <div class="rank-num"><span class="rank-num other">4</span></div>
-            <div class="rank-school"><span class="rank-school-name">Halapitan National High School</span><span class="rank-team-name">San Fernando Team 1 | 2 | 3</span></div>
-            <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
-            <div class="rank-score col-loc">—</div>
-            <div class="rank-school-loc col-loc">Region III</div>
-            <div class="rank-status competing col-status">Finalist</div>
-          </div>
-          <div class="rankings-row">
-            <div class="rank-num"><span class="rank-num other">5</span></div>
-            <div class="rank-school"><span class="rank-school-name">Libona National High School</span><span class="rank-team-name">Libona High</span></div>
-            <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
-            <div class="rank-score col-loc">—</div>
-            <div class="rank-school-loc col-loc">Region X</div>
-            <div class="rank-status competing col-status">Finalist</div>
-          </div>
-          <div class="rankings-row">
-            <div class="rank-num"><span class="rank-num other">6</span></div>
-            <div class="rank-school"><span class="rank-school-name">Malacampa National High School</span><span class="rank-team-name">Codesters | Steminators</span></div>
-            <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
-            <div class="rank-score col-loc">—</div>
-            <div class="rank-school-loc col-loc">Region III</div>
-            <div class="rank-status competing col-status">Finalist</div>
-          </div>
-          <div class="rankings-row">
-            <div class="rank-num"><span class="rank-num other">7</span></div>
-            <div class="rank-school"><span class="rank-school-name">San Jose Community High School</span><span class="rank-team-name">SJCHS Robo Titans</span></div>
-            <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
-            <div class="rank-score col-loc">—</div>
-            <div class="rank-school-loc col-loc">—</div>
-            <div class="rank-status competing col-status">Finalist</div>
-          </div>
-          <div class="rankings-row">
-            <div class="rank-num"><span class="rank-num other">8</span></div>
-            <div class="rank-school"><span class="rank-school-name">Tuguegarao City Science High School</span><span class="rank-team-name">TugSayVenture</span></div>
-            <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
-            <div class="rank-score col-loc">—</div>
-            <div class="rank-school-loc col-loc">Region II</div>
-            <div class="rank-status competing col-status">Finalist</div>
-          </div>
+          <a href="#" class="sidebar-cta"><i class="fi fi-rr-pen-field"></i> &nbsp;Register for PRC 2026</a>
+        </aside>
+
+        <!-- ═══════ PANEL ═══════ -->
+        <section class="rankings-panel" aria-live="polite">
+
+<!-- ═══════════════════════════════════════════
+     MACRO: each category panel shares the same
+     podium + table structure.
+     Logos rotate through school-1 … school-5.
+     Photos use highlight-1 … highlight-5.
+     The EI panel uses the REAL data from the brief.
+     All other panels use clearly-labelled sample data.
+════════════════════════════════════════════════ -->
+
+<!-- ══ RV: EMERGING INNOVATORS (real data) ══ -->
+<div class="rank-panel active" id="panel-rv-ei">
+  <div class="panel-header-strip">
+    <div class="panel-header-left"><span class="panel-header-dot rv"></span><span class="panel-header-title">RoboVenture — Emerging Innovators</span></div>
+    <span class="panel-header-tag rv" id="ev-tag-rv-ei">PRC 2025 Results</span>
+  </div>
+  <div class="podium-section">
+    <p class="podium-label">// <span>Top 3 Champions</span> — National Finals <span id="ev-year-rv-ei">2025</span></p>
+    <div class="podium-grid">
+      <div class="pod-2"><div class="podium-card"><div class="podium-card-scan"></div>
+        <div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥈</span></div>
+        <div class="podium-photo-wrap">
+          <img src="assets/highlights/highlight-2.jpg" alt="Bethel Academy" class="podium-photo" onerror="this.src='assets/highlights/highlight-2.png';this.onerror=null;"/>
+          <div class="podium-photo-fade"></div>
+          <img src="assets/school-logos/school-2.jpg" alt="Bethel Academy logo" class="podium-school-logo" onerror="this.style.display='none';"/>
         </div>
-      </div>
-
-      <!-- ── OTHER CATEGORIES PLACEHOLDER ── -->
-      <div class="rank-cat-group visible" id="rg-other">
-        <div class="coming-soon-card reveal">
-          <div class="cs-eyebrow">// More Categories</div>
-          <div class="cs-title">Rankings Coming Soon</div>
-          <p>Full results for Aspiring Makers, Robot Soccer, Line Tracing, Sumobot, Navigation, MakeX, and Drone Soccer will be posted after the official tabulation.</p>
+        <div class="podium-info">
+          <span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 2nd Place</span>
+          <span class="podium-school-name">Bethel Academy</span>
+          <span class="podium-team-name">The Mechatronics</span>
+          <div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> —</span><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Emrg. Innovators</span></div>
         </div>
-      </div>
+      </div><div class="podium-step-base"></div></div>
 
-      <!-- CTA -->
-      <div class="rankings-cta-wrap reveal">
-        <div class="rankings-cta">
-          <div class="cta-bg-grid"></div>
-          <div class="cta-corner tl"></div><div class="cta-corner tr"></div>
-          <div class="cta-corner bl"></div><div class="cta-corner br"></div>
-          <div class="cta-tag"><i class="fi fi-rr-calendar"></i> Registration Open // PRC 2026</div>
-          <h2 class="cta-title">Compete at<br/><span class="accent">PRC 2026</span></h2>
-          <p class="cta-desc">Think your team has what it takes to top the rankings? Register now for the Philippine Robotics Cup 2026.</p>
-          <div class="cta-actions">
-            <a href="#" class="btn-neon-primary"><i class="fi fi-rr-pen-field"></i> Register Your Team</a>
-            <a href="categories.html" class="btn-neon-secondary"><i class="fi fi-rr-layers"></i> View Categories</a>
-          </div>
+      <div class="pod-1"><div class="podium-card"><span class="crown-float" aria-hidden="true">👑</span><div class="podium-card-scan"></div>
+        <div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥇</span></div>
+        <div class="podium-photo-wrap">
+          <img src="assets/highlights/highlight-1.jpg" alt="AUP Academy" class="podium-photo" onerror="this.src='assets/highlights/highlight-1.png';this.onerror=null;"/>
+          <div class="podium-photo-fade"></div>
+          <img src="assets/school-logos/school-1.png" alt="AUP Academy logo" class="podium-school-logo" onerror="this.style.display='none';"/>
         </div>
-      </div>
+        <div class="podium-info">
+          <span class="podium-status-tag"><i class="fi fi-rr-trophy"></i> Champion</span>
+          <span class="podium-school-name">AUP – Academy</span>
+          <span class="podium-team-name">AUPA RoboLights</span>
+          <div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> NCR</span><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Emrg. Innovators</span></div>
+        </div>
+      </div><div class="podium-step-base"></div></div>
 
+      <div class="pod-3"><div class="podium-card"><div class="podium-card-scan"></div>
+        <div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥉</span></div>
+        <div class="podium-photo-wrap">
+          <img src="assets/highlights/highlight-3.jpg" alt="Capas NHS" class="podium-photo" onerror="this.src='assets/highlights/highlight-3.png';this.onerror=null;"/>
+          <div class="podium-photo-fade"></div>
+          <img src="assets/school-logos/school-3.jpg" alt="Capas NHS logo" class="podium-school-logo" onerror="this.style.display='none';"/>
+        </div>
+        <div class="podium-info">
+          <span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 3rd Place</span>
+          <span class="podium-school-name">Capas National High School</span>
+          <span class="podium-team-name">CNHS Tarlac</span>
+          <div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region III</span><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Emrg. Innovators</span></div>
+        </div>
+      </div><div class="podium-step-base"></div></div>
+    </div>
+  </div>
+  <div class="standings-section">
+    <div class="rankings-table-wrap">
+      <div class="standings-section-label" style="color:var(--prc-violet);">
+        <span class="label-dot" style="background:var(--prc-violet);box-shadow:0 0 6px rgba(139,126,255,0.70);"></span>
+        Full Standings — Emerging Innovators
+      </div>
+      <div class="rankings-header-row"><div>Rank</div><div>Logo</div><div>School / Team</div><div class="col-cat">Category</div><div class="col-loc" style="text-align:center">Score</div><div class="col-loc" style="text-align:center">Region</div><div class="col-status" style="text-align:center">Status</div></div>
+
+      <div class="rankings-row rank-1">
+        <div class="rank-num">1<span class="rank-medal">🥇</span></div>
+        <div class="row-logo-cell"><img src="assets/school-logos/school-1.png" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>AUP</div>'"/></div>
+        <div class="rank-school"><span class="rank-school-name">AUP – Academy</span><span class="rank-team-name">AUPA RoboLights</span></div>
+        <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
+        <div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">NCR</div>
+        <div class="rank-status qualified col-status">Champion</div>
+      </div>
+      <div class="rankings-row rank-2">
+        <div class="rank-num">2<span class="rank-medal">🥈</span></div>
+        <div class="row-logo-cell"><img src="assets/school-logos/school-2.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>BET</div>'"/></div>
+        <div class="rank-school"><span class="rank-school-name">Bethel Academy</span><span class="rank-team-name">The Mechatronics</span></div>
+        <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
+        <div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">—</div>
+        <div class="rank-status finalist col-status">2nd Place</div>
+      </div>
+      <div class="rankings-row rank-3">
+        <div class="rank-num">3<span class="rank-medal">🥉</span></div>
+        <div class="row-logo-cell"><img src="assets/school-logos/school-3.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>CNH</div>'"/></div>
+        <div class="rank-school"><span class="rank-school-name">Capas National High School</span><span class="rank-team-name">CNHS Tarlac</span></div>
+        <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
+        <div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region III</div>
+        <div class="rank-status finalist col-status">3rd Place</div>
+      </div>
+      <div class="rankings-row">
+        <div class="rank-num"><span class="rank-num other">4</span></div>
+        <div class="row-logo-cell"><img src="assets/school-logos/school-4.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>HAL</div>'"/></div>
+        <div class="rank-school"><span class="rank-school-name">Halapitan National High School</span><span class="rank-team-name">San Fernando Team 1 | 2 | 3</span></div>
+        <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
+        <div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region III</div>
+        <div class="rank-status competing col-status">Finalist</div>
+      </div>
+      <div class="rankings-row">
+        <div class="rank-num"><span class="rank-num other">5</span></div>
+        <div class="row-logo-cell"><img src="assets/school-logos/school-5.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>LIB</div>'"/></div>
+        <div class="rank-school"><span class="rank-school-name">Libona National High School</span><span class="rank-team-name">Libona High</span></div>
+        <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
+        <div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region X</div>
+        <div class="rank-status competing col-status">Finalist</div>
+      </div>
+      <div class="rankings-row">
+        <div class="rank-num"><span class="rank-num other">6</span></div>
+        <div class="row-logo-cell"><img src="assets/school-logos/school-1.png" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>MAL</div>'"/></div>
+        <div class="rank-school"><span class="rank-school-name">Malacampa National High School</span><span class="rank-team-name">Codesters | Steminators</span></div>
+        <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
+        <div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region III</div>
+        <div class="rank-status competing col-status">Finalist</div>
+      </div>
+      <div class="rankings-row">
+        <div class="rank-num"><span class="rank-num other">7</span></div>
+        <div class="row-logo-cell"><img src="assets/school-logos/school-2.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>SJC</div>'"/></div>
+        <div class="rank-school"><span class="rank-school-name">San Jose Community High School</span><span class="rank-team-name">SJCHS Robo Titans</span></div>
+        <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
+        <div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">—</div>
+        <div class="rank-status competing col-status">Finalist</div>
+      </div>
+      <div class="rankings-row">
+        <div class="rank-num"><span class="rank-num other">8</span></div>
+        <div class="row-logo-cell"><img src="assets/school-logos/school-3.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>TUG</div>'"/></div>
+        <div class="rank-school"><span class="rank-school-name">Tuguegarao City Science High School</span><span class="rank-team-name">TugSayVenture</span></div>
+        <div class="col-cat"><span class="rank-category-badge badge-rv">Emrg. Innovators</span></div>
+        <div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region II</div>
+        <div class="rank-status competing col-status">Finalist</div>
+      </div>
+    </div>
+  </div>
+</div><!-- /panel-rv-ei -->
+
+<!-- ══ RV: ASPIRING MAKERS (sample) ══ -->
+<div class="rank-panel" id="panel-rv-am">
+  <div class="panel-header-strip">
+    <div class="panel-header-left"><span class="panel-header-dot rv"></span><span class="panel-header-title">RoboVenture — Aspiring Makers</span></div>
+    <span class="panel-header-tag rv">PRC 2025 Results</span>
+  </div>
+  <div class="podium-section">
+    <p class="podium-label">// <span>Top 3 Champions</span> — National Finals 2025</p>
+    <div class="podium-grid">
+      <div class="pod-2"><div class="podium-card"><div class="podium-card-scan"></div>
+        <div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥈</span></div>
+        <div class="podium-photo-wrap"><img src="assets/highlights/highlight-4.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-4.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-4.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div>
+        <div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 2nd Place</span><span class="podium-school-name">Palompon Institute of Tech.</span><span class="podium-team-name">PIT Builders</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region VIII</span></div></div>
+      </div><div class="podium-step-base"></div></div>
+      <div class="pod-1"><div class="podium-card"><span class="crown-float" aria-hidden="true">👑</span><div class="podium-card-scan"></div>
+        <div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥇</span></div>
+        <div class="podium-photo-wrap"><img src="assets/highlights/highlight-1.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-1.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-1.png" class="podium-school-logo" onerror="this.style.display='none';"/></div>
+        <div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-trophy"></i> Champion</span><span class="podium-school-name">Mabalacat City College</span><span class="podium-team-name">MCC Innovators</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region III</span></div></div>
+      </div><div class="podium-step-base"></div></div>
+      <div class="pod-3"><div class="podium-card"><div class="podium-card-scan"></div>
+        <div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥉</span></div>
+        <div class="podium-photo-wrap"><img src="assets/highlights/highlight-2.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-2.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-5.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div>
+        <div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 3rd Place</span><span class="podium-school-name">Balayan National High School</span><span class="podium-team-name">BNH Makers</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region IV-A</span></div></div>
+      </div><div class="podium-step-base"></div></div>
+    </div>
+  </div>
+  <div class="standings-section"><div class="rankings-table-wrap">
+    <div class="standings-section-label" style="color:var(--prc-violet);"><span class="label-dot" style="background:var(--prc-violet);box-shadow:0 0 6px rgba(139,126,255,0.70);"></span>Full Standings — Aspiring Makers</div>
+    <div class="rankings-header-row"><div>Rank</div><div>Logo</div><div>School / Team</div><div class="col-cat">Category</div><div class="col-loc" style="text-align:center">Score</div><div class="col-loc" style="text-align:center">Region</div><div class="col-status" style="text-align:center">Status</div></div>
+    <div class="rankings-row rank-1"><div class="rank-num">1<span class="rank-medal">🥇</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-1.png" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>MCC</div>'"/></div><div class="rank-school"><span class="rank-school-name">Mabalacat City College</span><span class="rank-team-name">MCC Innovators</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Aspiring Makers</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region III</div><div class="rank-status qualified col-status">Champion</div></div>
+    <div class="rankings-row rank-2"><div class="rank-num">2<span class="rank-medal">🥈</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-4.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>PIT</div>'"/></div><div class="rank-school"><span class="rank-school-name">Palompon Institute of Tech.</span><span class="rank-team-name">PIT Builders</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Aspiring Makers</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region VIII</div><div class="rank-status finalist col-status">2nd Place</div></div>
+    <div class="rankings-row rank-3"><div class="rank-num">3<span class="rank-medal">🥉</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-5.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>BNH</div>'"/></div><div class="rank-school"><span class="rank-school-name">Balayan National High School</span><span class="rank-team-name">BNH Makers</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Aspiring Makers</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region IV-A</div><div class="rank-status finalist col-status">3rd Place</div></div>
+    <div class="rankings-row"><div class="rank-num"><span class="rank-num other">4</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-2.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>NMH</div>'"/></div><div class="rank-school"><span class="rank-school-name">Nueva Mocambique HS</span><span class="rank-team-name">NM Robotics</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Aspiring Makers</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region XII</div><div class="rank-status competing col-status">Finalist</div></div>
+    <div class="rankings-row"><div class="rank-num"><span class="rank-num other">5</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-3.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>CST</div>'"/></div><div class="rank-school"><span class="rank-school-name">Castillejos National HS</span><span class="rank-team-name">CNH Sparks</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Aspiring Makers</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region III</div><div class="rank-status competing col-status">Finalist</div></div>
+  </div></div>
+</div><!-- /panel-rv-am -->
+
+<!-- ══ RV: ROBOT SOCCER (sample) ══ -->
+<div class="rank-panel" id="panel-rv-rs">
+  <div class="panel-header-strip"><div class="panel-header-left"><span class="panel-header-dot rv"></span><span class="panel-header-title">RoboVenture — Robot Soccer</span></div><span class="panel-header-tag rv">PRC 2025 Results</span></div>
+  <div class="podium-section"><p class="podium-label">// <span>Top 3 Champions</span> — National Finals 2025</p>
+    <div class="podium-grid">
+      <div class="pod-2"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥈</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-3.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-3.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-3.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 2nd Place</span><span class="podium-school-name">Sta. Cruz National HS</span><span class="podium-team-name">SC Strikers</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region IV-A</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-1"><div class="podium-card"><span class="crown-float" aria-hidden="true">👑</span><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥇</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-5.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-5.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-2.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-trophy"></i> Champion</span><span class="podium-school-name">Batangas State University</span><span class="podium-team-name">BSU Bolts</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region IV-A</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-3"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥉</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-4.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-4.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-5.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 3rd Place</span><span class="podium-school-name">Mindanao State University</span><span class="podium-team-name">MSU Circuits</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region XII</span></div></div></div><div class="podium-step-base"></div></div>
+    </div>
+  </div>
+  <div class="standings-section"><div class="rankings-table-wrap">
+    <div class="standings-section-label" style="color:var(--prc-violet);"><span class="label-dot" style="background:var(--prc-violet);box-shadow:0 0 6px rgba(139,126,255,0.70);"></span>Full Standings — Robot Soccer</div>
+    <div class="rankings-header-row"><div>Rank</div><div>Logo</div><div>School / Team</div><div class="col-cat">Category</div><div class="col-loc" style="text-align:center">Score</div><div class="col-loc" style="text-align:center">Region</div><div class="col-status" style="text-align:center">Status</div></div>
+    <div class="rankings-row rank-1"><div class="rank-num">1<span class="rank-medal">🥇</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-2.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>BSU</div>'"/></div><div class="rank-school"><span class="rank-school-name">Batangas State University</span><span class="rank-team-name">BSU Bolts</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Robot Soccer</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region IV-A</div><div class="rank-status qualified col-status">Champion</div></div>
+    <div class="rankings-row rank-2"><div class="rank-num">2<span class="rank-medal">🥈</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-3.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>SCN</div>'"/></div><div class="rank-school"><span class="rank-school-name">Sta. Cruz National HS</span><span class="rank-team-name">SC Strikers</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Robot Soccer</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region IV-A</div><div class="rank-status finalist col-status">2nd Place</div></div>
+    <div class="rankings-row rank-3"><div class="rank-num">3<span class="rank-medal">🥉</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-5.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>MSU</div>'"/></div><div class="rank-school"><span class="rank-school-name">Mindanao State University</span><span class="rank-team-name">MSU Circuits</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Robot Soccer</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region XII</div><div class="rank-status finalist col-status">3rd Place</div></div>
+    <div class="rankings-row"><div class="rank-num"><span class="rank-num other">4</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-1.png" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>NHM</div>'"/></div><div class="rank-school"><span class="rank-school-name">Northern Hills Montessori</span><span class="rank-team-name">NHM Volt FC</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Robot Soccer</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">NCR</div><div class="rank-status competing col-status">Finalist</div></div>
+  </div></div>
+</div>
+
+<!-- ══ RV: LINE TRACING (sample) ══ -->
+<div class="rank-panel" id="panel-rv-lt">
+  <div class="panel-header-strip"><div class="panel-header-left"><span class="panel-header-dot rv"></span><span class="panel-header-title">RoboVenture — Line Tracing</span></div><span class="panel-header-tag rv">PRC 2025 Results</span></div>
+  <div class="podium-section"><p class="podium-label">// <span>Top 3 Champions</span> — National Finals 2025</p>
+    <div class="podium-grid">
+      <div class="pod-2"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥈</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-2.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-2.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-4.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 2nd Place</span><span class="podium-school-name">Tarlac National HS</span><span class="rank-team-name" style="font-family:var(--font-hud);font-size:.48rem;letter-spacing:.10em;text-transform:uppercase;color:var(--text-soft);">TNH Tracers</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region III</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-1"><div class="podium-card"><span class="crown-float" aria-hidden="true">👑</span><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥇</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-1.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-1.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-2.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-trophy"></i> Champion</span><span class="podium-school-name">Pamantasan ng Lungsod</span><span class="podium-team-name">PL Speedliners</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> NCR</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-3"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥉</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-3.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-3.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-1.png" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 3rd Place</span><span class="podium-school-name">Roxas City NHS</span><span class="podium-team-name">RC NerdBots</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region VI</span></div></div></div><div class="podium-step-base"></div></div>
+    </div>
+  </div>
+  <div class="standings-section"><div class="rankings-table-wrap">
+    <div class="standings-section-label" style="color:var(--prc-violet);"><span class="label-dot" style="background:var(--prc-violet);box-shadow:0 0 6px rgba(139,126,255,0.70);"></span>Full Standings — Line Tracing</div>
+    <div class="rankings-header-row"><div>Rank</div><div>Logo</div><div>School / Team</div><div class="col-cat">Category</div><div class="col-loc" style="text-align:center">Score</div><div class="col-loc" style="text-align:center">Region</div><div class="col-status" style="text-align:center">Status</div></div>
+    <div class="rankings-row rank-1"><div class="rank-num">1<span class="rank-medal">🥇</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-2.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>PLM</div>'"/></div><div class="rank-school"><span class="rank-school-name">Pamantasan ng Lungsod</span><span class="rank-team-name">PL Speedliners</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Line Tracing</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">NCR</div><div class="rank-status qualified col-status">Champion</div></div>
+    <div class="rankings-row rank-2"><div class="rank-num">2<span class="rank-medal">🥈</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-4.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>TNH</div>'"/></div><div class="rank-school"><span class="rank-school-name">Tarlac National HS</span><span class="rank-team-name">TNH Tracers</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Line Tracing</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region III</div><div class="rank-status finalist col-status">2nd Place</div></div>
+    <div class="rankings-row rank-3"><div class="rank-num">3<span class="rank-medal">🥉</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-1.png" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>RCN</div>'"/></div><div class="rank-school"><span class="rank-school-name">Roxas City NHS</span><span class="rank-team-name">RC NerdBots</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Line Tracing</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region VI</div><div class="rank-status finalist col-status">3rd Place</div></div>
+    <div class="rankings-row"><div class="rank-num"><span class="rank-num other">4</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-5.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>SRN</div>'"/></div><div class="rank-school"><span class="rank-school-name">San Roque NHS</span><span class="rank-team-name">SR Racers</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Line Tracing</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region II</div><div class="rank-status competing col-status">Finalist</div></div>
+  </div></div>
+</div>
+
+<!-- ══ RV: SUMOBOT (sample) ══ -->
+<div class="rank-panel" id="panel-rv-sb">
+  <div class="panel-header-strip"><div class="panel-header-left"><span class="panel-header-dot rv"></span><span class="panel-header-title">RoboVenture — Sumobot</span></div><span class="panel-header-tag rv">PRC 2025 Results</span></div>
+  <div class="podium-section"><p class="podium-label">// <span>Top 3 Champions</span> — National Finals 2025</p>
+    <div class="podium-grid">
+      <div class="pod-2"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥈</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-4.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-4.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-5.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 2nd Place</span><span class="podium-school-name">Gubat National HS</span><span class="podium-team-name">Gubat Crushers</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region V</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-1"><div class="podium-card"><span class="crown-float" aria-hidden="true">👑</span><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥇</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-5.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-5.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-3.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-trophy"></i> Champion</span><span class="podium-school-name">STI College Caloocan</span><span class="podium-team-name">STI Iron Dome</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> NCR</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-3"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥉</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-1.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-1.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-4.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 3rd Place</span><span class="podium-school-name">Western Mindanao State</span><span class="podium-team-name">WMS Brawlers</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region IX</span></div></div></div><div class="podium-step-base"></div></div>
+    </div>
+  </div>
+  <div class="standings-section"><div class="rankings-table-wrap">
+    <div class="standings-section-label" style="color:var(--prc-violet);"><span class="label-dot" style="background:var(--prc-violet);box-shadow:0 0 6px rgba(139,126,255,0.70);"></span>Full Standings — Sumobot</div>
+    <div class="rankings-header-row"><div>Rank</div><div>Logo</div><div>School / Team</div><div class="col-cat">Category</div><div class="col-loc" style="text-align:center">Score</div><div class="col-loc" style="text-align:center">Region</div><div class="col-status" style="text-align:center">Status</div></div>
+    <div class="rankings-row rank-1"><div class="rank-num">1<span class="rank-medal">🥇</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-3.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>STI</div>'"/></div><div class="rank-school"><span class="rank-school-name">STI College Caloocan</span><span class="rank-team-name">STI Iron Dome</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Sumobot</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">NCR</div><div class="rank-status qualified col-status">Champion</div></div>
+    <div class="rankings-row rank-2"><div class="rank-num">2<span class="rank-medal">🥈</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-5.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>GNH</div>'"/></div><div class="rank-school"><span class="rank-school-name">Gubat National HS</span><span class="rank-team-name">Gubat Crushers</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Sumobot</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region V</div><div class="rank-status finalist col-status">2nd Place</div></div>
+    <div class="rankings-row rank-3"><div class="rank-num">3<span class="rank-medal">🥉</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-4.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>WMS</div>'"/></div><div class="rank-school"><span class="rank-school-name">Western Mindanao State</span><span class="rank-team-name">WMS Brawlers</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Sumobot</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region IX</div><div class="rank-status finalist col-status">3rd Place</div></div>
+    <div class="rankings-row"><div class="rank-num"><span class="rank-num other">4</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-1.png" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>TCC</div>'"/></div><div class="rank-school"><span class="rank-school-name">Technological College of Cebu</span><span class="rank-team-name">TCC Titans</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Sumobot</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region VII</div><div class="rank-status competing col-status">Finalist</div></div>
+  </div></div>
+</div>
+
+<!-- ══ RV: NAVIGATION — AUTO (sample) ══ -->
+<div class="rank-panel" id="panel-rv-nava">
+  <div class="panel-header-strip"><div class="panel-header-left"><span class="panel-header-dot rv"></span><span class="panel-header-title">RoboVenture — Navigation (Autonomous)</span></div><span class="panel-header-tag rv">PRC 2025 Results</span></div>
+  <div class="podium-section"><p class="podium-label">// <span>Top 3 Champions</span> — National Finals 2025</p>
+    <div class="podium-grid">
+      <div class="pod-2"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥈</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-5.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-5.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-2.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 2nd Place</span><span class="podium-school-name">Davao City NHS</span><span class="podium-team-name">DC Pathfinders</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region XI</span><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Nav — Auto</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-1"><div class="podium-card"><span class="crown-float" aria-hidden="true">👑</span><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥇</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-2.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-2.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-5.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-trophy"></i> Champion</span><span class="podium-school-name">Pangasinan State Univ.</span><span class="podium-team-name">PSU Navigators</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region I</span><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Nav — Auto</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-3"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥉</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-3.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-3.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-1.png" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 3rd Place</span><span class="podium-school-name">Cebu Technological Univ.</span><span class="podium-team-name">CTU Autopilots</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region VII</span><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Nav — Auto</span></div></div></div><div class="podium-step-base"></div></div>
+    </div>
+  </div>
+  <div class="standings-section"><div class="rankings-table-wrap">
+    <div class="standings-section-label" style="color:var(--prc-violet);"><span class="label-dot" style="background:var(--prc-violet);box-shadow:0 0 6px rgba(139,126,255,0.70);"></span>Full Standings — Navigation (Autonomous)</div>
+    <div class="rankings-header-row"><div>Rank</div><div>Logo</div><div>School / Team</div><div class="col-cat">Category</div><div class="col-loc" style="text-align:center">Score</div><div class="col-loc" style="text-align:center">Region</div><div class="col-status" style="text-align:center">Status</div></div>
+    <div class="rankings-row rank-1"><div class="rank-num">1<span class="rank-medal">🥇</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-5.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>PSU</div>'"/></div><div class="rank-school"><span class="rank-school-name">Pangasinan State Univ.</span><span class="rank-team-name">PSU Navigators</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Nav — Auto</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region I</div><div class="rank-status qualified col-status">Champion</div></div>
+    <div class="rankings-row rank-2"><div class="rank-num">2<span class="rank-medal">🥈</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-2.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>DCN</div>'"/></div><div class="rank-school"><span class="rank-school-name">Davao City NHS</span><span class="rank-team-name">DC Pathfinders</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Nav — Auto</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region XI</div><div class="rank-status finalist col-status">2nd Place</div></div>
+    <div class="rankings-row rank-3"><div class="rank-num">3<span class="rank-medal">🥉</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-1.png" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>CTU</div>'"/></div><div class="rank-school"><span class="rank-school-name">Cebu Technological Univ.</span><span class="rank-team-name">CTU Autopilots</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Nav — Auto</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region VII</div><div class="rank-status finalist col-status">3rd Place</div></div>
+    <div class="rankings-row"><div class="rank-num"><span class="rank-num other">4</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-3.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>BTN</div>'"/></div><div class="rank-school"><span class="rank-school-name">Batanes State College</span><span class="rank-team-name">BSC AutoBot</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Nav — Auto</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region II</div><div class="rank-status competing col-status">Finalist</div></div>
+  </div></div>
+</div>
+
+<!-- ══ RV: NAVIGATION — MANUAL (sample) ══ -->
+<div class="rank-panel" id="panel-rv-navm">
+  <div class="panel-header-strip"><div class="panel-header-left"><span class="panel-header-dot rv"></span><span class="panel-header-title">RoboVenture — Navigation (Manual)</span></div><span class="panel-header-tag rv">PRC 2025 Results</span></div>
+  <div class="podium-section"><p class="podium-label">// <span>Top 3 Champions</span> — National Finals 2025</p>
+    <div class="podium-grid">
+      <div class="pod-2"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥈</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-4.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-4.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-4.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 2nd Place</span><span class="podium-school-name">Tarlac Agricultural Univ.</span><span class="podium-team-name">TAU Drifters</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region III</span><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Nav — Manual</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-1"><div class="podium-card"><span class="crown-float" aria-hidden="true">👑</span><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥇</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-1.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-1.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-3.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-trophy"></i> Champion</span><span class="podium-school-name">Laguna State Polytechnic</span><span class="podium-team-name">LSPU Commanders</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region IV-A</span><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Nav — Manual</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-3"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥉</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-5.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-5.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-2.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 3rd Place</span><span class="podium-school-name">Isabela State Univ.</span><span class="podium-team-name">ISU RC Pilots</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region II</span><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Nav — Manual</span></div></div></div><div class="podium-step-base"></div></div>
+    </div>
+  </div>
+  <div class="standings-section"><div class="rankings-table-wrap">
+    <div class="standings-section-label" style="color:var(--prc-violet);"><span class="label-dot" style="background:var(--prc-violet);box-shadow:0 0 6px rgba(139,126,255,0.70);"></span>Full Standings — Navigation (Manual)</div>
+    <div class="rankings-header-row"><div>Rank</div><div>Logo</div><div>School / Team</div><div class="col-cat">Category</div><div class="col-loc" style="text-align:center">Score</div><div class="col-loc" style="text-align:center">Region</div><div class="col-status" style="text-align:center">Status</div></div>
+    <div class="rankings-row rank-1"><div class="rank-num">1<span class="rank-medal">🥇</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-3.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>LSP</div>'"/></div><div class="rank-school"><span class="rank-school-name">Laguna State Polytechnic</span><span class="rank-team-name">LSPU Commanders</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Nav — Manual</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region IV-A</div><div class="rank-status qualified col-status">Champion</div></div>
+    <div class="rankings-row rank-2"><div class="rank-num">2<span class="rank-medal">🥈</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-4.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>TAU</div>'"/></div><div class="rank-school"><span class="rank-school-name">Tarlac Agricultural Univ.</span><span class="rank-team-name">TAU Drifters</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Nav — Manual</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region III</div><div class="rank-status finalist col-status">2nd Place</div></div>
+    <div class="rankings-row rank-3"><div class="rank-num">3<span class="rank-medal">🥉</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-2.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>ISU</div>'"/></div><div class="rank-school"><span class="rank-school-name">Isabela State Univ.</span><span class="rank-team-name">ISU RC Pilots</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Nav — Manual</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region II</div><div class="rank-status finalist col-status">3rd Place</div></div>
+    <div class="rankings-row"><div class="rank-num"><span class="rank-num other">4</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-5.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>BUL</div>'"/></div><div class="rank-school"><span class="rank-school-name">Bulacan State Univ.</span><span class="rank-team-name">BulSU Controllers</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Nav — Manual</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region III</div><div class="rank-status competing col-status">Finalist</div></div>
+  </div></div>
+</div>
+
+<!-- ══ RV: INNOVATION BUILDERS (sample) ══ -->
+<div class="rank-panel" id="panel-rv-ib">
+  <div class="panel-header-strip"><div class="panel-header-left"><span class="panel-header-dot rv"></span><span class="panel-header-title">RoboVenture — Innovation Builders</span></div><span class="panel-header-tag rv">PRC 2025 Results</span></div>
+  <div class="podium-section"><p class="podium-label">// <span>Top 3 Champions</span> — National Finals 2025</p>
+    <div class="podium-grid">
+      <div class="pod-2"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥈</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-3.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-3.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-3.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 2nd Place</span><span class="podium-school-name">Ilocos Sur Polytechnic</span><span class="podium-team-name">ISPC Builders</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region I</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-1"><div class="podium-card"><span class="crown-float" aria-hidden="true">👑</span><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥇</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-4.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-4.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-4.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-trophy"></i> Champion</span><span class="podium-school-name">DLSU – Manila</span><span class="podium-team-name">DLSU Animo Labs</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> NCR</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-3"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥉</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-5.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-5.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-2.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 3rd Place</span><span class="podium-school-name">UP Visayas</span><span class="podium-team-name">UPV Horizon</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region VI</span></div></div></div><div class="podium-step-base"></div></div>
+    </div>
+  </div>
+  <div class="standings-section"><div class="rankings-table-wrap">
+    <div class="standings-section-label" style="color:var(--prc-violet);"><span class="label-dot" style="background:var(--prc-violet);box-shadow:0 0 6px rgba(139,126,255,0.70);"></span>Full Standings — Innovation Builders</div>
+    <div class="rankings-header-row"><div>Rank</div><div>Logo</div><div>School / Team</div><div class="col-cat">Category</div><div class="col-loc" style="text-align:center">Score</div><div class="col-loc" style="text-align:center">Region</div><div class="col-status" style="text-align:center">Status</div></div>
+    <div class="rankings-row rank-1"><div class="rank-num">1<span class="rank-medal">🥇</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-4.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>DLS</div>'"/></div><div class="rank-school"><span class="rank-school-name">DLSU – Manila</span><span class="rank-team-name">DLSU Animo Labs</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Inno. Builders</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">NCR</div><div class="rank-status qualified col-status">Champion</div></div>
+    <div class="rankings-row rank-2"><div class="rank-num">2<span class="rank-medal">🥈</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-3.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>ISP</div>'"/></div><div class="rank-school"><span class="rank-school-name">Ilocos Sur Polytechnic</span><span class="rank-team-name">ISPC Builders</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Inno. Builders</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region I</div><div class="rank-status finalist col-status">2nd Place</div></div>
+    <div class="rankings-row rank-3"><div class="rank-num">3<span class="rank-medal">🥉</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-2.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>UPV</div>'"/></div><div class="rank-school"><span class="rank-school-name">UP Visayas</span><span class="rank-team-name">UPV Horizon</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Inno. Builders</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region VI</div><div class="rank-status finalist col-status">3rd Place</div></div>
+  </div></div>
+</div>
+
+<!-- ══ MakeX: STARTER (sample) ══ -->
+<div class="rank-panel" id="panel-mx-st">
+  <div class="panel-header-strip strip-mx"><div class="panel-header-left"><span class="panel-header-dot mx"></span><span class="panel-header-title">MakeX — Starter</span></div><span class="panel-header-tag mx">PRC 2025 Results</span></div>
+  <div class="podium-section"><p class="podium-label">// <span>Top 3 Champions</span> — National Finals 2025</p>
+    <div class="podium-grid">
+      <div class="pod-2"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥈</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-1.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-1.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-1.png" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag" style="color:var(--creo-sky);border-color:rgba(68,217,255,0.38);background:rgba(68,217,255,0.07)"><i class="fi fi-rr-medal"></i> 2nd Place</span><span class="podium-school-name">Pampanga NHS</span><span class="podium-team-name">PHN StarterBot</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region III</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-1"><div class="podium-card"><span class="crown-float" aria-hidden="true">👑</span><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥇</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-2.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-2.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-3.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag" style="color:var(--creo-volt);border-color:rgba(255,233,48,0.38);background:rgba(255,233,48,0.07);text-shadow:0 0 8px rgba(255,233,48,0.60)"><i class="fi fi-rr-trophy"></i> Champion</span><span class="podium-school-name">PHILSCA – Main Campus</span><span class="podium-team-name">PHILSCA MakeX A</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region III</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-3"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥉</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-5.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-5.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-4.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag" style="color:var(--creo-amber);border-color:rgba(255,160,48,0.35);background:rgba(255,160,48,0.07)"><i class="fi fi-rr-medal"></i> 3rd Place</span><span class="podium-school-name">Isabela State Univ.</span><span class="podium-team-name">ISU MakeX Starter</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region II</span></div></div></div><div class="podium-step-base"></div></div>
+    </div>
+  </div>
+  <div class="standings-section"><div class="rankings-table-wrap" style="border-color:rgba(68,217,255,0.22);">
+    <div class="standings-section-label" style="color:var(--creo-sky);"><span class="label-dot" style="background:var(--creo-sky);box-shadow:0 0 6px rgba(68,217,255,0.70);"></span>Full Standings — MakeX Starter</div>
+    <div class="rankings-header-row"><div>Rank</div><div>Logo</div><div>School / Team</div><div class="col-cat">Category</div><div class="col-loc" style="text-align:center">Score</div><div class="col-loc" style="text-align:center">Region</div><div class="col-status" style="text-align:center">Status</div></div>
+    <div class="rankings-row rank-1"><div class="rank-num">1<span class="rank-medal">🥇</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-3.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>PHI</div>'"/></div><div class="rank-school"><span class="rank-school-name">PHILSCA – Main Campus</span><span class="rank-team-name">PHILSCA MakeX A</span></div><div class="col-cat"><span class="rank-category-badge badge-mx">MakeX Starter</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region III</div><div class="rank-status qualified col-status">Champion</div></div>
+    <div class="rankings-row rank-2"><div class="rank-num">2<span class="rank-medal">🥈</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-1.png" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>PHN</div>'"/></div><div class="rank-school"><span class="rank-school-name">Pampanga NHS</span><span class="rank-team-name">PHN StarterBot</span></div><div class="col-cat"><span class="rank-category-badge badge-mx">MakeX Starter</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region III</div><div class="rank-status finalist col-status">2nd Place</div></div>
+    <div class="rankings-row rank-3"><div class="rank-num">3<span class="rank-medal">🥉</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-4.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>ISU</div>'"/></div><div class="rank-school"><span class="rank-school-name">Isabela State Univ.</span><span class="rank-team-name">ISU MakeX Starter</span></div><div class="col-cat"><span class="rank-category-badge badge-mx">MakeX Starter</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region II</div><div class="rank-status finalist col-status">3rd Place</div></div>
+    <div class="rankings-row"><div class="rank-num"><span class="rank-num other">4</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-5.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>FEU</div>'"/></div><div class="rank-school"><span class="rank-school-name">FEU – Diliman</span><span class="rank-team-name">FEU MakeX Rookies</span></div><div class="col-cat"><span class="rank-category-badge badge-mx">MakeX Starter</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">NCR</div><div class="rank-status competing col-status">Finalist</div></div>
+  </div></div>
+</div>
+
+<!-- ══ MakeX: EXPLORER (sample) ══ -->
+<div class="rank-panel" id="panel-mx-ex">
+  <div class="panel-header-strip strip-mx"><div class="panel-header-left"><span class="panel-header-dot mx"></span><span class="panel-header-title">MakeX — Explorer</span></div><span class="panel-header-tag mx">PRC 2025 Results</span></div>
+  <div class="podium-section"><p class="podium-label">// <span>Top 3 Champions</span> — National Finals 2025</p>
+    <div class="podium-grid">
+      <div class="pod-2"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥈</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-4.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-4.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-5.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag" style="color:var(--creo-sky);border-color:rgba(68,217,255,0.38);background:rgba(68,217,255,0.07)"><i class="fi fi-rr-medal"></i> 2nd Place</span><span class="podium-school-name">Ateneo de Naga Univ.</span><span class="podium-team-name">ADN ExploreBot</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region V</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-1"><div class="podium-card"><span class="crown-float" aria-hidden="true">👑</span><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥇</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-1.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-1.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-2.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag" style="color:var(--creo-volt);border-color:rgba(255,233,48,0.38);background:rgba(255,233,48,0.07);text-shadow:0 0 8px rgba(255,233,48,0.60)"><i class="fi fi-rr-trophy"></i> Champion</span><span class="podium-school-name">Mapúa University</span><span class="podium-team-name">Mapúa Cardinal X</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> NCR</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-3"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥉</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-3.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-3.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-4.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag" style="color:var(--creo-amber);border-color:rgba(255,160,48,0.35);background:rgba(255,160,48,0.07)"><i class="fi fi-rr-medal"></i> 3rd Place</span><span class="podium-school-name">Xavier University</span><span class="podium-team-name">XU MakeX Pro</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region X</span></div></div></div><div class="podium-step-base"></div></div>
+    </div>
+  </div>
+  <div class="standings-section"><div class="rankings-table-wrap" style="border-color:rgba(68,217,255,0.22);">
+    <div class="standings-section-label" style="color:var(--creo-sky);"><span class="label-dot" style="background:var(--creo-sky);box-shadow:0 0 6px rgba(68,217,255,0.70);"></span>Full Standings — MakeX Explorer</div>
+    <div class="rankings-header-row"><div>Rank</div><div>Logo</div><div>School / Team</div><div class="col-cat">Category</div><div class="col-loc" style="text-align:center">Score</div><div class="col-loc" style="text-align:center">Region</div><div class="col-status" style="text-align:center">Status</div></div>
+    <div class="rankings-row rank-1"><div class="rank-num">1<span class="rank-medal">🥇</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-2.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>MAP</div>'"/></div><div class="rank-school"><span class="rank-school-name">Mapúa University</span><span class="rank-team-name">Mapúa Cardinal X</span></div><div class="col-cat"><span class="rank-category-badge badge-mx">MakeX Explorer</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">NCR</div><div class="rank-status qualified col-status">Champion</div></div>
+    <div class="rankings-row rank-2"><div class="rank-num">2<span class="rank-medal">🥈</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-5.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>ADN</div>'"/></div><div class="rank-school"><span class="rank-school-name">Ateneo de Naga Univ.</span><span class="rank-team-name">ADN ExploreBot</span></div><div class="col-cat"><span class="rank-category-badge badge-mx">MakeX Explorer</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region V</div><div class="rank-status finalist col-status">2nd Place</div></div>
+    <div class="rankings-row rank-3"><div class="rank-num">3<span class="rank-medal">🥉</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-4.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>XAV</div>'"/></div><div class="rank-school"><span class="rank-school-name">Xavier University</span><span class="rank-team-name">XU MakeX Pro</span></div><div class="col-cat"><span class="rank-category-badge badge-mx">MakeX Explorer</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region X</div><div class="rank-status finalist col-status">3rd Place</div></div>
+    <div class="rankings-row"><div class="rank-num"><span class="rank-num other">4</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-1.png" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>UST</div>'"/></div><div class="rank-school"><span class="rank-school-name">Univ. of Santo Tomas</span><span class="rank-team-name">UST MakeX Elite</span></div><div class="col-cat"><span class="rank-category-badge badge-mx">MakeX Explorer</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">NCR</div><div class="rank-status competing col-status">Finalist</div></div>
+  </div></div>
+</div>
+
+<!-- ══ DRONE SOCCER (sample) ══ -->
+<div class="rank-panel" id="panel-drone-ds">
+  <div class="panel-header-strip strip-drone"><div class="panel-header-left"><span class="panel-header-dot drone"></span><span class="panel-header-title">Drone Soccer</span></div><span class="panel-header-tag drone">PRC 2025 Results</span></div>
+  <div class="podium-section"><p class="podium-label">// <span>Top 3 Champions</span> — National Finals 2025</p>
+    <div class="podium-grid">
+      <div class="pod-2"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥈</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-5.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-5.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-4.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag" style="color:var(--creo-amber);border-color:rgba(255,160,48,0.38);background:rgba(255,160,48,0.07)"><i class="fi fi-rr-medal"></i> 2nd Place</span><span class="podium-school-name">Cagayan State Univ.</span><span class="podium-team-name">CSU Drone FC</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region II</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-1"><div class="podium-card"><span class="crown-float" aria-hidden="true">👑</span><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥇</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-3.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-3.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-5.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag" style="color:var(--creo-volt);border-color:rgba(255,233,48,0.38);background:rgba(255,233,48,0.07);text-shadow:0 0 8px rgba(255,233,48,0.60)"><i class="fi fi-rr-trophy"></i> Champion</span><span class="podium-school-name">Air Link Intl. Aviation</span><span class="podium-team-name">AIAA Sky Strikers</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> NCR</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-3"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥉</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-2.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-2.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-3.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag" style="color:var(--creo-amber);border-color:rgba(255,160,48,0.35);background:rgba(255,160,48,0.07)"><i class="fi fi-rr-medal"></i> 3rd Place</span><span class="podium-school-name">Cebu Drone Institute</span><span class="podium-team-name">CDI AeroKickers</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region VII</span></div></div></div><div class="podium-step-base"></div></div>
+    </div>
+  </div>
+  <div class="standings-section"><div class="rankings-table-wrap" style="border-color:rgba(255,160,48,0.22);">
+    <div class="standings-section-label" style="color:var(--creo-amber);"><span class="label-dot" style="background:var(--creo-amber);box-shadow:0 0 6px rgba(255,160,48,0.70);"></span>Full Standings — Drone Soccer</div>
+    <div class="rankings-header-row"><div>Rank</div><div>Logo</div><div>School / Team</div><div class="col-cat">Category</div><div class="col-loc" style="text-align:center">Score</div><div class="col-loc" style="text-align:center">Region</div><div class="col-status" style="text-align:center">Status</div></div>
+    <div class="rankings-row rank-1"><div class="rank-num">1<span class="rank-medal">🥇</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-5.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>AIA</div>'"/></div><div class="rank-school"><span class="rank-school-name">Air Link Intl. Aviation</span><span class="rank-team-name">AIAA Sky Strikers</span></div><div class="col-cat"><span class="rank-category-badge badge-drone">Drone Soccer</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">NCR</div><div class="rank-status qualified col-status">Champion</div></div>
+    <div class="rankings-row rank-2"><div class="rank-num">2<span class="rank-medal">🥈</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-4.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>CSU</div>'"/></div><div class="rank-school"><span class="rank-school-name">Cagayan State Univ.</span><span class="rank-team-name">CSU Drone FC</span></div><div class="col-cat"><span class="rank-category-badge badge-drone">Drone Soccer</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region II</div><div class="rank-status finalist col-status">2nd Place</div></div>
+    <div class="rankings-row rank-3"><div class="rank-num">3<span class="rank-medal">🥉</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-3.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>CDI</div>'"/></div><div class="rank-school"><span class="rank-school-name">Cebu Drone Institute</span><span class="rank-team-name">CDI AeroKickers</span></div><div class="col-cat"><span class="rank-category-badge badge-drone">Drone Soccer</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region VII</div><div class="rank-status finalist col-status">3rd Place</div></div>
+    <div class="rankings-row"><div class="rank-num"><span class="rank-num other">4</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-2.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>ISOG</div>'"/></div><div class="rank-school"><span class="rank-school-name">Iloilo State College</span><span class="rank-team-name">ISCS FlyBots</span></div><div class="col-cat"><span class="rank-category-badge badge-drone">Drone Soccer</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region VI</div><div class="rank-status competing col-status">Finalist</div></div>
+  </div></div>
+</div>
+        </section><!-- /rankings-panel -->
+      </div><!-- /rankings-shell -->
     </main>
 
     <!-- FOOTER -->
@@ -479,11 +1023,9 @@
             <div class="footer-contact-list">
               <div class="footer-contact-item"><i class="fi fi-brands-facebook"></i><a href="https://www.facebook.com/profile.php?id=61579706372017" target="_blank" rel="noopener">Philippine Robotics Cup</a></div>
               <div class="footer-contact-item"><i class="fi fi-rr-phone-call"></i><a href="tel:+639177713961">+63 917 771 3961</a></div>
-              <div class="footer-contact-item"><i class="fi fi-rr-envelope"></i><a href="mailto:philippineroboticscup@gmail.com">philippineroboticscup@gmail.com</a></div>
+              <div class="footer-contact-item"><i class="fi fi-rr-envelope"></i><a href="/cdn-cgi/l/email-protection#deaeb6b7b2b7aeaeb7b0bbacb1bcb1aab7bdadbdabae9eb9b3bfb7b2f0bdb1b3"><span class="__cf_email__" data-cfemail="f6869e9f9a9f86869f989384999499829f9585958386b6919b979f9ad895999b">[email&#160;protected]</span></a></div>
             </div>
-            <div class="social-links">
-              <a href="https://www.facebook.com/profile.php?id=61579706372017" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><i class="fi fi-brands-facebook"></i></a>
-            </div>
+            <div class="social-links"><a href="https://www.facebook.com/profile.php?id=61579706372017" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><i class="fi fi-brands-facebook"></i></a></div>
           </div>
           <nav class="footer-col" aria-label="Competition"><h4>Competition</h4><ul><li><a href="categories.html"><i class="fi fi-rr-angle-right"></i>Categories</a></li><li><a href="#"><i class="fi fi-rr-angle-right"></i>Rules &amp; Guidelines</a></li><li><a href="#"><i class="fi fi-rr-angle-right"></i>Schedule</a></li><li><a href="#"><i class="fi fi-rr-angle-right"></i>Past Events</a></li></ul></nav>
           <nav class="footer-col" aria-label="Participate"><h4>Participate</h4><ul><li><a href="#"><i class="fi fi-rr-angle-right"></i>Register Now</a></li><li><a href="#"><i class="fi fi-rr-angle-right"></i>Order Materials</a></li><li><a href="contact.html"><i class="fi fi-rr-angle-right"></i>Contact Us</a></li><li><a href="contact.html"><i class="fi fi-rr-angle-right"></i>FAQ</a></li></ul></nav>
@@ -498,26 +1040,19 @@
 
   </div><!-- /page-wrapper -->
 
-  <script>
-    // ── CUSTOM CURSOR ──
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    /* ── CURSOR ── */
     var dot  = document.getElementById('cursorDot');
     var ring = document.getElementById('cursorRing');
     var mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', function(e) {
-      mx = e.clientX; my = e.clientY;
-      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
-    });
-    (function animRing() {
-      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-      requestAnimationFrame(animRing);
-    })();
-    document.querySelectorAll('a, button, .rankings-row, .filter-btn').forEach(function(el) {
+    document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; dot.style.left = mx+'px'; dot.style.top = my+'px'; });
+    (function animRing() { rx += (mx-rx)*0.12; ry += (my-ry)*0.12; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animRing); })();
+    document.querySelectorAll('a, button, .podium-card').forEach(function(el) {
       el.addEventListener('mouseenter', function() { ring.classList.add('hovered'); dot.style.background = 'var(--creo-amber)'; dot.style.boxShadow = 'var(--glow-orange)'; });
       el.addEventListener('mouseleave', function() { ring.classList.remove('hovered'); dot.style.background = 'var(--prc-violet)'; dot.style.boxShadow = 'var(--glow-primary)'; });
     });
 
-    // ── HAMBURGER ──
+    /* ── HAMBURGER ── */
     var hamburgerBtn = document.getElementById('hamburger');
     var mobileMenu   = document.getElementById('mobile-menu');
     function toggleMenu(open) {
@@ -533,47 +1068,84 @@
       if (mobileMenu.classList.contains('open') && !hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target)) toggleMenu(false);
     });
 
-    // ── RANKINGS FILTER ──
-    function filterRankings(cat) {
-      document.querySelectorAll('.filter-btn').forEach(function(b) {
-        b.classList.remove('active-rv', 'active-mx', 'active-drone');
+    /* ── EVENT SWITCHER ──
+       Add new years here — just extend the EVENTS object.
+       Each year maps to: edition, date, venue.
+    */
+    var EVENTS = {
+      '2025': { edition: 'National Finals',        date: 'October 18–19, 2025', venue: 'Vista Mall Las Piñas, Metro Manila' },
+      '2024': { edition: 'National Finals',        date: 'November 9–10, 2024', venue: 'SMX Convention Center, Pasay City'  },
+      '2023': { edition: 'Inaugural National Finals', date: 'October 7–8, 2023',  venue: 'Ynares Center, Antipolo City'     },
+    };
+    var currentYear = '2025';
+
+    function switchEvent(year) {
+      currentYear = year;
+      document.querySelectorAll('.event-year-btn').forEach(function(b) { b.classList.remove('active'); });
+      var btn = document.querySelector('[onclick="switchEvent(\'' + year + '\')"]');
+      if (btn) btn.classList.add('active');
+      var ev = EVENTS[year] || EVENTS['2025'];
+      // Update event info block
+      document.querySelector('.event-info-name').innerHTML = 'Philippine Robotics Cup <span class="accent">' + year + '</span>';
+      document.getElementById('ev-edition').textContent = ev.edition;
+      document.getElementById('ev-date').textContent    = ev.date;
+      document.getElementById('ev-venue').textContent   = ev.venue;
+      // Update visible panel header tag & podium year label
+      document.querySelectorAll('.panel-header-tag').forEach(function(t) {
+        t.textContent = 'PRC ' + year + ' Results';
       });
-      var btn = document.getElementById('filter-' + cat);
-      if (btn) {
-        if (cat === 'mx') btn.classList.add('active-mx');
-        else if (cat === 'drone') btn.classList.add('active-drone');
-        else btn.classList.add('active-rv');
-      }
-      var groups = {
-        'all':   ['rg-ei', 'rg-other'],
-        'ei':    ['rg-ei'],
-        'as':    ['rg-other'],
-        'rs':    ['rg-other'],
-        'lt':    ['rg-other'],
-        'sb':    ['rg-other'],
-        'nav':   ['rg-other'],
-        'mx':    ['rg-other'],
-        'drone': ['rg-other'],
-      };
-      document.querySelectorAll('.rank-cat-group').forEach(function(g) {
-        g.classList.remove('visible');
-      });
-      var show = groups[cat] || ['rg-ei', 'rg-other'];
-      show.forEach(function(id) {
-        var el = document.getElementById(id);
-        if (el) el.classList.add('visible');
+      document.querySelectorAll('[id^="ev-year-"]').forEach(function(el) {
+        el.textContent = year;
       });
     }
 
-    // ── SCROLL REVEAL ──
+    /* ── SIDEBAR NAVIGATION ── */
+    var currentCat = 'rv';
+    var currentSub = { rv: 'ei', mx: 'st', drone: 'ds' };
+
+    function selectCat(cat) {
+      var wasActive = (currentCat === cat);
+      ['rv','mx','drone'].forEach(function(c) {
+        document.getElementById('btn-'+c).classList.remove('active','active-mx','active-drone');
+        document.getElementById('btn-'+c).setAttribute('aria-expanded','false');
+        document.getElementById('subs-'+c).classList.remove('open');
+      });
+      document.querySelectorAll('.sidebar-sub-btn').forEach(function(b) { b.classList.remove('active','active-mx','active-drone'); });
+      if (!wasActive) {
+        currentCat = cat;
+        var catBtn = document.getElementById('btn-'+cat);
+        if (cat==='rv')    catBtn.classList.add('active');
+        if (cat==='mx')    catBtn.classList.add('active-mx');
+        if (cat==='drone') catBtn.classList.add('active-drone');
+        catBtn.setAttribute('aria-expanded','true');
+        document.getElementById('subs-'+cat).classList.add('open');
+        selectSub(cat, currentSub[cat], true);
+      }
+    }
+
+    function selectSub(cat, sub, skipCatToggle) {
+      if (!skipCatToggle && currentCat !== cat) selectCat(cat);
+      currentSub[cat] = sub;
+      document.querySelectorAll('.sidebar-sub-btn').forEach(function(b) { b.classList.remove('active','active-mx','active-drone'); });
+      var subBtn = document.getElementById('sub-'+cat+'-'+sub);
+      if (subBtn) {
+        if (cat==='rv')    subBtn.classList.add('active');
+        if (cat==='mx')    subBtn.classList.add('active-mx');
+        if (cat==='drone') subBtn.classList.add('active-drone');
+      }
+      document.querySelectorAll('.rank-panel').forEach(function(p) { p.classList.remove('active'); });
+      var panel = document.getElementById('panel-'+cat+'-'+sub);
+      if (panel) panel.classList.add('active');
+    }
+
+    /* ── SCROLL REVEAL ── */
     var revEls = document.querySelectorAll('.reveal');
     var ro = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
         if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+    }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
     revEls.forEach(function(el) { ro.observe(el); });
   </script>
-
 </body>
 </html>
