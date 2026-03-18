@@ -1980,6 +1980,8 @@
     var termsChecked = false;
     var currentModal = 1;
     var currentRef   = '';
+    // Store form values for receipt/sheet after scene change
+    var formData     = {};
 
     // ── SCENE FLOW ──
     function goToScene(sceneId, stepNum) {
@@ -2066,6 +2068,20 @@
 
       // Generate reference number
       currentRef = 'PRC-' + Date.now().toString().slice(-6);
+
+      // Store form values globally so they persist across scenes
+      formData = {
+        name:      name,
+        email:     email,
+        phone:     phone,
+        role:      role,
+        school:    school,
+        team:      team,
+        category:  cat,
+        members:   members,
+        notes:     notes,
+        timestamp: new Date().toLocaleString('en-PH', {timeZone:'Asia/Manila'})
+      };
 
       // Send to Google Sheets
       var record = {
@@ -2176,10 +2192,16 @@
         var base64 = ev.target.result.split(',')[1];
         var payload = {
           ref:           currentRef,
-          name:          document.getElementById('f-name').value.trim(),
-          team:          document.getElementById('f-team').value.trim(),
-          school:        document.getElementById('f-school').value.trim(),
-          category:      document.getElementById('f-category').value,
+          name:          formData.name,
+          email:         formData.email,
+          phone:         formData.phone,
+          role:          formData.role,
+          school:        formData.school,
+          team:          formData.team,
+          category:      formData.category,
+          members:       formData.members,
+          notes:         formData.notes,
+          timestamp:     formData.timestamp,
           package:       pkgs[selectedPkg].name,
           amount:        pkgs[selectedPkg].price,
           paymentMethod: method,
@@ -2198,13 +2220,13 @@
         f2('receipt-ref',     currentRef);
         f2('receipt-date',    now);
         f2('receipt-method',  method2);
-        f2('receipt-name',    document.getElementById('f-name').value.trim());
-        f2('receipt-email',   document.getElementById('f-email').value.trim());
-        f2('receipt-phone',   document.getElementById('f-phone').value.trim());
-        f2('receipt-school',  document.getElementById('f-school').value.trim());
-        f2('receipt-team',    document.getElementById('f-team').value.trim());
-        f2('receipt-cat',     document.getElementById('f-category').value);
-        f2('receipt-members', document.getElementById('f-members').value);
+        f2('receipt-name',    formData.name);
+        f2('receipt-email',   formData.email);
+        f2('receipt-phone',   formData.phone);
+        f2('receipt-school',  formData.school);
+        f2('receipt-team',    formData.team);
+        f2('receipt-cat',     formData.category);
+        f2('receipt-members', formData.members);
         f2('receipt-pkg',     pkgs[selectedPkg].name);
         f2('receipt-amount',  pkgs[selectedPkg].price);
 
