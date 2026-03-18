@@ -1167,6 +1167,110 @@
     .pay-upload-wrap.bank-upload:hover { border-color: var(--creo-amber); box-shadow: 0 0 18px rgba(255,160,48,0.12); }
     .pay-upload-wrap.bank-upload.has-file { border-color: rgba(255,233,48,0.35); }
 
+
+
+    /* ===== RECEIPT ===== */
+    .receipt-wrap { max-width: 680px; margin: 0 auto 24px; }
+
+    .receipt-top-msg {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px 24px;
+      background: rgba(255,233,48,0.05); border: 1px solid rgba(255,233,48,0.28);
+      margin-bottom: 28px;
+    }
+    .receipt-check { font-size: 2rem; color: var(--creo-volt); text-shadow: 0 0 14px rgba(255,233,48,0.60); flex-shrink:0; }
+    .receipt-top-title { font-family:var(--font-hud); font-size:0.88rem; font-weight:800; color:var(--text-high); margin-bottom:4px; letter-spacing:0.04em; }
+    .receipt-top-sub   { font-size:0.858rem; color:var(--text-mid); line-height:1.60; }
+
+    .receipt-card {
+      max-width: 680px; margin: 0 auto;
+      background: rgba(139,126,255,0.03);
+      border: 1px solid var(--border-neon);
+      position: relative; overflow: hidden;
+    }
+    .receipt-card::before { content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,transparent,var(--prc-violet),transparent); }
+
+    /* Print header — hidden on screen */
+    .receipt-print-hdr { display:none; }
+
+    .receipt-body { padding: 18px 28px; }
+    .receipt-ref-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 7px 0; border-bottom: 1px solid rgba(139,126,255,0.07);
+    }
+    .receipt-ref-row:last-child { border-bottom: none; }
+    .receipt-ref-label { font-family:var(--font-hud); font-size:0.50rem; color:var(--text-soft); letter-spacing:0.10em; text-transform:uppercase; }
+    .receipt-ref-val   { font-family:var(--font-hud); font-size:0.68rem; color:var(--text-high); font-weight:700; text-align:right; }
+    .receipt-status    { color:var(--creo-amber); font-size:0.60rem; }
+
+    .receipt-divider { height:1px; background:rgba(139,126,255,0.14); margin:0 28px; }
+
+    .receipt-section-label {
+      padding: 10px 28px 6px;
+      font-family:var(--font-hud); font-size:0.52rem; font-weight:700;
+      letter-spacing:0.16em; text-transform:uppercase; color:var(--prc-violet);
+      background: rgba(139,126,255,0.05);
+    }
+    .receipt-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 6px 0; border-bottom: 1px solid rgba(139,126,255,0.06);
+    }
+    .receipt-row:last-child { border-bottom:none; }
+    .receipt-key { font-family:var(--font-hud); font-size:0.48rem; color:var(--text-dim); letter-spacing:0.10em; text-transform:uppercase; flex-shrink:0; }
+    .receipt-val { font-size:0.845rem; color:var(--text-mid); text-align:right; max-width:340px; }
+    .receipt-total-row .receipt-key { color:var(--prc-violet); font-size:0.52rem; }
+    .receipt-amount { color:var(--prc-violet); font-family:var(--font-hud); font-size:1.10rem; font-weight:900; text-shadow:0 0 12px rgba(139,126,255,0.50); }
+
+    .receipt-footer-note {
+      padding: 16px 28px;
+      font-size:0.798rem; color:var(--text-dim); line-height:1.70;
+      border-top:1px solid rgba(139,126,255,0.10); text-align:center;
+    }
+    .receipt-org-row {
+      display:flex; justify-content:space-between; padding:10px 28px 14px;
+      font-family:var(--font-hud); font-size:0.46rem; color:var(--text-dim); letter-spacing:0.08em;
+    }
+
+    .receipt-actions {
+      display: flex; gap: 12px; justify-content: center; flex-wrap:wrap;
+      margin-top: 24px; padding-bottom: 8px;
+    }
+
+    /* ── PRINT STYLES ── */
+    @media print {
+      /* Hide everything except the receipt */
+      body * { visibility: hidden; }
+      #receipt-card, #receipt-card * { visibility: visible; }
+      #receipt-card {
+        position: fixed; top: 0; left: 0; width: 100%;
+        border: none; background: #fff;
+        color: #000 !important;
+      }
+      .no-print { display: none !important; }
+
+      /* Show print header */
+      .receipt-print-hdr {
+        display: flex !important;
+        flex-direction: column; align-items: center;
+        padding: 24px 28px 16px; border-bottom: 2px solid #333;
+        gap: 6px; text-align: center;
+      }
+      .receipt-logo { height: 48px; width: auto; filter: invert(1); }
+      .receipt-print-title { font-size: 1.1rem; font-weight: 900; color: #000; }
+      .receipt-print-sub   { font-size: 0.75rem; color: #555; }
+
+      /* Override dark colors for print */
+      .receipt-card::before { display: none; }
+      .receipt-section-label { background: #f0f0f0 !important; color: #333 !important; -webkit-print-color-adjust: exact; }
+      .receipt-ref-label, .receipt-key { color: #666 !important; }
+      .receipt-ref-val, .receipt-val   { color: #000 !important; }
+      .receipt-amount  { color: #4B0082 !important; }
+      .receipt-status  { color: #B8860B !important; }
+      .receipt-divider { background: #ccc !important; }
+      .receipt-footer-note, .receipt-org-row { color: #666 !important; }
+      .receipt-ref-row, .receipt-row { border-bottom-color: #ddd !important; }
+    }
+
   </style>
 </head>
 <body>
@@ -1449,13 +1553,13 @@
             </div>
           </div>
 
-        </div><!-- /form-body -->
+        </div>
         <div class="reg-form-footer">
           <button class="btn-back" onclick="goToScene('scene-packages', 1)">
             <i class="fi fi-rr-arrow-left"></i> Back to Packages
           </button>
           <button class="btn-submit" onclick="submitForm()">
-            Proceed to Confirmation <i class="fi fi-rr-arrow-right"></i>
+            Continue to Payment <i class="fi fi-rr-arrow-right"></i>
           </button>
         </div>
       </div>
@@ -1693,26 +1797,91 @@
          SCENE 4 — DONE / RECEIPT
     ══════════════════════════════════════════ -->
     <div class="reg-scene" id="scene-done">
-      <div class="reg-confirm-card">
-        <div class="cta-corner tl"></div><div class="cta-corner tr"></div>
-        <div class="cta-corner bl"></div><div class="cta-corner br"></div>
-        <span class="reg-confirm-icon">&#127881;</span>
-        <div class="reg-confirm-title">Payment Submitted!</div>
-        <div class="reg-confirm-sub">
-          Thank you! We'll verify your payment and confirm your registration within <strong>24 hours</strong>.<br/>
-          A confirmation will be sent to <strong id="done-email">your email</strong>.
-        </div>
-        <div class="reg-order-summary">
-          <div class="reg-order-row"><span class="reg-order-key">Team</span><span class="reg-order-val" id="done-team">—</span></div>
-          <div class="reg-order-row"><span class="reg-order-key">Package</span><span class="reg-order-val" id="done-pkg">—</span></div>
-          <div class="reg-order-row"><span class="reg-order-key">Amount Paid</span><span class="reg-order-val" id="done-price">—</span></div>
-          <div class="reg-order-row total"><span class="reg-order-key">Reference No.</span><span class="reg-order-val" id="done-ref">—</span></div>
-        </div>
-        <div class="reg-confirm-btns">
-          <button class="btn-neon-primary" onclick="window.location.href='index.html'"><i class="fi fi-rr-home"></i> Back to Home</button>
-          <button class="btn-neon-secondary" onclick="window.print()"><i class="fi fi-rr-print"></i> Print Receipt</button>
+
+      <!-- Screen view -->
+      <div class="receipt-wrap no-print">
+        <div class="receipt-top-msg reveal">
+          <span class="receipt-check"><i class="fi fi-rr-check-circle"></i></span>
+          <div>
+            <div class="receipt-top-title">Payment Submitted!</div>
+            <div class="receipt-top-sub">We'll verify your payment and confirm your slot within <strong>24 hours</strong>.</div>
+          </div>
         </div>
       </div>
+
+      <!-- PRINTABLE RECEIPT -->
+      <div class="receipt-card" id="receipt-card">
+
+        <!-- Print header -->
+        <div class="receipt-print-hdr">
+          <img src="assets/PRC White Logo.png" alt="PRC" class="receipt-logo" />
+          <div class="receipt-print-title">Philippine Robotics Cup 2026</div>
+          <div class="receipt-print-sub">Official Registration Receipt</div>
+        </div>
+
+        <!-- Receipt body -->
+        <div class="receipt-body">
+          <div class="receipt-ref-row">
+            <div class="receipt-ref-label">Reference No.</div>
+            <div class="receipt-ref-val" id="receipt-ref">—</div>
+          </div>
+          <div class="receipt-ref-row">
+            <div class="receipt-ref-label">Date &amp; Time</div>
+            <div class="receipt-ref-val" id="receipt-date">—</div>
+          </div>
+          <div class="receipt-ref-row">
+            <div class="receipt-ref-label">Status</div>
+            <div class="receipt-ref-val receipt-status">Proof Submitted — Pending Verification</div>
+          </div>
+        </div>
+
+        <div class="receipt-divider"></div>
+
+        <div class="receipt-section-label">Registrant Details</div>
+        <div class="receipt-body">
+          <div class="receipt-row"><span class="receipt-key">Name</span><span class="receipt-val" id="receipt-name">—</span></div>
+          <div class="receipt-row"><span class="receipt-key">Email</span><span class="receipt-val" id="receipt-email">—</span></div>
+          <div class="receipt-row"><span class="receipt-key">Contact</span><span class="receipt-val" id="receipt-phone">—</span></div>
+          <div class="receipt-row"><span class="receipt-key">School</span><span class="receipt-val" id="receipt-school">—</span></div>
+          <div class="receipt-row"><span class="receipt-key">Team Name</span><span class="receipt-val" id="receipt-team">—</span></div>
+          <div class="receipt-row"><span class="receipt-key">Category</span><span class="receipt-val" id="receipt-cat">—</span></div>
+          <div class="receipt-row"><span class="receipt-key">Members</span><span class="receipt-val" id="receipt-members">—</span></div>
+        </div>
+
+        <div class="receipt-divider"></div>
+
+        <div class="receipt-section-label">Payment Details</div>
+        <div class="receipt-body">
+          <div class="receipt-row"><span class="receipt-key">Package</span><span class="receipt-val" id="receipt-pkg">—</span></div>
+          <div class="receipt-row"><span class="receipt-key">Payment Method</span><span class="receipt-val" id="receipt-method">—</span></div>
+          <div class="receipt-row receipt-total-row"><span class="receipt-key">Amount Paid</span><span class="receipt-val receipt-amount" id="receipt-amount">—</span></div>
+        </div>
+
+        <div class="receipt-divider"></div>
+
+        <div class="receipt-footer-note">
+          This receipt confirms that your registration and proof of payment have been received.
+          Your slot will be officially confirmed within 24 hours via email.
+          For inquiries: philippineroboticscup@gmail.com
+        </div>
+
+        <div class="receipt-org-row">
+          <span>Organized by Creotec Philippines Inc.</span>
+          <span>philippineroboticscup@gmail.com</span>
+        </div>
+
+      </div><!-- /receipt-card -->
+
+      <!-- Action buttons (hidden on print) -->
+      <div class="receipt-actions no-print">
+        <button class="btn-neon-primary" onclick="window.print()">
+          <i class="fi fi-rr-print"></i> Print Receipt
+        </button>
+        <button class="btn-neon-secondary" onclick="window.location.href='index.html'">
+          <i class="fi fi-rr-home"></i> Back to Home
+        </button>
+      </div>
+
     </div><!-- /scene-done -->
 
   </div><!-- /reg-wrap -->
@@ -1879,42 +2048,62 @@
     }
 
     // ── SUBMIT FORM ──
+    var SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzwpgx5JECIbb0KY6ISW1nsusVzTQfbdfoiYKdZt5jxC3v-30HXEjfjDQjBrXRePnFxpA/exec';
+
     function submitForm() {
-      var name   = document.getElementById('f-name').value.trim();
-      var email  = document.getElementById('f-email').value.trim();
-      var phone  = document.getElementById('f-phone').value.trim();
-      var school = document.getElementById('f-school').value.trim();
-      var team   = document.getElementById('f-team').value.trim();
-      var cat    = document.getElementById('f-category').value;
+      var name    = document.getElementById('f-name').value.trim();
+      var email   = document.getElementById('f-email').value.trim();
+      var phone   = document.getElementById('f-phone').value.trim();
+      var school  = document.getElementById('f-school').value.trim();
+      var team    = document.getElementById('f-team').value.trim();
+      var cat     = document.getElementById('f-category').value;
+      var members = document.getElementById('f-members').value;
+      var role    = document.getElementById('f-role').value.trim();
+      var notes   = document.getElementById('f-notes').value.trim();
+
       if (!name||!email||!phone||!school||!team||!cat) { alert('Please fill in all required fields.'); return; }
       if (!termsChecked) { alert('Please agree to the Terms & Conditions to proceed.'); return; }
 
       // Generate reference number
       currentRef = 'PRC-' + Date.now().toString().slice(-6);
 
+      // Send to Google Sheets
+      var record = {
+        timestamp:     new Date().toLocaleString('en-PH', {timeZone:'Asia/Manila'}),
+        name:          name,
+        email:         email,
+        phone:         phone,
+        role:          role,
+        school:        school,
+        team:          team,
+        category:      cat,
+        members:       members,
+        notes:         notes,
+        package:       pkgs[selectedPkg].name,
+        amount:        pkgs[selectedPkg].price,
+        ref:           currentRef,
+        paymentMethod: '—',
+        status:        'Pending Payment'
+      };
+      postToSheet(record);
+
       // Populate payment scene
-      document.getElementById('pay-ref-num').textContent        = currentRef;
+      document.getElementById('pay-ref-num').textContent             = currentRef;
       document.getElementById('pay-amount-display').textContent      = pkgs[selectedPkg].price;
       document.getElementById('pay-amount-display-bank').textContent = pkgs[selectedPkg].price;
-
-      // Populate summary in payment scene
-      var paySum = document.getElementById('pay-order-team');
-      if (paySum) paySum.textContent = team;
-      var paySchool = document.getElementById('pay-order-school');
-      if (paySchool) paySchool.textContent = school;
-      var payCat = document.getElementById('pay-order-cat');
-      if (payCat) payCat.textContent = cat;
-      var payPkg = document.getElementById('pay-order-pkg');
-      if (payPkg) payPkg.textContent = pkgs[selectedPkg].name;
-      var payPrice = document.getElementById('pay-order-price');
-      if (payPrice) payPrice.textContent = pkgs[selectedPkg].price;
+      var f = function(id, v){ var el=document.getElementById(id); if(el) el.textContent=v; };
+      f('pay-order-team',  team);
+      f('pay-order-school', school);
+      f('pay-order-cat',   cat);
+      f('pay-order-pkg',   pkgs[selectedPkg].name);
+      f('pay-order-price', pkgs[selectedPkg].price);
 
       // Populate done scene
-      document.getElementById('done-email').textContent = email;
-      document.getElementById('done-team').textContent  = team;
-      document.getElementById('done-pkg').textContent   = pkgs[selectedPkg].name;
-      document.getElementById('done-price').textContent = pkgs[selectedPkg].price;
-      document.getElementById('done-ref').textContent   = currentRef;
+      f('done-email', email);
+      f('done-team',  team);
+      f('done-pkg',   pkgs[selectedPkg].name);
+      f('done-price', pkgs[selectedPkg].price);
+      f('done-ref',   currentRef);
 
       goToScene('scene-confirm', 3);
     }
@@ -1972,12 +2161,56 @@
     }
 
     function confirmPayment() {
-      var isGcash = document.getElementById('panel-gcash').style.display !== 'none';
+      var isGcash   = document.getElementById('tab-gcash').classList.contains('active');
       var fileGcash = document.getElementById('proof-file').files[0];
       var fileBank  = document.getElementById('proof-file-bank').files[0];
       if (isGcash && !fileGcash) { alert('Please attach your GCash receipt before proceeding.'); return; }
-      if (!isGcash && !fileBank)  { alert('Please attach your bank transfer receipt before proceeding.'); return; }
-      goToScene('scene-done', 4);
+      if (!isGcash && !fileBank) { alert('Please attach your bank transfer receipt before proceeding.'); return; }
+
+      var method = isGcash ? 'GCash' : 'Bank Transfer';
+      var file   = isGcash ? fileGcash : fileBank;
+
+      // Read as base64 and send to Drive + Sheet
+      var reader = new FileReader();
+      reader.onload = function(ev) {
+        var base64 = ev.target.result.split(',')[1];
+        var payload = {
+          ref:           currentRef,
+          name:          document.getElementById('f-name').value.trim(),
+          team:          document.getElementById('f-team').value.trim(),
+          school:        document.getElementById('f-school').value.trim(),
+          category:      document.getElementById('f-category').value,
+          package:       pkgs[selectedPkg].name,
+          amount:        pkgs[selectedPkg].price,
+          paymentMethod: method,
+          status:        'Proof Submitted',
+          proof:         base64,
+          proofType:     file.type,
+          proofName:     file.name
+        };
+        // Send via hidden iframe form (bypasses CORS for Apps Script)
+        postToSheet(payload);
+
+        // Populate receipt
+        var method2 = method;
+        var now = new Date().toLocaleString('en-PH', {timeZone:'Asia/Manila'});
+        var f2 = function(id, v){ var el=document.getElementById(id); if(el) el.textContent=v; };
+        f2('receipt-ref',     currentRef);
+        f2('receipt-date',    now);
+        f2('receipt-method',  method2);
+        f2('receipt-name',    document.getElementById('f-name').value.trim());
+        f2('receipt-email',   document.getElementById('f-email').value.trim());
+        f2('receipt-phone',   document.getElementById('f-phone').value.trim());
+        f2('receipt-school',  document.getElementById('f-school').value.trim());
+        f2('receipt-team',    document.getElementById('f-team').value.trim());
+        f2('receipt-cat',     document.getElementById('f-category').value);
+        f2('receipt-members', document.getElementById('f-members').value);
+        f2('receipt-pkg',     pkgs[selectedPkg].name);
+        f2('receipt-amount',  pkgs[selectedPkg].price);
+
+        goToScene('scene-done', 4);
+      };
+      reader.readAsDataURL(file);
     }
 
 
@@ -2024,6 +2257,48 @@
       document.getElementById('upload-idle-bank').style.display   = 'block';
       document.getElementById('upload-preview-bank').style.display = 'none';
       document.getElementById('proof-thumb-bank').src = '';
+    }
+
+    // Init payment panels
+    document.getElementById('panel-gcash').style.display = 'block';
+
+
+    // ── POST TO SHEET (iframe trick — bypasses CORS) ──
+    function postToSheet(payload) {
+      try {
+        // Create hidden iframe
+        var iframe = document.createElement('iframe');
+        iframe.name = 'hidden-submit';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+
+        // Create hidden form targeting the iframe
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = SHEET_ENDPOINT;
+        form.target = 'hidden-submit';
+        form.style.display = 'none';
+
+        // Add payload as hidden input
+        var input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'data';
+        input.value = JSON.stringify(payload);
+        form.appendChild(input);
+
+        document.body.appendChild(form);
+        form.submit();
+
+        // Cleanup after 5s
+        setTimeout(function() {
+          document.body.removeChild(form);
+          document.body.removeChild(iframe);
+        }, 5000);
+
+        console.log('Form submitted to sheet');
+      } catch(err) {
+        console.error('postToSheet error:', err);
+      }
     }
 
     document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
