@@ -65,7 +65,7 @@ $subjectLabel = $subjectMap[$subject] ?? ucfirst($subject);
 // ── Shared font stack (readable, no Courier New) ─────────────────────────────
 // Georgia for small labels (elegant, highly readable), Segoe UI for body text
 $fontBody  = "'Segoe UI', 'Helvetica Neue', Arial, sans-serif";
-$fontLabel = "Georgia, 'Times New Roman', serif";
+$fontLabel = "'Segoe UI', 'Helvetica Neue', Arial, sans-serif";
 
 // ── Helper: builds a field row (label + value) ───────────────────────────────
 function fieldRow(string $label, string $value, string $borderColor, string $bgColor, string $valueColor, string $fontBody, string $fontLabel): string {
@@ -90,8 +90,8 @@ function emailHeader(string $eyebrow, string $badgeText, string $badgeColor, str
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<body style="margin:0;padding:0;background-color:#03020D;font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#03020D;padding:32px 16px;">
+<body style="margin:0;padding:0;background-color:#F0EEF8;font-family:'Segoe UI','Helvetica Neue',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#F0EEF8;padding:32px 16px;">
     <tr><td align="center">
       <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;">
 

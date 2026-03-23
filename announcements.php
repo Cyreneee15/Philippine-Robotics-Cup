@@ -1,4 +1,5 @@
 <?php
+// PRC-WebApp/announcements.php
 // ── DB CONNECTION ──────────────────────────────────────────────
 $db_host = 'localhost';
 $db_user = 'root';

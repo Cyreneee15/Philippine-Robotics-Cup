@@ -1,4 +1,5 @@
 <?php
+// PRC-WebApp/admin-announcements.php
 session_start();
 
 // ── DB CONNECTION ──────────────────────────────────────────────
