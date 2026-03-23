@@ -385,7 +385,7 @@ $flash = get_flash();
       position: relative; z-index: 2;
       display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
     }
-    .page-banner-left {}
+    /*.page-banner-left {}*/
     .page-banner-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
       font-family: var(--font-hud); font-size: 0.58rem; font-weight: 700;
@@ -568,7 +568,7 @@ $flash = get_flash();
     }
 
     /* ── POSTS LIST ── */
-    .posts-panel {}
+    /*.posts-panel {}*/
     .posts-panel-header {
       display: flex; align-items: center; justify-content: space-between;
       margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
