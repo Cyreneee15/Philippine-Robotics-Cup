@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- PRC-WebApp/rankings.html -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -334,9 +335,9 @@
     .podium-photo-wrap { position: relative; width: 100%; overflow: hidden; }
     .pod-1 .podium-photo-wrap { height: 195px; }
     .pod-2 .podium-photo-wrap, .pod-3 .podium-photo-wrap { height: 155px; }
-    .podium-photo { width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; transition: transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.45s ease; filter: brightness(1.0) saturate(1.15) contrast(1.02); }
-    .podium-card:hover .podium-photo { transform: scale(1.08); filter: brightness(1.08) saturate(1.25) contrast(1.04); }
-    .podium-photo-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 45%; background: linear-gradient(to top, rgba(3,2,13,0.95) 0%, rgba(3,2,13,0.45) 55%, transparent 100%); }
+    .podium-photo { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform 0.5s ease; filter: brightness(0.85) saturate(1.1); }
+    .podium-card:hover .podium-photo { transform: scale(1.04); filter: brightness(0.95) saturate(1.2); }
+    .podium-photo-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 65%; background: linear-gradient(to top, rgba(3,2,13,1) 0%, rgba(3,2,13,0.6) 50%, transparent 100%); }
 
     .podium-school-logo { position: absolute; bottom: 12px; left: 12px; z-index: 6; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.18); background: rgba(3,2,13,0.80); object-fit: contain; padding: 3px; backdrop-filter: blur(6px); }
     .pod-1 .podium-school-logo { width: 44px; height: 44px; border-color: rgba(255,233,48,0.42); box-shadow: 0 0 12px rgba(255,233,48,0.28); animation: logoGlow 3s ease-in-out infinite; }
@@ -517,69 +518,6 @@
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg-void); }
     ::-webkit-scrollbar-thumb { background: var(--prc-violet); box-shadow: 0 0 8px rgba(139,126,255,0.70); border-radius: 2px; }
-
-    /* ── SPECIAL AWARDS ── */
-    :root { --award-gold: #FFD700; --award-gold-dim: rgba(255,215,0,0.22); --award-gold-glow: 0 0 18px rgba(255,215,0,0.55), 0 0 55px rgba(255,215,0,0.18); }
-    .sidebar-cat-btn.active-award { color: var(--award-gold); border-color: var(--award-gold); background: rgba(255,215,0,0.08); box-shadow: 0 0 22px rgba(255,215,0,0.20); text-shadow: 0 0 12px rgba(255,215,0,0.60); }
-    .sidebar-cat-btn.active-award .sidebar-cat-chevron { color: var(--award-gold); transform: rotate(90deg); }
-    .sidebar-sub-btn.active-award { color: var(--award-gold); background: rgba(255,215,0,0.10); border-left-color: var(--award-gold); text-shadow: 0 0 8px rgba(255,215,0,0.55); }
-    .panel-header-dot.award { background: var(--award-gold); box-shadow: 0 0 8px rgba(255,215,0,0.80); }
-    .panel-header-tag.award { color: var(--award-gold); border-color: rgba(255,215,0,0.35); background: rgba(255,215,0,0.06); }
-    .strip-award { border-color: rgba(255,215,0,0.35) !important; background: linear-gradient(90deg, rgba(255,215,0,0.06), transparent) !important; }
-
-    /* Award photo grid */
-    .award-section { padding: 36px 0 20px; }
-    .award-section-label { font-family: var(--font-hud); font-size: 0.60rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--award-gold); display: flex; align-items: center; gap: 10px; margin-bottom: 28px; text-shadow: 0 0 10px rgba(255,215,0,0.50); }
-    .award-section-label::before { content: '//'; color: rgba(255,215,0,0.35); }
-    .award-section-label .label-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--award-gold); box-shadow: 0 0 8px rgba(255,215,0,0.80); flex-shrink: 0; }
-    .award-photo-grid { display: grid; gap: 18px; }
-    .award-photo-grid.cols-1 { grid-template-columns: repeat(1, 1fr); max-width: 320px; }
-    .award-photo-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
-    .award-photo-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
-    .award-photo-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
-    .award-photo-card { position: relative; border: 1px solid rgba(255,215,0,0.22); background: rgba(255,215,0,0.03); overflow: hidden; aspect-ratio: 3/4; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; transition: box-shadow 0.25s, border-color 0.25s; }
-    .award-photo-card:hover { border-color: rgba(255,215,0,0.55); box-shadow: 0 0 28px rgba(255,215,0,0.22); }
-    .award-photo-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--award-gold), transparent); box-shadow: 0 0 10px rgba(255,215,0,0.55); }
-    .award-photo-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(160deg, rgba(255,215,0,0.05) 0%, rgba(3,2,13,0.60) 100%); }
-    .award-photo-placeholder i { font-size: 2rem; color: rgba(255,215,0,0.30); }
-    .award-photo-placeholder span { font-family: var(--font-hud); font-size: 0.50rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,215,0,0.25); }
-    .award-photo-caption { position: relative; z-index: 2; width: 100%; padding: 10px 10px 12px; background: linear-gradient(to top, rgba(3,2,13,0.97) 55%, transparent 100%); font-family: var(--font-hud); text-align: center; display: flex; flex-direction: column; gap: 4px; }
-    .award-caption-category { font-size: 0.42rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--creo-amber); text-shadow: 0 0 8px rgba(255,160,48,0.60); }
-    .award-caption-name { font-size: 0.58rem; font-weight: 800; letter-spacing: 0.03em; text-transform: uppercase; color: #fff; text-shadow: 0 0 14px rgba(255,255,255,0.30); line-height: 1.25; }
-    .award-caption-school { font-size: 0.48rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--prc-ice); text-shadow: 0 0 10px rgba(196,238,255,0.45); line-height: 1.3; }
-    .award-caption-coach { font-size: 0.40rem; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase; color: var(--creo-amber); opacity: 0.80; margin-top: 1px; }
-    /* ── ROBOT DESIGN CAROUSEL ── */
-    .rd-carousel-wrap { position: relative; width: 100%; }
-    .rd-carousel { position: relative; overflow: hidden; width: 100%; }
-    .rd-track { display: flex; transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
-    .rd-slide { flex: 0 0 100%; width: 100%; display: flex; justify-content: center; padding: 0 70px; box-sizing: border-box; }
-    .rd-slide .award-photo-card { width: 100%; max-width: 260px; aspect-ratio: 3/4; cursor: default; }
-    .rd-slide .award-photo-placeholder i { font-size: 2rem; }
-    .rd-slide .award-caption-category { font-size: 0.42rem; }
-    .rd-slide .award-caption-name { font-size: 0.58rem; }
-    .rd-slide .award-caption-school { font-size: 0.48rem; }
-    .rd-slide .award-caption-coach { font-size: 0.40rem; }
-    .rd-arrow { position: absolute; top: 50%; transform: translateY(-60%); width: 44px; height: 44px; border: 1px solid rgba(255,215,0,0.35); background: rgba(3,2,13,0.80); backdrop-filter: blur(8px); color: var(--award-gold); font-size: 1.1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: all 0.22s; clip-path: polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%); }
-    .rd-arrow:hover { background: rgba(255,215,0,0.14); border-color: var(--award-gold); box-shadow: 0 0 20px rgba(255,215,0,0.35); }
-    .rd-arrow.prev { left: 0; }
-    .rd-arrow.next { right: 0; }
-    .rd-arrow:disabled { opacity: 0.25; pointer-events: none; }
-    .rd-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
-    .rd-dot { width: 24px; height: 3px; background: rgba(255,215,0,0.20); border-radius: 2px; cursor: pointer; transition: all 0.25s; }
-    .rd-dot.active { background: var(--award-gold); box-shadow: 0 0 8px rgba(255,215,0,0.60); width: 36px; }
-    .rd-counter { font-family: var(--font-hud); font-size: 0.55rem; font-weight: 700; letter-spacing: 0.14em; color: rgba(255,215,0,0.50); text-align: center; margin-top: 10px; }
-    @media (max-width: 600px) {
-      .rd-slide { padding: 0 48px; }
-      .rd-slide .award-photo-card { max-width: 100%; }
-      .rd-arrow { width: 36px; height: 36px; font-size: 0.9rem; }
-    }
-    @media (max-width: 768px) {
-      .award-photo-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
-      .award-photo-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 480px) {
-      .award-photo-grid.cols-1 { max-width: 100%; }
-    }
   </style>
 </head>
 <body>
@@ -590,35 +528,7 @@
   <div class="page-wrapper">
 
     <!-- NAV -->
-    <nav id="main-nav" role="navigation" aria-label="Main navigation">
-      <div class="nav-inner">
-        <a href="index.html" class="nav-logo" aria-label="PRC Home">
-          <img src="assets/PRC White Logo.png" alt="Philippine Robotics Cup Logo" />
-          <div class="nav-brand">Philippine Robotics Cup<span>By Creotec Philippines</span></div>
-        </a>
-        <ul class="nav-links" role="list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="categories.html">Categories</a></li>
-          <li><a href="rankings.html" class="active">Rankings</a></li>
-          <li><a href="#">Gallery</a></li>
-          <li><a href="#">Shop</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="#" class="nav-cta">Register Now</a></li>
-        </ul>
-        <button class="nav-hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </nav>
-    <nav class="nav-mobile" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
-      <a href="index.html"><i class="fi fi-rr-home"></i>Home</a>
-      <a href="categories.html"><i class="fi fi-rr-trophy"></i>Categories</a>
-      <a href="rankings.html" class="active"><i class="fi fi-rr-list-check"></i>Rankings</a>
-      <a href="#"><i class="fi fi-rr-picture"></i>Gallery</a>
-      <a href="#"><i class="fi fi-rr-shopping-cart"></i>Shop</a>
-      <a href="contact.html"><i class="fi fi-rr-envelope"></i>Contact Us</a>
-      <a href="#" class="nav-cta"><i class="fi fi-rr-pen-field"></i>Register Now</a>
-    </nav>
+    <div id="prc-nav-mount"></div>
 
     <!-- PAGE HERO -->
     <header class="page-hero">
@@ -711,21 +621,6 @@
             </div>
           </div>
 
-          <!-- SPECIAL AWARDS -->
-          <div class="sidebar-section">
-            <button class="sidebar-cat-btn" id="btn-award" onclick="selectCat('award')" aria-expanded="false">
-              <span class="sidebar-cat-logo" style="font-size:1.5rem;display:flex;align-items:center;justify-content:center;width:36px;height:36px;">🏆</span>
-              <span class="sidebar-cat-text"><span class="sidebar-cat-name">Special Awards</span><span class="sidebar-cat-count">4 categories</span></span>
-              <i class="fi fi-rr-angle-right sidebar-cat-chevron"></i>
-            </button>
-            <div class="sidebar-subs" id="subs-award">
-              <button class="sidebar-sub-btn" id="sub-award-bc"  onclick="selectSub('award','bc')"><span class="sub-num">01</span>Best Coach</button>
-              <button class="sidebar-sub-btn" id="sub-award-en"  onclick="selectSub('award','en')"><span class="sub-num">02</span>Best in Engineering Notebook</button>
-              <button class="sidebar-sub-btn" id="sub-award-rd"  onclick="selectSub('award','rd')"><span class="sub-num">03</span>Best in Robot Design</button>
-              <button class="sidebar-sub-btn" id="sub-award-bs"  onclick="selectSub('award','bs')"><span class="sub-num">04</span>Best Striker</button>
-            </div>
-          </div>
-
           <a href="#" class="sidebar-cta"><i class="fi fi-rr-pen-field"></i> &nbsp;Register for PRC 2026</a>
         </aside>
 
@@ -752,19 +647,19 @@
     <div class="podium-grid">
       <div class="pod-2"><div class="podium-card"><div class="podium-card-scan"></div>
         <div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥈</span></div>
-        <div class="podium-photo-wrap"><img src="EI_1.png" class="podium-photo" onerror="this.src='assets/highlights/highlight-2.jpg';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-2.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div>
+        <div class="podium-photo-wrap"><img src="assets/highlights/highlight-2.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-2.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-2.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div>
         <div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 2nd Place</span><span class="podium-school-name">Halapitan National High School</span><span class="podium-team-name">San Fernando Team 1</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Emrg. Innovators</span></div></div>
       </div><div class="podium-step-base"></div></div>
 
       <div class="pod-1"><div class="podium-card"><span class="crown-float" aria-hidden="true">👑</span><div class="podium-card-scan"></div>
         <div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥇</span></div>
-        <div class="podium-photo-wrap"><img src="EI_C.png" class="podium-photo" onerror="this.src='assets/highlights/highlight-1.jpg';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-1.png" class="podium-school-logo" onerror="this.style.display='none';"/></div>
+        <div class="podium-photo-wrap"><img src="assets/highlights/highlight-1.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-1.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-1.png" class="podium-school-logo" onerror="this.style.display='none';"/></div>
         <div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-trophy"></i> Champion</span><span class="podium-school-name">Dologon National High School</span><span class="podium-team-name">Atlas Beetles</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Emrg. Innovators</span></div></div>
       </div><div class="podium-step-base"></div></div>
 
       <div class="pod-3"><div class="podium-card"><div class="podium-card-scan"></div>
         <div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥉</span></div>
-        <div class="podium-photo-wrap"><img src="EI_2.png" class="podium-photo" onerror="this.src='assets/highlights/highlight-3.jpg';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-3.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div>
+        <div class="podium-photo-wrap"><img src="assets/highlights/highlight-3.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-3.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-3.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div>
         <div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 3rd Place</span><span class="podium-school-name">Adventist University of the Philippines Academy</span><span class="podium-team-name">AUPA Robolights 5</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Emrg. Innovators</span></div></div>
       </div><div class="podium-step-base"></div></div>
     </div>
@@ -798,9 +693,9 @@
   <div class="panel-header-strip"><div class="panel-header-left"><span class="panel-header-dot rv"></span><span class="panel-header-title">RoboVenture — Aspiring Makers</span></div><span class="panel-header-tag rv">PRC 2025 Results</span></div>
   <div class="podium-section"><p class="podium-label">// <span>Top 3 Champions</span> — National Finals 2025</p>
     <div class="podium-grid">
-      <div class="pod-2"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥈</span></div><div class="podium-photo-wrap"><img src="AM_1.png" class="podium-photo" onerror="this.src='assets/highlights/highlight-4.jpg';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-4.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 2nd Place</span><span class="podium-school-name">Pangantuncan National High School</span><span class="podium-team-name">PNHS Rovenicas Team 2</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Aspiring Makers</span></div></div></div><div class="podium-step-base"></div></div>
-      <div class="pod-1"><div class="podium-card"><span class="crown-float" aria-hidden="true">👑</span><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥇</span></div><div class="podium-photo-wrap"><img src="AM_C.png" class="podium-photo" onerror="this.src='assets/highlights/highlight-1.jpg';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-1.png" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-trophy"></i> Champion</span><span class="podium-school-name">Dr. Clemente N. Dayrit Sr. Elementary School</span><span class="podium-team-name">Clemendes Robogrifins 2</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Aspiring Makers</span></div></div></div><div class="podium-step-base"></div></div>
-      <div class="pod-3"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥉</span></div><div class="podium-photo-wrap"><img src="AM_2.png" class="podium-photo" onerror="this.src='assets/highlights/highlight-3.jpg';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-3.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 3rd Place</span><span class="podium-school-name">Dr. Clemente N. Dayrit Sr. Elementary School</span><span class="podium-team-name">Clemendes Robogrifins 1</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Aspiring Makers</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-2"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥈</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-4.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-4.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-4.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 2nd Place</span><span class="podium-school-name">Pangantuncan National High School</span><span class="podium-team-name">PNHS Rovenicas Team 2</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Aspiring Makers</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-1"><div class="podium-card"><span class="crown-float" aria-hidden="true">👑</span><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥇</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-1.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-1.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-1.png" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-trophy"></i> Champion</span><span class="podium-school-name">Dr. Clemente N. Dayrit Sr. Elementary School</span><span class="podium-team-name">Clemendes Robogrifins 2</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Aspiring Makers</span></div></div></div><div class="podium-step-base"></div></div>
+      <div class="pod-3"><div class="podium-card"><div class="podium-card-scan"></div><div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥉</span></div><div class="podium-photo-wrap"><img src="assets/highlights/highlight-3.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-3.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-3.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div><div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 3rd Place</span><span class="podium-school-name">Dr. Clemente N. Dayrit Sr. Elementary School</span><span class="podium-team-name">Clemendes Robogrifins 1</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-layers"></i> Aspiring Makers</span></div></div></div><div class="podium-step-base"></div></div>
     </div>
   </div>
   <div class="standings-section"><div class="rankings-table-wrap">
@@ -827,6 +722,24 @@
     <div class="rankings-row"><div class="rank-num"><span class="rank-num other">19</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-4.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>SLU</div>'"/></div><div class="rank-school"><span class="rank-school-name">Saint Louis University Basic Education School</span><span class="rank-team-name">Team Apollo</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Aspiring Makers</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">—</div><div class="rank-status competing col-status">Finalist</div></div>
     <div class="rankings-row"><div class="rank-num"><span class="rank-num other">20</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-5.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>ISA</div>'"/></div><div class="rank-school"><span class="rank-school-name">Isabela National High School</span><span class="rank-team-name">TechnoTitans</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Aspiring Makers</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">—</div><div class="rank-status competing col-status">Finalist</div></div>
     <div class="rankings-row"><div class="rank-num"><span class="rank-num other">21</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-1.png" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>TAY</div>'"/></div><div class="rank-school"><span class="rank-school-name">Tayabas East Central School</span><span class="rank-team-name">Bot Staners</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Aspiring Makers</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">—</div><div class="rank-status competing col-status">Finalist</div></div>
+  </div></div>
+</div><!-- /panel-rv-am -->
+      </div><div class="podium-step-base"></div></div>
+      <div class="pod-3"><div class="podium-card"><div class="podium-card-scan"></div>
+        <div class="podium-rank-badge"><span class="podium-rank-label">RANK</span><span class="podium-rank-icon">🥉</span></div>
+        <div class="podium-photo-wrap"><img src="assets/highlights/highlight-2.jpg" class="podium-photo" onerror="this.src='assets/highlights/highlight-2.png';this.onerror=null;"/><div class="podium-photo-fade"></div><img src="assets/school-logos/school-5.jpg" class="podium-school-logo" onerror="this.style.display='none';"/></div>
+        <div class="podium-info"><span class="podium-status-tag"><i class="fi fi-rr-medal"></i> 3rd Place</span><span class="podium-school-name">Balayan National High School</span><span class="podium-team-name">BNH Makers</span><div class="podium-meta-row"><span class="podium-meta-item"><i class="fi fi-rr-map-marker"></i> Region IV-A</span></div></div>
+      </div><div class="podium-step-base"></div></div>
+    </div>
+  </div>
+  <div class="standings-section"><div class="rankings-table-wrap">
+    <div class="standings-section-label" style="color:var(--prc-violet);"><span class="label-dot" style="background:var(--prc-violet);box-shadow:0 0 6px rgba(139,126,255,0.70);"></span>Full Standings — Aspiring Makers</div>
+    <div class="rankings-header-row"><div>Rank</div><div>Logo</div><div>School / Team</div><div class="col-cat">Category</div><div class="col-loc" style="text-align:center">Score</div><div class="col-loc" style="text-align:center">Region</div><div class="col-status" style="text-align:center">Status</div></div>
+    <div class="rankings-row rank-1"><div class="rank-num">1<span class="rank-medal">🥇</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-1.png" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>MCC</div>'"/></div><div class="rank-school"><span class="rank-school-name">Mabalacat City College</span><span class="rank-team-name">MCC Innovators</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Aspiring Makers</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region III</div><div class="rank-status qualified col-status">Champion</div></div>
+    <div class="rankings-row rank-2"><div class="rank-num">2<span class="rank-medal">🥈</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-4.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>PIT</div>'"/></div><div class="rank-school"><span class="rank-school-name">Palompon Institute of Tech.</span><span class="rank-team-name">PIT Builders</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Aspiring Makers</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region VIII</div><div class="rank-status finalist col-status">2nd Place</div></div>
+    <div class="rankings-row rank-3"><div class="rank-num">3<span class="rank-medal">🥉</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-5.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>BNH</div>'"/></div><div class="rank-school"><span class="rank-school-name">Balayan National High School</span><span class="rank-team-name">BNH Makers</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Aspiring Makers</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region IV-A</div><div class="rank-status finalist col-status">3rd Place</div></div>
+    <div class="rankings-row"><div class="rank-num"><span class="rank-num other">4</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-2.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>NMH</div>'"/></div><div class="rank-school"><span class="rank-school-name">Nueva Mocambique HS</span><span class="rank-team-name">NM Robotics</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Aspiring Makers</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region XII</div><div class="rank-status competing col-status">Finalist</div></div>
+    <div class="rankings-row"><div class="rank-num"><span class="rank-num other">5</span></div><div class="row-logo-cell"><img src="assets/school-logos/school-3.jpg" class="row-logo" onerror="this.outerHTML='<div class=\'row-logo-placeholder\'>CST</div>'"/></div><div class="rank-school"><span class="rank-school-name">Castillejos National HS</span><span class="rank-team-name">CNH Sparks</span></div><div class="col-cat"><span class="rank-category-badge badge-rv">Aspiring Makers</span></div><div class="rank-score col-loc">—</div><div class="rank-school-loc col-loc">Region III</div><div class="rank-status competing col-status">Finalist</div></div>
   </div></div>
 </div><!-- /panel-rv-am -->
 
@@ -1034,179 +947,8 @@
   </div></div>
 </div>
 
-<!-- ══ SPECIAL AWARDS: BEST COACH ══ -->
-<div class="rank-panel" id="panel-award-bc">
-  <div class="panel-header-strip strip-award"><div class="panel-header-left"><span class="panel-header-dot award"></span><span class="panel-header-title">Special Awards — Best Coach</span></div><span class="panel-header-tag award">PRC 2025 Results</span></div>
-  <div class="award-section">
-    <div class="award-section-label"><span class="label-dot"></span>Best Coach — Award Recipients</div>
-    <div class="award-photo-grid cols-3">
-      <div class="award-photo-card">
-        <div class="award-photo-placeholder"><i class="fi fi-rr-user-coach"></i><span>Photo Placeholder</span></div>
-        <div class="award-photo-caption">
-          <span class="award-caption-category">Drone Soccer</span>
-          <span class="award-caption-name">Roscel Marc A. Lugo</span>
-          <span class="award-caption-school">Emiliano Tria Tirona Memorial NIHS</span>
-        </div>
-      </div>
-      <div class="award-photo-card">
-        <div class="award-photo-placeholder"><i class="fi fi-rr-user-coach"></i><span>Photo Placeholder</span></div>
-        <div class="award-photo-caption">
-          <span class="award-caption-category">MakeX Explorer</span>
-          <span class="award-caption-name">Elizabeth M. Aquino</span>
-          <span class="award-caption-school">Luis Palad Integrated High School</span>
-        </div>
-      </div>
-      <div class="award-photo-card">
-        <div class="award-photo-placeholder"><i class="fi fi-rr-user-coach"></i><span>Photo Placeholder</span></div>
-        <div class="award-photo-caption">
-          <span class="award-caption-category">MakeX Starter</span>
-          <span class="award-caption-name">Elizabeth M. Aquino</span>
-          <span class="award-caption-school">Luis Palad Integrated High School</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ SPECIAL AWARDS: BEST IN ENGINEERING NOTEBOOK ══ -->
-<div class="rank-panel" id="panel-award-en">
-  <div class="panel-header-strip strip-award"><div class="panel-header-left"><span class="panel-header-dot award"></span><span class="panel-header-title">Special Awards — Best in Engineering Notebook</span></div><span class="panel-header-tag award">PRC 2025 Results</span></div>
-  <div class="award-section">
-    <div class="award-section-label"><span class="label-dot"></span>Best in Engineering Notebook — Award Recipients</div>
-    <div class="award-photo-grid cols-4">
-      <div class="award-photo-card">
-        <div class="award-photo-placeholder"><i class="fi fi-rr-notebook"></i><span>Photo Placeholder</span></div>
-        <div class="award-photo-caption">
-          <span class="award-caption-category">RoboVenture: Aspiring Makers</span>
-          <span class="award-caption-name">Bot Starters</span>
-          <span class="award-caption-school">Tayabas East Central School</span>
-        </div>
-      </div>
-      <div class="award-photo-card">
-        <div class="award-photo-placeholder"><i class="fi fi-rr-notebook"></i><span>Photo Placeholder</span></div>
-        <div class="award-photo-caption">
-          <span class="award-caption-category">RoboVenture: Emerging Innovators</span>
-          <span class="award-caption-name">Atlas Beetles</span>
-          <span class="award-caption-school">Dologon National High School</span>
-        </div>
-      </div>
-      <div class="award-photo-card">
-        <div class="award-photo-placeholder"><i class="fi fi-rr-notebook"></i><span>Photo Placeholder</span></div>
-        <div class="award-photo-caption">
-          <span class="award-caption-category">MakeX Explorer</span>
-          <span class="award-caption-name">Novaris Ascent</span>
-          <span class="award-caption-school">Luis Palad Integrated High School</span>
-        </div>
-      </div>
-      <div class="award-photo-card">
-        <div class="award-photo-placeholder"><i class="fi fi-rr-notebook"></i><span>Photo Placeholder</span></div>
-        <div class="award-photo-caption">
-          <span class="award-caption-category">MakeX Starter</span>
-          <span class="award-caption-name">Triumphus Aquila</span>
-          <span class="award-caption-school">Luis Palad Integrated High School</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ SPECIAL AWARDS: BEST IN ROBOT DESIGN ══ -->
-<div class="rank-panel" id="panel-award-rd">
-  <div class="panel-header-strip strip-award"><div class="panel-header-left"><span class="panel-header-dot award"></span><span class="panel-header-title">Special Awards — Best in Robot Design</span></div><span class="panel-header-tag award">PRC 2025 Results</span></div>
-  <div class="award-section">
-    <div class="award-section-label"><span class="label-dot"></span>Best in Robot Design — Award Recipients</div>
-    <div class="rd-carousel-wrap">
-      <div class="rd-carousel" id="rd-carousel">
-        <div class="rd-track" id="rd-track">
-
-          <div class="rd-slide">
-            <div class="award-photo-card">
-              <div class="award-photo-placeholder"><i class="fi fi-rr-robot"></i><span>Photo Placeholder</span></div>
-              <div class="award-photo-caption">
-                <span class="award-caption-category">RoboVenture: Aspiring Makers</span>
-                <span class="award-caption-name">Clemendes Robogriffins 2</span>
-                <span class="award-caption-school">Dr. Clement N. Dayrit Sr. Elementary School</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="rd-slide">
-            <div class="award-photo-card">
-              <div class="award-photo-placeholder"><i class="fi fi-rr-robot"></i><span>Photo Placeholder</span></div>
-              <div class="award-photo-caption">
-                <span class="award-caption-category">RoboVenture: Emerging Innovators</span>
-                <span class="award-caption-name">Atlas Beetles</span>
-                <span class="award-caption-school">Dologon National High School</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="rd-slide">
-            <div class="award-photo-card">
-              <div class="award-photo-placeholder"><i class="fi fi-rr-robot"></i><span>Photo Placeholder</span></div>
-              <div class="award-photo-caption">
-                <span class="award-caption-category">RoboVenture: Innovation Builders</span>
-                <span class="award-caption-name">Robot Wranglers 3</span>
-                <span class="award-caption-school">Kalilangan National High School</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="rd-slide">
-            <div class="award-photo-card">
-              <div class="award-photo-placeholder"><i class="fi fi-rr-robot"></i><span>Photo Placeholder</span></div>
-              <div class="award-photo-caption">
-                <span class="award-caption-category">MakeX Starter</span>
-                <span class="award-caption-name">Cyberion Vex</span>
-                <span class="award-caption-school">Luis Palad Integrated High School</span>
-                <span class="award-caption-coach">Coach: Elizabeth M. Aquino</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="rd-slide">
-            <div class="award-photo-card">
-              <div class="award-photo-placeholder"><i class="fi fi-rr-robot"></i><span>Photo Placeholder</span></div>
-              <div class="award-photo-caption">
-                <span class="award-caption-category">MakeX Explorer</span>
-                <span class="award-caption-name">Veltrix</span>
-                <span class="award-caption-school">Luis Palad Integrated High School</span>
-                <span class="award-caption-coach">Coach: Elizabeth M. Aquino</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <button class="rd-arrow prev" id="rd-prev" aria-label="Previous"><i class="fi fi-rr-angle-left"></i></button>
-      <button class="rd-arrow next" id="rd-next" aria-label="Next"><i class="fi fi-rr-angle-right"></i></button>
-    </div>
-    <div class="rd-dots" id="rd-dots"></div>
-    <div class="rd-counter" id="rd-counter">1 / 5</div>
-  </div>
-</div>
-
-<!-- ══ SPECIAL AWARDS: BEST STRIKER ══ -->
-<div class="rank-panel" id="panel-award-bs">
-  <div class="panel-header-strip strip-award"><div class="panel-header-left"><span class="panel-header-dot award"></span><span class="panel-header-title">Special Awards — Best Striker</span></div><span class="panel-header-tag award">PRC 2025 Results</span></div>
-  <div class="award-section">
-    <div class="award-section-label"><span class="label-dot"></span>Best Striker — Award Recipient</div>
-    <div class="award-photo-grid cols-1">
-      <div class="award-photo-card" style="aspect-ratio:1/1;max-width:320px;">
-        <div class="award-photo-placeholder"><i class="fi fi-rr-football"></i><span>Photo Placeholder</span></div>
-        <div class="award-photo-caption">
-          <span class="award-caption-category">Drone Soccer</span>
-          <span class="award-caption-name">John Louie Monzon</span>
-          <span class="award-caption-school">Robobusters 2 — Emiliano Tria Tirona Memorial National Integrated High School</span>
-          <span class="award-caption-coach">Coach: Roscel Marc A. Lugo</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-          <!-- CTA always at bottom — moved by JS into active panel -->
-          <div class="panel-cta" id="shared-cta">
+          <!-- CTA always at bottom -->
+          <div class="panel-cta">
             <div class="cta-bg-grid"></div>
             <div class="cta-corner tl"></div><div class="cta-corner tr"></div>
             <div class="cta-corner bl"></div><div class="cta-corner br"></div>
@@ -1250,6 +992,7 @@
 
   </div><!-- /page-wrapper -->
 
+  <script src="nav-loader.js" defer></script>
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     /* ── CURSOR ── */
     var dot  = document.getElementById('cursorDot');
@@ -1260,22 +1003,6 @@
     document.querySelectorAll('a, button, .podium-card').forEach(function(el) {
       el.addEventListener('mouseenter', function() { ring.classList.add('hovered'); dot.style.background = 'var(--creo-amber)'; dot.style.boxShadow = 'var(--glow-orange)'; });
       el.addEventListener('mouseleave', function() { ring.classList.remove('hovered'); dot.style.background = 'var(--prc-violet)'; dot.style.boxShadow = 'var(--glow-primary)'; });
-    });
-
-    /* ── HAMBURGER ── */
-    var hamburgerBtn = document.getElementById('hamburger');
-    var mobileMenu   = document.getElementById('mobile-menu');
-    function toggleMenu(open) {
-      mobileMenu.classList.toggle('open', open);
-      hamburgerBtn.classList.toggle('open', open);
-      hamburgerBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
-      document.body.style.overflow = open ? 'hidden' : '';
-    }
-    hamburgerBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleMenu(!mobileMenu.classList.contains('open')); });
-    mobileMenu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', function() { toggleMenu(false); }); });
-    document.addEventListener('click', function(e) {
-      if (mobileMenu.classList.contains('open') && !hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target)) toggleMenu(false);
     });
 
     /* ── EVENT SWITCHER ──
@@ -1311,23 +1038,22 @@
 
     /* ── SIDEBAR NAVIGATION ── */
     var currentCat = 'rv';
-    var currentSub = { rv: 'ei', mx: 'st', drone: 'ds', award: 'bc' };
+    var currentSub = { rv: 'ei', mx: 'st', drone: 'ds' };
 
     function selectCat(cat) {
       var wasActive = (currentCat === cat);
-      ['rv','mx','drone','award'].forEach(function(c) {
-        document.getElementById('btn-'+c).classList.remove('active','active-mx','active-drone','active-award');
+      ['rv','mx','drone'].forEach(function(c) {
+        document.getElementById('btn-'+c).classList.remove('active','active-mx','active-drone');
         document.getElementById('btn-'+c).setAttribute('aria-expanded','false');
         document.getElementById('subs-'+c).classList.remove('open');
       });
-      document.querySelectorAll('.sidebar-sub-btn').forEach(function(b) { b.classList.remove('active','active-mx','active-drone','active-award'); });
+      document.querySelectorAll('.sidebar-sub-btn').forEach(function(b) { b.classList.remove('active','active-mx','active-drone'); });
       if (!wasActive) {
         currentCat = cat;
         var catBtn = document.getElementById('btn-'+cat);
         if (cat==='rv')    catBtn.classList.add('active');
         if (cat==='mx')    catBtn.classList.add('active-mx');
         if (cat==='drone') catBtn.classList.add('active-drone');
-        if (cat==='award') catBtn.classList.add('active-award');
         catBtn.setAttribute('aria-expanded','true');
         document.getElementById('subs-'+cat).classList.add('open');
         selectSub(cat, currentSub[cat], true);
@@ -1337,22 +1063,16 @@
     function selectSub(cat, sub, skipCatToggle) {
       if (!skipCatToggle && currentCat !== cat) selectCat(cat);
       currentSub[cat] = sub;
-      document.querySelectorAll('.sidebar-sub-btn').forEach(function(b) { b.classList.remove('active','active-mx','active-drone','active-award'); });
+      document.querySelectorAll('.sidebar-sub-btn').forEach(function(b) { b.classList.remove('active','active-mx','active-drone'); });
       var subBtn = document.getElementById('sub-'+cat+'-'+sub);
       if (subBtn) {
         if (cat==='rv')    subBtn.classList.add('active');
         if (cat==='mx')    subBtn.classList.add('active-mx');
         if (cat==='drone') subBtn.classList.add('active-drone');
-        if (cat==='award') subBtn.classList.add('active-award');
       }
       document.querySelectorAll('.rank-panel').forEach(function(p) { p.classList.remove('active'); });
       var panel = document.getElementById('panel-'+cat+'-'+sub);
-      if (panel) {
-        panel.classList.add('active');
-        // Always move the shared CTA to the bottom of the newly active panel
-        var cta = document.getElementById('shared-cta');
-        if (cta) panel.appendChild(cta);
-      }
+      if (panel) panel.classList.add('active');
     }
 
     /* ── SCROLL REVEAL ── */
@@ -1363,61 +1083,6 @@
       });
     }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
     revEls.forEach(function(el) { ro.observe(el); });
-
-    /* ── INIT: move CTA into default active panel ── */
-    (function() {
-      var initPanel = document.getElementById('panel-rv-ei');
-      var cta = document.getElementById('shared-cta');
-      if (initPanel && cta) initPanel.appendChild(cta);
-    })();
-
-    /* ── ROBOT DESIGN CAROUSEL ── */
-    (function() {
-      var track   = document.getElementById('rd-track');
-      var dotsEl  = document.getElementById('rd-dots');
-      var counter = document.getElementById('rd-counter');
-      var btnPrev = document.getElementById('rd-prev');
-      var btnNext = document.getElementById('rd-next');
-      if (!track) return;
-
-      var slides = track.querySelectorAll('.rd-slide');
-      var total  = slides.length;
-      var current = 0;
-      var dots = [];
-
-      // Build dots
-      for (var i = 0; i < total; i++) {
-        (function(idx) {
-          var d = document.createElement('div');
-          d.className = 'rd-dot' + (idx === 0 ? ' active' : '');
-          d.addEventListener('click', function() { goTo(idx); });
-          dotsEl.appendChild(d);
-          dots.push(d);
-        })(i);
-      }
-
-      function goTo(idx) {
-        current = Math.max(0, Math.min(idx, total - 1));
-        track.style.transform = 'translateX(-' + (current * 100) + '%)';
-        dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
-        counter.textContent = (current + 1) + ' / ' + total;
-        btnPrev.disabled = current === 0;
-        btnNext.disabled = current === total - 1;
-      }
-
-      btnPrev.addEventListener('click', function() { goTo(current - 1); });
-      btnNext.addEventListener('click', function() { goTo(current + 1); });
-
-      // Touch/swipe support
-      var touchStartX = 0;
-      track.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-      track.addEventListener('touchend', function(e) {
-        var diff = touchStartX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
-      });
-
-      goTo(0);
-    })();
   </script>
 </body>
 </html>

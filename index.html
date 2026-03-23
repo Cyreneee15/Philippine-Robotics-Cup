@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- PRC-WebApp/index.html -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -1161,36 +1162,7 @@
   <div class="page-wrapper">
 
     <!-- NAV -->
-    <nav id="main-nav" role="navigation" aria-label="Main navigation">
-      <div class="nav-inner">
-        <a href="#" class="nav-logo" aria-label="PRC Home">
-          <img src="assets/PRC White Logo.png" alt="Philippine Robotics Cup Logo" />
-          <div class="nav-brand">Philippine Robotics Cup<span>By Creotec Philippines</span></div>
-        </a>
-        <ul class="nav-links" role="list">
-          <li><a href="#" class="active">Home</a></li>
-          <li><a href="categories.html">Categories</a></li>
-          <li><a href="rankings.html">Rankings</a></li>
-          <li><a href="#highlights">Gallery</a></li>
-          <li><a href="#">Shop</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="#" class="nav-cta">Register Now</a></li>
-        </ul>
-        <button class="nav-hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </nav>
-
-    <nav class="nav-mobile" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
-      <a href="#"><i class="fi fi-rr-home"></i>Home</a>
-      <a href="categories.html"><i class="fi fi-rr-trophy"></i>Categories</a>
-      <a href="rankings.html"><i class="fi fi-rr-list-check"></i>Rankings</a>
-      <a href="#highlights"><i class="fi fi-rr-picture"></i>Gallery</a>
-      <a href="#"><i class="fi fi-rr-shopping-cart"></i>Shop</a>
-      <a href="contact.html"><i class="fi fi-rr-envelope"></i>Contact Us</a>
-      <a href="#" class="nav-cta"><i class="fi fi-rr-pen-field"></i>Register Now</a>
-    </nav>
+    <div id="prc-nav-mount"></div>
 
     <!-- HERO -->
     <section id="hero" aria-label="Hero">
@@ -1669,6 +1641,7 @@
 
   </div><!-- /page-wrapper -->
 
+  <script src="nav-loader.js" defer></script>
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // ── CUSTOM CURSOR ──
     var dot = document.getElementById('cursorDot');
@@ -1686,27 +1659,6 @@
     document.querySelectorAll('a, button, .cat-card, .highlight-item, .org-item, .about-feature, .hero-video-frame').forEach(function(el) {
       el.addEventListener('mouseenter', function() { ring.classList.add('hovered'); dot.style.background = 'var(--creo-amber)'; dot.style.boxShadow = 'var(--glow-orange)'; });
       el.addEventListener('mouseleave', function() { ring.classList.remove('hovered'); dot.style.background = 'var(--prc-violet)'; dot.style.boxShadow = 'var(--glow-primary)'; });
-    });
-
-    // ── NAV ──
-    var nav = document.getElementById('main-nav');
-    function syncNav() { nav.classList.toggle('scrolled', window.scrollY > 40); }
-    window.addEventListener('scroll', syncNav, { passive: true }); syncNav();
-
-    // ── HAMBURGER ──
-    var hamburgerBtn = document.getElementById('hamburger');
-    var mobileMenu   = document.getElementById('mobile-menu');
-    function toggleMenu(open) {
-      mobileMenu.classList.toggle('open', open);
-      hamburgerBtn.classList.toggle('open', open);
-      hamburgerBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
-      document.body.style.overflow = open ? 'hidden' : '';
-    }
-    hamburgerBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleMenu(!mobileMenu.classList.contains('open')); });
-    mobileMenu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', function() { toggleMenu(false); }); });
-    document.addEventListener('click', function(e) {
-      if (mobileMenu.classList.contains('open') && !hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target)) toggleMenu(false);
     });
 
     // ── HERO VIDEO: infinite loop + mute toggle ──

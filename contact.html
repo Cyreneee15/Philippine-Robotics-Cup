@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- PRC-WebApp/contact.html -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -205,7 +206,6 @@
       font-size: 1rem; color: var(--text-mid); line-height: 1.78; max-width: 520px; margin: 0 auto;
       animation: fadeInUp 0.8s ease 0.2s both;
     }
-    /* Decorative line below hero */
     .page-hero-divider {
       display: flex; align-items: center; justify-content: center; gap: 14px;
       margin-top: 36px; animation: fadeIn 0.8s ease 0.3s both;
@@ -219,14 +219,12 @@
       max-width: 1340px; margin: 0 auto; padding: 0 36px 0;
       display: grid; grid-template-columns: 1fr 1.35fr; gap: 40px; align-items: start;
     }
-    /* Full-width map row spanning both columns */
     .contact-map-section {
       max-width: 1340px; margin: 0 auto; padding: 0 36px 100px;
     }
 
     /* ===== LEFT: CONTACT INFO ===== */
     .contact-info { animation: slideInLeft 0.8s ease 0.2s both; }
-
     .contact-info-header { margin-bottom: 36px; }
     .contact-info-header h2 {
       font-family: var(--font-hud); font-size: 1.05rem; font-weight: 700;
@@ -234,7 +232,6 @@
     }
     .contact-info-header p { font-size: 0.90rem; color: var(--text-mid); line-height: 1.72; }
 
-    /* Info cards */
     .contact-cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
     .contact-card {
       display: flex; align-items: flex-start; gap: 18px;
@@ -271,7 +268,6 @@
     .contact-card-value a:hover { color: var(--creo-sky); text-shadow: 0 0 8px rgba(68,217,255,0.50); }
     .contact-card-note { font-size: 0.78rem; color: var(--text-soft); margin-top: 4px; }
 
-    /* Social row */
     .contact-social-row { margin-bottom: 40px; }
     .contact-social-label {
       font-family: var(--font-hud); font-size: 0.54rem; text-transform: uppercase;
@@ -289,7 +285,6 @@
     .contact-social-link i { font-size: 1rem; color: var(--prc-violet); }
     .contact-social-link:hover { background: rgba(139,126,255,0.12); border-color: var(--prc-violet); color: var(--prc-violet); box-shadow: 0 0 14px rgba(139,126,255,0.30); }
 
-    /* Hours / availability */
     .contact-hours-card {
       background: rgba(68,217,255,0.04); border: 1px solid rgba(68,217,255,0.18);
       padding: 22px 24px; position: relative; overflow: hidden;
@@ -316,7 +311,6 @@
 
     /* ===== RIGHT: FORM ===== */
     .contact-form-wrap { animation: slideInRight 0.8s ease 0.3s both; }
-
     .contact-form-card {
       background: rgba(139,126,255,0.03); border: 1px solid var(--border-neon);
       position: relative; overflow: hidden;
@@ -326,7 +320,6 @@
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
       background: linear-gradient(90deg, transparent, var(--creo-sky), var(--prc-violet), transparent);
     }
-    /* Corner brackets */
     .contact-form-card::after {
       content: ''; position: absolute; bottom: 0; right: 0;
       width: 24px; height: 24px;
@@ -353,11 +346,7 @@
     }
 
     .contact-form { padding: 32px 36px 36px; display: flex; flex-direction: column; gap: 22px; }
-
-    /* Form row (two columns) */
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-    /* Form group */
     .form-group { display: flex; flex-direction: column; gap: 8px; }
     .form-label {
       font-family: var(--font-hud); font-size: 0.54rem; font-weight: 700;
@@ -366,7 +355,6 @@
     }
     .form-label .required { color: #FF6B6B; }
 
-    /* Input / Textarea / Select shared */
     .form-input, .form-textarea, .form-select {
       width: 100%; background: rgba(139,126,255,0.05);
       border: 1px solid rgba(139,126,255,0.22);
@@ -386,7 +374,6 @@
     }
     .form-textarea { resize: vertical; min-height: 130px; line-height: 1.65; }
 
-    /* Select wrapper (for custom arrow) */
     .form-select-wrap { position: relative; }
     .form-select-wrap::after {
       content: '';
@@ -399,14 +386,12 @@
     }
     .form-select option { background: #0D0C1E; color: var(--text-high); }
 
-    /* Character counter for message */
     .form-count {
       font-family: var(--font-hud); font-size: 0.50rem; color: var(--text-dim);
       text-align: right; letter-spacing: 0.08em; margin-top: -4px;
     }
     .form-count.warn { color: var(--creo-amber); }
 
-    /* Consent checkbox */
     .form-consent { display: flex; align-items: flex-start; gap: 12px; }
     .form-checkbox {
       width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px;
@@ -426,7 +411,6 @@
     .form-consent-text a { color: var(--prc-violet); text-decoration: underline; text-underline-offset: 3px; }
     .form-consent-text a:hover { color: var(--prc-ice); }
 
-    /* Submit button */
     .form-submit-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
     .btn-submit {
       display: inline-flex; align-items: center; gap: 10px;
@@ -449,11 +433,33 @@
       color: #fff; transform: translateY(-2px);
     }
     .btn-submit:hover::before { transform: translateX(100%); }
+    .btn-submit:disabled {
+      opacity: 0.55; cursor: not-allowed; transform: none;
+      box-shadow: 0 0 10px rgba(139,126,255,0.15);
+    }
     .form-submit-note {
       font-family: var(--font-hud); font-size: 0.52rem; color: var(--text-dim);
       letter-spacing: 0.08em; display: flex; align-items: center; gap: 7px;
     }
     .form-submit-note::before { content: '//'; color: rgba(139,126,255,0.30); }
+
+    /* ===== FORM STATUS TOAST ===== */
+    .form-toast {
+      display: none; padding: 14px 20px;
+      border: 1px solid; font-family: var(--font-hud);
+      font-size: 0.65rem; letter-spacing: 0.06em; line-height: 1.6;
+      position: relative; overflow: hidden;
+    }
+    .form-toast.show { display: flex; align-items: flex-start; gap: 12px; }
+    .form-toast.success {
+      background: rgba(68,255,136,0.06); border-color: rgba(68,255,136,0.35);
+      color: #44FF88;
+    }
+    .form-toast.error {
+      background: rgba(255,80,80,0.06); border-color: rgba(255,80,80,0.35);
+      color: #FF6B6B;
+    }
+    .form-toast i { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
 
     /* ===== FAQ STRIP ===== */
     .contact-faq { max-width: 1340px; margin: 0 auto; padding: 0 36px 100px; }
@@ -515,7 +521,6 @@
       .faq-grid { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
       .contact-map-frame { height: 340px; }
-      @keyframes scanDown { from { transform: translateY(-10px); } to { transform: translateY(340px); } }
     }
     @media (max-width: 768px) {
       :root { --nav-height: 62px; }
@@ -528,7 +533,6 @@
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
       .footer-bottom { flex-direction: column; text-align: center; }
       .contact-map-frame { height: 280px; }
-      @keyframes scanDown { from { transform: translateY(-10px); } to { transform: translateY(280px); } }
       .map-pin-label { display: none; }
     }
     @media (max-width: 520px) {
@@ -540,7 +544,6 @@
       .nav-brand span { display: none; }
       .btn-submit { clip-path: none; }
       .contact-map-frame { height: 240px; }
-      @keyframes scanDown { from { transform: translateY(-10px); } to { transform: translateY(240px); } }
     }
 
     /* ===== MAP (FULL WIDTH) ===== */
@@ -567,8 +570,6 @@
       background: rgba(68,217,255,0.12); border-color: var(--creo-sky);
       box-shadow: 0 0 16px rgba(68,217,255,0.30); color: #fff;
     }
-
-    /* Outer glow border around map */
     .contact-map-outer {
       padding: 2px;
       background: linear-gradient(135deg, rgba(139,126,255,0.70), rgba(68,217,255,0.45), rgba(119,51,255,0.60));
@@ -581,7 +582,6 @@
       background: linear-gradient(135deg, var(--prc-violet), var(--creo-sky), var(--creo-purple));
       filter: blur(14px); opacity: 0.25; z-index: -1;
     }
-
     .contact-map-frame {
       position: relative; width: 100%; height: 440px;
       overflow: hidden; background: #050412;
@@ -594,8 +594,6 @@
     .contact-map-frame:hover iframe {
       filter: invert(0.85) hue-rotate(180deg) saturate(0.85) brightness(0.90);
     }
-
-    /* Neon corner brackets */
     .map-corner {
       position: absolute; width: 22px; height: 22px;
       border-color: var(--prc-ice); border-style: solid; pointer-events: none; z-index: 3;
@@ -604,8 +602,6 @@
     .map-corner.tr { top: 8px; right: 8px;   border-width: 2px 2px 0 0; }
     .map-corner.bl { bottom: 8px; left: 8px;  border-width: 0 0 2px 2px; }
     .map-corner.br { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
-
-    /* Scan line across map */
     .map-scan {
       position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 3;
     }
@@ -619,8 +615,6 @@
       from { transform: translateY(-10px); }
       to   { transform: translateY(440px); }
     }
-
-    /* Address bar at bottom of map */
     .map-address-bar {
       position: absolute; bottom: 0; left: 0; right: 0; z-index: 4;
       padding: 12px 20px;
@@ -640,9 +634,7 @@
       color: var(--text-high); letter-spacing: 0.06em;
       text-shadow: 0 0 10px rgba(139,126,255,0.50);
     }
-    .map-address-sub {
-      font-size: 0.75rem; color: var(--text-soft);
-    }
+    .map-address-sub { font-size: 0.75rem; color: var(--text-soft); }
 
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: var(--bg-void); }
@@ -658,36 +650,7 @@
   <div class="page-wrapper">
 
     <!-- NAV -->
-    <nav id="main-nav" role="navigation" aria-label="Main navigation">
-      <div class="nav-inner">
-        <a href="index.html" class="nav-logo" aria-label="PRC Home">
-          <img src="assets/PRC White Logo.png" alt="Philippine Robotics Cup Logo" />
-          <div class="nav-brand">Philippine Robotics Cup<span>By Creotec Philippines</span></div>
-        </a>
-        <ul class="nav-links" role="list">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="categories.html">Categories</a></li>
-          <li><a href="rankings.html">Rankings</a></li>
-          <li><a href="#">Gallery</a></li>
-          <li><a href="#">Shop</a></li>
-          <li><a href="contact.html" class="active">Contact Us</a></li>
-          <li><a href="#" class="nav-cta">Register Now</a></li>
-        </ul>
-        <button class="nav-hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </nav>
-
-    <nav class="nav-mobile" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
-      <a href="index.html"><i class="fi fi-rr-home"></i>Home</a>
-      <a href="categories.html"><i class="fi fi-rr-trophy"></i>Categories</a>
-      <a href="rankings.html"><i class="fi fi-rr-list-check"></i>Rankings</a>
-      <a href="#"><i class="fi fi-rr-picture"></i>Gallery</a>
-      <a href="#"><i class="fi fi-rr-shopping-cart"></i>Shop</a>
-      <a href="contact.html" class="active"><i class="fi fi-rr-envelope"></i>Contact Us</a>
-      <a href="#" class="nav-cta"><i class="fi fi-rr-pen-field"></i>Register Now</a>
-    </nav>
+    <div id="prc-nav-mount"></div>
 
     <!-- PAGE HERO -->
     <header class="page-hero">
@@ -719,7 +682,6 @@
           </div>
 
           <div class="contact-cards">
-
             <div class="contact-card">
               <div class="contact-card-icon"><i class="fi fi-rr-envelope"></i></div>
               <div class="contact-card-body">
@@ -750,7 +712,6 @@
                 <div class="contact-card-note">Creotec Philippines Inc. — Primary organizer</div>
               </div>
             </div>
-
           </div>
 
           <div class="contact-social-row">
@@ -792,6 +753,12 @@
                 <h3>Send Us a Message</h3>
                 <p>Fill out the form below and we'll respond promptly.</p>
               </div>
+            </div>
+
+            <!-- Status toast (success / error) -->
+            <div class="form-toast" id="formToast" role="alert" aria-live="polite">
+              <i class="fi" id="toastIcon"></i>
+              <span id="toastMsg"></span>
             </div>
 
             <form class="contact-form" id="contactForm" novalidate>
@@ -878,10 +845,11 @@
 
               <!-- Submit -->
               <div class="form-submit-row">
-                <button type="submit" class="btn-submit">
-                  <i class="fi fi-rr-paper-plane"></i> Send Message
+                <button type="submit" class="btn-submit" id="submitBtn">
+                  <i class="fi fi-rr-paper-plane" id="submitIcon"></i>
+                  <span id="submitLabel">Send Message</span>
                 </button>
-                <span class="form-submit-note">Backend integration coming soon</span>
+                <span class="form-submit-note" id="submitNote">All fields marked * are required</span>
               </div>
 
             </form>
@@ -909,11 +877,7 @@
               referrerpolicy="no-referrer-when-downgrade"
               title="Creotec Philippines Inc. — Laguna Technopark location"
             ></iframe>
-
-            <!-- Scan line -->
             <div class="map-scan" aria-hidden="true"></div>
-
-            <!-- Address overlay bar at bottom -->
             <div class="map-address-bar" aria-hidden="true">
               <div class="map-address-icon"><i class="fi fi-rr-building"></i></div>
               <div class="map-address-text">
@@ -921,8 +885,6 @@
                 <span class="map-address-sub">117 Technology Ave., SEPZ, Bi&#241;an, Laguna 4024</span>
               </div>
             </div>
-
-            <!-- Neon corner brackets -->
             <span class="map-corner tl"></span>
             <span class="map-corner tr"></span>
             <span class="map-corner bl"></span>
@@ -977,7 +939,7 @@
             <div class="footer-contact-list">
               <div class="footer-contact-item"><i class="fi fi-brands-facebook"></i><a href="https://www.facebook.com/profile.php?id=61579706372017" target="_blank" rel="noopener">Philippine Robotics Cup</a></div>
               <div class="footer-contact-item"><i class="fi fi-rr-phone-call"></i><a href="tel:+639177713961">+63 917 771 3961</a></div>
-              <div class="footer-contact-item"><i class="fi fi-rr-envelope"></i><a href="mailto:philippineroboticscup@gmail.com" class="contact-banner-item-val">philippineroboticscup@gmail.com</a></div>
+              <div class="footer-contact-item"><i class="fi fi-rr-envelope"></i><a href="mailto:philippineroboticscup@gmail.com">philippineroboticscup@gmail.com</a></div>
             </div>
             <div class="social-links"><a href="https://www.facebook.com/profile.php?id=61579706372017" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><i class="fi fi-brands-facebook"></i></a></div>
           </div>
@@ -994,8 +956,9 @@
 
   </div><!-- /page-wrapper -->
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // ── CUSTOM CURSOR ──
+  <script src="nav-loader.js" defer></script>
+  <script>
+    // ── CUSTOM CURSOR ──────────────────────────────────────────────────────────
     var dot  = document.getElementById('cursorDot');
     var ring = document.getElementById('cursorRing');
     var mx = 0, my = 0, rx = 0, ry = 0;
@@ -1021,23 +984,7 @@
       });
     });
 
-    // ── HAMBURGER ──
-    var hamburgerBtn = document.getElementById('hamburger');
-    var mobileMenu   = document.getElementById('mobile-menu');
-    function toggleMenu(open) {
-      mobileMenu.classList.toggle('open', open);
-      hamburgerBtn.classList.toggle('open', open);
-      hamburgerBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
-      document.body.style.overflow = open ? 'hidden' : '';
-    }
-    hamburgerBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleMenu(!mobileMenu.classList.contains('open')); });
-    mobileMenu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', function() { toggleMenu(false); }); });
-    document.addEventListener('click', function(e) {
-      if (mobileMenu.classList.contains('open') && !hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target)) toggleMenu(false);
-    });
-
-    // ── CHARACTER COUNTER ──
+    // ── CHARACTER COUNTER ─────────────────────────────────────────────────────
     var msgField  = document.getElementById('message');
     var charCount = document.getElementById('charCount');
     if (msgField && charCount) {
@@ -1048,7 +995,7 @@
       });
     }
 
-    // ── SCROLL REVEAL ──
+    // ── SCROLL REVEAL ─────────────────────────────────────────────────────────
     var revEls = document.querySelectorAll('.reveal');
     var ro = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
@@ -1056,6 +1003,87 @@
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
     revEls.forEach(function(el) { ro.observe(el); });
+
+    // ── CONTACT FORM — AJAX SUBMIT ────────────────────────────────────────────
+    var form       = document.getElementById('contactForm');
+    var submitBtn  = document.getElementById('submitBtn');
+    var submitIcon = document.getElementById('submitIcon');
+    var submitLbl  = document.getElementById('submitLabel');
+    var submitNote = document.getElementById('submitNote');
+    var toast      = document.getElementById('formToast');
+    var toastIcon  = document.getElementById('toastIcon');
+    var toastMsg   = document.getElementById('toastMsg');
+
+    function showToast(type, msg) {
+      toast.className = 'form-toast show ' + type;
+      toastIcon.className = 'fi ' + (type === 'success' ? 'fi-rr-check-circle' : 'fi-rr-exclamation');
+      toastMsg.textContent = msg;
+      // Scroll toast into view
+      toast.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function setSubmitting(loading) {
+      submitBtn.disabled = loading;
+      submitIcon.className = loading ? 'fi fi-rr-loading' : 'fi fi-rr-paper-plane';
+      submitLbl.textContent = loading ? 'Sending…' : 'Send Message';
+      submitNote.textContent = loading ? 'Please wait…' : 'All fields marked * are required';
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Hide any previous toast
+      toast.className = 'form-toast';
+
+      // Basic client-side checks
+      var required = ['firstName','lastName','email','role','subject','message'];
+      for (var i = 0; i < required.length; i++) {
+        var el = form.elements[required[i]];
+        if (!el || !el.value.trim()) {
+          showToast('error', 'Please fill in all required fields before submitting.');
+          el && el.focus();
+          return;
+        }
+      }
+      var emailEl = form.elements['email'];
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
+        showToast('error', 'Please enter a valid email address.');
+        emailEl.focus();
+        return;
+      }
+      if (!form.elements['consent'].checked) {
+        showToast('error', 'Please accept the Privacy Policy to continue.');
+        return;
+      }
+
+      setSubmitting(true);
+
+      var data = new FormData(form);
+
+      fetch('send_mail.php', {
+        method: 'POST',
+        body: data
+      })
+      .then(function(res) {
+        return res.json().then(function(json) {
+          return { ok: res.ok, json: json };
+        });
+      })
+      .then(function(result) {
+        setSubmitting(false);
+        if (result.ok && result.json.success) {
+          showToast('success', result.json.message || 'Message sent! We\'ll be in touch soon.');
+          form.reset();
+          charCount.textContent = '0 / 1000';
+        } else {
+          showToast('error', (result.json && result.json.message) || 'Something went wrong. Please try again.');
+        }
+      })
+      .catch(function() {
+        setSubmitting(false);
+        showToast('error', 'Network error — please check your connection and try again.');
+      });
+    });
   </script>
 
 </body>
