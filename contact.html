@@ -492,7 +492,7 @@
     .footer-contact-item a { color: var(--text-mid); transition: color 0.2s; }
     .footer-contact-item a:hover { color: var(--prc-violet); text-shadow: 0 0 8px rgba(139,126,255,0.60); }
     .social-links { display: flex; gap: 8px; }
-    .social-link { width: 40px; height: 40px; background: rgba(139,126,255,0.04); border: 1px solid rgba(139,126,255,0.18); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: rgba(139,126,255,0.50); transition: all 0.25s; }
+    .social-link { width: 40px; height: 40px; background: rgba(139,126,255,0.04); border: 1px solid rgba(139,126,255,0.18); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: rgba(139,126,255,0.50); transition: all 0.25px; }
     .social-link:hover { background: rgba(139,126,255,0.12); color: var(--prc-violet); box-shadow: 0 0 14px rgba(139,126,255,0.35); border-color: var(--prc-violet); }
     .footer-col h4 { font-family: var(--font-hud); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; margin-bottom: 20px; color: var(--prc-ice); text-shadow: 0 0 10px rgba(196,238,255,0.45); }
     .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
@@ -894,7 +894,7 @@
       </div><!-- /contact-map-section -->
 
       <!-- FAQ STRIP -->
-      <div class="contact-faq" style="padding-top:80px;">
+      <div class="contact-faq" style="padding-top:80px;" id="faq">
         <div class="contact-faq-header reveal">
           <div style="font-family:var(--font-hud);font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--prc-ice);margin-bottom:10px;">// Frequently Asked</div>
           <h2>Common <span class="accent">Questions</span></h2>
@@ -958,6 +958,22 @@
 
   <script src="nav-loader.js" defer></script>
   <script>
+    // ── APPS SCRIPT ENDPOINT ─────────────────────────────────────────────────
+    // Replace this URL with your deployed Web App URL after Step 2
+    var APPS_SCRIPT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx2tEY3ooRHGYAKTCWhMgPl7fkh19zC66Mj3a4E7mewpNrZ-wQ0_jZJ3gPRi76LiRIpLA/exec';
+
+    // ── SUBJECT MAP ───────────────────────────────────────────────────────────
+    var subjectMap = {
+      registration: 'Registration & Team Sign-Up',
+      categories:   'Competition Categories & Rules',
+      materials:    'Ordering Materials & Kits',
+      schedule:     'Schedule & Venue',
+      makex:        'MakeX International Qualifier',
+      sponsorship:  'Sponsorship & Partnership',
+      media:        'Media & Press Inquiry',
+      other:        'Other / General Question'
+    };
+
     // ── CUSTOM CURSOR ──────────────────────────────────────────────────────────
     var dot  = document.getElementById('cursorDot');
     var ring = document.getElementById('cursorRing');
@@ -1004,7 +1020,7 @@
     }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
     revEls.forEach(function(el) { ro.observe(el); });
 
-    // ── CONTACT FORM — AJAX SUBMIT ────────────────────────────────────────────
+    // ── CONTACT FORM — APPS SCRIPT SUBMIT ────────────────────────────────────
     var form       = document.getElementById('contactForm');
     var submitBtn  = document.getElementById('submitBtn');
     var submitIcon = document.getElementById('submitIcon');
@@ -1018,7 +1034,6 @@
       toast.className = 'form-toast show ' + type;
       toastIcon.className = 'fi ' + (type === 'success' ? 'fi-rr-check-circle' : 'fi-rr-exclamation');
       toastMsg.textContent = msg;
-      // Scroll toast into view
       toast.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
@@ -1035,8 +1050,8 @@
       // Hide any previous toast
       toast.className = 'form-toast';
 
-      // Basic client-side checks
-      var required = ['firstName','lastName','email','role','subject','message'];
+      // Client-side validation
+      var required = ['firstName', 'lastName', 'email', 'role', 'subject', 'message'];
       for (var i = 0; i < required.length; i++) {
         var el = form.elements[required[i]];
         if (!el || !el.value.trim()) {
@@ -1058,26 +1073,33 @@
 
       setSubmitting(true);
 
-      var data = new FormData(form);
+      // Build payload for Apps Script
+      var subjectValue = form.elements['subject'].value;
+      var payload = {
+        firstName:    form.elements['firstName'].value.trim(),
+        lastName:     form.elements['lastName'].value.trim(),
+        email:        form.elements['email'].value.trim(),
+        phone:        form.elements['phone'].value.trim(),
+        school:       form.elements['school'].value.trim(),
+        role:         form.elements['role'].value,
+        subject:      subjectValue,
+        subjectLabel: subjectMap[subjectValue] || subjectValue,
+        message:      form.elements['message'].value.trim()
+      };
 
-      fetch('send_mail.php', {
+      // Send via fetch (no-cors mirrors register.html pattern)
+      fetch(APPS_SCRIPT_ENDPOINT, {
         method: 'POST',
-        body: data
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'data=' + encodeURIComponent(JSON.stringify(payload))
       })
-      .then(function(res) {
-        return res.json().then(function(json) {
-          return { ok: res.ok, json: json };
-        });
-      })
-      .then(function(result) {
+      .then(function() {
+        // no-cors returns opaque response — treat arrival as success
         setSubmitting(false);
-        if (result.ok && result.json.success) {
-          showToast('success', result.json.message || 'Message sent! We\'ll be in touch soon.');
-          form.reset();
-          charCount.textContent = '0 / 1000';
-        } else {
-          showToast('error', (result.json && result.json.message) || 'Something went wrong. Please try again.');
-        }
+        showToast('success', 'Message sent! A confirmation copy has been sent to ' + payload.email + '. We\'ll get back to you within one business day.');
+        form.reset();
+        charCount.textContent = '0 / 1000';
       })
       .catch(function() {
         setSubmitting(false);
