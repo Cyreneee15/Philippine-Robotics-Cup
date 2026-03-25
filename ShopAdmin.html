@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Admin — PRC 2026 Shop</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css">
+  <style>
+    :root{
+      --prc-violet:#8B7EFF;--prc-ice:#C4EEFF;--creo-amber:#FFA030;--creo-volt:#FFE930;
+      --creo-sky:#44D9FF;--creo-red:#FF4466;--creo-green:#00CC88;
+      --bg-void:#03020D;--bg-deep:#06051A;--bg-card:#0e0d24;
+      --border-neon:rgba(139,126,255,0.22);--border-amber:rgba(255,160,48,0.28);
+      --text-high:#F2EEFF;--text-mid:#C8C0F0;--text-soft:#9A90CC;--text-dim:#7068A8;
+      --font-hud:'Orbitron',monospace;--font-body:'Exo 2',sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:var(--font-body);background:var(--bg-void);color:var(--text-high);min-height:100vh;cursor:default;}
+    img{max-width:100%;display:block;}
+    a{text-decoration:none;color:inherit;}
+    button{font-family:inherit;border:none;background:none;cursor:pointer;}
+    input,select,textarea{font-family:var(--font-body);}
+
+    /* HEX GRID BG */
+    .hex-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+      background-image:linear-gradient(rgba(139,126,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(139,126,255,0.04) 1px,transparent 1px);
+      background-size:50px 50px;}
+    .hex-grid::before{content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(119,51,255,0.14) 0%,transparent 70%);}
+
+    /* SCANLINES */
+    body::after{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;
+      background:repeating-linear-gradient(to bottom,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px);}
+
+    /* LOGIN SCREEN */
+    .login-screen{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:var(--bg-void);}
+    .login-box{background:var(--bg-card);border:1px solid var(--border-neon);padding:48px 44px;width:100%;max-width:420px;position:relative;}
+    .login-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--prc-violet),transparent);}
+    .login-logo{font-family:var(--font-hud);font-size:0.60rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--prc-violet);margin-bottom:6px;}
+    .login-title{font-family:var(--font-hud);font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:4px;}
+    .login-title span{color:var(--creo-amber);}
+    .login-sub{font-size:0.80rem;color:var(--text-dim);margin-bottom:32px;}
+    .login-field{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+    .login-lbl{font-family:var(--font-hud);font-size:0.46rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-soft);}
+    .login-input{background:rgba(139,126,255,0.05);border:1px solid rgba(139,126,255,0.22);color:var(--text-high);font-family:var(--font-body);font-size:0.9rem;padding:11px 14px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;width:100%;}
+    .login-input::placeholder{color:var(--text-dim);}
+    .login-input:focus{border-color:var(--prc-violet);box-shadow:0 0 16px rgba(139,126,255,0.18);}
+    .login-btn{width:100%;font-family:var(--font-hud);font-size:0.60rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:13px;border:1px solid var(--prc-violet);color:var(--prc-violet);background:transparent;cursor:pointer;transition:all 0.24s;box-shadow:0 0 14px rgba(139,126,255,0.22);display:flex;align-items:center;justify-content:center;gap:8px;}
+    .login-btn:hover{background:rgba(139,126,255,0.12);box-shadow:0 0 30px rgba(139,126,255,0.45);color:#fff;}
+    .login-err{font-family:var(--font-hud);font-size:0.52rem;color:var(--creo-red);letter-spacing:0.08em;margin-top:12px;display:none;text-align:center;}
+    .login-err.show{display:block;}
+
+    /* ADMIN LAYOUT */
+    .admin-wrap{display:none;position:relative;z-index:1;min-height:100vh;}
+    .admin-wrap.show{display:block;}
+
+    /* TOP BAR */
+    .admin-topbar{position:sticky;top:0;z-index:50;background:rgba(3,2,13,0.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border-neon);padding:0 36px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+    .topbar-left{display:flex;align-items:center;gap:14px;}
+    .topbar-logo{font-family:var(--font-hud);font-size:0.65rem;font-weight:700;color:var(--creo-amber);letter-spacing:0.08em;}
+    .topbar-logo span{color:var(--text-dim);font-size:0.52rem;display:block;letter-spacing:0.14em;text-transform:uppercase;}
+    .topbar-badge{font-family:var(--font-hud);font-size:0.46rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;background:rgba(255,160,48,0.10);border:1px solid rgba(255,160,48,0.30);color:var(--creo-amber);}
+    .topbar-right{display:flex;align-items:center;gap:10px;}
+    .topbar-btn{font-family:var(--font-hud);font-size:0.52rem;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;padding:7px 16px;border:1px solid rgba(139,126,255,0.26);color:var(--text-soft);background:transparent;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:7px;}
+    .topbar-btn:hover{border-color:var(--prc-violet);color:var(--prc-violet);}
+    .topbar-btn.danger{border-color:rgba(255,68,102,0.28);color:rgba(255,68,102,0.70);}
+    .topbar-btn.danger:hover{border-color:var(--creo-red);color:var(--creo-red);}
+
+    /* MAIN */
+    .admin-main{max-width:1100px;margin:0 auto;padding:40px 36px 80px;}
+
+    /* PAGE HEADER */
+    .page-hdr{margin-bottom:36px;}
+    .page-eyebrow{font-family:var(--font-hud);font-size:0.52rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--creo-amber);margin-bottom:6px;}
+    .page-eyebrow::before{content:'// ';}
+    .page-title{font-family:var(--font-hud);font-size:1.8rem;font-weight:900;color:#fff;margin-bottom:6px;}
+    .page-title span{color:var(--creo-amber);}
+    .page-sub{font-size:0.875rem;color:var(--text-dim);}
+
+    /* STATS ROW */
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:36px;}
+    .stat-card{background:var(--bg-card);border:1px solid var(--border-neon);padding:18px 20px;position:relative;overflow:hidden;}
+    .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+    .stat-card.violet::before{background:linear-gradient(90deg,transparent,var(--prc-violet),transparent);}
+    .stat-card.amber::before{background:linear-gradient(90deg,transparent,var(--creo-amber),transparent);}
+    .stat-card.green::before{background:linear-gradient(90deg,transparent,var(--creo-green),transparent);}
+    .stat-card.sky::before{background:linear-gradient(90deg,transparent,var(--creo-sky),transparent);}
+    .stat-icon{font-size:1.2rem;margin-bottom:8px;opacity:0.60;}
+    .stat-num{font-family:var(--font-hud);font-size:1.8rem;font-weight:900;line-height:1;margin-bottom:4px;}
+    .stat-card.violet .stat-num{color:var(--prc-violet);}
+    .stat-card.amber .stat-num{color:var(--creo-amber);}
+    .stat-card.green .stat-num{color:var(--creo-green);}
+    .stat-card.sky .stat-num{color:var(--creo-sky);}
+    .stat-lbl{font-family:var(--font-hud);font-size:0.46rem;color:var(--text-dim);letter-spacing:0.10em;text-transform:uppercase;}
+
+    /* SECTION DIVIDER */
+    .sec-div{display:flex;align-items:center;gap:14px;margin-bottom:22px;}
+    .sec-div-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border-neon),transparent);}
+    .sec-div-lbl{font-family:var(--font-hud);font-size:0.52rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--prc-ice);white-space:nowrap;}
+    .sec-div-lbl::before{content:'// ';color:rgba(139,126,255,0.35);}
+
+    /* ADD ITEM FORM */
+    .add-form-card{background:var(--bg-card);border:1px solid var(--border-neon);margin-bottom:36px;position:relative;overflow:hidden;}
+    .add-form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--creo-amber),transparent);}
+    .add-form-hdr{padding:16px 24px;background:rgba(255,160,48,0.04);border-bottom:1px solid rgba(255,160,48,0.12);display:flex;align-items:center;justify-content:space-between;}
+    .add-form-title{font-family:var(--font-hud);font-size:0.62rem;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;color:var(--creo-amber);display:flex;align-items:center;gap:9px;}
+    .add-form-body{padding:22px 24px;}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 18px;}
+    .form-field{display:flex;flex-direction:column;gap:6px;}
+    .form-field.full{grid-column:1/-1;}
+    .form-field.half{grid-column:span 1;}
+    .form-lbl{font-family:var(--font-hud);font-size:0.46rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-soft);}
+    .form-req{color:var(--creo-amber);}
+    .form-input,.form-select{background:rgba(255,160,48,0.04);border:1px solid rgba(255,160,48,0.22);color:var(--text-high);font-family:var(--font-body);font-size:0.875rem;padding:10px 13px;width:100%;outline:none;transition:border-color 0.22s,box-shadow 0.22s;}
+    .form-input::placeholder{color:var(--text-dim);}
+    .form-input:focus,.form-select:focus{border-color:var(--creo-amber);box-shadow:0 0 16px rgba(255,160,48,0.15);}
+    .form-select option{background:#13112e;color:var(--text-high);}
+    .form-actions{display:flex;gap:10px;margin-top:18px;}
+    .btn-add{font-family:var(--font-hud);font-size:0.56rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:10px 24px;border:1px solid var(--creo-amber);color:var(--creo-amber);background:transparent;cursor:pointer;transition:all 0.22s;box-shadow:0 0 12px rgba(255,160,48,0.20);display:inline-flex;align-items:center;gap:8px;}
+    .btn-add:hover{background:rgba(255,160,48,0.12);box-shadow:0 0 24px rgba(255,160,48,0.40);color:#fff;}
+    .btn-clear{font-family:var(--font-hud);font-size:0.56rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(139,126,255,0.22);color:var(--text-soft);background:transparent;cursor:pointer;transition:all 0.22s;}
+    .btn-clear:hover{border-color:var(--prc-violet);color:var(--prc-violet);}
+
+    /* PRODUCT LIST */
+    .products-list{display:flex;flex-direction:column;gap:12px;}
+    .prod-card{background:var(--bg-card);border:1px solid rgba(139,126,255,0.13);position:relative;transition:border-color 0.25s,box-shadow 0.25s;}
+    .prod-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:2px;background:var(--prc-violet);opacity:0.35;transition:opacity 0.25s;}
+    .prod-card:hover{border-color:rgba(139,126,255,0.32);box-shadow:0 0 24px rgba(139,126,255,0.08);}
+    .prod-card:hover::before{opacity:1;}
+    .prod-card-inner{display:grid;grid-template-columns:1fr auto;gap:0;align-items:stretch;}
+    .prod-info{padding:18px 22px;display:flex;flex-direction:column;gap:6px;}
+    .prod-cat-badge{display:inline-flex;align-items:center;font-family:var(--font-hud);font-size:0.46rem;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;padding:3px 9px;border:1px solid rgba(139,126,255,0.22);color:var(--prc-violet);background:rgba(139,126,255,0.06);width:fit-content;}
+    .prod-name-row{display:flex;align-items:baseline;gap:12px;}
+    .prod-name{font-family:var(--font-hud);font-size:0.90rem;font-weight:800;color:var(--text-high);}
+    .prod-price{font-family:var(--font-hud);font-size:1.0rem;font-weight:900;color:var(--prc-violet);text-shadow:0 0 12px rgba(139,126,255,0.45);}
+    .prod-desc{font-size:0.82rem;color:var(--text-dim);line-height:1.60;max-width:600px;}
+    .prod-specs-row{display:flex;gap:5px;flex-wrap:wrap;}
+    .prod-spec-tag{font-family:var(--font-hud);font-size:0.44rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:2px 8px;border:1px solid rgba(139,126,255,0.16);color:var(--text-soft);background:rgba(139,126,255,0.04);}
+    .prod-stock{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-hud);font-size:0.44rem;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;padding:2px 9px;border:1px solid;}
+    .prod-stock.in{color:var(--creo-volt);border-color:rgba(255,233,48,0.28);background:rgba(255,233,48,0.04);}
+    .prod-stock.low{color:var(--creo-amber);border-color:rgba(255,160,48,0.28);background:rgba(255,160,48,0.04);}
+    .stock-dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;}
+    .prod-actions{border-left:1px solid rgba(139,126,255,0.09);padding:16px 18px;display:flex;flex-direction:column;gap:8px;justify-content:center;align-items:flex-end;min-width:130px;background:rgba(139,126,255,0.015);}
+    .btn-edit{font-family:var(--font-hud);font-size:0.50rem;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;padding:8px 16px;border:1px solid var(--prc-violet);color:var(--prc-violet);background:transparent;cursor:pointer;transition:all 0.20s;display:inline-flex;align-items:center;gap:6px;width:100%;justify-content:center;}
+    .btn-edit:hover{background:rgba(139,126,255,0.12);box-shadow:0 0 14px rgba(139,126,255,0.28);}
+    .btn-delete{font-family:var(--font-hud);font-size:0.50rem;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;padding:8px 16px;border:1px solid rgba(255,68,102,0.28);color:rgba(255,68,102,0.60);background:transparent;cursor:pointer;transition:all 0.20s;display:inline-flex;align-items:center;gap:6px;width:100%;justify-content:center;}
+    .btn-delete:hover{border-color:var(--creo-red);color:var(--creo-red);background:rgba(255,68,102,0.07);}
+
+    /* EDIT MODAL */
+    .modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(3,2,13,0.90);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px;}
+    .modal-overlay.open{display:flex;}
+    .modal{background:var(--bg-deep);border:1px solid var(--border-neon);width:100%;max-width:560px;max-height:90vh;overflow-y:auto;position:relative;}
+    .modal::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--prc-violet),transparent);}
+    .modal-hdr{padding:18px 24px 14px;border-bottom:1px solid var(--border-neon);background:rgba(139,126,255,0.05);display:flex;align-items:center;justify-content:space-between;}
+    .modal-title{font-family:var(--font-hud);font-size:0.66rem;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;color:var(--prc-violet);display:flex;align-items:center;gap:8px;}
+    .modal-x{width:28px;height:28px;background:rgba(139,126,255,0.06);border:1px solid rgba(139,126,255,0.20);color:var(--text-soft);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.75rem;transition:all 0.2s;}
+    .modal-x:hover{background:rgba(139,126,255,0.14);color:var(--prc-violet);}
+    .modal-body{padding:22px 24px;}
+    .modal-ftr{padding:14px 24px 18px;border-top:1px solid rgba(139,126,255,0.10);background:rgba(0,0,0,0.18);display:flex;gap:10px;justify-content:flex-end;}
+    .btn-save{font-family:var(--font-hud);font-size:0.56rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:10px 24px;border:1px solid var(--prc-violet);color:var(--prc-violet);background:transparent;cursor:pointer;transition:all 0.22s;box-shadow:0 0 12px rgba(139,126,255,0.20);display:inline-flex;align-items:center;gap:8px;}
+    .btn-save:hover{background:rgba(139,126,255,0.12);box-shadow:0 0 24px rgba(139,126,255,0.40);color:#fff;}
+    .btn-cancel{font-family:var(--font-hud);font-size:0.56rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(139,126,255,0.20);color:var(--text-soft);background:transparent;cursor:pointer;transition:all 0.20s;}
+    .btn-cancel:hover{border-color:var(--prc-violet);color:var(--prc-violet);}
+
+    /* TOAST */
+    .toast{position:fixed;bottom:28px;right:28px;z-index:999;background:var(--bg-card);border:1px solid var(--border-neon);padding:12px 20px;font-family:var(--font-hud);font-size:0.56rem;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;display:flex;align-items:center;gap:10px;transform:translateY(80px);opacity:0;transition:all 0.32s cubic-bezier(0.23,1,0.32,1);pointer-events:none;}
+    .toast.show{transform:translateY(0);opacity:1;}
+    .toast.success{border-color:rgba(0,204,136,0.40);color:var(--creo-green);}
+    .toast.error{border-color:rgba(255,68,102,0.40);color:var(--creo-red);}
+
+    /* EMPTY STATE */
+    .empty-state{text-align:center;padding:60px 24px;background:var(--bg-card);border:1px solid var(--border-neon);}
+    .empty-state i{font-size:2.2rem;color:rgba(139,126,255,0.18);display:block;margin-bottom:14px;}
+    .empty-state p{font-family:var(--font-hud);font-size:0.56rem;color:var(--text-dim);letter-spacing:0.08em;}
+
+    /* VIEW SHOP LINK */
+    .view-shop-bar{background:rgba(255,160,48,0.04);border:1px solid rgba(255,160,48,0.18);padding:12px 20px;margin-bottom:32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+    .view-shop-txt{font-family:var(--font-hud);font-size:0.52rem;color:var(--text-dim);letter-spacing:0.08em;}
+    .view-shop-link{font-family:var(--font-hud);font-size:0.52rem;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;padding:7px 16px;border:1px solid rgba(255,160,48,0.30);color:var(--creo-amber);background:transparent;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:7px;text-decoration:none;}
+    .view-shop-link:hover{background:rgba(255,160,48,0.10);}
+
+    @media(max-width:768px){
+      .admin-topbar{padding:0 16px;}
+      .admin-main{padding:24px 16px 60px;}
+      .stats-row{grid-template-columns:1fr 1fr;}
+      .form-grid{grid-template-columns:1fr;}
+      .prod-card-inner{grid-template-columns:1fr;}
+      .prod-actions{flex-direction:row;border-left:none;border-top:1px solid rgba(139,126,255,0.09);min-width:auto;}
+      .btn-edit,.btn-delete{width:auto;}
+    }
+    ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg-void);}::-webkit-scrollbar-thumb{background:var(--prc-violet);border-radius:2px;}
+  </style>
+</head>
+<body>
+  <div class="hex-grid" aria-hidden="true"></div>
+
+  <!-- LOGIN SCREEN -->
+  <div class="login-screen" id="login-screen">
+    <div class="login-box">
+      <div class="login-logo">Philippine Robotics Cup 2026</div>
+      <h1 class="login-title">Shop <span>Admin</span></h1>
+      <p class="login-sub">Sign in to manage products, prices, and inventory.</p>
+      <div class="login-field">
+        <label class="login-lbl">Username</label>
+        <input class="login-input" id="login-user" type="text" placeholder="admin" autocomplete="username"/>
+      </div>
+      <div class="login-field">
+        <label class="login-lbl">Password</label>
+        <input class="login-input" id="login-pass" type="password" placeholder="••••••••" autocomplete="current-password"/>
+      </div>
+      <button class="login-btn" onclick="doLogin()">
+        <i class="fi fi-rr-sign-in-alt"></i> Sign In
+      </button>
+      <div class="login-err" id="login-err">Invalid username or password</div>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div class="admin-wrap" id="admin-wrap">
+
+    <div class="admin-topbar">
+      <div class="topbar-left">
+        <div class="topbar-logo">PRC 2026 Shop<span>Admin Panel</span></div>
+        <div class="topbar-badge">&#9679; Live</div>
+      </div>
+      <div class="topbar-right">
+        <a href="shop.html" class="topbar-btn" target="_blank"><i class="fi fi-rr-eye"></i> View Shop</a>
+        <button class="topbar-btn danger" onclick="doLogout()"><i class="fi fi-rr-sign-out-alt"></i> Logout</button>
+      </div>
+    </div>
+
+    <div class="admin-main">
+
+      <div class="page-hdr">
+        <div class="page-eyebrow">Shop Management</div>
+        <h1 class="page-title">Product <span>Manager</span></h1>
+        <p class="page-sub">Add, edit, or remove products. Changes apply to the shop immediately.</p>
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-row">
+        <div class="stat-card violet">
+          <div class="stat-icon">📦</div>
+          <div class="stat-num" id="stat-total">6</div>
+          <div class="stat-lbl">Total Products</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-icon">✅</div>
+          <div class="stat-num" id="stat-instock">5</div>
+          <div class="stat-lbl">In Stock</div>
+        </div>
+        <div class="stat-card sky">
+          <div class="stat-icon">⚠️</div>
+          <div class="stat-num" id="stat-low">1</div>
+          <div class="stat-lbl">Low Stock</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-icon">🏷️</div>
+          <div class="stat-num" id="stat-cats">5</div>
+          <div class="stat-lbl">Categories</div>
+        </div>
+      </div>
+
+      <!-- ADD NEW PRODUCT -->
+      <div class="sec-div"><div class="sec-div-line"></div><div class="sec-div-lbl">Add New Product</div><div class="sec-div-line" style="background:linear-gradient(90deg,transparent,var(--border-neon));"></div></div>
+
+      <div class="add-form-card">
+        <div class="add-form-hdr">
+          <div class="add-form-title"><i class="fi fi-rr-add"></i> New Product</div>
+        </div>
+        <div class="add-form-body">
+          <div class="form-grid">
+            <div class="form-field">
+              <label class="form-lbl">Product Name <span class="form-req">*</span></label>
+              <input class="form-input" id="new-name" type="text" placeholder="e.g. Basic Robotics Kit"/>
+            </div>
+            <div class="form-field">
+              <label class="form-lbl">Price (₱) <span class="form-req">*</span></label>
+              <input class="form-input" id="new-price" type="number" placeholder="1200" min="0"/>
+            </div>
+            <div class="form-field">
+              <label class="form-lbl">Category <span class="form-req">*</span></label>
+              <select class="form-select" id="new-cat">
+                <option value="">Select category</option>
+                <option value="Robot Kit">Robot Kit</option>
+                <option value="Sensor Package">Sensor Package</option>
+                <option value="Drone Soccer">Drone Soccer</option>
+                <option value="MakeX">MakeX</option>
+                <option value="Spare Parts">Spare Parts</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-field full">
+              <label class="form-lbl">Description <span class="form-req">*</span></label>
+              <input class="form-input" id="new-desc" type="text" placeholder="Brief product description..."/>
+            </div>
+            <div class="form-field">
+              <label class="form-lbl">Specs (comma separated)</label>
+              <input class="form-input" id="new-specs" type="text" placeholder="Beginner, RoboVenture, Complete Kit"/>
+            </div>
+            <div class="form-field">
+              <label class="form-lbl">Stock Status</label>
+              <select class="form-select" id="new-stock">
+                <option value="in-stock">In Stock</option>
+                <option value="low-stock">Low Stock</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn-add" onclick="addProduct()"><i class="fi fi-rr-add"></i> Add Product</button>
+            <button class="btn-clear" onclick="clearAddForm()"><i class="fi fi-rr-refresh"></i> Clear</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUCT LIST -->
+      <div class="sec-div"><div class="sec-div-line"></div><div class="sec-div-lbl">All Products</div><div class="sec-div-line" style="background:linear-gradient(90deg,transparent,var(--border-neon));"></div></div>
+
+      <div class="products-list" id="products-list"></div>
+
+    </div>
+  </div>
+
+  <!-- EDIT MODAL -->
+  <div class="modal-overlay" id="edit-modal" onclick="closeModalOutside(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-hdr">
+        <div class="modal-title"><i class="fi fi-rr-edit"></i> Edit Product</div>
+        <button class="modal-x" onclick="closeModal()"><i class="fi fi-rr-cross"></i></button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="edit-id"/>
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-lbl">Product Name <span class="form-req">*</span></label>
+            <input class="form-input" id="edit-name" type="text"/>
+          </div>
+          <div class="form-field">
+            <label class="form-lbl">Price (₱) <span class="form-req">*</span></label>
+            <input class="form-input" id="edit-price" type="number" min="0"/>
+          </div>
+          <div class="form-field">
+            <label class="form-lbl">Category <span class="form-req">*</span></label>
+            <select class="form-select" id="edit-cat">
+              <option value="Robot Kit">Robot Kit</option>
+              <option value="Sensor Package">Sensor Package</option>
+              <option value="Drone Soccer">Drone Soccer</option>
+              <option value="MakeX">MakeX</option>
+              <option value="Spare Parts">Spare Parts</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-field full">
+            <label class="form-lbl">Description</label>
+            <input class="form-input" id="edit-desc" type="text"/>
+          </div>
+          <div class="form-field">
+            <label class="form-lbl">Specs (comma separated)</label>
+            <input class="form-input" id="edit-specs" type="text"/>
+          </div>
+          <div class="form-field">
+            <label class="form-lbl">Stock Status</label>
+            <select class="form-select" id="edit-stock">
+              <option value="in-stock">In Stock</option>
+              <option value="low-stock">Low Stock</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-ftr">
+        <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-save" onclick="saveEdit()"><i class="fi fi-rr-check"></i> Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ── ADMIN CREDENTIALS ──
+    var ADMIN_USER = 'admin';
+    var ADMIN_PASS = 'prc2026admin';
+    var ADMIN_USER = 'admin2';
+    var ADMIN_PASS = 'prc2026admin2';
+    var ADMIN_USER = 'admin3';
+    var ADMIN_PASS = 'prc2026admin3';
+
+    // ── DEFAULT PRODUCTS (matching shop.html) ──
+    var defaultProducts = [
+      {id:'kit-basic',   name:'Basic Robotics Kit',        cat:'Robot Kit',      raw:1200,  desc:'Entry-level robotics kit designed for beginner participants in RoboVenture. Includes programmable microcontroller, motors, sensors, chassis parts, and connection cables.', specs:['Beginner','RoboVenture','Complete Kit'], stock:'in-stock'},
+      {id:'kit-advanced',name:'Advanced Competition Kit',   cat:'Robot Kit',      raw:3500,  desc:'High-performance competition kit for intermediate and advanced categories. Features dual programmable controllers, ultrasonic sensors, servo motors, and aluminum chassis.', specs:['Advanced','Multi-Category','Aluminum Chassis'], stock:'in-stock'},
+      {id:'sensor-pack', name:'Sensor Package — Standard', cat:'Sensor Package', raw:650,   desc:'Comprehensive sensor bundle covering most competition needs. Includes ultrasonic, infrared line sensors, color sensors, and accelerometers. Plug-and-play compatible.', specs:['Sensors','Universal','Plug & Play'], stock:'in-stock'},
+      {id:'drone-kit',   name:'Drone Soccer Starter Pack', cat:'Drone Soccer',   raw:5800,  desc:'Official Drone Soccer package for PRC 2026. Includes two encaged competition drones, replacement propellers, charging hub, and carrying case.', specs:['Drone Soccer','Official Pack','2 Drones'], stock:'low-stock'},
+      {id:'makex-kit',   name:'MakeX Starter Kit',         cat:'MakeX',          raw:4200,  desc:'Official Makeblock MakeX Starter kit for PRC 2026. Compatible with mBlock programming environment. Includes all mission-critical components.', specs:['MakeX','Official','mBlock'], stock:'in-stock'},
+      {id:'spare-parts', name:'Spare Parts Bundle',        cat:'Spare Parts',    raw:420,   desc:'Essential spare parts bundle for competition day emergencies. Includes extra wheels, gears, screws, jumper wires, and breadboards.', specs:['Spare Parts','Emergency Kit','Universal'], stock:'in-stock'}
+    ];
+
+    // ── STATE ──
+    var products = loadProducts();
+    var editingId = null;
+
+    function loadProducts() {
+      try {
+        var saved = sessionStorage.getItem('prc_admin_products');
+        return saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(defaultProducts));
+      } catch(e) { return JSON.parse(JSON.stringify(defaultProducts)); }
+    }
+    function saveProducts() {
+      sessionStorage.setItem('prc_admin_products', JSON.stringify(products));
+    }
+
+    // ── LOGIN ──
+    function doLogin() {
+      var u = document.getElementById('login-user').value.trim();
+      var p = document.getElementById('login-pass').value;
+      if (u === ADMIN_USER && p === ADMIN_PASS) {
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('admin-wrap').classList.add('show');
+        renderProducts();
+      } else {
+        document.getElementById('login-err').classList.add('show');
+        document.getElementById('login-pass').value = '';
+      }
+    }
+    function doLogout() {
+      document.getElementById('login-screen').style.display = 'flex';
+      document.getElementById('admin-wrap').classList.remove('show');
+      document.getElementById('login-user').value = '';
+      document.getElementById('login-pass').value = '';
+      document.getElementById('login-err').classList.remove('show');
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        if (!document.getElementById('admin-wrap').classList.contains('show')) doLogin();
+        else if (document.getElementById('edit-modal').classList.contains('open')) saveEdit();
+      }
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // ── RENDER ──
+    function renderProducts() {
+      var list = document.getElementById('products-list');
+      if (!products.length) {
+        list.innerHTML = '<div class="empty-state"><i class="fi fi-rr-box-open-full"></i><p>No products yet. Add one above.</p></div>';
+        updateStats(); return;
+      }
+      list.innerHTML = products.map(function(p) {
+        var specsHtml = p.specs.map(function(s){ return '<span class="prod-spec-tag">'+s+'</span>'; }).join('');
+        var stockClass = p.stock === 'in-stock' ? 'in' : 'low';
+        var stockLabel = p.stock === 'in-stock' ? 'In Stock' : 'Low Stock';
+        return '<div class="prod-card" id="pc-'+p.id+'">'+
+          '<div class="prod-card-inner">'+
+            '<div class="prod-info">'+
+              '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">'+
+                '<span class="prod-cat-badge">'+p.cat+'</span>'+
+                '<span class="prod-stock '+stockClass+'"><span class="stock-dot"></span>'+stockLabel+'</span>'+
+              '</div>'+
+              '<div class="prod-name-row">'+
+                '<span class="prod-name">'+p.name+'</span>'+
+                '<span class="prod-price">&#8369;'+p.raw.toLocaleString()+'</span>'+
+              '</div>'+
+              '<div class="prod-desc">'+p.desc+'</div>'+
+              '<div class="prod-specs-row">'+specsHtml+'</div>'+
+            '</div>'+
+            '<div class="prod-actions">'+
+              '<button class="btn-edit" onclick="openEdit(\''+p.id+'\')"><i class="fi fi-rr-edit"></i> Edit</button>'+
+              '<button class="btn-delete" onclick="deleteProduct(\''+p.id+'\')"><i class="fi fi-rr-trash"></i> Delete</button>'+
+            '</div>'+
+          '</div>'+
+        '</div>';
+      }).join('');
+      updateStats();
+    }
+
+    function updateStats() {
+      document.getElementById('stat-total').textContent = products.length;
+      document.getElementById('stat-instock').textContent = products.filter(function(p){ return p.stock==='in-stock'; }).length;
+      document.getElementById('stat-low').textContent = products.filter(function(p){ return p.stock==='low-stock'; }).length;
+      var cats = new Set(products.map(function(p){ return p.cat; }));
+      document.getElementById('stat-cats').textContent = cats.size;
+    }
+
+    // ── ADD PRODUCT ──
+    function addProduct() {
+      var name  = document.getElementById('new-name').value.trim();
+      var price = parseInt(document.getElementById('new-price').value);
+      var cat   = document.getElementById('new-cat').value;
+      var desc  = document.getElementById('new-desc').value.trim();
+      var specs = document.getElementById('new-specs').value.split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+      var stock = document.getElementById('new-stock').value;
+      if (!name || !price || !cat || !desc) { showToast('Please fill in all required fields.', 'error'); return; }
+      var id = 'prod-' + Date.now();
+      products.push({id:id, name:name, cat:cat, raw:price, desc:desc, specs:specs.length ? specs : [cat], stock:stock});
+      saveProducts();
+      renderProducts();
+      clearAddForm();
+      showToast('Product added successfully!', 'success');
+      updateShopData();
+    }
+
+    function clearAddForm() {
+      ['new-name','new-price','new-desc','new-specs'].forEach(function(id){ document.getElementById(id).value=''; });
+      document.getElementById('new-cat').value='';
+      document.getElementById('new-stock').value='in-stock';
+    }
+
+    // ── EDIT ──
+    function openEdit(id) {
+      var p = products.find(function(x){ return x.id===id; });
+      if (!p) return;
+      editingId = id;
+      document.getElementById('edit-id').value = id;
+      document.getElementById('edit-name').value = p.name;
+      document.getElementById('edit-price').value = p.raw;
+      document.getElementById('edit-cat').value = p.cat;
+      document.getElementById('edit-desc').value = p.desc;
+      document.getElementById('edit-specs').value = p.specs.join(', ');
+      document.getElementById('edit-stock').value = p.stock;
+      document.getElementById('edit-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function saveEdit() {
+      var id    = document.getElementById('edit-id').value;
+      var name  = document.getElementById('edit-name').value.trim();
+      var price = parseInt(document.getElementById('edit-price').value);
+      var cat   = document.getElementById('edit-cat').value;
+      var desc  = document.getElementById('edit-desc').value.trim();
+      var specs = document.getElementById('edit-specs').value.split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+      var stock = document.getElementById('edit-stock').value;
+      if (!name || !price || !cat) { showToast('Please fill in all required fields.', 'error'); return; }
+      var idx = products.findIndex(function(x){ return x.id===id; });
+      if (idx === -1) return;
+      products[idx] = {id:id, name:name, cat:cat, raw:price, desc:desc, specs:specs.length ? specs : [cat], stock:stock};
+      saveProducts();
+      renderProducts();
+      closeModal();
+      showToast('Product updated!', 'success');
+      updateShopData();
+    }
+
+    function closeModal() {
+      document.getElementById('edit-modal').classList.remove('open');
+      document.body.style.overflow = '';
+      editingId = null;
+    }
+    function closeModalOutside(e) {
+      if (e.target === document.getElementById('edit-modal')) closeModal();
+    }
+
+    // ── DELETE ──
+    function deleteProduct(id) {
+      var p = products.find(function(x){ return x.id===id; });
+      if (!p) return;
+      if (!confirm('Delete "' + p.name + '"? This cannot be undone.')) return;
+      products = products.filter(function(x){ return x.id!==id; });
+      saveProducts();
+      renderProducts();
+      showToast('Product deleted.', 'success');
+      updateShopData();
+    }
+
+    // ── SYNC TO SHOP ──
+    // Saves products to sessionStorage so shop.html can read them
+    function updateShopData() {
+      sessionStorage.setItem('prc_shop_products', JSON.stringify(products));
+    }
+
+    // ── TOAST ──
+    function showToast(msg, type) {
+      var t = document.getElementById('toast');
+      t.className = 'toast ' + (type||'success');
+      t.innerHTML = (type==='success' ? '<i class="fi fi-rr-check"></i> ' : '<i class="fi fi-rr-cross-circle"></i> ') + msg;
+      t.classList.add('show');
+      setTimeout(function(){ t.classList.remove('show'); }, 3000);
+    }
+
+    // Init
+    renderProducts();
+  </script>
+</body>
+</html>
