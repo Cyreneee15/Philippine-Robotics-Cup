@@ -161,6 +161,8 @@
     .sidebar-cat-btn:hover .sidebar-cat-logo img, .sidebar-cat-btn.active .sidebar-cat-logo img { filter: saturate(1) brightness(1.1) drop-shadow(0 0 6px rgba(139,126,255,0.45)); }
     .sidebar-cat-btn.active-mx .sidebar-cat-logo img { filter: saturate(1) brightness(1.1) drop-shadow(0 0 6px rgba(68,217,255,0.55)); }
     .sidebar-cat-btn.active-drone .sidebar-cat-logo img { filter: saturate(1) brightness(1.1) drop-shadow(0 0 6px rgba(255,160,48,0.55)); }
+    .sidebar-cat-logo svg { opacity: 0.60; transition: opacity 0.25s, filter 0.25s; filter: none; }
+    .sidebar-cat-btn:hover .sidebar-cat-logo svg, .sidebar-cat-btn.active-award .sidebar-cat-logo svg { opacity: 1; filter: drop-shadow(0 0 8px rgba(255,160,48,0.80)); }
     .sidebar-cat-text { flex: 1; min-width: 0; }
     .sidebar-cat-name { display: block; font-family: var(--font-hud); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-high); line-height: 1.2; margin-bottom: 2px; }
     .sidebar-cat-count { display: block; font-family: var(--font-body); font-size: 0.76rem; color: var(--text-dim); font-weight: 400; }
@@ -545,15 +547,24 @@
           <!-- SPECIAL AWARDS -->
           <div class="sidebar-section">
             <button class="sidebar-cat-btn" id="btn-award" onclick="selectCat('award')" aria-expanded="false">
-              <span class="sidebar-cat-logo" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;"><i class="fi fi-rr-star" style="font-size:1.4rem;color:var(--award-gold);"></i></span>
+              <span class="sidebar-cat-logo" style="width:72px;height:32px;display:flex;align-items:center;justify-content:center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 64 64" fill="none">
+                  <circle cx="32" cy="40" r="18" fill="#FFA030" opacity="0.18"/>
+                  <circle cx="32" cy="40" r="18" stroke="#FFA030" stroke-width="2.5"/>
+                  <circle cx="32" cy="40" r="12" fill="#FFA030" opacity="0.35"/>
+                  <text x="32" y="45" text-anchor="middle" font-size="13" font-weight="900" fill="#FFA030" font-family="Arial,sans-serif">★</text>
+                  <path d="M24 4 L28 20 L32 14 L36 20 L40 4 L36 8 L32 2 L28 8 Z" fill="#FFA030"/>
+                  <rect x="28" y="18" width="8" height="6" rx="1" fill="#FFA030"/>
+                </svg>
+              </span>
               <span class="sidebar-cat-text"><span class="sidebar-cat-name">Special Awards</span><span class="sidebar-cat-count">4 categories</span></span>
               <i class="fi fi-rr-angle-right sidebar-cat-chevron"></i>
             </button>
             <div class="sidebar-subs" id="subs-award">
-              <button class="sidebar-sub-btn" id="sub-award-bc"  onclick="selectSub('award','bc')"><span class="sub-num">01</span>Best Coach</button>
-              <button class="sidebar-sub-btn" id="sub-award-en"  onclick="selectSub('award','en')"><span class="sub-num">02</span>Best in Engineering Notebook</button>
-              <button class="sidebar-sub-btn" id="sub-award-rd"  onclick="selectSub('award','rd')"><span class="sub-num">03</span>Best in Robot Design</button>
-              <button class="sidebar-sub-btn" id="sub-award-bs"  onclick="selectSub('award','bs')"><span class="sub-num">04</span>Best Striker</button>
+              <button class="sidebar-sub-btn" id="sub-award-bc"  onclick="selectSub('award','bc')" style="font-size:0.74rem;"><span class="sub-num">01</span>Best Coach</button>
+              <button class="sidebar-sub-btn" id="sub-award-en"  onclick="selectSub('award','en')" style="font-size:0.74rem;"><span class="sub-num">02</span>Best in Engineering Notebook</button>
+              <button class="sidebar-sub-btn" id="sub-award-rd"  onclick="selectSub('award','rd')" style="font-size:0.74rem;"><span class="sub-num">03</span>Best in Robot Design</button>
+              <button class="sidebar-sub-btn" id="sub-award-bs"  onclick="selectSub('award','bs')" style="font-size:0.74rem;"><span class="sub-num">04</span>Best Striker</button>
             </div>
           </div>
 
@@ -922,7 +933,7 @@
   <div class="award-section">
     <div class="award-section-header">
       <div class="award-section-eyebrow"><span class="label-dot"></span>Special Award</div>
-      <div class="award-section-title">Best Coach</div>
+      <div class="award-section-title" style="color:var(--creo-volt);text-shadow:0 0 28px rgba(255,233,48,0.65),0 0 70px rgba(255,233,48,0.25),0 0 120px rgba(255,160,48,0.12);">Best Coach</div>
       <div class="award-section-divider"><div class="award-section-divider-line"></div><div class="award-section-divider-diamond"></div></div>
     </div>
     <div class="award-photo-grid cols-3">
@@ -966,7 +977,7 @@
   <div class="award-section">
     <div class="award-section-header">
       <div class="award-section-eyebrow"><span class="label-dot"></span>Special Award</div>
-      <div class="award-section-title">Best in Engineering Notebook</div>
+      <div class="award-section-title" style="color:var(--creo-volt);text-shadow:0 0 28px rgba(255,233,48,0.65),0 0 70px rgba(255,233,48,0.25),0 0 120px rgba(255,160,48,0.12);">Best in Engineering Notebook</div>
       <div class="award-section-divider"><div class="award-section-divider-line"></div><div class="award-section-divider-diamond"></div></div>
     </div>
     <div class="award-photo-grid">
@@ -1023,7 +1034,7 @@
   <div class="award-section">
     <div class="award-section-header">
       <div class="award-section-eyebrow"><span class="label-dot"></span>Special Award</div>
-      <div class="award-section-title">Best in Robot Design</div>
+      <div class="award-section-title" style="color:var(--creo-volt);text-shadow:0 0 28px rgba(255,233,48,0.65),0 0 70px rgba(255,233,48,0.25),0 0 120px rgba(255,160,48,0.12);">Best in Robot Design</div>
       <div class="award-section-divider"><div class="award-section-divider-line"></div><div class="award-section-divider-diamond"></div></div>
     </div>
     <div class="award-photo-grid">
@@ -1090,7 +1101,7 @@
   <div class="award-section">
     <div class="award-section-header">
       <div class="award-section-eyebrow"><span class="label-dot"></span>Special Award</div>
-      <div class="award-section-title">Best Striker</div>
+      <div class="award-section-title" style="color:var(--creo-volt);text-shadow:0 0 28px rgba(255,233,48,0.65),0 0 70px rgba(255,233,48,0.25),0 0 120px rgba(255,160,48,0.12);">Best Striker</div>
       <div class="award-section-divider"><div class="award-section-divider-line"></div><div class="award-section-divider-diamond"></div></div>
     </div>
     <div class="award-photo-grid cols-1">
@@ -1122,7 +1133,7 @@
             <div class="footer-contact-list">
               <div class="footer-contact-item"><i class="fi fi-brands-facebook"></i><a href="https://www.facebook.com/profile.php?id=61579706372017" target="_blank" rel="noopener">Philippine Robotics Cup</a></div>
               <div class="footer-contact-item"><i class="fi fi-rr-phone-call"></i><a href="tel:+639177713961">+63 917 771 3961</a></div>
-              <div class="footer-contact-item"><i class="fi fi-rr-envelope"></i><a href="mailto:info@prc.com">info@prc.com</a></div>
+              <div class="footer-contact-item"><i class="fi fi-rr-envelope"></i><a href="/cdn-cgi/l/email-protection#3950575f5679494b5a175a5654"><span class="__cf_email__" data-cfemail="dcb5b2bab39cacaebff2bfb3b1">[email&#160;protected]</span></a></div>
             </div>
             <div class="social-links"><a href="https://www.facebook.com/profile.php?id=61579706372017" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><i class="fi fi-brands-facebook"></i></a></div>
           </div>
@@ -1139,7 +1150,7 @@
 
   </div><!-- /page-wrapper -->
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     /* CURSOR */
     var dot  = document.getElementById('cursorDot');
     var ring = document.getElementById('cursorRing');
@@ -1230,9 +1241,8 @@
     /* SCROLL REVEAL */
     var ro = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
-    }, { threshold: 0.06, rootMargin: '0px 0px -20px 0px' });
+    }, { threshold: 0.10 });
     document.querySelectorAll('.reveal').forEach(function(el) { ro.observe(el); });
-
   </script>
 </body>
 </html>
