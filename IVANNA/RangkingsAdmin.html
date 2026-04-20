@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>PRC 2026 — Rankings Admin</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --prc-violet:#8B7EFF;--prc-ice:#C4EEFF;--creo-amber:#FFA030;--creo-volt:#FFA030;
+      --creo-sky:#44D9FF;--creo-red:#FF4466;--creo-green:#00CC88;
+      --bg-void:#03020D;--bg-deep:#06051A;--bg-card:#0e0d24;
+      --border-neon:rgba(139,126,255,0.22);
+      --text-high:#F2EEFF;--text-mid:#C8C0F0;--text-soft:#9A90CC;--text-dim:#7068A8;
+      --font-hud:'Orbitron',monospace;--font-body:'Exo 2',sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html,body{min-height:100vh;}
+    body{font-family:var(--font-body);background:var(--bg-void);color:var(--text-high);}
+    button{font-family:inherit;border:none;background:none;cursor:pointer;}
+    input,select{font-family:var(--font-body);}
+    .hex-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+      background-image:linear-gradient(rgba(139,126,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(139,126,255,0.04) 1px,transparent 1px);
+      background-size:50px 50px;}
+    .hex-grid::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(119,51,255,0.14) 0%,transparent 70%);}
+    body::after{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;
+      background:repeating-linear-gradient(to bottom,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px);}
+
+    /* TOP BAR */
+    .admin-topbar{position:sticky;top:0;z-index:500;background:rgba(3,2,13,0.96);backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border-neon);height:64px;display:flex;align-items:center;
+      padding:0 40px;justify-content:space-between;gap:16px;position:relative;z-index:10;}
+    .topbar-brand{font-family:var(--font-hud);font-size:0.68rem;font-weight:700;color:var(--creo-volt);letter-spacing:0.06em;}
+    .topbar-brand span{color:var(--text-dim);font-size:0.50rem;display:block;letter-spacing:0.14em;text-transform:uppercase;margin-top:2px;}
+    .topbar-right{display:flex;align-items:center;gap:8px;}
+    .topbar-btn{font-family:var(--font-hud);font-size:0.50rem;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;
+      padding:8px 16px;border:1px solid rgba(139,126,255,0.24);color:var(--text-soft);background:transparent;
+      cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:7px;}
+    .topbar-btn:hover{border-color:var(--prc-violet);color:var(--prc-violet);background:rgba(139,126,255,0.06);}
+    .topbar-btn.save-btn{border-color:rgba(255,160,48,0.36);color:var(--creo-volt);}
+    .topbar-btn.save-btn:hover{background:rgba(255,160,48,0.10);box-shadow:0 0 18px rgba(255,160,48,0.28);}
+
+    /* MAIN */
+    .admin-main{max-width:1200px;margin:0 auto;padding:44px 40px 100px;position:relative;z-index:1;}
+
+    .page-eyebrow{font-family:var(--font-hud);font-size:0.50rem;font-weight:700;letter-spacing:0.20em;
+      text-transform:uppercase;color:var(--creo-volt);margin-bottom:8px;}
+    .page-eyebrow::before{content:'// ';}
+    .page-title{font-family:var(--font-hud);font-size:1.9rem;font-weight:900;color:#fff;margin-bottom:6px;}
+    .page-title span{color:var(--creo-volt);}
+    .page-sub{font-size:0.875rem;color:var(--text-dim);line-height:1.6;margin-bottom:36px;}
+
+    .save-notice{background:rgba(255,160,48,0.05);border:1px solid rgba(255,160,48,0.22);padding:12px 18px;
+      margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;}
+    .save-notice-txt{font-family:var(--font-hud);font-size:0.52rem;color:var(--creo-volt);letter-spacing:0.08em;}
+    .save-notice-txt span{color:var(--text-dim);font-size:0.48rem;display:block;margin-top:3px;}
+    .btn-export{font-family:var(--font-hud);font-size:0.54rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+      padding:9px 20px;border:1px solid rgba(255,160,48,0.36);color:var(--creo-volt);background:transparent;
+      cursor:pointer;transition:all 0.22s;display:inline-flex;align-items:center;gap:8px;
+      clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
+    .btn-export:hover{background:rgba(255,160,48,0.10);box-shadow:0 0 20px rgba(255,160,48,0.28);}
+
+    /* YEAR TABS */
+    .year-tabs{display:flex;gap:0;margin-bottom:32px;border:1px solid var(--border-neon);overflow:hidden;width:fit-content;}
+    .year-tab{font-family:var(--font-hud);font-size:0.72rem;font-weight:900;letter-spacing:0.10em;
+      padding:12px 28px;color:var(--text-dim);background:transparent;cursor:pointer;
+      transition:all 0.2s;border-right:1px solid var(--border-neon);position:relative;}
+    .year-tab:last-child{border-right:none;}
+    .year-tab:hover{color:var(--creo-volt);background:rgba(255,160,48,0.05);}
+    .year-tab.active{color:var(--creo-volt);background:rgba(255,160,48,0.08);}
+    .year-tab.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--creo-volt),transparent);}
+    .year-panel{display:none;}
+    .year-panel.active{display:block;}
+
+    /* CATEGORY TABS */
+    .cat-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px;}
+    .cat-tab{font-family:var(--font-hud);font-size:0.54rem;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;
+      padding:8px 16px;border:1px solid rgba(139,126,255,0.22);color:var(--text-soft);background:transparent;
+      cursor:pointer;transition:all 0.2s;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);}
+    .cat-tab:hover{border-color:var(--prc-violet);color:var(--prc-violet);background:rgba(139,126,255,0.07);}
+    .cat-tab.active{border-color:var(--creo-volt);color:var(--creo-volt);background:rgba(255,160,48,0.07);box-shadow:0 0 14px rgba(255,160,48,0.18);}
+
+    .cat-panel{display:none;}
+    .cat-panel.active{display:block;}
+    .cat-panel-hdr{background:var(--bg-card);border:1px solid var(--border-neon);padding:16px 22px;margin-bottom:14px;
+      display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;position:relative;overflow:hidden;}
+    .cat-panel-hdr::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--creo-volt),transparent);}
+    .cat-panel-title{font-family:var(--font-hud);font-size:0.72rem;font-weight:800;color:var(--text-high);display:flex;align-items:center;gap:10px;}
+    .cat-panel-title span{color:var(--creo-volt);}
+    .btn-add-entry{font-family:var(--font-hud);font-size:0.52rem;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;
+      padding:8px 18px;border:1px solid rgba(255,160,48,0.30);color:var(--creo-volt);background:transparent;
+      cursor:pointer;transition:all 0.22s;display:inline-flex;align-items:center;gap:7px;}
+    .btn-add-entry:hover{background:rgba(255,160,48,0.08);box-shadow:0 0 14px rgba(255,160,48,0.22);}
+
+    /* RANKING TABLE */
+    .rank-table{background:var(--bg-card);border:1px solid var(--border-neon);overflow:hidden;}
+    .rank-table-hdr{display:grid;grid-template-columns:52px 44px 1fr 1fr 160px 44px;gap:0;padding:10px 16px;
+      background:rgba(139,126,255,0.08);border-bottom:1px solid var(--border-neon);
+      font-family:var(--font-hud);font-size:0.48rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-soft);}
+    .rank-entry{display:grid;grid-template-columns:52px 44px 1fr 1fr 160px 44px;gap:0;align-items:center;
+      border-bottom:1px solid rgba(139,126,255,0.07);transition:background 0.18s;}
+    .rank-entry:last-child{border-bottom:none;}
+    .rank-entry:hover{background:rgba(139,126,255,0.04);}
+    .rank-cell{padding:10px 10px;}
+    .rank-num-disp{font-family:var(--font-hud);font-size:1.1rem;font-weight:900;text-align:center;line-height:1;}
+    .rn-1{color:var(--creo-volt);text-shadow:0 0 14px rgba(255,160,48,0.70);}
+    .rn-2{color:var(--prc-ice);text-shadow:0 0 14px rgba(196,238,255,0.70);}
+    .rn-3{color:var(--creo-amber);text-shadow:0 0 14px rgba(255,160,48,0.70);}
+    .rn-other{color:var(--text-dim);font-size:0.88rem;}
+    .medal-disp{text-align:center;font-size:1.1rem;}
+    .rank-field-wrap{padding:8px 8px;}
+    .rank-input{background:rgba(139,126,255,0.04);border:1px solid rgba(139,126,255,0.16);color:var(--text-high);
+      font-family:var(--font-body);font-size:0.80rem;padding:7px 10px;width:100%;outline:none;transition:border-color 0.2s;}
+    .rank-input:focus{border-color:var(--prc-violet);box-shadow:0 0 10px rgba(139,126,255,0.16);}
+    .rank-select{background:rgba(139,126,255,0.04);border:1px solid rgba(139,126,255,0.16);color:var(--text-high);
+      font-family:var(--font-hud);font-size:0.50rem;font-weight:700;letter-spacing:0.08em;
+      padding:7px 10px;width:100%;outline:none;transition:border-color 0.2s;cursor:pointer;}
+    .rank-select:focus{border-color:var(--prc-violet);}
+    .rank-select option{background:#0e0d24;color:var(--text-high);}
+    .btn-del-entry{background:none;border:1px solid rgba(255,68,102,0.18);color:rgba(255,68,102,0.45);
+      cursor:pointer;width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+      font-size:0.75rem;transition:all 0.2s;margin:0 auto;}
+    .btn-del-entry:hover{border-color:var(--creo-red);color:var(--creo-red);background:rgba(255,68,102,0.07);}
+    .empty-cat{text-align:center;padding:40px;font-family:var(--font-hud);font-size:0.56rem;color:var(--text-dim);letter-spacing:0.08em;}
+
+    /* EXPORT MODAL */
+    .modal-bg{position:fixed;inset:0;z-index:9000;background:rgba(3,2,13,0.92);backdrop-filter:blur(12px);
+      display:none;align-items:center;justify-content:center;padding:20px;}
+    .modal-bg.open{display:flex;}
+    .modal-box{background:var(--bg-deep);border:1px solid var(--border-neon);width:100%;max-width:720px;
+      max-height:88vh;display:flex;flex-direction:column;position:relative;}
+    .modal-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--creo-volt),transparent);}
+    .modal-hdr{padding:18px 24px;border-bottom:1px solid var(--border-neon);background:rgba(255,160,48,0.04);
+      display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+    .modal-hdr-title{font-family:var(--font-hud);font-size:0.64rem;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;color:var(--creo-volt);}
+    .modal-close{width:30px;height:30px;background:rgba(139,126,255,0.06);border:1px solid rgba(139,126,255,0.20);
+      color:var(--text-soft);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.72rem;transition:all 0.2s;}
+    .modal-close:hover{color:var(--prc-violet);}
+    .modal-body{padding:20px 24px;overflow-y:auto;flex:1;}
+    .export-desc{font-size:0.82rem;color:var(--text-dim);margin-bottom:16px;line-height:1.6;}
+    .export-code{background:rgba(0,0,0,0.40);border:1px solid rgba(255,160,48,0.18);padding:16px;
+      font-family:'Courier New',monospace;font-size:0.72rem;color:var(--text-mid);
+      white-space:pre-wrap;word-break:break-all;max-height:400px;overflow-y:auto;line-height:1.6;}
+    .modal-ftr{padding:14px 24px;border-top:1px solid rgba(139,126,255,0.10);background:rgba(0,0,0,0.18);
+      display:flex;gap:10px;justify-content:flex-end;flex-shrink:0;}
+    .btn-copy-code{font-family:var(--font-hud);font-size:0.54rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+      padding:10px 22px;border:1px solid var(--creo-volt);color:var(--creo-volt);background:transparent;
+      cursor:pointer;transition:all 0.22s;display:inline-flex;align-items:center;gap:8px;
+      clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
+    .btn-copy-code:hover{background:rgba(255,160,48,0.10);color:#fff;}
+
+    /* TOAST */
+    .toast{position:fixed;bottom:28px;right:28px;z-index:99999;background:var(--bg-card);border:1px solid var(--border-neon);
+      padding:13px 22px;font-family:var(--font-hud);font-size:0.56rem;font-weight:700;letter-spacing:0.10em;
+      display:flex;align-items:center;gap:10px;transform:translateY(90px);opacity:0;
+      transition:all 0.34s cubic-bezier(0.23,1,0.32,1);pointer-events:none;}
+    .toast.show{transform:translateY(0);opacity:1;}
+    .toast.success{border-color:rgba(0,204,136,0.40);color:var(--creo-green);}
+    .toast.error{border-color:rgba(255,68,102,0.40);color:var(--creo-red);}
+    .toast.info{border-color:rgba(255,160,48,0.40);color:var(--creo-volt);}
+
+    @media(max-width:900px){
+      .rank-table-hdr,.rank-entry{grid-template-columns:40px 36px 1fr 120px 44px;}
+      .col-school{display:none;}
+      .admin-topbar,.admin-main{padding-left:16px;padding-right:16px;}
+    }
+    @media(max-width:600px){
+      .rank-table-hdr,.rank-entry{grid-template-columns:36px 1fr 120px 36px;}
+      .col-medal,.col-school{display:none;}
+      .cat-tabs{gap:4px;}.cat-tab{font-size:0.46rem;padding:6px 10px;}
+    }
+    ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg-void);}
+    ::-webkit-scrollbar-thumb{background:var(--prc-violet);border-radius:2px;}
+  </style>
+</head>
+<body>
+  <div class="hex-grid" aria-hidden="true"></div>
+
+  <div class="admin-topbar">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div class="topbar-brand">PRC Rankings <span id="topbar-year-label">2026 — Admin Panel</span></div>
+    </div>
+    <div class="topbar-right">
+      <button class="topbar-btn save-btn" onclick="openExport()">&#8595; Export JS Code</button>
+    </div>
+  </div>
+
+  <div class="admin-main">
+    <div class="page-eyebrow">Rankings Management</div>
+    <h1 class="page-title">Rankings <span>Manager</span></h1>
+    <p class="page-sub">Edit team names, schools, and placement for all categories. Click <strong style="color:var(--creo-volt);">Export JS Code</strong> when done, then paste it into rankings.html to update the live page.</p>
+
+    <div class="save-notice">
+      <div class="save-notice-txt">
+        &#9888; How to save changes
+        <span>Edit the rankings below → click "Export JS Code" → copy the code → paste into rankings.html to replace the var D={...} block.</span>
+      </div>
+      <button class="btn-export" onclick="openExport()">&#8595; Export JS Code</button>
+    </div>
+
+    <div class="year-tabs" id="year-tabs"></div>
+    <div id="year-panels"></div>
+  </div>
+
+  <!-- EXPORT MODAL -->
+  <div class="modal-bg" id="export-modal" onclick="closeExportOutside(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-hdr">
+        <div class="modal-hdr-title">&#8595; Export Rankings JS Code</div>
+        <button class="modal-close" onclick="closeExport()">&#10005;</button>
+      </div>
+      <div class="modal-body">
+        <p class="export-desc">Copy the code below for the <strong id="export-yr-label" style="color:var(--creo-volt);">2026</strong> rankings and replace the <code style="color:var(--creo-volt);background:rgba(255,160,48,0.08);padding:1px 6px;">var D={...};</code> block in your <strong>rankings.html</strong> file.</p>
+        <div class="export-code" id="export-code"></div>
+      </div>
+      <div class="modal-ftr">
+        <button class="btn-copy-code" onclick="copyExport()">&#10010; Copy Code</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    /* ══════════════════════════════════════════
+       ALL YEARS DATA
+    ══════════════════════════════════════════ */
+    var ALL_YEARS = {
+      '2024': {
+        'ei':{t:'Emerging Innovators',c:'8 Teams',r:[
+          {n:1,team:'TechPioneers Alpha',school:'Bethel Academy',s:'champion',st:'Champion'},
+          {n:2,team:'CircuitBreakers',school:'Capas National High School',s:'second',st:'2nd Place'},
+          {n:3,team:'RoboSpark PH',school:'Lucena City National High School',s:'third',st:'3rd Place'},
+          {n:4,team:'Innovators Guild',school:'Tayabas East Central School',s:'finalist',st:'Finalist'},
+          {n:5,team:'STEM Warriors',school:'Halapitan National High School',s:'finalist',st:'Finalist'},
+          {n:6,team:'Micro Builders',school:'Kitaotao National High School',s:'finalist',st:'Finalist'},
+          {n:7,team:'CodeForge Team',school:'Kalilangan National High School',s:'competing',st:'Participant'},
+          {n:8,team:'NexGen Bots',school:'Pangantucan National High School',s:'competing',st:'Participant'}
+        ]},
+        'as':{t:'Aspiring Makers',c:'7 Teams',r:[
+          {n:1,team:'Maker Squad PH',school:'AUP \u2013 Academy',s:'champion',st:'Champion'},
+          {n:2,team:'BotBuilders 1',school:'Bethel Academy',s:'second',st:'2nd Place'},
+          {n:3,team:'Create & Code',school:'Sta. Maria Integrated High School',s:'third',st:'3rd Place'},
+          {n:4,team:'Young Innovators',school:'St. Therese School of Southville Inc.',s:'finalist',st:'Finalist'},
+          {n:5,team:'TechKids Alpha',school:'Dr. Clemente N. Dayrit Sr. \u2013 ES',s:'finalist',st:'Finalist'},
+          {n:6,team:'Sparks PH',school:'Tayabas East Central School',s:'competing',st:'Participant'},
+          {n:7,team:'RoboJuniors',school:'Kitaotao National High School',s:'competing',st:'Participant'}
+        ]},
+        'lt':{t:'Line Tracing',c:'6 Teams',r:[
+          {n:1,team:'TraceX Elite',school:'Almond Academy Foundation, Inc.',s:'champion',st:'Champion'},
+          {n:2,team:'LineRiders PH',school:'Capas National High School',s:'second',st:'2nd Place'},
+          {n:3,team:'PathBot Alpha',school:'Luis Y. Ferrer Jr. Senior High School',s:'third',st:'3rd Place'},
+          {n:4,team:'Precision Squad',school:'Putatan Elementary School',s:'finalist',st:'Finalist'},
+          {n:5,team:'FastTrace Team',school:'Tayabas East Central School',s:'finalist',st:'Finalist'},
+          {n:6,team:'Circuit Crawlers',school:'SHS Within Bacoor Elementary School',s:'competing',st:'Participant'}
+        ]},
+        'sb':{t:'Sumobot',c:'4 Teams',r:[
+          {n:1,team:'Iron Smashers',school:'Dr. Clemente N. Dayrit Sr. \u2013 ES',s:'champion',st:'Champion'},
+          {n:2,team:'Sumo Kings',school:'Quezon Bukidnon Comprehensive NHS',s:'second',st:'2nd Place'},
+          {n:3,team:'Battle Bots PH',school:'Sampaga Elementary School',s:'third',st:'3rd Place'},
+          {n:4,team:'Force Pushers',school:'SHS Within Bacoor Elementary School',s:'finalist',st:'Finalist'}
+        ]},
+        'mx-starter':{t:'MakeX Starter',c:'5 Teams',r:[
+          {n:1,team:'MakeX Pioneers',school:'Luis Palad Integrated High School Tayabas City',s:'champion',st:'Champion'},
+          {n:2,team:'BlockMinds',school:'Adventist University of the Philippines Academy',s:'second',st:'2nd Place'},
+          {n:3,team:'Mission Crew PH',school:'Governor Ferrer Memorial Integrated National High School',s:'third',st:'3rd Place'},
+          {n:4,team:'Build & Code',school:'St. Therese School of Southville Inc.',s:'finalist',st:'Finalist'},
+          {n:5,team:'Tech Builders',school:'Capas National High School',s:'competing',st:'Participant'}
+        ]},
+        'drone':{t:'Drone Soccer',c:'5 Teams',r:[
+          {n:1,team:'SkyForce Alpha',school:'AUP \u2013 Academy',s:'champion',st:'Champion'},
+          {n:2,team:'Aerial Aces',school:'Aguinaldo Elementary School',s:'second',st:'2nd Place'},
+          {n:3,team:'DroneKings PH',school:'Bethel Academy',s:'third',st:'3rd Place'},
+          {n:4,team:'Sky Warriors',school:'Emiliano Tria Tirona Memorial NIHS',s:'finalist',st:'Finalist'},
+          {n:5,team:'AeroTeam 1',school:'Tayabas East Central School',s:'competing',st:'Participant'}
+        ]},
+        'rs':{t:'Robot Soccer',c:'\u2014',r:[]},
+        'nav-a':{t:'Navigation \u2013 Autonomous',c:'\u2014',r:[]},
+        'nav-m':{t:'Navigation \u2013 Manual',c:'\u2014',r:[]}
+      },
+
+      '2025': {
+        'ei':{t:'Emerging Innovators',c:'10 Teams',r:[
+          {n:1,team:'AUPA RoboLights',school:'AUP \u2013 Academy',s:'champion',st:'Champion'},
+          {n:2,team:'The Mechatronics',school:'Bethel Academy',s:'second',st:'2nd Place'},
+          {n:3,team:'CNHS Tarlac',school:'Capas National High School',s:'third',st:'3rd Place'},
+          {n:4,team:'San Fernando Team 1 | 2 | 3',school:'Halapitan National High School',s:'finalist',st:'Finalist'},
+          {n:5,team:'Libona High',school:'Libona National High School',s:'finalist',st:'Finalist'},
+          {n:6,team:'Codesters | Steminators',school:'Malacampa National High School',s:'finalist',st:'Finalist'},
+          {n:7,team:'SJCHS Robo Titans',school:'San Jose Community High School',s:'finalist',st:'Finalist'},
+          {n:8,team:'TugSayVenture',school:'Tuguegarao City Science High School',s:'finalist',st:'Finalist'},
+          {n:9,team:'PNHS Rovertics Team 4',school:'Pangantucan National High School',s:'competing',st:'Participant'},
+          {n:10,team:'Robot Wranglers 1',school:'Kalilangan National High School',s:'competing',st:'Participant'}
+        ]},
+        'as':{t:'Aspiring Makers',c:'10 Teams',r:[
+          {n:1,team:'AUPA RoboLights',school:'AUP \u2013 Academy',s:'champion',st:'Champion'},
+          {n:2,team:'The Mechatronics',school:'Bethel Academy',s:'second',st:'2nd Place'},
+          {n:3,team:'CNHS Tarlac',school:'Capas National High School',s:'third',st:'3rd Place'},
+          {n:4,team:'Clemendes RoboGriffins 1 | 2 | 3',school:'Dr. Clemente N. Dayrit Sr. \u2013 ES',s:'finalist',st:'Finalist'},
+          {n:5,team:'SMIHS Robotics Team',school:'Sta. Maria Integrated High School',s:'finalist',st:'Finalist'},
+          {n:6,team:'STSS Stark Club',school:'St. Therese School of Southville Inc.',s:'finalist',st:'Finalist'},
+          {n:7,team:'Beta Minds | Bot Starters',school:'Tayabas East Central School',s:'finalist',st:'Finalist'},
+          {n:8,team:'Spark Maker',school:'Kitaotao National High School',s:'finalist',st:'Finalist'},
+          {n:9,team:'PNHS Rovertics Team 2 | 3',school:'Pangantucan National High School',s:'competing',st:'Participant'},
+          {n:10,team:'Robot Wranglers 2',school:'Kalilangan National High School',s:'competing',st:'Participant'}
+        ]},
+        'lt':{t:'Line Tracing',c:'9 Teams',r:[
+          {n:1,team:'AAFI-Beginner, AAFI Team 1 | 2',school:'Almond Academy Foundation, Inc.',s:'champion',st:'Champion'},
+          {n:2,team:'CNHS Tarlac',school:'Capas National High School',s:'second',st:'2nd Place'},
+          {n:3,team:'Cybernetic Crusaders',school:'Lucena City National High School',s:'third',st:'3rd Place'},
+          {n:4,team:'Revoluisianos',school:'Luis Y. Ferrer Jr. Senior High School',s:'finalist',st:'Finalist'},
+          {n:5,team:'Putatan ES',school:'Putatan Elementary School',s:'finalist',st:'Finalist'},
+          {n:6,team:'Clemendes R0boGriffins 1 | 2 | 3',school:'Dr. Clemente N. Dayrit Sr. \u2013 ES',s:'finalist',st:'Finalist'},
+          {n:7,team:'Code Crawlers',school:'Tayabas East Central School',s:'finalist',st:'Finalist'},
+          {n:8,team:'TugSayVenture',school:'Tuguegarao City Science High School',s:'finalist',st:'Finalist'},
+          {n:9,team:'Technobots 1',school:'SHS Within Bacoor Elementary School',s:'competing',st:'Participant'}
+        ]},
+        'ib':{t:'Innovation Builders',c:'3 Teams',r:[
+          {n:1,team:'Robot Wranglers 3',school:'Kalilangan National High School',s:'champion',st:'Champion'},
+          {n:2,team:'Thomasian Angelican TechGuardians',school:'UST Angelicum College Inc.',s:'second',st:'2nd Place'},
+          {n:3,team:'TugSayVenture',school:'Tuguegarao City Science High School',s:'third',st:'3rd Place'}
+        ]},
+        'sb':{t:'Sumobot',c:'5 Teams',r:[
+          {n:1,team:'Clemendes RoboGriffins',school:'Dr. Clemente N. Dayrit Sr. \u2013 ES',s:'champion',st:'Champion'},
+          {n:2,team:'Kiokong Tech IQ',school:'Quezon Bukidnon Comprehensive NHS',s:'second',st:'2nd Place'},
+          {n:3,team:'SES Robotics',school:'Sampaga Elementary School',s:'third',st:'3rd Place'},
+          {n:4,team:'Technobots 2',school:'SHS Within Bacoor Elementary School',s:'finalist',st:'Finalist'},
+          {n:5,team:'Techno Minds',school:'Kitaotao National High School',s:'finalist',st:'Finalist'}
+        ]},
+        'mx-starter':{t:'MakeX Starter',c:'6 Teams',r:[
+          {n:1,team:'Cyberion Vex',school:'Luis Palad Integrated High School Tayabas City',s:'champion',st:'Champion'},
+          {n:2,team:'Triumphus Aquila',school:'Luis Palad Integrated High School Tayabas City',s:'second',st:'2nd Place'},
+          {n:3,team:'AUPA Robolights 1',school:'Adventist University of the Philippines Academy',s:'third',st:'3rd Place'},
+          {n:4,team:'AUPA Robolights 2',school:'Adventist University of the Philippines Academy',s:'finalist',st:'Finalist'},
+          {n:5,team:'RoboSapiens 1',school:'Governor Ferrer Memorial Integrated National High School',s:'finalist',st:'Finalist'},
+          {n:6,team:'STSS Stark Club 2',school:'St. Therese School of Southville Inc.',s:'finalist',st:'Finalist'}
+        ]},
+        'mx-explorer':{t:'MakeX Explorer',c:'6 Teams',r:[
+          {n:1,team:'Mechatronics 5',school:'Bethel Academy',s:'champion',st:'Champion'},
+          {n:2,team:'RoboBusters 1',school:'Emiliano Tria Tirona Memorial NIHS',s:'second',st:'2nd Place'},
+          {n:3,team:'MetroBotz',school:'Metro Lucena Integrated Learning Center, Inc.',s:'third',st:'3rd Place'},
+          {n:4,team:'Veltrix | Novaris Ascent',school:'Luis Palad Integrated High School',s:'finalist',st:'Finalist'},
+          {n:5,team:'CNHS Tarlac',school:'Capas National High School',s:'finalist',st:'Finalist'},
+          {n:6,team:'WCI Techno Knights',school:'Woodridge College Inc.',s:'finalist',st:'Finalist'}
+        ]},
+        'rs':{t:'Robot Soccer',c:'\u2014',r:[]},
+        'nav-a':{t:'Navigation \u2013 Autonomous',c:'\u2014',r:[]},
+        'nav-m':{t:'Navigation \u2013 Manual',c:'\u2014',r:[]},
+        'drone':{t:'Drone Soccer',c:'9 Teams',r:[
+          {n:1,team:'AUPA RoboLights',school:'AUP \u2013 Academy',s:'champion',st:'Champion'},
+          {n:2,team:'AES RoboTeam',school:'Aguinaldo Elementary School',s:'second',st:'2nd Place'},
+          {n:3,team:'The Mechatronics | Mechatronics 1 | Mechatronics 2',school:'Bethel Academy',s:'third',st:'3rd Place'},
+          {n:4,team:'RoboBusters | RoboBusters 2',school:'Emiliano Tria Tirona Memorial NIHS',s:'finalist',st:'Finalist'},
+          {n:5,team:'Flying Circuits',school:'Tayabas East Central School',s:'finalist',st:'Finalist'},
+          {n:6,team:'Sky Raiders',school:'Kalilangan National High School',s:'finalist',st:'Finalist'},
+          {n:7,team:'Aero Knights',school:'Lucena City National High School',s:'finalist',st:'Finalist'},
+          {n:8,team:'DroneStar',school:'St. Therese School of Southville Inc.',s:'competing',st:'Participant'},
+          {n:9,team:'Sky Titans',school:'Woodridge College Inc.',s:'competing',st:'Participant'}
+        ]}
+      },
+
+      '2026': {
+        'ei':{t:'Emerging Innovators',c:'\u2014',r:[]},
+        'as':{t:'Aspiring Makers',c:'\u2014',r:[]},
+        'lt':{t:'Line Tracing',c:'\u2014',r:[]},
+        'ib':{t:'Innovation Builders',c:'\u2014',r:[]},
+        'sb':{t:'Sumobot',c:'\u2014',r:[]},
+        'mx-starter':{t:'MakeX Starter',c:'\u2014',r:[]},
+        'mx-explorer':{t:'MakeX Explorer',c:'\u2014',r:[]},
+        'rs':{t:'Robot Soccer',c:'\u2014',r:[]},
+        'nav-a':{t:'Navigation \u2013 Autonomous',c:'\u2014',r:[]},
+        'nav-m':{t:'Navigation \u2013 Manual',c:'\u2014',r:[]},
+        'drone':{t:'Drone Soccer',c:'\u2014',r:[]}
+      }
+    };
+
+    var MEDALS = {champion:'🥇', second:'🥈', third:'🥉', finalist:'🏅', competing:''};
+    var STATUS_OPTS = [
+      {v:'champion', l:'Champion'},
+      {v:'second',   l:'2nd Place'},
+      {v:'third',    l:'3rd Place'},
+      {v:'finalist', l:'Finalist'},
+      {v:'competing',l:'Participant'}
+    ];
+
+    var activeYear = '2026';
+    var activeCat = {};
+
+    function buildUI() {
+      buildYearTabs();
+      buildYearPanels();
+      switchYear('2026');
+    }
+
+    /* ── YEAR TABS ── */
+    function buildYearTabs() {
+      document.getElementById('year-tabs').innerHTML = Object.keys(ALL_YEARS).map(function(yr) {
+        return '<button class="year-tab" id="ytab-'+yr+'" onclick="switchYear(\''+yr+'\')">'+yr+'</button>';
+      }).join('');
+    }
+
+    function switchYear(yr) {
+      activeYear = yr;
+      document.querySelectorAll('.year-tab').forEach(function(t){ t.classList.remove('active'); });
+      document.getElementById('ytab-'+yr).classList.add('active');
+      document.querySelectorAll('.year-panel').forEach(function(p){ p.classList.remove('active'); });
+      document.getElementById('ypanel-'+yr).classList.add('active');
+      document.getElementById('topbar-year-label').textContent = yr + ' \u2014 Admin Panel';
+      var firstCat = activeCat[yr] || Object.keys(ALL_YEARS[yr])[0];
+      switchCat(yr, firstCat);
+    }
+
+    /* ── YEAR PANELS ── */
+    function buildYearPanels() {
+      document.getElementById('year-panels').innerHTML = Object.keys(ALL_YEARS).map(function(yr) {
+        var D = ALL_YEARS[yr];
+        var tabs = Object.keys(D).map(function(key) {
+          return '<button class="cat-tab" id="ctab-'+yr+'-'+key+'" onclick="switchCat(\''+yr+'\',\''+key+'\')">'+D[key].t+'</button>';
+        }).join('');
+        var panels = Object.keys(D).map(function(key) {
+          return '<div class="cat-panel" id="cpanel-'+yr+'-'+key+'">'+buildPanel(yr, key)+'</div>';
+        }).join('');
+        return '<div class="year-panel" id="ypanel-'+yr+'">' +
+          '<div class="cat-tabs" id="ctabs-'+yr+'">'+tabs+'</div>' +
+          '<div id="cpanels-'+yr+'">'+panels+'</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    function switchCat(yr, key) {
+      activeCat[yr] = key;
+      document.querySelectorAll('#ctabs-'+yr+' .cat-tab').forEach(function(t){ t.classList.remove('active'); });
+      var ctab = document.getElementById('ctab-'+yr+'-'+key);
+      if (ctab) ctab.classList.add('active');
+      document.querySelectorAll('#cpanels-'+yr+' .cat-panel').forEach(function(p){ p.classList.remove('active'); });
+      var cpanel = document.getElementById('cpanel-'+yr+'-'+key);
+      if (cpanel) cpanel.classList.add('active');
+    }
+
+    function buildPanel(yr, key) {
+      var cat = ALL_YEARS[yr][key];
+      var rows = cat.r.map(function(entry, idx) { return buildRow(yr, key, idx, entry); }).join('');
+      return '<div class="cat-panel-hdr">' +
+        '<div class="cat-panel-title">'+cat.t+' <span style="font-size:0.60rem;font-weight:400;color:var(--text-dim);">\u2014 '+cat.c+'</span></div>' +
+        '<button class="btn-add-entry" onclick="addEntry(\''+yr+'\',\''+key+'\')">&#43; Add Team</button>' +
+      '</div>' +
+      '<div class="rank-table">' +
+        '<div class="rank-table-hdr">' +
+          '<div>Rank</div><div class="col-medal">Medal</div>' +
+          '<div>Team Name</div><div class="col-school">School</div>' +
+          '<div>Status</div><div></div>' +
+        '</div>' +
+        (rows || '<div class="empty-cat">No teams yet for '+yr+'. Click \u201c+ Add Team\u201d to begin.</div>') +
+      '</div>';
+    }
+
+    function buildRow(yr, key, idx, entry) {
+      var nc = entry.n <= 3 ? 'rn-'+['','1','2','3'][entry.n] : 'rn-other';
+      var statusOpts = STATUS_OPTS.map(function(o){
+        return '<option value="'+o.v+'"'+(entry.s===o.v?' selected':'')+'>'+o.l+'</option>';
+      }).join('');
+      return '<div class="rank-entry">' +
+        '<div class="rank-cell"><div class="rank-num-disp '+nc+'">'+entry.n+'</div></div>' +
+        '<div class="rank-cell col-medal"><div class="medal-disp">'+(MEDALS[entry.s]||'')+'</div></div>' +
+        '<div class="rank-field-wrap"><input class="rank-input" data-yr="'+yr+'" data-key="'+key+'" data-idx="'+idx+'" data-field="team" value="'+esc(entry.team)+'" onchange="updateField(this)" placeholder="Team name"/></div>' +
+        '<div class="rank-field-wrap col-school"><input class="rank-input" data-yr="'+yr+'" data-key="'+key+'" data-idx="'+idx+'" data-field="school" value="'+esc(entry.school)+'" onchange="updateField(this)" placeholder="School name"/></div>' +
+        '<div class="rank-field-wrap"><select class="rank-select" data-yr="'+yr+'" data-key="'+key+'" data-idx="'+idx+'" onchange="updateStatus(this)">'+statusOpts+'</select></div>' +
+        '<div class="rank-cell"><button class="btn-del-entry" onclick="delEntry(\''+yr+'\',\''+key+'\','+idx+')" title="Delete">&#10005;</button></div>' +
+      '</div>';
+    }
+
+    function esc(s){ return (s||'').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+
+    function updateField(inp) {
+      ALL_YEARS[inp.dataset.yr][inp.dataset.key].r[parseInt(inp.dataset.idx)][inp.dataset.field] = inp.value;
+      toast('Saved!', 'success');
+    }
+
+    function updateStatus(sel) {
+      var yr = sel.dataset.yr, key = sel.dataset.key, idx = parseInt(sel.dataset.idx), val = sel.value;
+      var labelMap = {champion:'Champion',second:'2nd Place',third:'3rd Place',finalist:'Finalist',competing:'Participant'};
+      ALL_YEARS[yr][key].r[idx].s = val;
+      ALL_YEARS[yr][key].r[idx].st = labelMap[val] || val;
+      refreshPanel(yr, key);
+      toast('Status updated!', 'success');
+    }
+
+    function refreshPanel(yr, key) {
+      var panel = document.getElementById('cpanel-'+yr+'-'+key);
+      if (panel) panel.innerHTML = buildPanel(yr, key);
+    }
+
+    function addEntry(yr, key) {
+      var cat = ALL_YEARS[yr][key];
+      cat.r.push({n: cat.r.length + 1, team:'New Team', school:'School Name', s:'competing', st:'Participant'});
+      cat.c = cat.r.length + ' Teams';
+      refreshPanel(yr, key);
+      toast('Team added!', 'info');
+    }
+
+    function delEntry(yr, key, idx) {
+      var cat = ALL_YEARS[yr][key];
+      if (!confirm('Remove "'+cat.r[idx].team+'" from '+cat.t+' '+yr+'?')) return;
+      cat.r.splice(idx, 1);
+      cat.r.forEach(function(e, i){ e.n = i + 1; });
+      cat.c = cat.r.length ? cat.r.length + ' Teams' : '\u2014';
+      refreshPanel(yr, key);
+      toast('Team removed.', 'info');
+    }
+
+    /* ── EXPORT (exports active year) ── */
+    function openExport() {
+      document.getElementById('export-code').textContent = generateCode();
+      document.getElementById('export-yr-label').textContent = activeYear;
+      document.getElementById('export-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeExport() {
+      document.getElementById('export-modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function closeExportOutside(e) { if(e.target===document.getElementById('export-modal')) closeExport(); }
+
+    function generateCode() {
+      var D = ALL_YEARS[activeYear];
+      var lines = ['// PRC '+activeYear+' Rankings Data', 'var D={'];
+      var keys = Object.keys(D);
+      keys.forEach(function(key, ki) {
+        var cat = D[key];
+        lines.push("  '"+key+"':{t:'"+cat.t.replace(/'/g,"\\'")+"',c:'"+cat.c+"',r:[");
+        cat.r.forEach(function(e, i) {
+          var comma = i < cat.r.length - 1 ? ',' : '';
+          lines.push("    {n:"+e.n+",team:'"+((e.team||'').replace(/'/g,"\\'"))+"',school:'"+((e.school||'').replace(/'/g,"\\'"))+"',s:'"+e.s+"',st:'"+((e.st||'').replace(/'/g,"\\'"))+"'}"+comma);
+        });
+        lines.push('  ]'+(ki < keys.length - 1 ? '},' : '}'));
+      });
+      lines.push('};');
+      return lines.join('\n');
+    }
+
+    function copyExport() {
+      navigator.clipboard.writeText(generateCode())
+        .then(function(){ toast('Code copied to clipboard!', 'success'); })
+        .catch(function(){ toast('Copy failed \u2014 select and copy manually.', 'error'); });
+    }
+
+    function toast(msg, type) {
+      var t = document.getElementById('toast');
+      var icons = {success:'✓', error:'✕', info:'●'};
+      t.className = 'toast ' + (type||'info');
+      t.innerHTML = '<span>'+(icons[type]||'●')+'</span> ' + msg;
+      t.classList.add('show');
+      clearTimeout(t._t);
+      t._t = setTimeout(function(){ t.classList.remove('show'); }, 2500);
+    }
+
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeExport(); });
+
+    buildUI();
+  </script>
+</body>
+</html>
