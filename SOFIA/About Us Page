@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<!-- PRC-WebApp/about.html -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#8B7EFF" />
+  <meta name="description" content="About Creotec Philippines Inc. — Industry-based training and learning company providing innovative technology-based curriculum and solutions." />
+  <title>About Us — Creotec Philippines</title>
+
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="shortcut icon" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css'>
+
+  <style>
+    :root {
+      --prc-violet:   #8B7EFF;
+      --prc-ice:      #C4EEFF;
+      --creo-purple:  #7733FF;
+      --creo-amber:   #FFA030;
+      --creo-volt:    #FFE930;
+      --creo-sky:     #44D9FF;
+      --neon-cyan:    var(--prc-ice);
+      --neon-magenta: #CC55FF;
+      --neon-volt:    var(--creo-volt);
+      --neon-orange:  var(--creo-amber);
+      --neon-primary: var(--prc-violet);
+      --neon-sky:     var(--creo-sky);
+      --bg-void:      #03020D;
+      --bg-deep:      #06051A;
+      --border-neon:  rgba(139,126,255,0.22);
+      --border-hot:   rgba(139,126,255,0.55);
+      --glow-cyan:    0 0 18px rgba(196,238,255,0.55), 0 0 55px rgba(196,238,255,0.18);
+      --glow-magenta: 0 0 18px rgba(204,85,255,0.55),  0 0 55px rgba(204,85,255,0.18);
+      --glow-volt:    0 0 18px rgba(255,233,48,0.60),  0 0 55px rgba(255,233,48,0.20);
+      --glow-orange:  0 0 18px rgba(255,160,48,0.55),  0 0 55px rgba(255,160,48,0.18);
+      --glow-primary: 0 0 18px rgba(139,126,255,0.60), 0 0 55px rgba(139,126,255,0.20);
+      --glow-sky:     0 0 18px rgba(68,217,255,0.55),  0 0 55px rgba(68,217,255,0.18);
+      --text-high:    #F2EEFF;
+      --text-mid:     #C8C0F0;
+      --text-soft:    #9A90CC;
+      --text-dim:     #7068A8;
+      --nav-height:   72px;
+      --font-hud:     'Orbitron', monospace;
+      --font-body:    'Exo 2', sans-serif;
+      --section-pad:  110px 0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-high);
+      overflow-x: hidden;
+      line-height: 1.6;
+      cursor: none;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { font-family: inherit; cursor: none; border: none; background: none; }
+
+    /* ===== CUSTOM CURSOR ===== */
+    .cursor-dot {
+      position: fixed; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--neon-primary); pointer-events: none; z-index: 99999;
+      transform: translate(-50%,-50%);
+      box-shadow: var(--glow-primary);
+      transition: transform 0.1s, background 0.2s;
+    }
+    .cursor-ring {
+      position: fixed; width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid rgba(139,126,255,0.65); pointer-events: none; z-index: 99998;
+      transform: translate(-50%,-50%);
+      transition: width 0.25s, height 0.25s, border-color 0.25s, transform 0.08s;
+    }
+    .cursor-ring.hovered { width: 56px; height: 56px; border-color: var(--creo-amber); border-width: 1.5px; }
+
+    /* ===== SCANLINES ===== */
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 9998; pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom, transparent, transparent 2px,
+        rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px
+      );
+    }
+
+    /* ===== HEX GRID BACKGROUND ===== */
+    .hex-grid {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(139,126,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139,126,255,0.04) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    .hex-grid::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%,  rgba(119,51,255,0.14) 0%, transparent 70%),
+                  radial-gradient(ellipse 60% 50% at 100% 100%, rgba(204,85,255,0.07) 0%, transparent 60%),
+                  radial-gradient(ellipse 50% 50% at 0% 80%,  rgba(139,126,255,0.09) 0%, transparent 60%);
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes scanDown {
+      from { transform: translateY(-100%); }
+      to   { transform: translateY(100vh); }
+    }
+    @keyframes neonPulse {
+      0%,100% { opacity:1; } 50% { opacity:0.7; }
+    }
+    @keyframes fadeInUp {
+      from { opacity:0; transform:translateY(28px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity:0; } to { opacity:1; }
+    }
+    @keyframes glitch1 {
+      0%,94%,100% { clip-path: inset(0 0 100% 0); transform: translate(0); }
+      95% { clip-path: inset(20% 0 60% 0); transform: translate(-4px, 1px); }
+      97% { clip-path: inset(60% 0 10% 0); transform: translate(4px, -1px); }
+      99% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 2px); }
+    }
+    @keyframes glitch2 {
+      0%,96%,100% { clip-path: inset(0 0 100% 0); transform: translate(0); }
+      97% { clip-path: inset(10% 0 80% 0); transform: translate(5px, -2px); }
+      99% { clip-path: inset(70% 0 5%  0); transform: translate(-5px, 1px); }
+    }
+
+    .page-wrapper { position: relative; z-index: 1; }
+
+    /* ===== NAV ===== */
+    #main-nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-height); z-index: 1000;
+      transition: background 0.4s, border-color 0.4s;
+      background: transparent;
+    }
+    #main-nav.scrolled {
+      background: rgba(3,2,13,0.94);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-neon);
+      box-shadow: 0 0 30px rgba(139,126,255,0.10);
+    }
+    .nav-inner {
+      max-width: 1340px; margin: 0 auto;
+      height: 100%; padding: 0 36px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .nav-logo img { height: 38px; width: auto; transition: filter 0.3s; }
+    .nav-logo:hover img { filter: drop-shadow(0 0 14px rgba(139,126,255,0.75)); }
+    .nav-brand { font-family: var(--font-hud); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.06em; line-height: 1.3; color: var(--prc-violet); text-shadow: 0 0 12px rgba(139,126,255,0.65); }
+    .nav-brand span { color: var(--text-soft); display: block; font-size: 0.58rem; font-weight: 400; letter-spacing: 0.10em; text-transform: uppercase; margin-top: 1px; }
+    .nav-links { display: flex; align-items: center; gap: 2px; }
+    .nav-links a {
+      font-family: var(--font-hud); font-size: 0.65rem; font-weight: 600;
+      color: var(--text-mid); padding: 8px 14px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      border-radius: 4px; transition: all 0.2s;
+      position: relative; white-space: nowrap;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--prc-violet); text-shadow: 0 0 12px rgba(139,126,255,0.85); }
+    .nav-cta {
+      background: transparent !important;
+      border: 1px solid var(--prc-violet) !important;
+      color: var(--prc-violet) !important;
+      padding: 8px 20px !important;
+      border-radius: 3px !important;
+      box-shadow: 0 0 15px rgba(139,126,255,0.28), inset 0 0 15px rgba(139,126,255,0.06) !important;
+      transition: all 0.25s !important;
+      margin-left: 8px;
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    }
+    .nav-cta:hover {
+      background: rgba(139,126,255,0.12) !important;
+      box-shadow: 0 0 30px rgba(139,126,255,0.52), inset 0 0 20px rgba(139,126,255,0.10) !important;
+      color: #fff !important;
+    }
+    .nav-hamburger {
+      display: none; flex-direction: column; justify-content: center; align-items: center;
+      gap: 5px; width: 44px; height: 44px; padding: 0; cursor: none;
+      background: rgba(139,126,255,0.06); border: 1px solid var(--border-neon);
+      border-radius: 4px; flex-shrink: 0; z-index: 1002;
+      -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+      transition: all 0.2s;
+    }
+    .nav-hamburger:hover { background: rgba(139,126,255,0.14); box-shadow: 0 0 14px rgba(139,126,255,0.28); }
+    .nav-hamburger span { width: 20px; height: 1.5px; background: var(--prc-violet); border-radius: 2px; transition: transform 0.28s, opacity 0.28s; display: block; pointer-events: none; }
+    .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+    .nav-mobile {
+      display: none; position: fixed; top: var(--nav-height); left: 0; right: 0;
+      background: rgba(3,2,13,0.98); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-neon);
+      padding: 12px 18px 24px; z-index: 1000;
+      flex-direction: column; gap: 2px;
+      box-shadow: 0 20px 60px rgba(139,126,255,0.09);
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      font-family: var(--font-hud); font-size: 0.70rem; font-weight: 600;
+      color: var(--text-mid); padding: 13px 14px; border-radius: 3px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: all 0.2s; display: flex; align-items: center; gap: 12px;
+    }
+    .nav-mobile a i { font-size: 1rem; color: var(--prc-violet); }
+    .nav-mobile a:hover { color: var(--prc-violet); background: rgba(139,126,255,0.07); text-shadow: 0 0 10px rgba(139,126,255,0.55); }
+    .nav-mobile .nav-cta { border: 1px solid var(--prc-violet) !important; color: var(--prc-violet) !important; margin-top: 10px; justify-content: center; border-radius: 3px !important; clip-path: none !important; }
+
+    /* ===== SHARED COMPONENTS ===== */
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-hud); font-size: 0.60rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--creo-amber); margin-bottom: 14px;
+    }
+    .section-eyebrow::before, .section-eyebrow::after {
+      content: ''; flex: none; width: 28px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--creo-amber));
+    }
+    .section-eyebrow::after { background: linear-gradient(90deg, var(--creo-amber), transparent); }
+
+    .btn-neon-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-hud); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      background: var(--prc-violet); color: #fff;
+      padding: 14px 32px; border-radius: 2px;
+      box-shadow: 0 0 24px rgba(139,126,255,0.45), 0 0 60px rgba(139,126,255,0.15);
+      transition: all 0.25s;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+    .btn-neon-primary:hover {
+      background: #9d92ff;
+      box-shadow: 0 0 40px rgba(139,126,255,0.70), 0 0 90px rgba(139,126,255,0.25);
+      transform: translateY(-2px);
+    }
+    .btn-neon-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-hud); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      background: transparent; color: var(--text-high);
+      padding: 13px 30px; border-radius: 2px;
+      border: 1px solid var(--border-hot);
+      box-shadow: 0 0 14px rgba(139,126,255,0.14), inset 0 0 14px rgba(139,126,255,0.04);
+      transition: all 0.25s;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+    .btn-neon-secondary:hover {
+      border-color: var(--prc-violet);
+      background: rgba(139,126,255,0.09);
+      box-shadow: 0 0 28px rgba(139,126,255,0.35), inset 0 0 20px rgba(139,126,255,0.07);
+      transform: translateY(-2px);
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      position: relative; width: 100%;
+      min-height: 70vh;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+      padding-top: var(--nav-height);
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #06051A 0%, #0a0520 50%, #03020D 100%);
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(139,126,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139,126,255,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 65% 70% at 25% 50%, rgba(119,51,255,0.22) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 80% 50%, rgba(68,217,255,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 10% 85%, rgba(139,126,255,0.18) 0%, transparent 60%),
+        linear-gradient(to bottom, rgba(3,2,13,0.10) 0%, transparent 35%, rgba(3,2,13,0.80) 100%);
+    }
+    .hero-scan { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-scan::after {
+      content: '';
+      position: absolute; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--prc-violet), var(--prc-ice), transparent);
+      animation: scanDown 6s linear infinite;
+      box-shadow: 0 0 18px rgba(139,126,255,0.55);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1340px; width: 100%;
+      margin: 0 auto; padding: 80px 36px 100px;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: 28px;
+    }
+    .hero-sys-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-hud); font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--creo-sky); opacity: 0.85;
+      animation: fadeIn 0.6s ease both;
+    }
+    .sys-blink {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--creo-sky);
+      box-shadow: 0 0 10px rgba(68,217,255,0.80);
+      animation: neonPulse 1.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    .hero-title {
+      font-family: var(--font-hud);
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.06;
+      animation: fadeInUp 0.75s ease 0.1s both;
+      position: relative;
+    }
+    .hero-title .ht-main { color: #fff; display: block; }
+    .hero-title .ht-accent {
+      color: var(--prc-violet);
+      text-shadow: 0 0 30px rgba(139,126,255,0.65), 0 0 80px rgba(139,126,255,0.25);
+      display: block; position: relative;
+    }
+    .hero-title .ht-accent::before {
+      content: attr(data-text);
+      position: absolute; inset: 0;
+      color: var(--creo-sky);
+      clip-path: inset(0 0 100% 0);
+      animation: glitch1 8s infinite;
+    }
+    .hero-title .ht-accent::after {
+      content: attr(data-text);
+      position: absolute; inset: 0;
+      color: var(--creo-amber);
+      clip-path: inset(0 0 100% 0);
+      animation: glitch2 8s 0.3s infinite;
+    }
+    .hero-tagline {
+      font-size: clamp(0.95rem, 1.8vw, 1.12rem);
+      color: var(--text-mid); line-height: 1.78;
+      max-width: 680px;
+      animation: fadeInUp 0.75s ease 0.25s both;
+    }
+    .hero-actions {
+      display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+      animation: fadeInUp 0.75s ease 0.35s both;
+    }
+    .hero-breadcrumb {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--font-hud); font-size: 0.52rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-dim);
+    }
+    .hero-breadcrumb a { color: var(--text-soft); transition: color 0.2s; }
+    .hero-breadcrumb a:hover { color: var(--prc-violet); }
+    .hero-breadcrumb i { font-size: 0.45rem; color: var(--text-dim); }
+
+    /* ===== STATS STRIP ===== */
+    #stats { background: rgba(139,126,255,0.04); border-top: 1px solid var(--border-neon); border-bottom: 1px solid var(--border-neon); }
+    .stats-inner {
+      max-width: 1340px; margin: 0 auto; padding: 0 36px;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-item {
+      padding: 32px 0; text-align: center; border-right: 1px solid var(--border-neon);
+      position: relative;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--font-hud); font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 900; color: var(--prc-violet);
+      text-shadow: var(--glow-primary); line-height: 1; margin-bottom: 6px;
+      display: block;
+    }
+    .stat-label {
+      font-family: var(--font-hud); font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-soft);
+    }
+
+    /* ===== SECTION SHARED ===== */
+    .section-inner { max-width: 1340px; margin: 0 auto; padding: 0 36px; }
+
+    /* ===== ABOUT INTRO ===== */
+    #about-intro { padding: var(--section-pad); }
+    .about-intro-wrap { max-width: 780px; margin: 0 auto; text-align: center; }
+    .about-intro-title {
+      font-family: var(--font-hud);
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 800; color: #fff; letter-spacing: -0.01em; line-height: 1.1;
+      margin-bottom: 18px; text-shadow: 0 0 40px rgba(139,126,255,0.14);
+    }
+    .about-intro-title .accent { color: var(--prc-violet); text-shadow: 0 0 18px rgba(139,126,255,0.65); }
+    .about-intro-divider {
+      display: flex; align-items: center; gap: 14px; margin: 0 auto 22px; max-width: 320px;
+    }
+    .about-intro-divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(139,126,255,0.45)); }
+    .about-intro-divider-line.r { background: linear-gradient(90deg, rgba(139,126,255,0.45), transparent); }
+    .about-intro-divider-diamond {
+      width: 7px; height: 7px; background: var(--prc-violet);
+      transform: rotate(45deg); box-shadow: 0 0 10px rgba(139,126,255,0.70); flex-shrink: 0;
+    }
+    .about-intro-text { font-size: 1.02rem; color: var(--text-mid); line-height: 1.80; }
+
+    /* ===== ABOUT BLOCKS ===== */
+    #about-story { padding-bottom: var(--section-pad); padding-bottom: 0; }
+    .about-wrap { max-width: 1340px; margin: 0 auto; padding: 0 36px; }
+    .about-blocks { display: flex; flex-direction: column; gap: 0; }
+    .about-block {
+      display: grid; grid-template-columns: 1fr 1fr; min-height: 420px;
+      border: 1px solid rgba(139,126,255,0.13); border-bottom: none;
+      overflow: hidden; position: relative; transition: border-color 0.3s;
+    }
+    .about-block:first-child { border-radius: 2px 2px 0 0; }
+    .about-block:last-child  { border-bottom: 1px solid rgba(139,126,255,0.13); border-radius: 0 0 2px 2px; }
+    .about-block:hover { border-color: rgba(139,126,255,0.28); }
+    .about-block.reverse .about-block-text  { order: -1; }
+    .about-block.reverse .about-block-visual { order: 1; border-left: 1px solid rgba(139,126,255,0.13); border-right: none; }
+    .about-block:not(.reverse) .about-block-visual { border-right: 1px solid rgba(139,126,255,0.13); }
+
+    .about-block-visual {
+      position: relative; overflow: hidden; background: #000; min-height: 420px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-block-visual-inner {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    /* Decorative placeholder visual when no image */
+    .about-visual-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 20px; padding: 40px;
+      background: linear-gradient(135deg, rgba(119,51,255,0.08) 0%, rgba(68,217,255,0.04) 100%);
+    }
+    .about-visual-icon {
+      width: 80px; height: 80px;
+      background: rgba(139,126,255,0.10); border: 1px solid rgba(139,126,255,0.30);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--prc-violet); font-size: 2rem;
+    }
+    .about-visual-label {
+      font-family: var(--font-hud); font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--prc-violet); text-shadow: 0 0 10px rgba(139,126,255,0.50);
+      text-align: center;
+    }
+    /* gradient fade */
+    .about-block:not(.reverse) .about-block-visual::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to right, transparent 60%, var(--bg-void) 100%);
+      pointer-events: none;
+    }
+    .about-block.reverse .about-block-visual::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to left, transparent 60%, var(--bg-void) 100%);
+      pointer-events: none;
+    }
+    .visual-block-num {
+      position: absolute; top: 16px; left: 16px; z-index: 5;
+      font-family: var(--font-hud); font-size: 0.52rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--prc-ice);
+      background: rgba(3,2,13,0.65); border: 1px solid rgba(196,238,255,0.22);
+      padding: 5px 12px;
+      clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+    }
+    .about-block.reverse .visual-block-num { left: auto; right: 16px; }
+
+    .about-block-text {
+      padding: 52px 52px 52px 56px;
+      display: flex; flex-direction: column; justify-content: center;
+      background: rgba(139,126,255,0.018); position: relative;
+    }
+    .about-block.reverse .about-block-text { padding: 52px 56px 52px 52px; }
+    .about-block-text::before {
+      content: ''; position: absolute; top: 0; left: 56px; right: 52px;
+      height: 1px; background: linear-gradient(90deg, var(--prc-violet), transparent); opacity: 0.35;
+    }
+    .about-block.reverse .about-block-text::before {
+      left: 52px; right: 56px;
+      background: linear-gradient(90deg, transparent, var(--prc-violet));
+    }
+    .about-block-label {
+      font-family: var(--font-hud); font-size: 0.55rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--prc-violet);
+      text-shadow: 0 0 10px rgba(139,126,255,0.50); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .about-block-label::before {
+      content: ''; width: 22px; height: 1px;
+      background: var(--prc-violet); box-shadow: 0 0 6px rgba(139,126,255,0.60); flex-shrink: 0;
+    }
+    .about-block-title {
+      font-family: var(--font-hud); font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+      font-weight: 800; color: #fff; letter-spacing: -0.01em; line-height: 1.12;
+      margin-bottom: 20px; text-shadow: 0 0 30px rgba(139,126,255,0.10);
+    }
+    .about-block-title .hl { color: var(--prc-violet); text-shadow: 0 0 14px rgba(139,126,255,0.55); }
+    .about-block-body { font-size: 0.955rem; color: var(--text-mid); line-height: 1.82; margin-bottom: 28px; }
+    .about-block-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; }
+    .about-block-tag {
+      font-family: var(--font-hud); font-size: 0.53rem; font-weight: 600;
+      letter-spacing: 0.10em; text-transform: uppercase; padding: 4px 12px;
+      border: 1px solid rgba(139,126,255,0.22); background: rgba(139,126,255,0.05);
+      color: var(--text-soft);
+      clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .about-block:hover .about-block-tag { border-color: rgba(139,126,255,0.35); color: var(--text-mid); }
+
+    /* ===== VALUES SECTION ===== */
+    #values { padding: var(--section-pad); background: rgba(0,0,8,0.5); }
+    .values-header { text-align: center; margin-bottom: 60px; }
+    .values-header .section-eyebrow { justify-content: center; }
+    .values-title {
+      font-family: var(--font-hud); font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+      font-weight: 800; color: #fff; letter-spacing: -0.01em; margin-bottom: 14px;
+    }
+    .values-title .accent { color: var(--prc-violet); text-shadow: 0 0 18px rgba(139,126,255,0.65); }
+    .values-desc { font-size: 0.95rem; color: var(--text-mid); max-width: 520px; margin: 0 auto; line-height: 1.80; }
+    .values-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+      border: 1px solid var(--border-neon);
+      background: var(--border-neon);
+      box-shadow: 0 0 40px rgba(139,126,255,0.07);
+    }
+    .value-card {
+      background: rgba(3,2,13,0.95); padding: 44px 32px;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: background 0.3s; position: relative; overflow: hidden;
+    }
+    .value-card:hover { background: rgba(139,126,255,0.06); }
+    .value-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .value-card:nth-child(1)::before { background: linear-gradient(90deg, var(--creo-sky), transparent); }
+    .value-card:nth-child(2)::before { background: linear-gradient(90deg, var(--creo-amber), transparent); }
+    .value-card:nth-child(3)::before { background: linear-gradient(90deg, var(--neon-magenta), transparent); }
+    .value-card:nth-child(4)::before { background: linear-gradient(90deg, var(--prc-violet), transparent); }
+    .value-card:hover::before { opacity: 1; }
+    .value-num {
+      font-family: var(--font-hud); font-size: 0.55rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim);
+    }
+    .value-icon {
+      width: 52px; height: 52px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; flex-shrink: 0;
+      border: 1px solid;
+    }
+    .value-card:nth-child(1) .value-icon { color: var(--creo-sky); border-color: rgba(68,217,255,0.28); background: rgba(68,217,255,0.07); }
+    .value-card:nth-child(2) .value-icon { color: var(--creo-amber); border-color: rgba(255,160,48,0.28); background: rgba(255,160,48,0.07); }
+    .value-card:nth-child(3) .value-icon { color: var(--neon-magenta); border-color: rgba(204,85,255,0.28); background: rgba(204,85,255,0.07); }
+    .value-card:nth-child(4) .value-icon { color: var(--prc-violet); border-color: rgba(139,126,255,0.28); background: rgba(139,126,255,0.07); }
+    .value-name {
+      font-family: var(--font-hud); font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.04em; color: var(--text-high); line-height: 1.3;
+    }
+    .value-desc { font-size: 0.875rem; color: var(--text-mid); line-height: 1.72; }
+
+    /* ===== PROGRAMS SECTION ===== */
+    #programs { padding: var(--section-pad); }
+    .programs-header { text-align: center; margin-bottom: 60px; }
+    .programs-header .section-eyebrow { justify-content: center; }
+    .programs-title {
+      font-family: var(--font-hud); font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+      font-weight: 800; color: #fff; letter-spacing: -0.01em; margin-bottom: 14px;
+    }
+    .programs-title .accent { color: var(--prc-violet); text-shadow: 0 0 18px rgba(139,126,255,0.65); }
+    .programs-desc { font-size: 0.95rem; color: var(--text-mid); max-width: 560px; margin: 0 auto; line-height: 1.80; }
+    .programs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-neon); border: 1px solid var(--border-neon); }
+    .prog-card {
+      background: rgba(3,2,13,0.95); padding: 36px 32px;
+      display: flex; flex-direction: column; gap: 14px;
+      transition: background 0.3s; cursor: none; position: relative; overflow: hidden;
+    }
+    .prog-card:hover { background: rgba(139,126,255,0.055); }
+    .prog-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(139,126,255,0.22), transparent);
+    }
+    .prog-num {
+      font-family: var(--font-hud); font-size: 0.52rem; font-weight: 700;
+      letter-spacing: 0.20em; text-transform: uppercase; color: var(--creo-amber);
+      text-shadow: 0 0 8px rgba(255,160,48,0.45);
+    }
+    .prog-icon { font-size: 1.8rem; color: var(--prc-violet); }
+    .prog-title {
+      font-family: var(--font-hud); font-size: 0.84rem; font-weight: 700;
+      letter-spacing: 0.03em; color: var(--text-high); line-height: 1.35;
+    }
+    .prog-body { font-size: 0.875rem; color: var(--text-mid); line-height: 1.74; flex: 1; }
+    .prog-duration {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--font-hud); font-size: 0.52rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--creo-sky);
+      margin-top: 4px;
+    }
+    .prog-duration i { font-size: 0.75rem; }
+
+    /* ===== PARTNERSHIPS SECTION ===== */
+    #partners { padding: var(--section-pad); background: rgba(0,0,8,0.5); }
+    .partners-header { text-align: center; margin-bottom: 52px; }
+    .partners-header .section-eyebrow { justify-content: center; }
+    .partners-title {
+      font-family: var(--font-hud); font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+      font-weight: 800; color: #fff; letter-spacing: -0.01em; margin-bottom: 14px;
+    }
+    .partners-title .accent { color: var(--prc-violet); text-shadow: 0 0 18px rgba(139,126,255,0.65); }
+    .partners-card {
+      background: rgba(139,126,255,0.025); border: 1px solid var(--border-neon);
+      padding: 52px; position: relative; overflow: hidden;
+      box-shadow: 0 0 60px rgba(139,126,255,0.07), inset 0 0 60px rgba(139,126,255,0.02);
+    }
+    .partners-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--prc-violet), transparent);
+    }
+    .partners-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(139,126,255,0.42), transparent);
+    }
+    .partners-type-label {
+      font-family: var(--font-hud); font-size: 0.60rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--creo-amber);
+      text-shadow: 0 0 8px rgba(255,160,48,0.45);
+      margin-bottom: 28px; display: flex; align-items: center; gap: 10px;
+    }
+    .partners-type-label::before {
+      content: ''; width: 22px; height: 1px;
+      background: var(--creo-amber); box-shadow: 0 0 6px rgba(255,160,48,0.50); flex-shrink: 0;
+    }
+    .partners-logos {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+      margin-bottom: 44px;
+    }
+    .partner-badge {
+      font-family: var(--font-hud); font-size: 0.55rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-soft); padding: 8px 16px;
+      border: 1px solid rgba(139,126,255,0.18); background: rgba(139,126,255,0.04);
+      clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .partner-badge:hover { border-color: rgba(139,126,255,0.40); color: var(--text-mid); background: rgba(139,126,255,0.08); }
+    .partners-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(139,126,255,0.22), transparent); margin: 0 0 36px; }
+
+    /* ===== REFERENCES SECTION ===== */
+    #references { padding: var(--section-pad); }
+    .references-header { text-align: center; margin-bottom: 52px; }
+    .references-header .section-eyebrow { justify-content: center; }
+    .references-title {
+      font-family: var(--font-hud); font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+      font-weight: 800; color: #fff; letter-spacing: -0.01em; margin-bottom: 14px;
+    }
+    .references-title .accent { color: var(--prc-violet); text-shadow: 0 0 18px rgba(139,126,255,0.65); }
+    .references-desc { font-size: 0.95rem; color: var(--text-mid); max-width: 560px; margin: 0 auto; line-height: 1.80; }
+    .references-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+      background: var(--border-neon); border: 1px solid var(--border-neon);
+    }
+    .ref-card {
+      background: rgba(3,2,13,0.95); padding: 32px 36px;
+      display: flex; flex-direction: column; gap: 12px;
+      transition: background 0.3s; position: relative; overflow: hidden;
+      cursor: none;
+    }
+    .ref-card:hover { background: rgba(139,126,255,0.055); }
+    .ref-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--prc-violet), transparent); opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .ref-card:hover::before { opacity: 1; }
+    .ref-card-top {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .ref-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: rgba(139,126,255,0.08); border: 1px solid rgba(139,126,255,0.22);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: var(--prc-violet);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .ref-card:hover .ref-icon { background: rgba(139,126,255,0.15); border-color: rgba(139,126,255,0.45); }
+    .ref-meta { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+    .ref-tag {
+      font-family: var(--font-hud); font-size: 0.50rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--creo-amber);
+      text-shadow: 0 0 8px rgba(255,160,48,0.40);
+    }
+    .ref-domain {
+      font-family: var(--font-hud); font-size: 0.56rem; font-weight: 600;
+      letter-spacing: 0.08em; color: var(--text-dim); text-transform: lowercase;
+    }
+    .ref-arrow {
+      font-size: 0.85rem; color: rgba(139,126,255,0.35);
+      transition: color 0.2s, transform 0.2s;
+      flex-shrink: 0;
+    }
+    .ref-card:hover .ref-arrow { color: var(--prc-violet); transform: translate(2px,-2px); }
+    .ref-title {
+      font-family: var(--font-hud); font-size: 0.84rem; font-weight: 700;
+      letter-spacing: 0.03em; color: var(--text-high); line-height: 1.35;
+      transition: color 0.2s;
+    }
+    .ref-card:hover .ref-title { color: #fff; }
+    .ref-desc { font-size: 0.875rem; color: var(--text-mid); line-height: 1.74; }
+
+    /* ===== FOOTER ===== */
+    footer { background: rgba(0,0,6,0.95); border-top: 1px solid var(--border-neon); padding: 70px 0 32px; }
+    .footer-inner { max-width: 1340px; margin: 0 auto; padding: 0 36px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 52px; margin-bottom: 52px; }
+    .footer-brand img { height: 36px; width: auto; margin-bottom: 16px; }
+    .footer-brand p { font-size: 0.875rem; color: var(--text-mid); line-height: 1.80; margin-bottom: 22px; }
+    .footer-contact-list { display: flex; flex-direction: column; gap: 11px; margin-bottom: 24px; }
+    .footer-contact-item { display: flex; align-items: center; gap: 11px; font-size: 0.875rem; color: var(--text-mid); }
+    .footer-contact-item i { color: var(--prc-violet); font-size: 0.95rem; flex-shrink: 0; }
+    .footer-contact-item a { color: var(--text-mid); transition: color 0.2s; }
+    .footer-contact-item a:hover { color: var(--prc-violet); text-shadow: 0 0 8px rgba(139,126,255,0.60); }
+    .social-links { display: flex; gap: 8px; }
+    .social-link { width: 40px; height: 40px; background: rgba(139,126,255,0.04); border: 1px solid rgba(139,126,255,0.18); display: flex; align-items: center; justify-content: center; font-size: 1rem; color: rgba(139,126,255,0.50); transition: all 0.25s; }
+    .social-link:hover { background: rgba(139,126,255,0.12); color: var(--prc-violet); box-shadow: 0 0 14px rgba(139,126,255,0.35); border-color: var(--prc-violet); }
+    .footer-col h4 { font-family: var(--font-hud); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; margin-bottom: 20px; color: var(--prc-ice); text-shadow: 0 0 10px rgba(196,238,255,0.45); }
+    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a { font-size: 0.875rem; color: var(--text-mid); transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+    .footer-col ul li a i { font-size: 0.65rem; color: rgba(139,126,255,0.38); transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--prc-violet); padding-left: 4px; text-shadow: 0 0 8px rgba(139,126,255,0.50); }
+    .footer-col ul li a:hover i { color: var(--prc-violet); }
+    .footer-bottom { padding-top: 24px; border-top: 1px solid rgba(139,126,255,0.12); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+    .footer-bottom p { font-family: var(--font-hud); font-size: 0.58rem; color: var(--text-soft); letter-spacing: 0.06em; }
+    .footer-bottom-links { display: flex; gap: 22px; }
+    .footer-bottom-links a { font-family: var(--font-hud); font-size: 0.58rem; color: var(--text-soft); transition: color 0.2s; letter-spacing: 0.06em; }
+    .footer-bottom-links a:hover { color: var(--prc-violet); }
+
+    /* ===== REVEAL ===== */
+    .reveal { opacity:0; transform:translateY(30px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-left { opacity:0; transform:translateX(-24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal-left.visible { opacity:1; transform:translateX(0); }
+    .reveal-delay-1 { transition-delay:0.10s; }
+    .reveal-delay-2 { transition-delay:0.20s; }
+    .reveal-delay-3 { transition-delay:0.30s; }
+    .reveal-delay-4 { transition-delay:0.40s; }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg-void); }
+    ::-webkit-scrollbar-thumb { background: var(--prc-violet); box-shadow: 0 0 8px rgba(139,126,255,0.70); border-radius: 2px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .stats-inner { grid-template-columns: repeat(2,1fr); }
+      .stat-item:nth-child(2) { border-right:none; }
+      .stat-item:nth-child(1),.stat-item:nth-child(2) { border-bottom:1px solid var(--border-neon); padding-bottom:24px; }
+      .stat-item:nth-child(3),.stat-item:nth-child(4) { padding-top:24px; }
+      .about-block { grid-template-columns:1fr; min-height:auto; }
+      .about-block-visual { min-height:300px; order:-1 !important; }
+      .about-block-text { order:1 !important; padding:36px 28px; }
+      .about-block-text::before { left:28px; right:28px; background:linear-gradient(90deg, var(--prc-violet), transparent); }
+      .about-block:not(.reverse) .about-block-visual { border-right:none; border-bottom:1px solid rgba(139,126,255,0.13); }
+      .about-block.reverse .about-block-visual { border-left:none; border-bottom:1px solid rgba(139,126,255,0.13); }
+      .values-grid { grid-template-columns:repeat(2,1fr); }
+      .programs-grid { grid-template-columns:repeat(2,1fr); }
+      .footer-top { grid-template-columns:1fr 1fr; gap:36px; }
+      .references-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      :root { --section-pad:70px 0; --nav-height:62px; }
+      body { cursor:auto; } button { cursor:pointer; }
+      .cursor-dot, .cursor-ring { display:none; }
+      .nav-links { display:none; } .nav-hamburger { display:flex; }
+      .values-grid { grid-template-columns:1fr; }
+      .programs-grid { grid-template-columns:1fr; }
+      .references-grid { grid-template-columns:1fr; }
+      .footer-top { grid-template-columns:1fr; gap:32px; }
+      .footer-bottom { flex-direction:column; text-align:center; }
+      .partners-card { padding:32px; }
+      .partners-logos { gap:7px; }
+    }
+    @media (max-width: 520px) {
+      :root { --nav-height:58px; }
+      .nav-inner { padding:0 14px; }
+      .section-inner, .about-wrap, .footer-inner { padding:0 16px; }
+      .hero-content { padding:60px 16px 80px; }
+      .nav-brand span { display:none; }
+      .hero-actions { flex-direction:column; align-items:stretch; }
+      .hero-actions .btn-neon-primary, .hero-actions .btn-neon-secondary { justify-content:center; clip-path:none; }
+      .btn-neon-primary,.btn-neon-secondary { clip-path:none !important; }
+      .stats-inner { padding:0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="hex-grid" aria-hidden="true"></div>
+
+  <div class="page-wrapper">
+
+    <!-- NAV -->
+    <nav id="main-nav" aria-label="Main Navigation">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo" aria-label="Philippine Robotics Cup Home">
+          <img src="assets/creotec-logo.png" alt="Creotec Logo" onerror="this.style.display='none'" />
+          <div class="nav-brand">Philippine Robotics Cup<span>by Creotec Philippines</span></div>
+        </a>
+        <div class="nav-links" role="menubar">
+          <a href="index.html" role="menuitem"><i class="fi fi-rr-home"></i> Home</a>
+          <a href="about.html" class="active" role="menuitem"><i class="fi fi-rr-info"></i> About</a>
+          <a href="#programs" role="menuitem"><i class="fi fi-rr-book-alt"></i> Programs</a>
+          <a href="#partners" role="menuitem"><i class="fi fi-rr-handshake"></i> Partners</a>
+          <a href="index.html#categories" role="menuitem"><i class="fi fi-rr-trophy"></i> Competition</a>
+          <a href="#references" class="nav-cta" role="menuitem"><i class="fi fi-rr-link"></i> References</a>
+        </div>
+        <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="nav-mobile" id="navMobile" role="menu">
+        <a href="index.html" role="menuitem"><i class="fi fi-rr-home"></i>Home</a>
+        <a href="about.html" role="menuitem"><i class="fi fi-rr-info"></i>About</a>
+        <a href="#programs" role="menuitem"><i class="fi fi-rr-book-alt"></i>Programs</a>
+        <a href="#partners" role="menuitem"><i class="fi fi-rr-handshake"></i>Partners</a>
+        <a href="index.html#categories" role="menuitem"><i class="fi fi-rr-trophy"></i>Competition</a>
+        <a href="#references" class="nav-cta" role="menuitem"><i class="fi fi-rr-link"></i>References</a>
+      </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section id="hero" aria-label="About Creotec Hero">
+      <div class="hero-bg"></div>
+      <div class="hero-bg-pattern" aria-hidden="true"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-scan" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <div class="hero-sys-label">
+          <div class="sys-blink"></div>
+          CREOTEC_PHL &mdash; AN_EMS_GROUP_MEMBER
+        </div>
+        <h1 class="hero-title">
+          <span class="ht-main">Who Is</span>
+          <span class="ht-accent" data-text="Creotec?">Creotec?</span>
+        </h1>
+        <p class="hero-tagline">
+          An industry-based training and learning company providing innovative technology-based
+          curriculum and solutions to the academe, professionals, and individuals.
+        </p>
+        <div class="hero-actions">
+          <a href="#programs" class="btn-neon-primary"><i class="fi fi-rr-book-alt"></i> Explore Programs</a>
+          <a href="#references" class="btn-neon-secondary"><i class="fi fi-rr-link"></i> References</a>
+        </div>
+        <div class="hero-breadcrumb">
+          <a href="index.html">Home</a>
+          <i class="fi fi-rr-angle-right"></i>
+          <span>About Us</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== STATS ===== -->
+    <section id="stats" aria-label="Key Numbers">
+      <div class="stats-inner">
+        <div class="stat-item reveal">
+          <span class="stat-num" data-target="10">10+</span>
+          <span class="stat-label">Years of Expertise</span>
+        </div>
+        <div class="stat-item reveal reveal-delay-1">
+          <span class="stat-num" data-target="7">7+</span>
+          <span class="stat-label">Training Programs</span>
+        </div>
+        <div class="stat-item reveal reveal-delay-2">
+          <span class="stat-num" data-target="20">20+</span>
+          <span class="stat-label">Academic Partners</span>
+        </div>
+        <div class="stat-item reveal reveal-delay-3">
+          <span class="stat-num" data-target="6">6</span>
+          <span class="stat-label">EMS Facilities in Biñan</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT INTRO ===== -->
+    <section id="about-intro" aria-label="About Creotec Introduction">
+      <div class="section-inner">
+        <div class="about-intro-wrap reveal">
+          <div class="section-eyebrow">Our Story</div>
+          <h2 class="about-intro-title">
+            About <span class="accent">Creotec Philippines</span>
+          </h2>
+          <div class="about-intro-divider">
+            <div class="about-intro-divider-line"></div>
+            <div class="about-intro-divider-diamond"></div>
+            <div class="about-intro-divider-line r"></div>
+          </div>
+          <p class="about-intro-text">
+            Creotec Philippines Inc. was established on October 20, 2015 (SEC&nbsp;#&nbsp;CS201521140)
+            and is situated at 117 Technology Ave., SEPZ, LTI, Biñan, Laguna. As a member of the
+            EMS Group of Companies, Creotec bridges the gap between the academe and the semiconductor
+            and electronics manufacturing industry — delivering skills-based training solutions
+            that prepare graduates to meet the demands of a rapidly evolving workforce.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT STORY BLOCKS ===== -->
+    <section id="about-story" aria-label="Our Background">
+      <div class="about-wrap">
+        <div class="about-blocks">
+
+          <!-- BLOCK 1: Background -->
+          <div class="about-block reveal">
+            <div class="about-block-visual">
+              <div class="visual-block-num">CREOTEC // 01</div>
+              <div class="about-block-visual-inner">
+                <div class="about-visual-placeholder">
+                  <div class="about-visual-icon"><i class="fi fi-rr-building"></i></div>
+                  <div class="about-visual-label">117 Technology Ave.<br/>Biñan, Laguna</div>
+                </div>
+              </div>
+            </div>
+            <div class="about-block-text">
+              <div class="about-block-label">Background</div>
+              <h3 class="about-block-title">Our <span class="hl">Foundations</span></h3>
+              <p class="about-block-body">
+                Creotec Philippines Inc. is a wholly owned corporation established in 2015,
+                situated within the Special Economic Processing Zone (SEPZ) in Biñan, Laguna.
+                It provides learning, immersion, and OJT services alongside technology learning
+                equipment for both industry and academe. Drawing on a wealth of experience from
+                academia and the semiconductor and electronics manufacturing sector, Creotec
+                delivers best-in-class training to its partners.
+              </p>
+              <div class="about-block-tags">
+                <span class="about-block-tag">SEC Registered</span>
+                <span class="about-block-tag">Biñan, Laguna</span>
+                <span class="about-block-tag">SEPZ Locator</span>
+                <span class="about-block-tag">Est. 2015</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- BLOCK 2: EMS Group & SDG -->
+          <div class="about-block reverse reveal reveal-delay-1">
+            <div class="about-block-text">
+              <div class="about-block-label">Our Group</div>
+              <h3 class="about-block-title">EMS Group &<br/><span class="hl">SDG Commitment</span></h3>
+              <p class="about-block-body">
+                As a proud member of the EMS Group of Companies (EMSG) — known for its
+                contribution to electronics manufacturing services with six facilities within Biñan
+                Technopark — Creotec shares EMSG's commitment to supporting the United Nations'
+                Sustainable Development Goal on Quality Education (SDG&nbsp;#4). By reaching out to
+                academe partners and providing relevant learning services, Creotec actively addresses
+                the skills mismatch challenge across the Philippines.
+              </p>
+              <div class="about-block-tags">
+                <span class="about-block-tag">EMS Group</span>
+                <span class="about-block-tag">UN SDG #4</span>
+                <span class="about-block-tag">Quality Education</span>
+                <span class="about-block-tag">Skills Mismatch</span>
+              </div>
+            </div>
+            <div class="about-block-visual">
+              <div class="visual-block-num">CREOTEC // 02</div>
+              <div class="about-block-visual-inner">
+                <div class="about-visual-placeholder">
+                  <div class="about-visual-icon"><i class="fi fi-rr-globe"></i></div>
+                  <div class="about-visual-label">EMS Group Member<br/>6 Biñan Facilities</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- BLOCK 3: Vision & Mission -->
+          <div class="about-block reveal reveal-delay-2">
+            <div class="about-block-visual">
+              <div class="visual-block-num">CREOTEC // 03</div>
+              <div class="about-block-visual-inner">
+                <div class="about-visual-placeholder">
+                  <div class="about-visual-icon"><i class="fi fi-rr-rocket"></i></div>
+                  <div class="about-visual-label">Vision &amp; Mission<br/>Driving Innovation</div>
+                </div>
+              </div>
+            </div>
+            <div class="about-block-text">
+              <div class="about-block-label">Purpose</div>
+              <h3 class="about-block-title">Our Vision<br/><span class="hl">&amp; Mission</span></h3>
+              <p class="about-block-body">
+                <strong style="color:var(--prc-ice);">Vision:</strong> To provide competitive sustainable solutions to our partners and equitable value to our stakeholders.<br/><br/>
+                <strong style="color:var(--prc-ice);">Mission:</strong> We passionately and persistently create shared value through accessible, industry-relevant, and distinctive learning innovations.
+              </p>
+              <div class="about-block-tags">
+                <span class="about-block-tag">Industry-Relevant</span>
+                <span class="about-block-tag">Accessible Learning</span>
+                <span class="about-block-tag">Shared Value</span>
+                <span class="about-block-tag">Sustainability</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /about-blocks -->
+      </div>
+    </section>
+
+    <!-- ===== VALUES ===== -->
+    <section id="values" aria-label="Our Values">
+      <div class="section-inner">
+        <div class="values-header reveal">
+          <div class="section-eyebrow">What Drives Us</div>
+          <h2 class="values-title">Our Core <span class="accent">Values</span></h2>
+          <p class="values-desc">
+            Everything we do at Creotec is guided by four fundamental principles that define
+            how we serve our partners, learners, and stakeholders.
+          </p>
+        </div>
+        <div class="values-grid">
+          <div class="value-card reveal">
+            <div class="value-num">01</div>
+            <div class="value-icon"><i class="fi fi-rr-star"></i></div>
+            <div class="value-name">Customer Satisfaction</div>
+            <div class="value-desc">We place our partners and learners at the center of everything we do, ensuring every solution we deliver exceeds expectations and creates real-world impact.</div>
+          </div>
+          <div class="value-card reveal reveal-delay-1">
+            <div class="value-num">02</div>
+            <div class="value-icon"><i class="fi fi-rr-eye"></i></div>
+            <div class="value-name">Accountability &amp; Ownership</div>
+            <div class="value-desc">We take full responsibility for our work and outcomes, upholding transparency and integrity in all our engagements with academic and industry partners.</div>
+          </div>
+          <div class="value-card reveal reveal-delay-2">
+            <div class="value-num">03</div>
+            <div class="value-icon"><i class="fi fi-rr-bulb"></i></div>
+            <div class="value-name">Excellence &amp; Innovation</div>
+            <div class="value-desc">We continuously raise the bar through creative, technology-driven curriculum and cutting-edge training methodologies that keep learners ahead of industry demands.</div>
+          </div>
+          <div class="value-card reveal reveal-delay-3">
+            <div class="value-num">04</div>
+            <div class="value-icon"><i class="fi fi-rr-leaf"></i></div>
+            <div class="value-name">Sustainability</div>
+            <div class="value-desc">We build solutions that create lasting value — for our partners, our learners, and the broader Philippine education and manufacturing ecosystem.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROGRAMS ===== -->
+    <section id="programs" aria-label="Training Programs">
+      <div class="section-inner">
+        <div class="programs-header reveal">
+          <div class="section-eyebrow">What We Offer</div>
+          <h2 class="programs-title">Training Programs &amp; <span class="accent">Learning Services</span></h2>
+          <p class="programs-desc">
+            From K–12 robotics to Industry 4.0 mechatronics and digital transformation,
+            Creotec offers a comprehensive suite of programs for every level of learner.
+          </p>
+        </div>
+        <div class="programs-grid">
+
+          <div class="prog-card reveal">
+            <div class="prog-num">Program 01</div>
+            <div class="prog-icon"><i class="fi fi-rr-industry-alt"></i></div>
+            <div class="prog-title">Strengthening Job-Readiness &amp; College-Preparedness</div>
+            <div class="prog-body">
+              A ladderized program offering manufacturing simulation, support services exposure,
+              digital solutions capability, and an industry-readiness capstone — preparing
+              learners for real-world employment from day one.
+            </div>
+            <div class="prog-duration"><i class="fi fi-rr-clock"></i> 80 – 640 Hours</div>
+          </div>
+
+          <div class="prog-card reveal reveal-delay-1">
+            <div class="prog-num">Program 02</div>
+            <div class="prog-icon"><i class="fi fi-rr-digital-tachograph"></i></div>
+            <div class="prog-title">Setting the Foundations for Digital Transformation</div>
+            <div class="prog-body">
+              Courses covering digital transformation navigation, productivity tools,
+              data literacy, cybersecurity practices, and mechatronics for Industry 4.0 —
+              equipping professionals for the smart manufacturing era.
+            </div>
+            <div class="prog-duration"><i class="fi fi-rr-clock"></i> 8 – 200 Hours</div>
+          </div>
+
+          <div class="prog-card reveal reveal-delay-2">
+            <div class="prog-num">Program 03</div>
+            <div class="prog-icon"><i class="fi fi-rr-robot"></i></div>
+            <div class="prog-title">Enhancing Classroom Instruction through Robotics</div>
+            <div class="prog-body">
+              Integrates robotics and AI into K–12 and tertiary STEM instruction through
+              curriculum-aligned lesson plans, hands-on kits, gamified mobile modules,
+              and teacher capacity-building workshops.
+            </div>
+            <div class="prog-duration"><i class="fi fi-rr-clock"></i> Semester Program</div>
+          </div>
+
+          <div class="prog-card reveal reveal-delay-1">
+            <div class="prog-num">Program 04</div>
+            <div class="prog-icon"><i class="fi fi-rr-mobile"></i></div>
+            <div class="prog-title">CreoApps — Mobile Gamified Learning</div>
+            <div class="prog-body">
+              A suite of curriculum-aligned mobile apps that transform review sessions into
+              game-like experiences. Supports formative assessment, remedial learning, and
+              consistent student engagement for basic education.
+            </div>
+            <div class="prog-duration"><i class="fi fi-rr-clock"></i> Self-Paced</div>
+          </div>
+
+          <div class="prog-card reveal reveal-delay-2">
+            <div class="prog-num">Program 05</div>
+            <div class="prog-icon"><i class="fi fi-rr-trophy"></i></div>
+            <div class="prog-title">Robotics, AI &amp; Academic Drone Challenges</div>
+            <div class="prog-body">
+              An annual national event — the Philippine Robotics Cup — where students showcase
+              skills in robotics assembly, coding, AI problem-solving, and drone soccer,
+              fostering innovation and STEM excellence nationwide.
+            </div>
+            <div class="prog-duration"><i class="fi fi-rr-calendar"></i> Annual Event</div>
+          </div>
+
+          <div class="prog-card reveal reveal-delay-3">
+            <div class="prog-num">Program 06 – 07</div>
+            <div class="prog-icon"><i class="fi fi-rr-book-alt"></i></div>
+            <div class="prog-title">Teacher Training &amp; TESDA Programs</div>
+            <div class="prog-body">
+              Professional development for educators integrating technology into instruction,
+              plus TESDA-accredited courses: Mechatronics Servicing NC&nbsp;II (158 hrs) and
+              Electronics Back-End Operation NC&nbsp;II (80 hrs).
+            </div>
+            <div class="prog-duration"><i class="fi fi-rr-clock"></i> 80 – 158 Hours</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PARTNERS ===== -->
+    <section id="partners" aria-label="Key Partnerships">
+      <div class="section-inner">
+        <div class="partners-header reveal">
+          <div class="section-eyebrow">Our Network</div>
+          <h2 class="partners-title">Key <span class="accent">Partnerships</span></h2>
+        </div>
+        <div class="partners-card reveal">
+          <div class="partners-bg-grid" aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(139,126,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(139,126,255,0.04) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 100%);"></div>
+          
+          <div class="partners-type-label">Government Institutions</div>
+          <div class="partners-logos">
+            <span class="partner-badge">DepEd National</span>
+            <span class="partner-badge">DepEd Division of Laguna</span>
+            <span class="partner-badge">DepEd Division of Lipa City</span>
+            <span class="partner-badge">DepEd Division of Malaybalay</span>
+            <span class="partner-badge">DepEd Division of Sarangani</span>
+            <span class="partner-badge">DepEd Division of Ilocos Norte</span>
+            <span class="partner-badge">DepEd Division of Cagayan</span>
+            <span class="partner-badge">DepEd Division of Apayao</span>
+            <span class="partner-badge">DepEd Division of Bukidnon</span>
+            <span class="partner-badge">DepEd Division of General Trias</span>
+            <span class="partner-badge">DepEd Division of Tuguegarao City</span>
+            <span class="partner-badge">DepEd Division of Dumaguete City</span>
+            <span class="partner-badge">Schools Division Office – Marikina</span>
+            <span class="partner-badge">TESDA</span>
+            <span class="partner-badge">Jose Rizal Memorial State University</span>
+            <span class="partner-badge">Batangas State University</span>
+          </div>
+
+          <div class="partners-divider"></div>
+
+          <div class="partners-type-label">Academic Institutions</div>
+          <div class="partners-logos">
+            <span class="partner-badge">Bethel Academy</span>
+            <span class="partner-badge">Adventist University of the Philippines</span>
+            <span class="partner-badge">Statefields School</span>
+            <span class="partner-badge">Woodridge College</span>
+            <span class="partner-badge">Divine Light Academy</span>
+            <span class="partner-badge">La Salle Green Hills</span>
+            <span class="partner-badge">St. Anne College Lucena</span>
+            <span class="partner-badge">University of Batangas</span>
+            <span class="partner-badge">San Beda College Alabang</span>
+            <span class="partner-badge">Miriam College</span>
+            <span class="partner-badge">St. Dominic College of Asia</span>
+            <span class="partner-badge">St. Scholastica's College Westgrove</span>
+            <span class="partner-badge">Westmead International School</span>
+            <span class="partner-badge">Canossa Academy Lipa City</span>
+            <span class="partner-badge">St. Therese School of Southville</span>
+            <span class="partner-badge">University of Baguio</span>
+            <span class="partner-badge">Saint Louis University</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== REFERENCES ===== -->
+    <section id="references" aria-label="References">
+      <div class="section-inner">
+        <div class="references-header reveal">
+          <div class="section-eyebrow">External Links</div>
+          <h2 class="references-title">Company <span class="accent">References</span></h2>
+          <p class="references-desc">Explore official resources, publications, and links related to Creotec Philippines and its affiliates.</p>
+        </div>
+        <div class="references-grid reveal reveal-delay-1">
+
+          <!-- Reference Item 1 — placeholder, replace href/title/desc as needed -->
+          <a href="https://ems.com.ph" target="_blank" rel="noopener" class="ref-card">
+            <div class="ref-card-top">
+              <div class="ref-icon"><i class="fi fi-rr-globe"></i></div>
+              <div class="ref-meta">
+                <span class="ref-tag">Official Website</span>
+                <span class="ref-domain">ems.com.ph</span>
+              </div>
+              <i class="fi fi-rr-arrow-up-right-from-square ref-arrow"></i>
+            </div>
+            <div class="ref-title">EMS Group Philippines</div>
+            <div class="ref-desc">The official website of the EMS Group, parent organization of Creotec Philippines Inc.</div>
+          </a>
+
+          <!-- Reference Item 2 — placeholder -->
+          <a href="#" target="_blank" rel="noopener" class="ref-card">
+            <div class="ref-card-top">
+              <div class="ref-icon"><i class="fi fi-rr-document"></i></div>
+              <div class="ref-meta">
+                <span class="ref-tag">Publication</span>
+                <span class="ref-domain">sec.gov.ph</span>
+              </div>
+              <i class="fi fi-rr-arrow-up-right-from-square ref-arrow"></i>
+            </div>
+            <div class="ref-title">SEC Registration</div>
+            <div class="ref-desc">Creotec Philippines Inc. — SEC Registration #&nbsp;CS201521140, incorporated October 20, 2015.</div>
+          </a>
+
+          <!-- Reference Item 3 — placeholder -->
+          <a href="#" target="_blank" rel="noopener" class="ref-card">
+            <div class="ref-card-top">
+              <div class="ref-icon"><i class="fi fi-rr-book-alt"></i></div>
+              <div class="ref-meta">
+                <span class="ref-tag">Resource</span>
+                <span class="ref-domain">creotec.com.ph</span>
+              </div>
+              <i class="fi fi-rr-arrow-up-right-from-square ref-arrow"></i>
+            </div>
+            <div class="ref-title">Training Catalogue</div>
+            <div class="ref-desc">Browse the full list of technology-based training programs and curriculum offerings.</div>
+          </a>
+
+          <!-- Reference Item 4 — placeholder -->
+          <a href="#" target="_blank" rel="noopener" class="ref-card">
+            <div class="ref-card-top">
+              <div class="ref-icon"><i class="fi fi-rr-trophy"></i></div>
+              <div class="ref-meta">
+                <span class="ref-tag">Competition</span>
+                <span class="ref-domain">creotec.com.ph</span>
+              </div>
+              <i class="fi fi-rr-arrow-up-right-from-square ref-arrow"></i>
+            </div>
+            <div class="ref-title">Philippine Robotics Cup</div>
+            <div class="ref-desc">Official event page for the Philippine Robotics Cup, organized by Creotec Philippines.</div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <img src="assets/creotec-logo.png" alt="Creotec Philippines" onerror="this.style.display='none'" />
+            <p>Creotec Philippines Inc. is an industry-based training and learning company providing innovative technology-based curriculum and solutions to the academe, professionals, and individuals.</p>
+            <div class="footer-contact-list">
+              <div class="footer-contact-item"><i class="fi fi-rr-phone-call"></i><a href="tel:+639683056459">+63 968 305 6459 / +63 917 828 2736</a></div>
+              <div class="footer-contact-item"><i class="fi fi-rr-envelope"></i><a href="mailto:info@creotec.com.ph">info@creotec.com.ph</a></div>
+              <div class="footer-contact-item"><i class="fi fi-rr-globe"></i><a href="https://ems.com.ph" target="_blank" rel="noopener">ems.com.ph</a></div>
+            </div>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Facebook"><i class="fi fi-brands-facebook"></i></a>
+              <a href="#" class="social-link" aria-label="YouTube"><i class="fi fi-brands-youtube"></i></a>
+              <a href="#" class="social-link" aria-label="LinkedIn"><i class="fi fi-brands-linkedin"></i></a>
+            </div>
+          </div>
+          <nav class="footer-col" aria-label="About"><h4>About Creotec</h4><ul>
+            <li><a href="#about-intro"><i class="fi fi-rr-angle-right"></i>Our Background</a></li>
+            <li><a href="#values"><i class="fi fi-rr-angle-right"></i>Our Values</a></li>
+            <li><a href="#programs"><i class="fi fi-rr-angle-right"></i>Training Programs</a></li>
+            <li><a href="#partners"><i class="fi fi-rr-angle-right"></i>Key Partners</a></li>
+            <li><a href="#references"><i class="fi fi-rr-angle-right"></i>References</a></li>
+          </ul></nav>
+          <nav class="footer-col" aria-label="Competition"><h4>Competition</h4><ul>
+            <li><a href="index.html#categories"><i class="fi fi-rr-angle-right"></i>Categories</a></li>
+            <li><a href="index.html#"><i class="fi fi-rr-angle-right"></i>Rules &amp; Guidelines</a></li>
+            <li><a href="index.html#"><i class="fi fi-rr-angle-right"></i>Schedule</a></li>
+            <li><a href="index.html#"><i class="fi fi-rr-angle-right"></i>Past Events</a></li>
+          </ul></nav>
+          <nav class="footer-col" aria-label="Contact"><h4>Contact</h4><ul>
+            <li><a href="#references"><i class="fi fi-rr-angle-right"></i>References</a></li>
+            <li><a href="index.html#"><i class="fi fi-rr-angle-right"></i>Register Now</a></li>
+            <li><a href="index.html#"><i class="fi fi-rr-angle-right"></i>FAQ</a></li>
+            <li><a href="https://ems.com.ph" target="_blank" rel="noopener"><i class="fi fi-rr-angle-right"></i>EMS Group</a></li>
+          </ul></nav>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Philippine Robotics Cup // Creotec Philippines Inc. All rights reserved.</p>
+          <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+        </div>
+      </div>
+    </footer>
+
+  </div><!-- /page-wrapper -->
+
+  <script>
+    // ── CUSTOM CURSOR ──
+    var dot = document.getElementById('cursorDot');
+    var ring = document.getElementById('cursorRing');
+    var mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', function(e) {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    });
+    (function animRing() {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    })();
+    document.querySelectorAll('a, button, .value-card, .prog-card, .partner-badge, .ref-card').forEach(function(el) {
+      el.addEventListener('mouseenter', function() { ring.classList.add('hovered'); dot.style.background = 'var(--creo-amber)'; dot.style.boxShadow = 'var(--glow-orange)'; });
+      el.addEventListener('mouseleave', function() { ring.classList.remove('hovered'); dot.style.background = 'var(--prc-violet)'; dot.style.boxShadow = 'var(--glow-primary)'; });
+    });
+
+    // ── NAV SCROLL ──
+    var nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // ── HAMBURGER ──
+    var hamburger = document.getElementById('hamburger');
+    var navMobile = document.getElementById('navMobile');
+    hamburger.addEventListener('click', function() {
+      var open = hamburger.classList.toggle('open');
+      navMobile.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+    });
+    navMobile.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('open');
+        navMobile.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ── SCROLL REVEAL ──
+    var revEls = document.querySelectorAll('.reveal, .reveal-left');
+    var ro = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+    revEls.forEach(function(el) { ro.observe(el); });
+
+    // ── STAT COUNTER ──
+    var counters = document.querySelectorAll('.stat-num[data-target]');
+    var co = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (!e.isIntersecting || e.target._done) return;
+        e.target._done = true;
+        var target = parseInt(e.target.getAttribute('data-target'));
+        var suffix = e.target.textContent.replace(/[0-9]/g, '');
+        var t0 = Date.now(), dur = 1400;
+        (function loop() {
+          var p = Math.min((Date.now()-t0)/dur, 1);
+          e.target.textContent = Math.floor((1-Math.pow(1-p,3))*target) + suffix;
+          if (p < 1) requestAnimationFrame(loop); else e.target.textContent = target + suffix;
+        })();
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(function(el) { co.observe(el); });
+  </script>
+
+</body>
+</html>
