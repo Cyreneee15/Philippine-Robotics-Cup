@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<!-- PRC-WebApp/references.html -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#8B7EFF" />
+  <meta name="description" content="References & Video Tutorials — Creotec Philippines Robotics Learning Resources." />
+  <title>References — Creotec Philippines</title>
+
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="shortcut icon" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css'>
+
+  <style>
+    :root {
+      --prc-violet:   #8B7EFF;
+      --prc-ice:      #C4EEFF;
+      --creo-purple:  #7733FF;
+      --creo-amber:   #FFA030;
+      --creo-sky:     #44D9FF;
+      --neon-primary: var(--prc-violet);
+      --bg-void:      #03020D;
+      --border-neon:  rgba(139,126,255,0.22);
+      --border-hot:   rgba(139,126,255,0.55);
+      --glow-primary: 0 0 18px rgba(139,126,255,0.60), 0 0 55px rgba(139,126,255,0.20);
+      --glow-orange:  0 0 18px rgba(255,160,48,0.55),  0 0 55px rgba(255,160,48,0.18);
+      --text-high:    #F2EEFF;
+      --text-mid:     #C8C0F0;
+      --text-soft:    #9A90CC;
+      --text-dim:     #7068A8;
+      --font-hud:     'Orbitron', monospace;
+      --font-body:    'Exo 2', sans-serif;
+      --section-pad:  110px 0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-high);
+      overflow-x: hidden;
+      line-height: 1.6;
+      cursor: none;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== CUSTOM CURSOR ===== */
+    .cursor-dot {
+      position: fixed; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--neon-primary); pointer-events: none; z-index: 99999;
+      transform: translate(-50%,-50%);
+      box-shadow: var(--glow-primary);
+      transition: transform 0.1s, background 0.2s;
+    }
+    .cursor-ring {
+      position: fixed; width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid rgba(139,126,255,0.65); pointer-events: none; z-index: 99998;
+      transform: translate(-50%,-50%);
+      transition: width 0.25s, height 0.25s, border-color 0.25s, transform 0.08s;
+    }
+    .cursor-ring.hovered { width: 56px; height: 56px; border-color: var(--creo-amber); border-width: 1.5px; }
+
+    /* ===== SCANLINES ===== */
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 9998; pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom, transparent, transparent 2px,
+        rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px
+      );
+    }
+
+    /* ===== HEX GRID BACKGROUND ===== */
+    .hex-grid {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(139,126,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139,126,255,0.04) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    .hex-grid::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%,   rgba(119,51,255,0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 100% 100%, rgba(204,85,255,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 0%   80%,  rgba(139,126,255,0.09) 0%, transparent 60%);
+    }
+
+    /* ===== LAYOUT ===== */
+    .page-wrapper { position: relative; z-index: 1; padding: 60px 0; }
+    .section-inner { max-width: 1340px; margin: 0 auto; padding: 0 36px; }
+
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-hud); font-size: 0.60rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--creo-amber); margin-bottom: 14px;
+    }
+    .section-eyebrow::before, .section-eyebrow::after {
+      content: ''; flex: none; width: 28px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--creo-amber));
+    }
+    .section-eyebrow::after { background: linear-gradient(90deg, var(--creo-amber), transparent); }
+
+    .btn-neon-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-hud); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      background: var(--prc-violet); color: #fff;
+      padding: 14px 32px; border-radius: 2px;
+      box-shadow: 0 0 24px rgba(139,126,255,0.45), 0 0 60px rgba(139,126,255,0.15);
+      transition: all 0.25s;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+    .btn-neon-primary:hover {
+      background: #9d92ff;
+      box-shadow: 0 0 40px rgba(139,126,255,0.70), 0 0 90px rgba(139,126,255,0.25);
+      transform: translateY(-2px);
+    }
+
+    /* ===== VIDEO TUTORIALS ===== */
+    #video-tutorials { padding: var(--section-pad); }
+    .video-header { text-align: center; margin-bottom: 60px; }
+    .video-header .section-eyebrow { justify-content: center; }
+    .video-title {
+      font-family: var(--font-hud); font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+      font-weight: 800; color: #fff; letter-spacing: -0.01em; margin-bottom: 14px;
+    }
+    .video-title .accent { color: var(--prc-violet); text-shadow: 0 0 18px rgba(139,126,255,0.65); }
+    .video-desc { font-size: 0.95rem; color: var(--text-mid); max-width: 560px; margin: 0 auto; line-height: 1.80; }
+
+    .video-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      background: var(--border-neon); border: 1px solid var(--border-neon);
+    }
+    .video-card {
+      background: rgba(3,2,13,0.95);
+      display: flex; flex-direction: column;
+      transition: background 0.3s; position: relative; overflow: hidden;
+      cursor: none;
+    }
+    .video-card:hover { background: rgba(139,126,255,0.045); }
+    .video-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      opacity: 0; transition: opacity 0.3s; z-index: 2;
+    }
+    .video-card:nth-child(1)::before { background: linear-gradient(90deg, #FF0000, transparent); }
+    .video-card:nth-child(2)::before { background: linear-gradient(90deg, var(--creo-sky), transparent); }
+    .video-card:nth-child(3)::before { background: linear-gradient(90deg, var(--creo-amber), transparent); }
+    .video-card:hover::before { opacity: 1; }
+
+    .video-thumb-wrap {
+      position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden;
+      background: #0a0520;
+    }
+    .video-thumb-wrap iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%; border: none;
+    }
+    .video-thumb-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      border: 1px solid rgba(139,126,255,0); pointer-events: none;
+      transition: border-color 0.3s;
+    }
+    .video-card:hover .video-thumb-wrap::after { border-color: rgba(139,126,255,0.35); }
+
+    .video-scan-overlay {
+      position: absolute; inset: 0; pointer-events: none; z-index: 3;
+      background: repeating-linear-gradient(
+        to bottom, transparent, transparent 3px,
+        rgba(0,0,0,0.05) 3px, rgba(0,0,0,0.05) 6px
+      );
+    }
+
+    .video-card-body { padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .video-card-top { display: flex; align-items: center; gap: 12px; }
+    .video-yt-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--font-hud); font-size: 0.48rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: #fff; background: #FF0000; padding: 4px 10px;
+      clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+    }
+    .video-yt-badge i { font-size: 0.75rem; }
+    .video-num {
+      font-family: var(--font-hud); font-size: 0.48rem; font-weight: 700;
+      letter-spacing: 0.20em; text-transform: uppercase; color: var(--text-dim);
+      margin-left: auto;
+    }
+    .video-card-title {
+      font-family: var(--font-hud); font-size: 0.80rem; font-weight: 700;
+      letter-spacing: 0.03em; color: var(--text-high); line-height: 1.40;
+      transition: color 0.2s;
+    }
+    .video-card:hover .video-card-title { color: #fff; }
+    .video-card-desc { font-size: 0.855rem; color: var(--text-mid); line-height: 1.74; flex: 1; }
+    .video-card-footer {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding-top: 14px; border-top: 1px solid rgba(139,126,255,0.10);
+      margin-top: auto;
+    }
+    .video-topic-tag {
+      font-family: var(--font-hud); font-size: 0.50rem; font-weight: 600;
+      letter-spacing: 0.10em; text-transform: uppercase; padding: 4px 12px;
+      border: 1px solid rgba(139,126,255,0.22); background: rgba(139,126,255,0.05);
+      color: var(--text-soft);
+      clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+    }
+    .video-watch-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--font-hud); font-size: 0.50rem; font-weight: 700;
+      letter-spacing: 0.10em; text-transform: uppercase;
+      color: #FF0000; transition: color 0.2s, text-shadow 0.2s;
+    }
+    .video-watch-btn i { font-size: 0.8rem; }
+    .video-card:hover .video-watch-btn { color: #ff3333; text-shadow: 0 0 12px rgba(255,0,0,0.55); }
+
+    .playlist-banner {
+      margin-top: 40px;
+      border: 1px solid var(--border-neon); background: rgba(139,126,255,0.03);
+      padding: 28px 36px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      position: relative; overflow: hidden;
+    }
+    .playlist-banner::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--prc-violet), var(--creo-sky), transparent);
+    }
+    .playlist-banner-left { display: flex; align-items: center; gap: 18px; }
+    .playlist-icon {
+      width: 52px; height: 52px; flex-shrink: 0;
+      background: rgba(255,0,0,0.10); border: 1px solid rgba(255,0,0,0.30);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; color: #FF0000;
+    }
+    .playlist-label {
+      font-family: var(--font-hud); font-size: 0.52rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--creo-amber); margin-bottom: 4px;
+    }
+    .playlist-title {
+      font-family: var(--font-hud); font-size: 0.90rem; font-weight: 700;
+      color: var(--text-high); letter-spacing: 0.02em;
+    }
+    .playlist-title span { color: var(--prc-violet); text-shadow: 0 0 12px rgba(139,126,255,0.55); }
+    .playlist-count { font-size: 0.82rem; color: var(--text-mid); margin-top: 4px; }
+
+    /* ===== DIVIDER ===== */
+    .section-divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(139,126,255,0.35), transparent);
+    }
+
+    /* ===== DOCUMENT REFERENCES ===== */
+    #doc-references { padding: var(--section-pad); background: rgba(0,0,8,0.50); }
+    .references-header { text-align: center; margin-bottom: 52px; }
+    .references-header .section-eyebrow { justify-content: center; }
+    .references-title {
+      font-family: var(--font-hud); font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+      font-weight: 800; color: #fff; letter-spacing: -0.01em; margin-bottom: 14px;
+    }
+    .references-title .accent { color: var(--prc-violet); text-shadow: 0 0 18px rgba(139,126,255,0.65); }
+    .references-desc { font-size: 0.95rem; color: var(--text-mid); max-width: 560px; margin: 0 auto; line-height: 1.80; }
+
+    .references-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+      background: var(--border-neon); border: 1px solid var(--border-neon);
+    }
+    .ref-card {
+      background: rgba(3,2,13,0.95); padding: 32px 36px;
+      display: flex; flex-direction: column; gap: 12px;
+      transition: background 0.3s; position: relative; overflow: hidden; cursor: none;
+    }
+    .ref-card:hover { background: rgba(139,126,255,0.055); }
+    .ref-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--prc-violet), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .ref-card:hover::before { opacity: 1; }
+    .ref-card-top { display: flex; align-items: center; gap: 14px; }
+    .ref-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: rgba(139,126,255,0.08); border: 1px solid rgba(139,126,255,0.22);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: var(--prc-violet);
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .ref-card:hover .ref-icon { background: rgba(139,126,255,0.15); border-color: rgba(139,126,255,0.45); }
+    .ref-meta { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+    .ref-tag {
+      font-family: var(--font-hud); font-size: 0.50rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase; color: var(--creo-amber);
+      text-shadow: 0 0 8px rgba(255,160,48,0.40);
+    }
+    .ref-domain {
+      font-family: var(--font-hud); font-size: 0.56rem; font-weight: 600;
+      letter-spacing: 0.08em; color: var(--text-dim); text-transform: lowercase;
+    }
+    .ref-arrow {
+      font-size: 0.85rem; color: rgba(139,126,255,0.35);
+      transition: color 0.2s, transform 0.2s; flex-shrink: 0;
+    }
+    .ref-card:hover .ref-arrow { color: var(--prc-violet); transform: translate(2px,-2px); }
+    .ref-title {
+      font-family: var(--font-hud); font-size: 0.84rem; font-weight: 700;
+      letter-spacing: 0.03em; color: var(--text-high); line-height: 1.35; transition: color 0.2s;
+    }
+    .ref-card:hover .ref-title { color: #fff; }
+    .ref-desc { font-size: 0.875rem; color: var(--text-mid); line-height: 1.74; }
+
+    /* ===== REVEAL ===== */
+    .reveal { opacity:0; transform:translateY(30px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-delay-1 { transition-delay:0.10s; }
+    .reveal-delay-2 { transition-delay:0.20s; }
+    .reveal-delay-3 { transition-delay:0.30s; }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg-void); }
+    ::-webkit-scrollbar-thumb { background: var(--prc-violet); box-shadow: 0 0 8px rgba(139,126,255,0.70); border-radius: 2px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .video-grid { grid-template-columns: repeat(2, 1fr); }
+      .references-grid { grid-template-columns: 1fr; }
+      .playlist-banner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 768px) {
+      :root { --section-pad: 70px 0; }
+      body { cursor: auto; }
+      .cursor-dot, .cursor-ring { display: none; }
+      .video-grid { grid-template-columns: 1fr; }
+      .references-grid { grid-template-columns: 1fr; }
+      .playlist-banner { padding: 22px; }
+    }
+    @media (max-width: 520px) {
+      .section-inner { padding: 0 16px; }
+      .ref-card { padding: 24px 20px; }
+      .video-card-body { padding: 18px 20px 22px; }
+      .playlist-banner { padding: 18px 16px; }
+      .btn-neon-primary { clip-path: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="hex-grid" aria-hidden="true"></div>
+
+  <div class="page-wrapper">
+
+    <!-- ===== VIDEO TUTORIALS ===== -->
+    <section id="video-tutorials" aria-label="Video Tutorials">
+      <div class="section-inner">
+        <div class="video-header reveal">
+          <div class="section-eyebrow">Watch &amp; Learn</div>
+          <h2 class="video-title">Robotics Video <span class="accent">Tutorial Lessons</span></h2>
+          <p class="video-desc">
+            Step-by-step video lessons produced by Creotec Philippines covering robotics
+            fundamentals, assembly, programming, and competition preparation.
+          </p>
+        </div>
+
+        <div class="video-grid">
+
+          <!-- VIDEO 1 -->
+          <div class="video-card reveal">
+            <div class="video-thumb-wrap">
+              <iframe
+                src="https://www.youtube.com/embed/ep4Cflo4V4M"
+                title="Creotec Robotics Tutorial Lesson 1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen loading="lazy">
+              </iframe>
+              <div class="video-scan-overlay" aria-hidden="true"></div>
+            </div>
+            <div class="video-card-body">
+              <div class="video-card-top">
+                <span class="video-yt-badge"><i class="fi fi-brands-youtube"></i> YouTube</span>
+                <span class="video-num">LESSON // 01</span>
+              </div>
+              <div class="video-card-title">Robotics Tutorial Lesson 1</div>
+              <div class="video-card-desc">
+                An introductory robotics lesson from Creotec Philippines covering the core
+                concepts and foundations of robot assembly and design for learners and educators.
+              </div>
+              <div class="video-card-footer">
+                <span class="video-topic-tag">Robotics Basics</span>
+                <a href="https://youtu.be/ep4Cflo4V4M?si=F7HDVtFKdQ7Vq1Tx" target="_blank" rel="noopener" class="video-watch-btn">
+                  <i class="fi fi-brands-youtube"></i> Watch on YouTube
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIDEO 2 -->
+          <div class="video-card reveal reveal-delay-1">
+            <div class="video-thumb-wrap">
+              <iframe
+                src="https://www.youtube.com/embed/Fpnl4VbqkMk"
+                title="Creotec Robotics Tutorial Lesson 2"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen loading="lazy">
+              </iframe>
+              <div class="video-scan-overlay" aria-hidden="true"></div>
+            </div>
+            <div class="video-card-body">
+              <div class="video-card-top">
+                <span class="video-yt-badge"><i class="fi fi-brands-youtube"></i> YouTube</span>
+                <span class="video-num">LESSON // 02</span>
+              </div>
+              <div class="video-card-title">Robotics Tutorial Lesson 2</div>
+              <div class="video-card-desc">
+                Continuing the robotics curriculum, this lesson dives deeper into mechanical
+                structure, sensor integration, and essential troubleshooting techniques.
+              </div>
+              <div class="video-card-footer">
+                <span class="video-topic-tag">Assembly &amp; Sensors</span>
+                <a href="https://youtu.be/Fpnl4VbqkMk?si=vqOUYeC9hdil72Ym" target="_blank" rel="noopener" class="video-watch-btn">
+                  <i class="fi fi-brands-youtube"></i> Watch on YouTube
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIDEO 3 -->
+          <div class="video-card reveal reveal-delay-2">
+            <div class="video-thumb-wrap">
+              <iframe
+                src="https://www.youtube.com/embed/dVUe90A4LtM"
+                title="Creotec Robotics Tutorial Lesson 3"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen loading="lazy">
+              </iframe>
+              <div class="video-scan-overlay" aria-hidden="true"></div>
+            </div>
+            <div class="video-card-body">
+              <div class="video-card-top">
+                <span class="video-yt-badge"><i class="fi fi-brands-youtube"></i> YouTube</span>
+                <span class="video-num">LESSON // 03</span>
+              </div>
+              <div class="video-card-title">Robotics Tutorial Lesson 3</div>
+              <div class="video-card-desc">
+                Advanced lesson covering programming logic, autonomous robot behavior,
+                and preparation strategies for robotics competitions hosted by Creotec Philippines.
+              </div>
+              <div class="video-card-footer">
+                <span class="video-topic-tag">Programming &amp; Logic</span>
+                <a href="https://youtu.be/dVUe90A4LtM?si=oMzha7sBShmT_Z-c" target="_blank" rel="noopener" class="video-watch-btn">
+                  <i class="fi fi-brands-youtube"></i> Watch on YouTube
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /video-grid -->
+
+        <!-- Playlist banner -->
+        <div class="playlist-banner reveal">
+          <div class="playlist-banner-left">
+            <div class="playlist-icon"><i class="fi fi-brands-youtube"></i></div>
+            <div>
+              <div class="playlist-label">Creotec Philippines</div>
+              <div class="playlist-title">Robotics <span>Tutorial Series</span></div>
+              <div class="playlist-count">3 lessons available &nbsp;·&nbsp; More coming soon</div>
+            </div>
+          </div>
+          <a href="https://www.youtube.com/@creotecphilippines" target="_blank" rel="noopener" class="btn-neon-primary">
+            <i class="fi fi-brands-youtube"></i> Visit YouTube Channel
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ===== DOCUMENT REFERENCES ===== -->
+    <section id="doc-references" aria-label="Document References">
+      <div class="section-inner">
+        <div class="references-header reveal">
+          <div class="section-eyebrow">Sources &amp; Documents</div>
+          <h2 class="references-title">Official <span class="accent">References</span></h2>
+          <p class="references-desc">
+            Official registrations, publications, and external resources cited in relation
+            to Creotec Philippines and the Philippine Robotics Cup.
+          </p>
+        </div>
+
+        <div class="references-grid">
+
+          <a href="https://creotec.com.ph" target="_blank" rel="noopener" class="ref-card reveal">
+            <div class="ref-card-top">
+              <div class="ref-icon"><i class="fi fi-rr-globe"></i></div>
+              <div class="ref-meta">
+                <span class="ref-tag">Official Website</span>
+                <span class="ref-domain">creotec.com.ph</span>
+              </div>
+              <i class="fi fi-rr-arrow-up-right-from-square ref-arrow"></i>
+            </div>
+            <div class="ref-title">Creotec Philippines Inc. — Official Site</div>
+            <div class="ref-desc">The official website of Creotec Philippines Inc., featuring company information, training programs, and industry partnership resources.</div>
+          </a>
+
+          <a href="#" target="_blank" rel="noopener" class="ref-card reveal reveal-delay-1">
+            <div class="ref-card-top">
+              <div class="ref-icon"><i class="fi fi-rr-document"></i></div>
+              <div class="ref-meta">
+                <span class="ref-tag">Publication</span>
+                <span class="ref-domain">sec.gov.ph</span>
+              </div>
+              <i class="fi fi-rr-arrow-up-right-from-square ref-arrow"></i>
+            </div>
+            <div class="ref-title">SEC Registration</div>
+            <div class="ref-desc">Creotec Philippines Inc. — SEC Registration #&nbsp;CS201521140, incorporated October 20, 2015.</div>
+          </a>
+
+          <a href="#" target="_blank" rel="noopener" class="ref-card reveal reveal-delay-2">
+            <div class="ref-card-top">
+              <div class="ref-icon"><i class="fi fi-rr-book-alt"></i></div>
+              <div class="ref-meta">
+                <span class="ref-tag">Resource</span>
+                <span class="ref-domain">creotec.com.ph</span>
+              </div>
+              <i class="fi fi-rr-arrow-up-right-from-square ref-arrow"></i>
+            </div>
+            <div class="ref-title">Training Catalogue</div>
+            <div class="ref-desc">Browse the full list of technology-based training programs and curriculum offerings provided by Creotec Philippines.</div>
+          </a>
+
+          <a href="index.html" class="ref-card reveal reveal-delay-3">
+            <div class="ref-card-top">
+              <div class="ref-icon"><i class="fi fi-rr-trophy"></i></div>
+              <div class="ref-meta">
+                <span class="ref-tag">Competition</span>
+                <span class="ref-domain">creotec.com.ph</span>
+              </div>
+              <i class="fi fi-rr-arrow-up-right-from-square ref-arrow"></i>
+            </div>
+            <div class="ref-title">Philippine Robotics Cup</div>
+            <div class="ref-desc">Official event page for the Philippine Robotics Cup — the premier robotics competition organized and hosted by Creotec Philippines Inc.</div>
+          </a>
+
+          <a href="https://ems.com.ph" target="_blank" rel="noopener" class="ref-card reveal">
+            <div class="ref-card-top">
+              <div class="ref-icon"><i class="fi fi-rr-industry-alt"></i></div>
+              <div class="ref-meta">
+                <span class="ref-tag">Parent Company</span>
+                <span class="ref-domain">ems.com.ph</span>
+              </div>
+              <i class="fi fi-rr-arrow-up-right-from-square ref-arrow"></i>
+            </div>
+            <div class="ref-title">EMS Group of Companies</div>
+            <div class="ref-desc">Creotec Philippines is a wholly-owned subsidiary of the EMS Group of Companies, operating six facilities within the Biñan Technopark.</div>
+          </a>
+
+          <a href="https://www.youtube.com/@creotecphilippines" target="_blank" rel="noopener" class="ref-card reveal reveal-delay-1">
+            <div class="ref-card-top">
+              <div class="ref-icon" style="color:#FF0000; background:rgba(255,0,0,0.08); border-color:rgba(255,0,0,0.25);">
+                <i class="fi fi-brands-youtube"></i>
+              </div>
+              <div class="ref-meta">
+                <span class="ref-tag">Video Tutorials</span>
+                <span class="ref-domain">youtube.com</span>
+              </div>
+              <i class="fi fi-rr-arrow-up-right-from-square ref-arrow"></i>
+            </div>
+            <div class="ref-title">Creotec Philippines — YouTube Channel</div>
+            <div class="ref-desc">Official YouTube channel featuring robotics tutorial lessons, training content, and educational videos produced by Creotec Philippines.</div>
+          </a>
+
+        </div><!-- /references-grid -->
+      </div>
+    </section>
+
+  </div><!-- /page-wrapper -->
+
+  <script>
+    // ── CUSTOM CURSOR ──
+    var dot = document.getElementById('cursorDot');
+    var ring = document.getElementById('cursorRing');
+    var mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', function(e) {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    });
+    (function animRing() {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    })();
+    document.querySelectorAll('a, .ref-card, .video-card').forEach(function(el) {
+      el.addEventListener('mouseenter', function() { ring.classList.add('hovered'); dot.style.background = 'var(--creo-amber)'; dot.style.boxShadow = 'var(--glow-orange)'; });
+      el.addEventListener('mouseleave', function() { ring.classList.remove('hovered'); dot.style.background = 'var(--prc-violet)'; dot.style.boxShadow = 'var(--glow-primary)'; });
+    });
+
+    // ── SCROLL REVEAL ──
+    var revEls = document.querySelectorAll('.reveal');
+    var ro = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -28px 0px' });
+    revEls.forEach(function(el) { ro.observe(el); });
+  </script>
+
+</body>
+</html>
